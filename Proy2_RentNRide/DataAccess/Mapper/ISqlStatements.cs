@@ -18,3 +18,10 @@ namespace DataAccess.Mapper
         SqlOperation GetDeleteStatement(BaseEntity entity);
     }
 }
+
+namespace DataAccess
+{
+    public class ISqlStaments
+    {
+    }
+}

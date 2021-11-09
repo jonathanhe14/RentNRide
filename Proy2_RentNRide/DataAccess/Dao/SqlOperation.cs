@@ -45,5 +45,26 @@ namespace DataAccess.Dao
             Parameters.Add(param);
         }
 
+        public void AddDateTimeParam(string paramName, DateTime paramValue)
+        {
+            var param = new SqlParameter("@P_" + paramName, SqlDbType.DateTime)
+            {
+                Value = paramValue
+            };
+            Parameters.Add(param);
+        }
+
+        public void AddDecimalParam(string paramName, decimal paramValue)
+        {
+            var param = new SqlParameter("@P_" + paramName, SqlDbType.Decimal)
+            {
+                Value = paramValue
+            };
+            Parameters.Add(param);
+
+        }
+
+
+
     }
 }
