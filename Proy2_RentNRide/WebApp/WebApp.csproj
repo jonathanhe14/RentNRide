@@ -124,6 +124,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ApiResponse.cs" />
     <Compile Include="Models\Controls\CtrlBaseModel.cs" />
     <Compile Include="Models\Controls\CtrlButtonModel.cs" />
     <Compile Include="Models\Controls\CtrlChartModel.cs" />
@@ -138,6 +139,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\landing.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -174,6 +176,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\InicioSesion.cshtml" />
+    <Content Include="Views\Home\RegistroSocios.cshtml" />
+    <Content Include="Views\Home\RegistroUsuariosFinales.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -190,6 +195,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities-POJO\Entities-POJO.csproj">
+      <Project>{D8993DE9-2376-473F-917A-AFDEE2F9A9C7}</Project>
+      <Name>Entities-POJO</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

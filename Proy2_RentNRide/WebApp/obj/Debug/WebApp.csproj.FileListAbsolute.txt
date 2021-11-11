@@ -72,7 +72,9 @@ C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\bin
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\bin\Newtonsoft.Json.xml
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\bin\Antlr3.Runtime.pdb
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\obj\Debug\WebApp.csproj.AssemblyReference.cache
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\obj\Debug\WebApp.csproj.CoreCompileInputs.cache
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\obj\Debug\WebApp.dll
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\obj\Debug\WebApp.pdb
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\bin\Entities-POJO.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\bin\Entities-POJO.pdb
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\obj\Debug\WebApp.csproj.AssemblyReference.cache

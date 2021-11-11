@@ -83,3 +83,9 @@ C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\obj
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\obj\Debug\WebAPI.csproj.CopyComplete
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\obj\Debug\WebAPI.dll
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\obj\Debug\WebAPI.pdb
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\CoreAPI.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\Entities-POJO.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\DataAccess.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\CoreAPI.pdb
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\Entities-POJO.pdb
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\DataAccess.pdb
