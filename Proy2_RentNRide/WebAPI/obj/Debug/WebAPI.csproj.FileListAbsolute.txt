@@ -80,7 +80,6 @@ C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\obj\Debug\WebAPI.csproj.AssemblyReference.cache
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\obj\Debug\WebAPI.csproj.CoreCompileInputs.cache
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\obj\Debug\WebAPI.csproj.CopyComplete
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\obj\Debug\WebAPI.dll
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\obj\Debug\WebAPI.pdb
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\CoreAPI.dll
@@ -89,3 +88,16 @@ C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\CoreAPI.pdb
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\Entities-POJO.pdb
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\DataAccess.pdb
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\Twilio.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\SendGrid.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\StarkbankEcdsa.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\Microsoft.IdentityModel.Logging.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\CoreAPI.dll.config
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\Twilio.xml
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\SendGrid.pdb
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\SendGrid.xml
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\obj\Debug\WebAPI.csproj.CopyComplete

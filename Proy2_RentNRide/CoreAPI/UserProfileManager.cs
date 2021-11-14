@@ -39,5 +39,20 @@ namespace CoreAPI
             return u;
         }
 
+        public int AsignarOTP(UserProfile user)
+        {
+            /*
+             * Recibe de las notificaciones el usuario.
+             * Asigna un OTP:
+             * usuario.otp = codigoOTP;(POR EJEMPLO).
+             * Finalmente, lo devuelve a las notificaciones.
+             * RECORDAR CAMBIAR DE INT A USUARIO EL TIPO DE FUNCIÓN
+             */
+            Random generator = new Random();
+            int otp = generator.Next(100000, 1000000);
+
+            return otp;
+        }
+
     }
 }

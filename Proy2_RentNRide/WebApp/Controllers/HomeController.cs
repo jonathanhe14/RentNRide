@@ -30,7 +30,7 @@ namespace WebApp.Controllers
                 string jsonString = JsonConvert.SerializeObject(objUser);
 
                 HttpContent c = new StringContent(jsonString, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = client.PostAsync("http://localhost:52125/api/userprofile", c).Result;
+                HttpResponseMessage response = client.PostAsync("http://localhost:52125/api/userprofile/InicioSesion", c).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -52,6 +52,72 @@ namespace WebApp.Controllers
         }
 
         public ActionResult InicioSesion()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EnvioOTPCorreo(UserProfile objUser)
+        {
+            if (ModelState.IsValid)
+            {
+
+
+                string jsonString = JsonConvert.SerializeObject(objUser);
+
+                HttpContent c = new StringContent(jsonString, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = client.PostAsync("http://localhost:52125/api/userprofile/RecuperarClaveCorreo", c).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = response.Content.ReadAsStringAsync().Result;
+
+                    var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
+                    var user = JsonConvert.DeserializeObject<UserProfile>(apiResponse.Data.ToString());
+
+                    return View("About");
+                }
+                else
+                {
+                    return View(objUser);
+                }
+            }
+            return View("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EnvioOTPTelefono(UserProfile objUser)
+        {
+            if (ModelState.IsValid)
+            {
+
+
+                string jsonString = JsonConvert.SerializeObject(objUser);
+
+                HttpContent c = new StringContent(jsonString, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = client.PostAsync("http://localhost:52125/api/userprofile/RecuperarClaveSMS", c).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = response.Content.ReadAsStringAsync().Result;
+
+                    var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
+                    var user = JsonConvert.DeserializeObject<UserProfile>(apiResponse.Data.ToString());
+
+                    return View("About");
+                }
+                else
+                {
+                    return View(objUser);
+                }
+            }
+            return View("Index");
+        }
+
+
+        public ActionResult EnvioOTP()
         {
             return View();
         }

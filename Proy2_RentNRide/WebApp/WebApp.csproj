@@ -179,6 +179,7 @@
     <Content Include="Views\Home\InicioSesion.cshtml" />
     <Content Include="Views\Home\RegistroSocios.cshtml" />
     <Content Include="Views\Home\RegistroUsuariosFinales.cshtml" />
+    <Content Include="Views\Home\EnvioOTP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
