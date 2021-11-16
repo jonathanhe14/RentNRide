@@ -152,5 +152,12 @@ namespace WebApp.Controllers
 
             return View();
         }
+
+        public ActionResult VehiculoInfo()
+        {
+            ViewBag.Message = "Agregue su vehiculo!";
+
+            return View();
+        }
     }
 }
