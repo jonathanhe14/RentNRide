@@ -6,7 +6,11 @@
 
 	this.Create = function () {
 		var customerData = {};
-		customerData = this.ctrlActions.GetDataForm('frmEdition');
+		var idData = {};
+		var documentoData = {};
+		idData = this.ctrlActions.GetDataForm('idEdition');
+		customerData = idData + this.ctrlActions.GetDataForm('frmEdition');
+		documentoData = idData + this.ctrlActions.GetDataForm('docuEdition');
 		//Hace el post al create
 		this.ctrlActions.PostToAPI(this.service, customerData, function (data) {
 			var vcustomer = new vCustomers();
