@@ -17,6 +17,23 @@ namespace Entities_POJO
 
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (!(obj is Contrasennas objAsPart)) return false;
+            else return Equals(objAsPart);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
 
     }
 }

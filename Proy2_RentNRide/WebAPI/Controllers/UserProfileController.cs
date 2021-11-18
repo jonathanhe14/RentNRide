@@ -39,26 +39,49 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult RecuperarClaveCorreo(UserProfile user)
+        public IHttpActionResult RecuperarClaveCorreo(Usuarios user)
         {
-            var mng = new NotificacionesManager();
+            var mng = new UserProfileManager();
             string respuesta = mng.recuperarClaveCorreo(user);
             apiResp = new ApiResponse();
-            apiResp.Message = "Correo enviado";
+            apiResp.Message = respuesta;
             apiResp.Data = user;
             return Ok(apiResp);
         }
 
         [HttpPost]
-        public IHttpActionResult RecuperarClaveSMS(UserProfile user)
+        public IHttpActionResult RecuperarClaveSMS(Usuarios user)
         {
             var mng = new NotificacionesManager();
             string respuesta = mng.recuperarClaveSMS(user);
             apiResp = new ApiResponse();
-            apiResp.Message = "SMS enviado";
+            apiResp.Message = respuesta;
             apiResp.Data = user;
             return Ok(apiResp);
         }
+
+        [HttpPost]
+        public IHttpActionResult ComprobarOTP(Usuarios user)
+        {
+            var mng = new UserProfileManager();
+            string respuesta = mng.validarOTP(user);
+            apiResp = new ApiResponse();
+            apiResp.Message = respuesta;
+            apiResp.Data = user;
+            return Ok(apiResp);
+        }
+
+        [HttpPost]
+        public IHttpActionResult CambiarClave(Usuarios user)
+        {
+            var mng = new UserProfileManager();
+            string respuesta = mng.actualizarClave(user);
+            apiResp = new ApiResponse();
+            apiResp.Message = respuesta;
+            apiResp.Data = user;
+            return Ok(apiResp);
+        }
+
 
     }
 }

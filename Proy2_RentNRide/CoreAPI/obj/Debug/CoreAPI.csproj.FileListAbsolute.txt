@@ -22,3 +22,33 @@ C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\CoreAPI\bi
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\CoreAPI\bin\Debug\SendGrid.xml
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\CoreAPI\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\CoreAPI\bin\Debug\Twilio.xml
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\CoreAPI.dll.config
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\CoreAPI.dll
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\CoreAPI.pdb
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\DataAccess.dll
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\Entities-POJO.dll
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\Exceptions.dll
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\Microsoft.IdentityModel.Logging.dll
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\Microsoft.IdentityModel.Tokens.dll
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\Newtonsoft.Json.dll
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\SendGrid.dll
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\StarkbankEcdsa.dll
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\Twilio.dll
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\DataAccess.pdb
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\Entities-POJO.pdb
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\Exceptions.pdb
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\Microsoft.IdentityModel.Tokens.xml
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\Newtonsoft.Json.xml
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\SendGrid.pdb
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\SendGrid.xml
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\bin\Debug\Twilio.xml
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.csproj.AssemblyReference.cache
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.csproj.CoreCompileInputs.cache
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.csproj.CopyComplete
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.dll
+A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.pdb
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\CoreAPI\bin\Debug\Exceptions.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\CoreAPI\bin\Debug\Exceptions.pdb
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.csproj.CopyComplete

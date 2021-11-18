@@ -44,9 +44,12 @@
     <Compile Include="ApplicationMessage.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Contrasennas.cs" />
+    <Compile Include="Hasher.cs" />
     <Compile Include="ObjectDumper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserProfile.cs" />
+    <Compile Include="Usuarios.cs" />
+    <Compile Include="UsuariosRol.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,3 +7,12 @@ C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\Exceptions
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.csproj.CopyComplete
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.dll
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.pdb
+A:\ProyectoCenfo\Proy2_RentNRide\Exceptions\bin\Debug\Exceptions.dll
+A:\ProyectoCenfo\Proy2_RentNRide\Exceptions\bin\Debug\Exceptions.pdb
+A:\ProyectoCenfo\Proy2_RentNRide\Exceptions\bin\Debug\Entities-POJO.dll
+A:\ProyectoCenfo\Proy2_RentNRide\Exceptions\bin\Debug\Entities-POJO.pdb
+A:\ProyectoCenfo\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.csproj.AssemblyReference.cache
+A:\ProyectoCenfo\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.csproj.CoreCompileInputs.cache
+A:\ProyectoCenfo\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.csproj.CopyComplete
+A:\ProyectoCenfo\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.dll
+A:\ProyectoCenfo\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.pdb
