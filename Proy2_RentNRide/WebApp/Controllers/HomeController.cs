@@ -58,12 +58,10 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EnvioOTPCorreo(UserProfile objUser)
+        public ActionResult EnvioOTPCorreo(Usuarios objUser)
         {
             if (ModelState.IsValid)
             {
-
-
                 string jsonString = JsonConvert.SerializeObject(objUser);
 
                 HttpContent c = new StringContent(jsonString, Encoding.UTF8, "application/json");
@@ -74,9 +72,13 @@ namespace WebApp.Controllers
                     var content = response.Content.ReadAsStringAsync().Result;
 
                     var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
-                    var user = JsonConvert.DeserializeObject<UserProfile>(apiResponse.Data.ToString());
+                    var user = JsonConvert.DeserializeObject<Usuarios>(apiResponse.Data.ToString());
 
-                    return View("About");
+                    TempData["usuario"] = user.Correo;
+
+                    return new RedirectResult("IngresarOTP");
+
+                    //return View("IngresarOTP");                    
                 }
                 else
                 {
@@ -88,7 +90,7 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EnvioOTPTelefono(UserProfile objUser)
+        public ActionResult EnvioOTPTelefono(Usuarios objUser)
         {
             if (ModelState.IsValid)
             {
@@ -104,9 +106,12 @@ namespace WebApp.Controllers
                     var content = response.Content.ReadAsStringAsync().Result;
 
                     var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
-                    var user = JsonConvert.DeserializeObject<UserProfile>(apiResponse.Data.ToString());
+                    var user = JsonConvert.DeserializeObject<Usuarios>(apiResponse.Data.ToString());
+                    string correo = user.Correo;
+                    TempData["usuario"] = correo;
 
-                    return View("About");
+
+                    return View("IngresarOTP");
                 }
                 else
                 {
@@ -118,6 +123,65 @@ namespace WebApp.Controllers
 
 
         public ActionResult EnvioOTP()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult IngresarOTP(string correo, string otp)
+        {
+            if (ModelState.IsValid)
+            {
+                Usuarios objUser = new Usuarios();
+                objUser.Correo = correo;
+                objUser.OTP = Convert.ToInt32(otp);
+
+                string jsonString = JsonConvert.SerializeObject(objUser);
+
+                HttpContent c = new StringContent(jsonString, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = client.PostAsync("http://localhost:52125/api/userprofile/ComprobarOTP", c).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = response.Content.ReadAsStringAsync().Result;
+
+                    var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
+                    if (apiResponse.Message == "éxito")
+                    {
+                        var user = JsonConvert.DeserializeObject<Usuarios>(apiResponse.Data.ToString());
+                        TempData["usuario"] = correo;
+                        return View("RestablecerClave");
+                    }
+                    else
+                    {
+                        TempData["usuario"] = correo;
+                        return View();
+                    }                 
+
+                }
+                else
+                {
+                    return View(objUser);
+                }
+            }
+            return View("Index");
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ReestablecerClave(string correo, string nuevaClave, string confirmarClave)
+        {
+            return View();
+        }
+
+        public ActionResult ReestablecerClave()
+        {
+            return View();
+        }
+
+
+        public ActionResult IngresarOTP()
         {
             return View();
         }

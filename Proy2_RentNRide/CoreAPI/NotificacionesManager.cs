@@ -18,45 +18,52 @@ namespace CoreAPI
 
         }
 
-        public string recuperarClaveCorreo(UserProfile user)
+        public string recuperarClaveCorreo(Usuarios user)
         {
             EnviarCorreoContrasenna(user).Wait();
             return "éxito";
         }
 
-        public string recuperarClaveSMS(UserProfile user)
+        public string generarModeloCorreo(Usuarios user, string titulo, string mensaje)
+        {
+            enviarCorreos(user, titulo, mensaje).Wait();
+            return "éxito";
+        }
+
+        public static async Task enviarCorreos(Usuarios user, string titulo, string mensaje)
+        {
+            var apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress("astellerm@ucenfotec.ac.cr", "RentNRide.com");
+            var subject = titulo;
+            var to = new EmailAddress(user.Correo, "Usuario");
+            var plainTextContent = mensaje;
+            var htmlContent = mensaje;
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
+        }
+
+        public string recuperarClaveSMS(Usuarios user)
         {
             EnviarSMSContrasenna(user);
             return "éxito";
         }
 
-        public static async Task EnviarCorreoContrasenna(UserProfile user)
+        public static async Task EnviarCorreoContrasenna(Usuarios user)
         {
-
-            /*
-             * Recibe desde antes el usuario (pues se supone que ya existe entonces no es necesario buscarlo).
-             * Le asigna el otp en user profile manager
-             * RECORDAR CAMBIAR CORREOS Y DEMÁS
-             */
-            var mng = new UserProfileManager();
-            int codigoOTP = mng.AsignarOTP(user);
-
             var apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress("astellerm@ucenfotec.ac.cr", "RentNRide.com");
             var subject = "Resultado operación";
-            var to = new EmailAddress("astellerm@gmail.com", "Usuario");
+            var to = new EmailAddress(user.Correo, "Usuario");
             var plainTextContent = "El código OTP es el siguiente: ";
-            var htmlContent = Convert.ToString(codigoOTP);
+            var htmlContent = Convert.ToString(user.OTP);
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
         }
 
-        public static void EnviarSMSContrasenna(UserProfile user)
+        public static void EnviarSMSContrasenna(Usuarios user)
         {
-
-            var mng = new UserProfileManager();
-            int codigoOTP = mng.AsignarOTP(user);
 
             string accountSid = Environment.GetEnvironmentVariable("TWILIO_ACCOUNT_SID");
             string authToken = Environment.GetEnvironmentVariable("TWILIO_AUTH_TOKEN");
@@ -64,9 +71,9 @@ namespace CoreAPI
             TwilioClient.Init(accountSid, authToken);
 
             var message = MessageResource.Create(
-                body: "El código OTP es el siguiente: " + codigoOTP,
+                body: "El código OTP es el siguiente: " + user.OTP,
                 from: new Twilio.Types.PhoneNumber("+14158914367"),
-                to: new Twilio.Types.PhoneNumber("+506" + "89354513")
+                to: new Twilio.Types.PhoneNumber("+506" + user.Telefono)
             );
 
             Console.WriteLine(message.Sid);

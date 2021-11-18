@@ -47,10 +47,9 @@ namespace DataAccess.Mapper
             operation.AddVarcharParam(DB_COL_personeria_juridica, u.PersoneriaJuridica);
             operation.AddVarcharParam(DB_COL_permiso_operaciones, u.PermisoOperaciones);
             operation.AddVarcharParam(DB_COL_contrasenna_actual, u.ContrassenaActual);
-            operation.AddVarcharParam(DB_COL_activo, u.Estado);
             operation.AddIntParam(DB_COL_otp, u.OTP);
-            operation.AddVarcharParam(DB_COL_comprobacion, u.Comprobacion);
-            
+            operation.AddVarcharParam(DB_COL_activo, u.Estado);
+            operation.AddVarcharParam(DB_COL_comprobacion, u.Comprobacion);           
 
 
             return operation;
@@ -79,7 +78,7 @@ namespace DataAccess.Mapper
 
         public SqlOperation GetUpdateStatement(BaseEntity entity)
         {
-            var operation = new SqlOperation { ProcedureName = "UPD_Usuario_PR" };
+            var operation = new SqlOperation { ProcedureName = "UPD_USUARIO_PR" };
 
             var u = (Usuarios)entity;
             operation.AddIntParam(DB_COL_id_usuario, u.Id_usuario);
@@ -95,9 +94,10 @@ namespace DataAccess.Mapper
             operation.AddVarcharParam(DB_COL_personeria_juridica, u.PersoneriaJuridica);
             operation.AddVarcharParam(DB_COL_permiso_operaciones, u.PermisoOperaciones);
             operation.AddVarcharParam(DB_COL_contrasenna_actual, u.ContrassenaActual);
-            operation.AddVarcharParam(DB_COL_activo, u.Estado);
+            operation.AddIntParam(DB_COL_otp, u.OTP);
             operation.AddVarcharParam(DB_COL_comprobacion, u.Comprobacion);
-          
+            operation.AddVarcharParam(DB_COL_activo, u.Estado);
+
 
 
             return operation;
@@ -122,9 +122,8 @@ namespace DataAccess.Mapper
                     PermisoOperaciones = GetStringValue(row, DB_COL_permiso_operaciones),
                     ContrassenaActual = GetStringValue(row, DB_COL_contrasenna_actual),
                     Estado = GetStringValue(row, DB_COL_activo),
-                  
-
-
+                    OTP = GetIntValue(row, DB_COL_otp),
+                    Comprobacion = GetStringValue(row, DB_COL_comprobacion)
                 };
                 return usuario;
             }

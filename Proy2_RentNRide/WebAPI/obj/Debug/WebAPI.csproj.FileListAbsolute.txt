@@ -100,7 +100,6 @@ C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\SendGrid.xml
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\System.IdentityModel.Tokens.Jwt.xml
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\Microsoft.IdentityModel.Tokens.xml
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\obj\Debug\WebAPI.csproj.CopyComplete
 A:\ProyectoCenfo\Proy2_RentNRide\WebAPI\bin\roslyn\Microsoft.CodeAnalysis.dll
 A:\ProyectoCenfo\Proy2_RentNRide\WebAPI\bin\WebAPI.dll.config
 A:\ProyectoCenfo\Proy2_RentNRide\WebAPI\bin\WebAPI.dll
@@ -209,3 +208,9 @@ A:\ProyectoCenfo\Proy2_RentNRide\WebAPI\obj\Debug\WebAPI.csproj.CoreCompileInput
 A:\ProyectoCenfo\Proy2_RentNRide\WebAPI\obj\Debug\WebAPI.csproj.CopyComplete
 A:\ProyectoCenfo\Proy2_RentNRide\WebAPI\obj\Debug\WebAPI.dll
 A:\ProyectoCenfo\Proy2_RentNRide\WebAPI\obj\Debug\WebAPI.pdb
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\Exceptions.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\System.Web.Cors.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\System.Web.Http.Cors.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\Exceptions.pdb
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\System.Web.Http.Cors.xml
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\obj\Debug\WebAPI.csproj.CopyComplete

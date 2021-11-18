@@ -182,6 +182,8 @@
     <Content Include="Views\Home\RegistroSocios.cshtml" />
     <Content Include="Views\Home\RegistroUsuariosFinales.cshtml" />
     <Content Include="Views\Home\EnvioOTP.cshtml" />
+    <Content Include="Views\Home\IngresarOTP.cshtml" />
+    <Content Include="Views\Home\RestablecerClave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

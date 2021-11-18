@@ -91,14 +91,24 @@ namespace CoreAPI
 
         public void Update(Usuarios usuarios)
         {
-            try
-            {
+           /* try
+            {*/
                 crudUsuarios.Update(usuarios);
-            }
+            /*}
             catch (Exception ex)
             {
                 throw new BussinessException(0);
-            }
+            }*/
+        }
+
+        public void CreateClave(Contrasennas clave)
+        {
+            crudContrasennas.Create(clave);
+        }
+
+        public List<Contrasennas> RetrieveClavesById(Contrasennas clave)
+        {
+            return crudContrasennas.RetrieveTodo<Contrasennas>(clave);
         }
 
     }
