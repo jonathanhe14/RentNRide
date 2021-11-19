@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities_POJO
 {
-    public static class Hasher
+    public class Hasher
     {
 
         private static string GenerateHashString(HashAlgorithm algo, string text)
@@ -23,7 +23,7 @@ namespace Entities_POJO
                 string.Empty,
                 result.Select(x => x.ToString("x2")));
         }
-        public static string MD5(string text)
+        public string MD5(string text)
         {
             var result = default(string);
 
@@ -34,6 +34,43 @@ namespace Entities_POJO
 
             return result;
         }
+
+
+        /*public string Encrypt(string decrypted)
+        {
+            string hash = "Password@2021$";
+            byte[] data = UTF8Encoding.UTF8.GetBytes(decrypted);
+
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            TripleDESCryptoServiceProvider triple = new TripleDESCryptoServiceProvider();
+
+            triple.Key = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(hash));
+            triple.Mode = CipherMode.ECB;
+
+            ICryptoTransform transform = triple.CreateEncryptor();
+            byte[] result = transform.TransformFinalBlock(data, 0, data.Length);
+
+            return Convert.ToBase64String(result);
+        }
+
+
+        public string Decrypt(string encrypted)
+        {
+            string hash = "Password@2021$";
+            byte[] data = UTF8Encoding.UTF8.GetBytes(encrypted);
+
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            TripleDESCryptoServiceProvider triple = new TripleDESCryptoServiceProvider();
+
+            triple.Key = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(hash));
+            triple.Mode = CipherMode.ECB;
+
+            ICryptoTransform transform = triple.CreateDecryptor();
+            byte[] result = transform.TransformFinalBlock(data, 0, data.Length);
+
+            return UTF8Encoding.UTF8.GetString(result);
+
+        }*/
 
     }
 }

@@ -79,14 +79,14 @@ namespace CoreAPI
 
         public Usuarios RetrieveById(Usuarios usuarios)
         {
-            try
-            {
+            //try
+            //{
                 return crudUsuarios.Retrieve<Usuarios>(usuarios);
-            }
+            /*}
             catch (Exception ex)
             {
                 throw new BussinessException(0);
-            }
+            }*/
         }
 
         public void Update(Usuarios usuarios)

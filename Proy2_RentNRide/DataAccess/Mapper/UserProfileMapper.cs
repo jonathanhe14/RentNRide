@@ -68,7 +68,13 @@ namespace DataAccess.Mapper
 
         public SqlOperation GetUpdateStatement(BaseEntity entity)
         {
-            throw new NotImplementedException();
+            var operation = new SqlOperation { ProcedureName = "UPD_USER_PROFILE_PR" };
+
+            var u = (UserProfile)entity;
+            operation.AddVarcharParam(DB_COL_USER_NAME, u.UserName);
+            operation.AddVarcharParam(DB_COL_PASSWORD, u.Password);
+
+            return operation;
         }
     }
 }

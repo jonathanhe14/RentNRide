@@ -25,8 +25,11 @@ namespace WebApp.Controllers
         public ActionResult InicioSesion(UserProfile objUser)
         {
             if (ModelState.IsValid)
-
             {
+                Hasher encriptado = new Hasher();
+                
+                                
+                objUser.Password = encriptado.MD5(objUser.Password);
                 string jsonString = JsonConvert.SerializeObject(objUser);
 
                 HttpContent c = new StringContent(jsonString, Encoding.UTF8, "application/json");
@@ -151,7 +154,9 @@ namespace WebApp.Controllers
                     {
                         var user = JsonConvert.DeserializeObject<Usuarios>(apiResponse.Data.ToString());
                         TempData["usuario"] = correo;
-                        return View("RestablecerClave");
+                        return new RedirectResult("RestablecerClave");
+
+                        //return View("RestablecerClave"); 
                     }
                     else
                     {
@@ -170,12 +175,61 @@ namespace WebApp.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ReestablecerClave(string correo, string nuevaClave, string confirmarClave)
+        public ActionResult RestablecerClave(string correo, string nuevaClave, string confirmarClave)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                if (nuevaClave.Equals(confirmarClave))
+                {
+                    Hasher encriptado = new Hasher();
+                    Usuarios objUser = new Usuarios();
+                    objUser.Correo = correo;
+                    objUser.ContrassenaActual = encriptado.MD5(nuevaClave);
+
+                    string jsonString = JsonConvert.SerializeObject(objUser);
+
+                    HttpContent c = new StringContent(jsonString, Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = client.PostAsync("http://localhost:52125/api/userprofile/CambiarClave", c).Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var content = response.Content.ReadAsStringAsync().Result;
+
+                        var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
+                        if (apiResponse.Message == "Su contraseña ha sido cambiada éxitosamente")
+                        {
+                            var user = JsonConvert.DeserializeObject<Usuarios>(apiResponse.Data.ToString());
+                            return new RedirectResult("InicioSesion");
+
+                        }
+                        else
+                        {
+                            TempData["usuario"] = correo;
+                            return View();
+                        }
+
+                    }
+                    else
+                    {
+                        return View(objUser);
+                    }
+
+                }
+                else
+                {
+                    ViewBag.Message = "Las contraseñas no coinciden";
+                    TempData["usuario"] = correo;
+                    return View();
+                }
+
+                
+
+
+            }
+            return View("Index");
         }
 
-        public ActionResult ReestablecerClave()
+        public ActionResult RestablecerClave()
         {
             return View();
         }

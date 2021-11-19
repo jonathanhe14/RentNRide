@@ -32,9 +32,9 @@ namespace CoreAPI
 
         public static async Task enviarCorreos(Usuarios user, string titulo, string mensaje)
         {
-            var apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
+            var apiKey = "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";
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("astellerm@ucenfotec.ac.cr", "RentNRide.com");
+            var from = new EmailAddress("rentnridecom@gmail.com", "RentNRide.com");
             var subject = titulo;
             var to = new EmailAddress(user.Correo, "Usuario");
             var plainTextContent = mensaje;
@@ -51,9 +51,9 @@ namespace CoreAPI
 
         public static async Task EnviarCorreoContrasenna(Usuarios user)
         {
-            var apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
+            var apiKey = "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";
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("astellerm@ucenfotec.ac.cr", "RentNRide.com");
+            var from = new EmailAddress("rentnridecom@gmail.com", "RentNRide.com");
             var subject = "Resultado operación";
             var to = new EmailAddress(user.Correo, "Usuario");
             var plainTextContent = "El código OTP es el siguiente: ";

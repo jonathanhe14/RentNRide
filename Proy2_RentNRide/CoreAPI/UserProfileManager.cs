@@ -23,8 +23,9 @@ namespace CoreAPI
 
         public UserProfile ValidateUser(UserProfile user)
         {
-            UserProfile u = null;
+            UserProfile u = new UserProfile();
             u = crudUser.Retrieve<UserProfile>(user);
+
             /*try
             {
 
@@ -42,6 +43,11 @@ namespace CoreAPI
             return u;
         }
 
+        public void UpdateUser(UserProfile user)
+        {
+            crudUser.Update(user);
+        }
+
         public string recuperarClaveCorreo(Usuarios user)
         {
             Usuarios u = null;
@@ -51,7 +57,7 @@ namespace CoreAPI
             {
                 u = AsignarOTP(u);
                 //u.Comprobacion = "true";
-                mngUsuarios.Update(u);
+                mngUsuarios.Update(u);                
                 var mngNotificaciones = new NotificacionesManager();
                 mngNotificaciones.recuperarClaveCorreo(u);
                 return "éxito";
@@ -64,13 +70,7 @@ namespace CoreAPI
 
         public Usuarios AsignarOTP(Usuarios user)
         {
-            /*
-             * Recibe de las notificaciones el usuario.
-             * Asigna un OTP:
-             * usuario.otp = codigoOTP;(POR EJEMPLO).
-             * Finalmente, lo devuelve a las notificaciones.
-             * RECORDAR CAMBIAR DE INT A USUARIO EL TIPO DE FUNCIÓN
-             */
+
             Random generator = new Random();
             user.OTP = generator.Next(100000, 1000000);
 
@@ -123,10 +123,14 @@ namespace CoreAPI
                     u.ContrassenaActual = user.ContrassenaActual;
                     mngUsuarios.Update(u);
                     mngUsuarios.CreateClave(clave);
+                    UserProfile usuarioActualizado = new UserProfile();
+                    usuarioActualizado.UserName = u.Correo;
+                    usuarioActualizado.Password = clave.Contrasenna;
+                    UpdateUser(usuarioActualizado);
                     var mngNotificaciones = new NotificacionesManager();
                     string titulo = "Cambio contraseña";
                     string mensaje = "Su contraseña ha sido cambiada éxitosamente";
-                    //mngNotificaciones.generarModeloCorreo(u, titulo, mensaje);
+                    mngNotificaciones.generarModeloCorreo(u, titulo, mensaje);
                     return "Su contraseña ha sido cambiada éxitosamente";
                 }
                 else

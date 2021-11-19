@@ -19,4 +19,3 @@ A:\ProyectoCenfo\Proy2_RentNRide\DataAccess\bin\Debug\System.Data.SqlClient.dll
 A:\ProyectoCenfo\Proy2_RentNRide\DataAccess\bin\Debug\System.Data.SqlClient.xml
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\System.Data.SqlClient.dll
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\System.Data.SqlClient.xml
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
