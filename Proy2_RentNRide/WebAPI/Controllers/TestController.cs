@@ -8,7 +8,7 @@ using System.Web.Http.Cors;
 
 namespace WebAPI.Controllers
 {
-    //[EnableCors(origins: "http://localhost:52125", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:52125", headers: "*", methods: "*")]
     public class TestController : ApiController
     {
         //public HttpResponseMessage Get()

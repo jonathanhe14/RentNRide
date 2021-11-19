@@ -11,6 +11,8 @@
 		idData = this.ctrlActions.GetDataForm('idEdition');
 		customerData = idData + this.ctrlActions.GetDataForm('frmEdition');
 		documentoData = idData + this.ctrlActions.GetDataForm('docuEdition');
+		console.log(customerData);
+		console.log(documentoData);
 		//Hace el post al create
 		this.ctrlActions.PostToAPI(this.service + "/Post", customerData);
 

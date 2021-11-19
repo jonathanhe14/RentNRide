@@ -1,6 +1,6 @@
 ﻿function ControlActions() {
 
-	this.URL_API = "http://localhost:44383/api/"; 
+	this.URL_API = "http://localhost:52125/api/";
 
 	this.GetUrlApiService = function (service) {
 		return this.URL_API + service;
