@@ -159,3 +159,10 @@ C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\
 C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\obj\Debug\WebApp.csproj.CopyComplete
 C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\obj\Debug\WebApp.dll
 C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\obj\Debug\WebApp.pdb
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\bin\System.Net.Http.Formatting.dll
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\bin\System.Web.Cors.dll
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\bin\System.Web.Http.Cors.dll
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\bin\System.Web.Http.dll
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\bin\System.Net.Http.Formatting.xml
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\bin\System.Web.Http.xml
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\bin\System.Web.Http.Cors.xml

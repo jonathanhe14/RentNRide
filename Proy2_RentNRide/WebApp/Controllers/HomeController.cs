@@ -155,9 +155,16 @@ namespace WebApp.Controllers
 
         public ActionResult VehiculoInfo()
         {
-            ViewBag.Message = "Agregue su vehiculo!";
+            //if (Session["UserID"] != null)
+            //{
+                ViewBag.Message = "Agregue su vehiculo!";
 
-            return View();
+                return View();
+            //}
+            //else
+            //{
+            //    return RedirectToAction("InicioSesion");
+            //}
         }
     }
 }

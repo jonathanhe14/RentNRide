@@ -7,3 +7,12 @@ C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.pdb
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\DataAccess.dll
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\DataAccess.pdb
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\Entities-POJO.dll
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\Entities-POJO.pdb
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.AssemblyReference.cache
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.dll
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.pdb

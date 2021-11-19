@@ -81,6 +81,10 @@
       <Project>{D8993DE9-2376-473F-917A-AFDEE2F9A9C7}</Project>
       <Name>Entities-POJO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Exceptions\Exceptions.csproj">
+      <Project>{2096e69d-5add-42bc-b820-e0a63daad905}</Project>
+      <Name>Exceptions</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
