@@ -45,8 +45,13 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Contrasennas.cs" />
     <Compile Include="Hasher.cs" />
+    <Compile Include="Marca.cs" />
+    <Compile Include="Membresias.cs" />
+    <Compile Include="Modelo.cs" />
     <Compile Include="ObjectDumper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TipoCombustible.cs" />
+    <Compile Include="TipoVehiculo.cs" />
     <Compile Include="UserProfile.cs" />
     <Compile Include="Usuarios.cs" />
     <Compile Include="UsuariosRol.cs" />

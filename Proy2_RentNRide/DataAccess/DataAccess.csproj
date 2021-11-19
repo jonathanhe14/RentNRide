@@ -47,6 +47,11 @@
   <ItemGroup>
     <Compile Include="Crud\ContrasennaCrudFactory.cs" />
     <Compile Include="Crud\CrudFactory.cs" />
+    <Compile Include="Crud\MarcaCrudFactory.cs" />
+    <Compile Include="Crud\MembresiaCrudFactory.cs" />
+    <Compile Include="Crud\ModeloCrudFactory.cs" />
+    <Compile Include="Crud\TipoCombustibleCrudFactory.cs" />
+    <Compile Include="Crud\TipoVehiculoCrudFactory.cs" />
     <Compile Include="Crud\UserProfileCrudFactory.cs" />
     <Compile Include="Crud\UsuariosCrudFactory.cs" />
     <Compile Include="Crud\UsuariosRolCrudFactory.cs" />
@@ -56,6 +61,11 @@
     <Compile Include="Mapper\EntityMapper.cs" />
     <Compile Include="Mapper\IObjectMapper.cs" />
     <Compile Include="Mapper\ISqlStatements.cs" />
+    <Compile Include="Mapper\MarcaMapper.cs" />
+    <Compile Include="Mapper\MembresiaMapper.cs" />
+    <Compile Include="Mapper\ModeloMapper.cs" />
+    <Compile Include="Mapper\TipoCombustibleMapper.cs" />
+    <Compile Include="Mapper\TipoVehiculoMapper.cs" />
     <Compile Include="Mapper\UserProfileMapper.cs" />
     <Compile Include="Mapper\UsuariosMapper.cs" />
     <Compile Include="Mapper\UsuariosRolMapper.cs" />
