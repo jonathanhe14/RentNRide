@@ -11,11 +11,11 @@ namespace DataAccess.Mapper
     class DocumentoMapper : EntityMapper, ISqlStatements, IObjectMapper
     {
 
-        private const string DB_COL_ID = "P_id";
-        private const string DB_COL_MARCHAMO = "P_marchamo";
-        private const string DB_COL_TITULO_PROPIEDAD= "P_tituloProp";
-        private const string DB_COL_RITEVE = "P_riteve";
-        private const string DB_COL_DERECHO_CIRCULACION = "P_circulacion";
+        private const string DB_COL_ID = "id";
+        private const string DB_COL_MARCHAMO = "marchamo";
+        private const string DB_COL_TITULO_PROPIEDAD= "tituloProp";
+        private const string DB_COL_RITEVE = "riteve";
+        private const string DB_COL_DERECHO_CIRCULACION = "circulacion";
         
 
         public SqlOperation GetCreateStatement(BaseEntity entity)

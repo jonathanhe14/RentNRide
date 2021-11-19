@@ -46,6 +46,7 @@
     <Compile Include="Crud\CrudFactory.cs" />
     <Compile Include="Crud\DocumentoCrudFactory.cs" />
     <Compile Include="Crud\HorarioCrudFactory.cs" />
+    <Compile Include="Crud\TipoVehiCrudFactory.cs" />
     <Compile Include="Crud\UserProfileCrudFactory.cs" />
     <Compile Include="Crud\VehiculoCrudFactory.cs" />
     <Compile Include="Dao\SqlDao.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Mapper\HorarioMapper.cs" />
     <Compile Include="Mapper\IObjectMapper.cs" />
     <Compile Include="Mapper\ISqlStatements.cs" />
+    <Compile Include="Mapper\TipoVehiMapper.cs" />
     <Compile Include="Mapper\UserProfileMapper.cs" />
     <Compile Include="Mapper\VehiculoMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

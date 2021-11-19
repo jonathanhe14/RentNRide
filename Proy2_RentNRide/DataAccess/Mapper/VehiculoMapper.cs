@@ -11,20 +11,20 @@ namespace DataAccess.Mapper
     class VehiculoMapper : EntityMapper, ISqlStatements, IObjectMapper
     {
 
-        private const string DB_COL_ID = "P_id";
-        private const string DB_COL_TIPO = "P_tipo";
-        private const string DB_COL_TIPO_COMBUSTIBLE = "P_combustible";
-        private const string DB_COL_MODELO = "P_modelo";
-        private const string DB_COL_MARCA = "P_marca";
-        private const string DB_COL_KILOMETRAJE = "P_kilometraje";
-        private const string DB_COL_EXCEDIDO = "P_km_excedido";
-        private const string DB_COL_MAL_ESTADO = "P_mal_estado";
-        private const string DB_COL_LATITUD = "P_latitud";
-        private const string DB_COL_LONGITUD = "P_longitud";
-        private const string DB_COL_LUGAR_DIFF = "P_lugar_diferente";
-        private const string DB_COL_TARIFA = "P_tarifa";
-        private const string DB_COL_ACEPT_INMD = "P_acepta_inmediata";
-        private const string DB_COL_ESTADO = "P_estado";
+        private const string DB_COL_ID = "id";
+        private const string DB_COL_TIPO = "tipo";
+        private const string DB_COL_TIPO_COMBUSTIBLE = "combustible";
+        private const string DB_COL_MODELO = "modelo";
+        private const string DB_COL_MARCA = "marca";
+        private const string DB_COL_KILOMETRAJE = "kilometraje";
+        private const string DB_COL_EXCEDIDO = "km_excedido";
+        private const string DB_COL_MAL_ESTADO = "mal_estado";
+        private const string DB_COL_LATITUD = "latitud";
+        private const string DB_COL_LONGITUD = "longitud";
+        private const string DB_COL_LUGAR_DIFF = "lugar_diferente";
+        private const string DB_COL_TARIFA = "tarifa";
+        private const string DB_COL_ACEPT_INMD = "acepta_inmediata";
+        private const string DB_COL_ESTADO = "estado";
 
         public SqlOperation GetCreateStatement(BaseEntity entity)
         {
