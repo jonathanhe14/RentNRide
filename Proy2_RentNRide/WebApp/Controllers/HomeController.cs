@@ -64,6 +64,7 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                objUser.Telefono = "";
                 string jsonString = JsonConvert.SerializeObject(objUser);
 
                 HttpContent c = new StringContent(jsonString, Encoding.UTF8, "application/json");
@@ -76,15 +77,22 @@ namespace WebApp.Controllers
                     var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
                     var user = JsonConvert.DeserializeObject<Usuarios>(apiResponse.Data.ToString());
 
-                    TempData["usuario"] = user.Correo;
+                    if (apiResponse.Message == "success")
+                    {
+                        TempData["correo"] = user.Correo;
+                        TempData["telefono"] = user.Telefono;
 
-                    return new RedirectResult("IngresarOTP");
-
-                    //return View("IngresarOTP");                    
+                        return new RedirectResult("IngresarOTP");
+                    }
+                    else
+                    {
+                        ViewBag.Message = apiResponse.Message;
+                        return View();
+                    }                
                 }
                 else
                 {
-                    return View(objUser);
+                    return View();
                 }
             }
             return View("Index");
@@ -108,15 +116,23 @@ namespace WebApp.Controllers
 
                     var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
                     var user = JsonConvert.DeserializeObject<Usuarios>(apiResponse.Data.ToString());
-                    string correo = user.Correo;
-                    TempData["usuario"] = user.Telefono;
 
+                    if (apiResponse.Message == "success")
+                    {
+                        TempData["correo"] = user.Correo;
+                        TempData["telefono"] = user.Telefono;
 
-                    return View("IngresarOTP");
+                        return new RedirectResult("IngresarOTP");
+                    }
+                    else
+                    {
+                        ViewBag.Message = apiResponse.Message;
+                        return View();
+                    }
                 }
                 else
                 {
-                    return View(objUser);
+                    return View();
                 }
             }
             return View("Index");
@@ -130,12 +146,13 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult IngresarOTP(string correo, string otp)
+        public ActionResult IngresarOTP(string correo, string telefono, string otp)
         {
             if (ModelState.IsValid)
             {
                 Usuarios objUser = new Usuarios();
                 objUser.Correo = correo;
+                objUser.Telefono = telefono;
                 objUser.OTP = Convert.ToInt32(otp);
 
                 string jsonString = JsonConvert.SerializeObject(objUser);
@@ -148,17 +165,20 @@ namespace WebApp.Controllers
                     var content = response.Content.ReadAsStringAsync().Result;
 
                     var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
-                    if (apiResponse.Message == "éxito")
+                    if (apiResponse.Message == "success")
                     {
                         var user = JsonConvert.DeserializeObject<Usuarios>(apiResponse.Data.ToString());
-                        TempData["usuario"] = correo;
+                        TempData["correo"] = correo;
+                        TempData["telefono"] = telefono;
                         return new RedirectResult("RestablecerClave");
 
                         //return View("RestablecerClave"); 
                     }
                     else
                     {
-                        TempData["usuario"] = correo;
+                        TempData["correo"] = correo;
+                        TempData["telefono"] = telefono;
+                        ViewBag.Message = apiResponse.Message;
                         return View();
                     }                 
 
@@ -173,16 +193,17 @@ namespace WebApp.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RestablecerClave(string correo, string nuevaClave, string confirmarClave)
+        public ActionResult RestablecerClave(string correo, string telefono, string nuevaClave, string confirmarClave)
         {
             if (ModelState.IsValid)
             {
                 if (nuevaClave.Equals(confirmarClave))
                 {
-                    Hasher encriptado = new Hasher();
+                    
                     Usuarios objUser = new Usuarios();
                     objUser.Correo = correo;
-                    objUser.ContrassenaActual = encriptado.MD5(nuevaClave);
+                    objUser.ContrassenaActual = nuevaClave;
+                    objUser.Telefono = telefono;
 
                     string jsonString = JsonConvert.SerializeObject(objUser);
 
@@ -202,7 +223,9 @@ namespace WebApp.Controllers
                         }
                         else
                         {
-                            TempData["usuario"] = correo;
+                            ViewBag.Message = apiResponse.Message;
+                            TempData["correo"] = correo;
+                            TempData["telefono"] = telefono;
                             return View();
                         }
 
@@ -216,7 +239,8 @@ namespace WebApp.Controllers
                 else
                 {
                     ViewBag.Message = "Las contraseñas no coinciden";
-                    TempData["usuario"] = correo;
+                    TempData["correo"] = correo;
+                    TempData["telefono"] = telefono;
                     return View();
                 }
 

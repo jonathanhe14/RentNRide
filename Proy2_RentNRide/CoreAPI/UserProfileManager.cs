@@ -48,7 +48,7 @@ namespace CoreAPI
             crudUser.Update(user);
         }
 
-        public string recuperarClaveCorreo(Usuarios user)
+        public Usuarios recuperarClaveCorreo(Usuarios user)
         {
             Usuarios u = null;
             var mngUsuarios = new UsuariosManagement();
@@ -56,19 +56,23 @@ namespace CoreAPI
             if (u != null)
             {
                 u = AsignarOTP(u);
-                //u.Comprobacion = "true";
                 mngUsuarios.Update(u);                
                 var mngNotificaciones = new NotificacionesManager();
                 mngNotificaciones.recuperarClaveCorreo(u);
-                return "éxito";
+                Usuarios usuario = new Usuarios
+                {
+                    Correo = u.Correo,
+                    Telefono = u.Telefono
+                };
+                return usuario;
             }
             else
             {
-                return "fracaso";
+                return u;
             }
         }
 
-        public string recuperarClaveTelefono(Usuarios user)
+        public Usuarios recuperarClaveTelefono(Usuarios user)
         {
             Usuarios u = null;
             var mngUsuarios = new UsuariosManagement();
@@ -76,15 +80,19 @@ namespace CoreAPI
             if (u != null)
             {
                 u = AsignarOTP(u);
-                //u.Comprobacion = "true";
                 mngUsuarios.Update(u);
                 var mngNotificaciones = new NotificacionesManager();
                 mngNotificaciones.recuperarClaveSMS(u);
-                return "éxito";
+                Usuarios usuario = new Usuarios
+                {
+                    Correo = u.Correo,
+                    Telefono = u.Telefono
+                };
+                return usuario;
             }
             else
             {
-                return "fracaso";
+                return u;
             }
         }
 
@@ -105,11 +113,11 @@ namespace CoreAPI
             
             if (u.OTP == user.OTP)
             {
-                return "éxito";
+                return "success";
             }
             else
             {
-                return "fracaso";
+                return "El OTP no coincide con el OTP enviado";
             }
         }
 
@@ -137,6 +145,8 @@ namespace CoreAPI
                         case FortalezaClave.PasswordStrength.Media:
                         return "La contraseña no cumple los requerimientos de seguridad";
                     case FortalezaClave.PasswordStrength.Fuerte: case FortalezaClave.PasswordStrength.MuyFuerte:
+                        Hasher encriptado = new Hasher();
+                        clave.Contrasenna = encriptado.MD5(clave.Contrasenna);
                         List<Contrasennas> historicoClaves = mngUsuarios.RetrieveClavesById(clave);
                         Boolean prueba = false;
                         foreach (var contrasenna in historicoClaves)
