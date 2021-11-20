@@ -1,0 +1,108 @@
+﻿@using WebApp.Models.Helpers;
+<script src="~/Scripts/Views/vVehiculo.js"></script>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Use this area to provide additional information.</p>
+
+
+<div class="card border-secondary" style="margin-top: 50px;">
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Customer edition</div>
+            <div class="col-md-4">
+                @Html.CtrlButton(viewName: "vVehiculo", id: "btnCreate", label: "Save", onClickFunction: "Create", buttonType: "success")
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="bs-component">
+                    <form id="idEdition">
+                        @Html.CtrlInput(id: "txtId", type: "number", label: "Id", columnDataName: "Id")
+                    </form>
+                    <form id="frmEdition">
+                        @Html.CtrlDropDown(id: "drpTipoVehi", label: "Tipo Vehiculo", listId: "LST_tipoVehi")
+                        @Html.CtrlInput(id: "txtTipo", type: "number", label: "Tipo Vehiculo", columnDataName: "Tipo")
+                        @Html.CtrlInput(id: "txtCombustible", type: "number", label: "Tipo Combustible", columnDataName: "Combustible")
+                        @Html.CtrlInput(id: "txtModelo", type: "number", label: "Modelo", columnDataName: "Modelo")
+                        @Html.CtrlInput(id: "txtMarca", type: "number", label: "Marca", columnDataName: "Marca")
+                        @Html.CtrlInput(id: "txtKilometraje", type: "number", label: "Kilometraje", columnDataName: "Kilometraje")
+                        @Html.CtrlInput(id: "txtcKmExcedido", type: "number", label: "Cargo Kilometro excedido", columnDataName: "cKmExcedido")
+                        @Html.CtrlInput(id: "txtcMalEstado", type: "number", label: "Cargo mal estado", columnDataName: "cMalEstado")
+                        @Html.CtrlInput(id: "txtLatitud", type: "text", label: "Latitud", columnDataName: "Latitud")
+                        @Html.CtrlInput(id: "txtLongitud", type: "text", label: "Longitud", columnDataName: "Longitud")
+                        @Html.CtrlInput(id: "txtcLugarDiferente", type: "number", label: "Cargo lugar diferente", columnDataName: "cLugarDiferente")
+                        @Html.CtrlInput(id: "txtTarifa", type: "number", label: "Tarifa", columnDataName: "Tarifa")
+                        @Html.CtrlInput(id: "txtAccptInmediata", type: "text", label: "Acceptacion Inmediata", columnDataName: "AccptInmediata")
+                        @Html.CtrlInput(id: "txtEstado", type: "text", label: "Estado", columnDataName: "Estado")
+                        @*@Html.CtrlDropDown(id: "drpGender", label: "Gender", listId: "LST_GENERO")
+        @Html.CtrlDropDown(id: "drpStatus", label: "Status", listId: "LST_EST_CIVIL")
+        @Html.CtrlDropDown(id: "Best Friend", label: "Friend", listId: "LST_CUSTOMER")*@
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="bs-component">
+                    <form id="docuEdition">
+                        @Html.CtrlInput(id: "txtMarchamo", type: "text", label: "Marchamo", columnDataName: "Marchamo")
+                        @Html.CtrlInput(id: "txttituloPropiedad", type: "text", label: "Titulo Propiedad", columnDataName: "tituloPropiedad")
+                        @Html.CtrlInput(id: "txtRiteve", type: "text", label: "Riteve", columnDataName: "Riteve")
+                        @Html.CtrlInput(id: "txtderechoCirculacion", type: "text", label: "Derecho circulacion", columnDataName: "derechoCirculacion")
+                    </form>
+                    <form id="horarioEdition">
+                        @Html.CtrlInput(id: "txtDia", type: "date", label: "Dia", columnDataName: "Dia")
+                        @Html.CtrlInput(id: "txthoraInicio", type: "time", label: "Hora inicio", columnDataName: "horaInicio")
+                        @Html.CtrlInput(id: "txthoraFinal", type: "time", label: "Hora final", columnDataName: "horaFinal")
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@using (Html.BeginForm("VehiculoInfo", "Home", FormMethod.Post))
+    {
+    <fieldset>
+        <legend>Registro de vehiculo.</legend>
+
+
+
+
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @if (@ViewBag.Message != null)
+        {
+    <div style="border: 1px solid red">
+        @ViewBag.Message
+    </div>}
+        <table>
+            <tr>
+                <td>@Html.LabelFor(a => a.Id)</td>
+                <td>@Html.TextBoxFor(a => a.Id)</td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(a => a.Tipo)
+                </td>
+                <td>
+                    @Html.PasswordFor(a => a.Tipo)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Login" />
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </fieldset>}*@
+

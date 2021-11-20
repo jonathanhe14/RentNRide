@@ -9,3 +9,9 @@ A:\ProyectoCenfo\Proy2_RentNRide\Entities-POJO\obj\Debug\Entities-POJO.csproj.Co
 A:\ProyectoCenfo\Proy2_RentNRide\Entities-POJO\obj\Debug\Entities-POJO.dll
 A:\ProyectoCenfo\Proy2_RentNRide\Entities-POJO\obj\Debug\Entities-POJO.pdb
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\Entities-POJO\obj\Debug\Entities-POJO.csproj.AssemblyReference.cache
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\Entities-POJO\bin\Debug\Entities-POJO.dll
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\Entities-POJO\bin\Debug\Entities-POJO.pdb
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\Entities-POJO\obj\Debug\Entities-POJO.csproj.AssemblyReference.cache
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\Entities-POJO\obj\Debug\Entities-POJO.csproj.CoreCompileInputs.cache
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\Entities-POJO\obj\Debug\Entities-POJO.dll
+C:\Users\Tomas\Source\Repos\Proyecto Final - Softlutions\Proy2_RentNRide\Entities-POJO\obj\Debug\Entities-POJO.pdb

@@ -270,5 +270,12 @@ namespace WebApp.Controllers
 
             return View();
         }
+
+        public ActionResult VehiculoInfo()
+        {
+            ViewBag.Message = "Vehiculo ingreso!";
+
+            return View();
+        }
     }
 }
