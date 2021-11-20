@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script>src ="~/Scripts/Views/ReestablecerClave.js </script>
 
 @using (Html.BeginForm("RestablecerClave", "Home", FormMethod.Post))
 {
@@ -23,17 +24,28 @@
                             @ViewBag.Message
                         </div>
                       }
+                    <p>La contraseña debe tener: </p>
+                    <ul>
+                        <li>Mínimo 8 carácteres</li>
+                        <li>Mezclar mayúsculas y mínusculas</li>
+                        <li>Tener al menos un dígito</li>
+                        <li>Se recomienda incluir carácteres especiales</li> 
+                        <li>Solo serán aceptadas contraseñas clasificadas como: fuerte o muy fuerte</li>
+                    </ul>
                     <div class="form-group">
-                        @Html.Label("Cuenta")
-                        @Html.TextBox("correo", @TempData["usuario"], new { @readonly = "readonly" })
+                        @Html.Label("Correo")
+                        @Html.TextBox("correo", @TempData["correo"], new { @readonly = "readonly" })
+                        @Html.Label("Telefono")
+                        @Html.TextBox("telefono", @TempData["telefono"], new { @readonly = "readonly" })
                     </div>
                     <div class="form-group">
                         @Html.Label("Nueva contraseña")
-                        @Html.TextBox("nuevaClave")
+                        @Html.Password("nuevaClave")
+                            <label class="contrasenna"></label>
                     </div>
                     <div class="form-group">
                         @Html.Label("Confirmar contraseña")
-                        @Html.TextBox("confirmarClave")
+                        @Html.Password("confirmarClave")
                     </div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Cambiar</button>
                 </form>

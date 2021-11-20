@@ -42,21 +42,35 @@ namespace WebAPI.Controllers
         public IHttpActionResult RecuperarClaveCorreo(Usuarios user)
         {
             var mng = new UserProfileManager();
-            string respuesta = mng.recuperarClaveCorreo(user);
+            Usuarios respuesta = mng.recuperarClaveCorreo(user);
             apiResp = new ApiResponse();
-            apiResp.Message = respuesta;
-            apiResp.Data = user;
+            apiResp.Data = respuesta;
+            if (respuesta != null)
+            {
+                apiResp.Message = "success";
+            }
+            else
+            {
+                apiResp.Message = "El usuario no fue encontrado";
+            }
             return Ok(apiResp);
         }
 
         [HttpPost]
         public IHttpActionResult RecuperarClaveSMS(Usuarios user)
         {
-            var mng = new NotificacionesManager();
-            string respuesta = mng.recuperarClaveSMS(user);
+            var mng = new UserProfileManager();
+            Usuarios respuesta = mng.recuperarClaveTelefono(user);
             apiResp = new ApiResponse();
-            apiResp.Message = respuesta;
-            apiResp.Data = user;
+            apiResp.Data = respuesta;
+            if (respuesta != null)
+            {
+                apiResp.Message = "success";
+            }
+            else
+            {
+                apiResp.Message = "El usuario no fue encontrado";
+            }
             return Ok(apiResp);
         }
 
