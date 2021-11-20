@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Crud\ContrasennaCrudFactory.cs" />
     <Compile Include="Crud\CrudFactory.cs" />
+    <Compile Include="Crud\ExceptionsCrudFactory.cs" />
     <Compile Include="Crud\UserProfileCrudFactory.cs" />
     <Compile Include="Crud\UsuariosCrudFactory.cs" />
     <Compile Include="Crud\UsuariosRolCrudFactory.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Dao\SqlOperation.cs" />
     <Compile Include="Mapper\ContrasennaMapper.cs" />
     <Compile Include="Mapper\EntityMapper.cs" />
+    <Compile Include="Mapper\ExceptionMapper.cs" />
     <Compile Include="Mapper\IObjectMapper.cs" />
     <Compile Include="Mapper\ISqlStatements.cs" />
     <Compile Include="Mapper\UserProfileMapper.cs" />

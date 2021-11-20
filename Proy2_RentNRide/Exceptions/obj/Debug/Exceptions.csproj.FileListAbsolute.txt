@@ -16,3 +16,14 @@ A:\ProyectoCenfo\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.csproj.CoreComp
 A:\ProyectoCenfo\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.csproj.CopyComplete
 A:\ProyectoCenfo\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.dll
 A:\ProyectoCenfo\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.pdb
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Exceptions\bin\Debug\Exceptions.dll
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Exceptions\bin\Debug\Exceptions.pdb
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Exceptions\bin\Debug\Entities-POJO.dll
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Exceptions\bin\Debug\Entities-POJO.pdb
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.csproj.AssemblyReference.cache
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.csproj.CoreCompileInputs.cache
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.csproj.CopyComplete
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.dll
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.pdb
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Exceptions\bin\Debug\DataAccess.dll
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Exceptions\bin\Debug\DataAccess.pdb

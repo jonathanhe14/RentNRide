@@ -43,12 +43,15 @@ namespace DataAccess.Dao
                 {
                     command.Parameters.Add(param);
                 }
+
+                    conn.Open();
                 try
                 {
-                    conn.Open();
                     command.ExecuteNonQuery();
-                }catch(SqlException ex)
+                }
+                catch (SqlException ex)
                 {
+                    
                     throw ex;
                 }
             }

@@ -47,6 +47,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{140A1F80-117D-4455-B7D1-53A6746FD2C6}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entities-POJO\Entities-POJO.csproj">
       <Project>{D8993DE9-2376-473F-917A-AFDEE2F9A9C7}</Project>
       <Name>Entities-POJO</Name>

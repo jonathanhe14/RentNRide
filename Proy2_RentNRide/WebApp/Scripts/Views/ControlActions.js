@@ -1,32 +1,61 @@
-﻿function ControlActions() {
+﻿var ubi = [];
+var PersoneriaJuridica ="NULL";
+var PermisoOperaciones= "NULL";
+function ControlActions() {
 
+	
 	this.URL_API = "http://localhost:52125/api/";
 
 	this.GetUrlApiService = function (service) {
 		return this.URL_API + service;
 	}
 
-	
+
 
 
 
 	this.BindFields = function (formId, data) {
 		console.log(data);
+		
 		$('#' + formId + ' *').filter(':input').each(function (input) {
 			var columnDataName = $(this).attr("ColumnDataName");
 			this.value = data[columnDataName];
 		});
 	}
+	
 
+
+	this.Ubicacion = function (lat, lng) {
+		ubi.push(lat);
+		ubi.push(lng);
+   }
+
+	this.SubirPersoneria = function (url) {
+		PersoneriaJuridica = url;
+	}
+
+	this.SubirOperaciones = function (url) {
+		PermisoOperaciones = url;
+	}
 	this.GetDataForm = function (formId) {
+		
 		var data = {};
 
 		$('#' + formId + ' *').filter(':input').each(function (input) {
 			var columnDataName = $(this).attr("ColumnDataName");
 			data[columnDataName] = this.value;
+			//console.log(columnDataName, this.value);
 		});
+		
+	
+		data["Latitud"] = ubi[0];
+		data["Longitud"] = ubi[1];
+		data["PersoneriaJuridica"] = PersoneriaJuridica;
+		data["PermisoOperaciones"] = PermisoOperaciones;
+		
 
-		console.log(data);
+		//console.log(data);
+		
 		return data;
 	}
 

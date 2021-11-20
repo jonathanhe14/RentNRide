@@ -1,4 +1,5 @@
-﻿using Entities_POJO;
+﻿using DataAccess.Crud;
+using Entities_POJO;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -41,7 +42,7 @@ namespace Exceptions
             if (ex.GetType() == typeof(BussinessException))
             {
                 bex = (BussinessException)ex;
-                bex.ExceptionDetails = GetMessage(bex).Message;
+                bex.ExceptionDetails = GetMessage(bex).Mensaje;
             }
             else
             {
@@ -79,7 +80,7 @@ namespace Exceptions
 
             var appMessage = new ApplicationMessage
             {
-                Message = "Message not found!"
+                Mensaje = "Message not found!"
             };
 
             if (messages.ContainsKey(bex.ExceptionId))
@@ -91,18 +92,14 @@ namespace Exceptions
 
         private void LoadMessages()
         {
-            messages.Add(0, new ApplicationMessage { Id = 0, Message = "Houston we have a problem!" });
-            messages.Add(3, new ApplicationMessage { Id = 3, Message = "Customer already exists in the database" });
-            messages.Add(2, new ApplicationMessage { Id = 2, Message = "Customer should be major than 18." });
+            var crudMessages = new ExceptionsCrudFactory();
 
-            //var crudMessages = new AppMessagesCrudFactory();
+            var lstMessages = crudMessages.RetrieveAll<ApplicationMessage>();
 
-            //var lstMessages = crudMessages.RetrieveAll<ApplicationMessage>();
-
-            //foreach(var appMessage in lstMessages)
-            //{
-            //    messages.Add(appMessage.Id, appMessage);
-            //}  
+            foreach (var appMessage in lstMessages)
+            {
+                messages.Add(appMessage.Id, appMessage);
+            }
 
         }
 

@@ -19,9 +19,3 @@ namespace DataAccess.Mapper
     }
 }
 
-namespace DataAccess
-{
-    public class ISqlStaments
-    {
-    }
-}

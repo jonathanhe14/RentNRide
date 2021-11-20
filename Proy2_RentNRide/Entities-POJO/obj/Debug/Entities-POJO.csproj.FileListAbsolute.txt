@@ -8,3 +8,9 @@ A:\ProyectoCenfo\Proy2_RentNRide\Entities-POJO\bin\Debug\Entities-POJO.pdb
 A:\ProyectoCenfo\Proy2_RentNRide\Entities-POJO\obj\Debug\Entities-POJO.csproj.CoreCompileInputs.cache
 A:\ProyectoCenfo\Proy2_RentNRide\Entities-POJO\obj\Debug\Entities-POJO.dll
 A:\ProyectoCenfo\Proy2_RentNRide\Entities-POJO\obj\Debug\Entities-POJO.pdb
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Entities-POJO\bin\Debug\Entities-POJO.dll
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Entities-POJO\bin\Debug\Entities-POJO.pdb
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Entities-POJO\obj\Debug\Entities-POJO.csproj.AssemblyReference.cache
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Entities-POJO\obj\Debug\Entities-POJO.csproj.CoreCompileInputs.cache
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Entities-POJO\obj\Debug\Entities-POJO.dll
+C:\Users\jonah\Desktop\Copia\Proy2_RentNRide\Entities-POJO\obj\Debug\Entities-POJO.pdb

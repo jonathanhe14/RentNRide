@@ -21,8 +21,8 @@ namespace DataAccess.Crud
 
         public override void Create(BaseEntity entity)
         {
-            var usuarios = (Usuarios)entity;
-            var sqlOperation = mapper.GetCreateStatement(usuarios);
+            var usuariosRol = (UsuariosRol)entity;
+            var sqlOperation = mapper.GetCreateStatement(usuariosRol);
             dao.ExecuteProcedure(sqlOperation);
         }
 
