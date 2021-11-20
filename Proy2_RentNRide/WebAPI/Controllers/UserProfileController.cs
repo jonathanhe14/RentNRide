@@ -52,8 +52,8 @@ namespace WebAPI.Controllers
         [HttpPost]
         public IHttpActionResult RecuperarClaveSMS(Usuarios user)
         {
-            var mng = new NotificacionesManager();
-            string respuesta = mng.recuperarClaveSMS(user);
+            var mng = new UserProfileManager();
+            string respuesta = mng.recuperarClaveTelefono(user);
             apiResp = new ApiResponse();
             apiResp.Message = respuesta;
             apiResp.Data = user;

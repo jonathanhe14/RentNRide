@@ -26,8 +26,7 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                Hasher encriptado = new Hasher();
-                
+                Hasher encriptado = new Hasher();               
                                 
                 objUser.Password = encriptado.MD5(objUser.Password);
                 string jsonString = JsonConvert.SerializeObject(objUser);
@@ -97,8 +96,7 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
+                objUser.Correo = "";
                 string jsonString = JsonConvert.SerializeObject(objUser);
 
                 HttpContent c = new StringContent(jsonString, Encoding.UTF8, "application/json");
@@ -111,7 +109,7 @@ namespace WebApp.Controllers
                     var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
                     var user = JsonConvert.DeserializeObject<Usuarios>(apiResponse.Data.ToString());
                     string correo = user.Correo;
-                    TempData["usuario"] = correo;
+                    TempData["usuario"] = user.Telefono;
 
 
                     return View("IngresarOTP");

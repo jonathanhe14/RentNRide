@@ -18,12 +18,6 @@ namespace CoreAPI
 
         }
 
-        public string recuperarClaveCorreo(Usuarios user)
-        {
-            EnviarCorreoContrasenna(user).Wait();
-            return "éxito";
-        }
-
         public string generarModeloCorreo(Usuarios user, string titulo, string mensaje)
         {
             enviarCorreos(user, titulo, mensaje).Wait();
@@ -43,9 +37,31 @@ namespace CoreAPI
             var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
         }
 
-        public string recuperarClaveSMS(Usuarios user)
+        public string generarModeloSMS(Usuarios user, string mensaje)
         {
-            EnviarSMSContrasenna(user);
+            enviarMensajes(user, mensaje);
+            return "éxito";
+        }
+
+        private void enviarMensajes(Usuarios user, string mensaje)
+        {
+            string accountSid = "AC8cb56422437c955f6487c195eecccaa6";
+            string authToken = "b402568cb8a6047c8725bb097c792f22";
+
+            TwilioClient.Init(accountSid, authToken);
+
+            var message = MessageResource.Create(
+                body: mensaje,
+                from: new Twilio.Types.PhoneNumber("+12059531826"),
+                to: new Twilio.Types.PhoneNumber("+506" + user.Telefono)
+            );
+
+            Console.WriteLine(message.Sid);
+        }
+
+        public string recuperarClaveCorreo(Usuarios user)
+        {
+            EnviarCorreoContrasenna(user).Wait();
             return "éxito";
         }
 
@@ -62,17 +78,23 @@ namespace CoreAPI
             var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
         }
 
+        public string recuperarClaveSMS(Usuarios user)
+        {
+            EnviarSMSContrasenna(user);
+            return "éxito";
+        }
+
         public static void EnviarSMSContrasenna(Usuarios user)
         {
 
-            string accountSid = Environment.GetEnvironmentVariable("TWILIO_ACCOUNT_SID");
-            string authToken = Environment.GetEnvironmentVariable("TWILIO_AUTH_TOKEN");
+            string accountSid = "AC8cb56422437c955f6487c195eecccaa6";
+            string authToken = "b402568cb8a6047c8725bb097c792f22";
 
             TwilioClient.Init(accountSid, authToken);
 
             var message = MessageResource.Create(
                 body: "El código OTP es el siguiente: " + user.OTP,
-                from: new Twilio.Types.PhoneNumber("+14158914367"),
+                from: new Twilio.Types.PhoneNumber("+12059531826"),
                 to: new Twilio.Types.PhoneNumber("+506" + user.Telefono)
             );
 

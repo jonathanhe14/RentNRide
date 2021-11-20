@@ -72,6 +72,7 @@ namespace DataAccess.Mapper
 
             var c = (Usuarios)entity;
             operation.AddVarcharParam(DB_COL_correo, c.Correo);
+            operation.AddVarcharParam(DB_COL_telefono, c.Telefono);
 
             return operation;
         }

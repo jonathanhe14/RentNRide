@@ -68,6 +68,26 @@ namespace CoreAPI
             }
         }
 
+        public string recuperarClaveTelefono(Usuarios user)
+        {
+            Usuarios u = null;
+            var mngUsuarios = new UsuariosManagement();
+            u = mngUsuarios.RetrieveById(user);
+            if (u != null)
+            {
+                u = AsignarOTP(u);
+                //u.Comprobacion = "true";
+                mngUsuarios.Update(u);
+                var mngNotificaciones = new NotificacionesManager();
+                mngNotificaciones.recuperarClaveSMS(u);
+                return "éxito";
+            }
+            else
+            {
+                return "fracaso";
+            }
+        }
+
         public Usuarios AsignarOTP(Usuarios user)
         {
 
@@ -97,6 +117,7 @@ namespace CoreAPI
         {
             Usuarios u = null;
             var mngUsuarios = new UsuariosManagement();
+            var fortalezaClave = new FortalezaClave();
             u = mngUsuarios.RetrieveById(user);
             Contrasennas clave = new Contrasennas
             {
@@ -107,36 +128,48 @@ namespace CoreAPI
 
             if (u != null)
             {
-                List<Contrasennas> historicoClaves = mngUsuarios.RetrieveClavesById(clave);
-                Boolean prueba = false;
-                foreach (var contrasenna in historicoClaves)
-                {
-                    if (contrasenna.Contrasenna.Equals(clave.Contrasenna))
-                    {
-                        prueba = true;
-                        break;
-                    }
-                }
 
-                if (!prueba)
+                switch (fortalezaClave.GetPasswordStrength(clave.Contrasenna))
                 {
-                    u.ContrassenaActual = user.ContrassenaActual;
-                    mngUsuarios.Update(u);
-                    mngUsuarios.CreateClave(clave);
-                    UserProfile usuarioActualizado = new UserProfile();
-                    usuarioActualizado.UserName = u.Correo;
-                    usuarioActualizado.Password = clave.Contrasenna;
-                    UpdateUser(usuarioActualizado);
-                    var mngNotificaciones = new NotificacionesManager();
-                    string titulo = "Cambio contraseña";
-                    string mensaje = "Su contraseña ha sido cambiada éxitosamente";
-                    mngNotificaciones.generarModeloCorreo(u, titulo, mensaje);
-                    return "Su contraseña ha sido cambiada éxitosamente";
-                }
-                else
-                {
-                    return "La contraseña no puede ser igual a las anteriores";
-                }
+                    case FortalezaClave.PasswordStrength.Blanco:
+                        return "La contraseña está en blanco o no cumple los requerimientos de seguridad";
+                    case FortalezaClave.PasswordStrength.MuyDebil: case FortalezaClave.PasswordStrength.Debil:
+                        case FortalezaClave.PasswordStrength.Media:
+                        return "La contraseña no cumple los requerimientos de seguridad";
+                    case FortalezaClave.PasswordStrength.Fuerte: case FortalezaClave.PasswordStrength.MuyFuerte:
+                        List<Contrasennas> historicoClaves = mngUsuarios.RetrieveClavesById(clave);
+                        Boolean prueba = false;
+                        foreach (var contrasenna in historicoClaves)
+                        {
+                            if (contrasenna.Contrasenna.Equals(clave.Contrasenna))
+                            {
+                                prueba = true;
+                                break;
+                            }
+                        }
+                        if (!prueba)
+                        {
+                            u.ContrassenaActual = user.ContrassenaActual;
+                            mngUsuarios.Update(u);
+                            mngUsuarios.CreateClave(clave);
+                            UserProfile usuarioActualizado = new UserProfile();
+                            usuarioActualizado.UserName = u.Correo;
+                            usuarioActualizado.Password = clave.Contrasenna;
+                            UpdateUser(usuarioActualizado);
+                            var mngNotificaciones = new NotificacionesManager();
+                            string titulo = "Cambio contraseña";
+                            string mensaje = "Su contraseña ha sido cambiada éxitosamente";
+                            mngNotificaciones.generarModeloCorreo(u, titulo, mensaje);
+                            mngNotificaciones.generarModeloSMS(u, mensaje);
+                            return "Su contraseña ha sido cambiada éxitosamente";
+                        }
+                        else
+                        {
+                            return "La contraseña no puede ser igual a las anteriores";
+                        }                       
+                    default:
+                        return "Contraseña no clasificada";                        
+                }              
 
             }
             else
