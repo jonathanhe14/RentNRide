@@ -36,12 +36,7 @@
 
 	}
 
-	function initMap() {
-		map = new google.maps.Map(document.getElementById('map'), {
-			center: { lat: 9.932781, lng: -84.031195 },
-			zoom: 18
-		});
-	}
+	
 
 		function crearMarcador(position) {
 			posiciones.push(posiciones);

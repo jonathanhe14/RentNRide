@@ -66,6 +66,7 @@ namespace CoreAPI
             {
                 
                     //    //BUSCA EN OTRO MANAGER
+
                     if (id.Equals("LST_tipoVehi"))
                     {
                         var crudTipoVehi = new TipoVehiCrudFactory();
@@ -75,13 +76,59 @@ namespace CoreAPI
 
                         foreach (var c in lst)
                         {
-                            var newOption = new VehiOpcion { id = c.id,  nombre = ". " + c.nombre };
+                            var newOption = new VehiOpcion { id = c.id,  nombre = c.nombre };
                             lstResult.Add(newOption);
                         }
                         return lstResult;
 
                     }
+                if (id.Equals("LST_tipoCombu"))
+                {
+                    var crudTipo = new TipoCombuCrudFactory();
+                    var lst = crudTipo.RetrieveAll<VehiOpcion>();
 
+                    var lstResult = new List<VehiOpcion>();
+
+                    foreach (var c in lst)
+                    {
+                        var newOption = new VehiOpcion { id = c.id, nombre = c.nombre };
+                        lstResult.Add(newOption);
+                    }
+                    return lstResult;
+
+                }
+
+                if (id.Equals("LST_tipoMarca"))
+                {
+                    var crudTipo = new MarcaCrudFactory();
+                    var lst = crudTipo.RetrieveAll<VehiOpcion>();
+
+                    var lstResult = new List<VehiOpcion>();
+
+                    foreach (var c in lst)
+                    {
+                        var newOption = new VehiOpcion { id = c.id, nombre =  c.nombre };
+                        lstResult.Add(newOption);
+                    }
+                    return lstResult;
+
+                }
+
+                if (id.Equals("LST_tipoModelo"))
+                {
+                    var crudTipo = new ModeloVehiCrudFactory();
+                    var lst = crudTipo.RetrieveAll<VehiOpcion>();
+
+                    var lstResult = new List<VehiOpcion>();
+
+                    foreach (var c in lst)
+                    {
+                        var newOption = new VehiOpcion { id = c.id, nombre = c.nombre, id_extra = c.id_extra };
+                        lstResult.Add(newOption);
+                    }
+                    return lstResult;
+
+                }
                 //    //retrieve 
 
 

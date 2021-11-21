@@ -13,20 +13,36 @@ namespace WebApp.Models.Controls
         public string Label { get; set; }
         public string ListId { get; set; }
 
+        //public Boolean isOptDependant { get; set; }
+
         private string URL_API_LISTs = "http://localhost:52125/api/List/Get/";
 
         public string ListOptions
         {
             get
             {
+                
                 var htmlOptions = "";
-                var lst = GetOptionsFromAPI();
-
-                foreach (var option in lst)
+                if (ListId == "LST_tipoModelo")
                 {
-                    htmlOptions += "<option value='" + option.id + "'>" + option.nombre + "</option>";
+                   var lst = GetOptionsFromAPIDepend();
+                    foreach (var option in lst)
+                    {
+                        htmlOptions += "<option value='" + option.id + "' id='"+ option.id_marca +"'>" + option.nombre + "</option>";
+                    }
+                    return htmlOptions;
                 }
+                else
+                {
+                   var lst = GetOptionsFromAPI();
+                 foreach (var option in lst)
+                   {
+                    htmlOptions += "<option value='" + option.id + "'>" + option.nombre + "</option>";
+                   }
                 return htmlOptions;
+                }
+
+               
             }
             set
             {
@@ -40,6 +56,14 @@ namespace WebApp.Models.Controls
             var client = new WebClient();
             var response = client.DownloadString(URL_API_LISTs + ListId);
             var options = JsonConvert.DeserializeObject<List<VehiOpcion>>(response);
+            return options;
+        }
+
+        private List<ModelosVehi> GetOptionsFromAPIDepend()
+        {
+            var client = new WebClient();
+            var response = client.DownloadString(URL_API_LISTs + ListId);
+            var options = JsonConvert.DeserializeObject<List<ModelosVehi>>(response);
             return options;
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities_POJO
 {
-    class Modelos : VehiOpcion
+    public class ModelosVehi : VehiOpcion
     {
         public int id_marca { get; set; }
         

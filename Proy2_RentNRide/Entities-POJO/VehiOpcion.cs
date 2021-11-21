@@ -13,6 +13,7 @@ namespace Entities_POJO
         public string nombre { get; set; }
         public string estado { get; set; }
 
+        public int id_extra { get; set; }
 
     }
 }
