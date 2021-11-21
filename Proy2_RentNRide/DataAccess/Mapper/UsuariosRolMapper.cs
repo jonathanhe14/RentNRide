@@ -19,11 +19,11 @@ namespace DataAccess.Mapper
 
         public SqlOperation GetCreateStatement(BaseEntity entity)
         {
-            var operation = new SqlOperation { ProcedureName = "CRE_ROL_USUARIO_PR" };
+            var operation = new SqlOperation { ProcedureName = "CRE_ROLES_USUARIO_PR" };
 
             var ur = (UsuariosRol)entity;
             operation.AddIntParam(DB_COL_ID_ROL, ur.IdRol);
-            operation.AddIntParam(DB_COL_ID_USUARIO, ur.IdUsuario);
+            operation.AddVarcharParam(DB_COL_ID_USUARIO, ur.IdUsuario);
             operation.AddVarcharParam(DB_COL_ACTIVO, ur.Estado);
 
 
@@ -46,7 +46,7 @@ namespace DataAccess.Mapper
             var operation = new SqlOperation { ProcedureName = "RET_ROL_USUARIO_PR" };
 
             var ur = (UsuariosRol)entity;
-            operation.AddIntParam(DB_COL_ID_USUARIO, ur.IdUsuario);
+            operation.AddVarcharParam(DB_COL_ID_USUARIO, ur.IdUsuario);
 
             return operation;
         }
@@ -63,7 +63,7 @@ namespace DataAccess.Mapper
                 {
                     Id = GetIntValue(row, DB_COL_ID),
                     IdRol = GetIntValue(row, DB_COL_ID_ROL),
-                    IdUsuario = GetIntValue(row, DB_COL_ID_USUARIO),
+                    IdUsuario = GetStringValue(row, DB_COL_ID_USUARIO),
                     Estado = GetStringValue(row, DB_COL_ACTIVO),
 
 

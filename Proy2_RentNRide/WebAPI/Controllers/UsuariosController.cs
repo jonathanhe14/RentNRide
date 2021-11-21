@@ -30,45 +30,62 @@ namespace WebAPI.Controllers
             catch (BussinessException bex)
             {
                 return InternalServerError(new Exception(bex.ExceptionId + "-"
-                    + bex.AppMessage.Message));
+                    + bex.AppMessage.Mensaje));
             }
         }
 
 
 
-        public IHttpActionResult Get(string correo)
+        public IHttpActionResult Get(string correo, string cedula)
         {
             try
             {
                 var mng = new UsuariosManagement();
                 var usuario = new Usuarios
                 {
-                    Correo = correo
+                    Correo = correo,
+                    Cedula = cedula
                 };
 
-                usuario = mng.RetrieveById(usuario);
+                usuario = mng.TraerUsuario(usuario);
                 apiResp = new ApiResponse();
                 apiResp.Data = usuario;
                 return Ok(apiResp);
             }
             catch (BussinessException bex)
             {
-                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Message));
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
             }
         }
 
         // POST 
         // CREATE
-        public IHttpActionResult Post(Usuarios usuario)
+        public IHttpActionResult CrearUsuario(Usuarios usuario)
         {
 
             try
             {
-                int edad = DateTime.Now.Year - usuario.FechaNacimiento.Year;
+                int edad = 0;
+                if (usuario.FechaNacimiento.Year < DateTime.Now.Year)
+                {
+                    edad = DateTime.Now.Year - usuario.FechaNacimiento.Year;
+                    if (usuario.FechaNacimiento.Month > DateTime.Now.Month)
+                    {
+                        edad--;
+
+                    }
+                    else if (usuario.FechaNacimiento.Month == DateTime.Now.Month)
+                    {
+                        if (usuario.FechaNacimiento.Day > DateTime.Now.Day)
+                        {
+                            edad--;
+                        }
+                    }
+                }
 
                 usuario.Edad = edad;
                 var mng = new UsuariosManagement();
-                mng.Create(usuario);
+                mng.CreateUsuario(usuario);
 
                 apiResp = new ApiResponse();
                 apiResp.Message = "Action was executed.";
@@ -78,7 +95,28 @@ namespace WebAPI.Controllers
             catch (BussinessException bex)
             {
                 return InternalServerError(new Exception(bex.ExceptionId + "-"
-                    + bex.AppMessage.Message));
+                    + bex.AppMessage.Mensaje));
+            }
+        }
+
+        public IHttpActionResult CrearSocio(Usuarios usuario)
+        {
+
+            try
+            {
+
+                var mng = new UsuariosManagement();
+                mng.CreateSocio(usuario);
+
+                apiResp = new ApiResponse();
+                apiResp.Message = "Action was executed.";
+
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-"
+                    + bex.AppMessage.Mensaje));
             }
         }
 
@@ -98,7 +136,7 @@ namespace WebAPI.Controllers
             }
             catch (BussinessException bex)
             {
-                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Message));
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
             }
         }
 

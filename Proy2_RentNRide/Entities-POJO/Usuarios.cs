@@ -22,6 +22,7 @@ namespace Entities_POJO
         public string PermisoOperaciones { get; set; }
         public string Estado { get; set; }
         public int OTP { get; set; }
+        public int Rol { get; set; }
 
         public string Comprobacion { get; set; }
 

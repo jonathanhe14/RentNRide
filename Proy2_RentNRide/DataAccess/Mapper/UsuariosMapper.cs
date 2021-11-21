@@ -76,6 +76,16 @@ namespace DataAccess.Mapper
 
             return operation;
         }
+        public SqlOperation VerificarUsuario(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_VERIFICAR_USUARIO_PR" };
+
+            var c = (Usuarios)entity;
+            operation.AddVarcharParam(DB_COL_correo, c.Correo);
+            operation.AddVarcharParam(DB_COL_cedula, c.Cedula);
+
+            return operation;
+        }
 
         public SqlOperation GetUpdateStatement(BaseEntity entity)
         {
