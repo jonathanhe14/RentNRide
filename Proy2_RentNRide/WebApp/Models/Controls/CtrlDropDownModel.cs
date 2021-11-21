@@ -28,7 +28,7 @@ namespace WebApp.Models.Controls
                    var lst = GetOptionsFromAPIDepend();
                     foreach (var option in lst)
                     {
-                        htmlOptions += "<option value='" + option.id + "' id='"+ option.id_marca +"'>" + option.nombre + "</option>";
+                        htmlOptions += "<option value='" + option.id + "' id='"+ option.id_extra +"'>" + option.nombre + "</option>";
                     }
                     return htmlOptions;
                 }
@@ -59,11 +59,11 @@ namespace WebApp.Models.Controls
             return options;
         }
 
-        private List<ModelosVehi> GetOptionsFromAPIDepend()
+        private List<VehiOpcion> GetOptionsFromAPIDepend()
         {
             var client = new WebClient();
             var response = client.DownloadString(URL_API_LISTs + ListId);
-            var options = JsonConvert.DeserializeObject<List<ModelosVehi>>(response);
+            var options = JsonConvert.DeserializeObject<List<VehiOpcion>>(response);
             return options;
         }
 

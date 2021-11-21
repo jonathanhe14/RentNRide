@@ -38,7 +38,39 @@
 
 	
 
-		function crearMarcador(position) {
+		
+
+
+	this.BindFields = function (data) {
+		this.ctrlActions.BindFields('frmEdition', data);
+	}
+
+	cloudinary.config({
+		cloud_name: "jherrerac@ucenfotec.ac.cr",
+		api_key: "YOUR_API_NAME",
+		api_secret: "YOUR_API_SECRET"
+	});
+
+}
+
+
+
+function initMap() {
+	map = new google.maps.Map(document.getElementById('map'), {
+		center: { lat: 9.932781, lng: -84.031195 },
+		zoom: 18
+	});
+}
+
+
+//ON DOCUMENT READY
+$(document).ready(function () {
+	initMap();
+
+
+});
+
+function crearMarcador(position) {
 			posiciones.push(posiciones);
 			console.log(posiciones.length)
 
@@ -67,25 +99,42 @@
 			});
 		}
 
+map.addListener("click", (event) => {
+	crearMarcador(event.latLng);
+});
 
-	this.BindFields = function (data) {
-		this.ctrlActions.BindFields('frmEdition', data);
-	}
-	
+function crearMarcador(position) {
+	posiciones.push(posiciones);
+	/*console.log(posiciones.length)*/
 
-}
-
-function initMap() {
-	map = new google.maps.Map(document.getElementById('map'), {
-		center: { lat: 9.932781, lng: -84.031195 },
-		zoom: 18
+	const marker = new google.maps.Marker({
+		position,
+		map,
 	});
+
+	markers.push(marker);
+
+	//centrar el mapa a la posicion del parametro
+	map.setCenter(position);
+	//document.getElementById('latitud').value = '';
+	//document.getElementById('longitud').value = '';
+
+	console.log("Marcador creado");
 }
 
+$('#drpMarca').on('change', function () {
+	var selected = $(this).val();
+	$("#drpModelo option").each(function (item) {
+		console.log(selected);
+		var element = $(this);
+		console.log(element.data("tag"));
+		if (element.data("id") != selected) {
+			element.hide();
+		} else {
+			element.show();
+		}
+	});
 
-//ON DOCUMENT READY
-$(document).ready(function () {
-	initMap();
-
+	$("#drpModelo").val($("#expertCat option:visible:first").val());
 
 });
