@@ -213,7 +213,6 @@ C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\System.Web.Http.Cors.dll
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\Exceptions.pdb
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\bin\System.Web.Http.Cors.xml
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebAPI\obj\Debug\WebAPI.csproj.CopyComplete
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\WebAPI\bin\WebAPI.dll.config
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\WebAPI\bin\WebAPI.dll
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\WebAPI\bin\WebAPI.pdb

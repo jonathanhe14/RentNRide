@@ -165,6 +165,8 @@
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="ExceptionFilter.cs" />
+    <Compile Include="Filters\UserLogFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

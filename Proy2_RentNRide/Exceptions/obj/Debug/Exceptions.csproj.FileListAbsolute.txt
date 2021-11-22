@@ -27,3 +27,5 @@ C:\Users\jonah\Desktop\Master\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.cs
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.csproj.CopyComplete
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.dll
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\Exceptions\obj\Debug\Exceptions.pdb
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\Exceptions\bin\Debug\DataAccess.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\Exceptions\bin\Debug\DataAccess.pdb

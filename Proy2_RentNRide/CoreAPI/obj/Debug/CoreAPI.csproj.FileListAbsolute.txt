@@ -78,3 +78,4 @@ C:\Users\jonah\Desktop\Master\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.csproj.C
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.csproj.CopyComplete
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.dll
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.pdb
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.csproj.CopyComplete
