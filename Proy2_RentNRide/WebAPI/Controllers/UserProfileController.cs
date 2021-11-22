@@ -1,5 +1,6 @@
 ﻿using CoreAPI;
 using Entities_POJO;
+using Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,83 +18,107 @@ namespace WebAPI.Controllers
         [HttpPost]
         public IHttpActionResult InicioSesion(UserProfile user)
         {
-            var mng = new UserProfileManager();
-            user = mng.ValidateUser(user);
-            apiResp = new ApiResponse();
-            apiResp.Data = user;
-            return Ok(apiResp);
-
-            /*try
+            try
             {
                 var mng = new UserProfileManager();
                 user = mng.ValidateUser(user);
                 apiResp = new ApiResponse();
                 apiResp.Data = user;
                 return Ok(apiResp);
-                
             }
             catch (BussinessException bex)
             {
-                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Message));
-            }*/
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }
         }
 
         [HttpPost]
         public IHttpActionResult RecuperarClaveCorreo(Usuarios user)
         {
-            var mng = new UserProfileManager();
-            Usuarios respuesta = mng.recuperarClaveCorreo(user);
-            apiResp = new ApiResponse();
-            apiResp.Data = respuesta;
-            if (respuesta != null)
+            try
             {
-                apiResp.Message = "success";
+                var mng = new UserProfileManager();
+                Usuarios respuesta = mng.recuperarClaveCorreo(user);
+                apiResp = new ApiResponse();
+                apiResp.Data = respuesta;
+                if (respuesta != null)
+                {
+                    apiResp.Message = "success";
+                }
+                else
+                {
+                    apiResp.Message = "El usuario no fue encontrado";
+                }
+                return Ok(apiResp);
+
             }
-            else
+            catch (BussinessException bex)
             {
-                apiResp.Message = "El usuario no fue encontrado";
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
             }
-            return Ok(apiResp);
         }
 
         [HttpPost]
         public IHttpActionResult RecuperarClaveSMS(Usuarios user)
         {
-            var mng = new UserProfileManager();
-            Usuarios respuesta = mng.recuperarClaveTelefono(user);
-            apiResp = new ApiResponse();
-            apiResp.Data = respuesta;
-            if (respuesta != null)
+            try
             {
-                apiResp.Message = "success";
+                var mng = new UserProfileManager();
+                Usuarios respuesta = mng.recuperarClaveTelefono(user);
+                apiResp = new ApiResponse();
+                apiResp.Data = respuesta;
+                if (respuesta != null)
+                {
+                    apiResp.Message = "success";
+                }
+                else
+                {
+                    apiResp.Message = "El usuario no fue encontrado";
+                }
+                return Ok(apiResp);
+
             }
-            else
+            catch (BussinessException bex)
             {
-                apiResp.Message = "El usuario no fue encontrado";
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
             }
-            return Ok(apiResp);
         }
 
         [HttpPost]
         public IHttpActionResult ComprobarOTP(Usuarios user)
         {
-            var mng = new UserProfileManager();
-            string respuesta = mng.validarOTP(user);
-            apiResp = new ApiResponse();
-            apiResp.Message = respuesta;
-            apiResp.Data = user;
-            return Ok(apiResp);
+            try
+            {
+                var mng = new UserProfileManager();
+                string respuesta = mng.validarOTP(user);
+                apiResp = new ApiResponse();
+                apiResp.Message = respuesta;
+                apiResp.Data = user;
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }
+
         }
 
         [HttpPost]
         public IHttpActionResult CambiarClave(Usuarios user)
         {
-            var mng = new UserProfileManager();
-            string respuesta = mng.actualizarClave(user);
-            apiResp = new ApiResponse();
-            apiResp.Message = respuesta;
-            apiResp.Data = user;
-            return Ok(apiResp);
+            try
+            {
+                var mng = new UserProfileManager();
+                string respuesta = mng.actualizarClave(user);
+                apiResp = new ApiResponse();
+                apiResp.Message = respuesta;
+                apiResp.Data = user;
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }
         }
 
 

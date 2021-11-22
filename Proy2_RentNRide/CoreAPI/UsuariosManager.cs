@@ -14,12 +14,16 @@ namespace CoreAPI
         private UsuariosCrudFactory crudUsuarios;
         private ContrasennaCrudFactory crudContrasennas;
         private UsuariosRolCrudFactory crudRoles;
+        private UserProfileCrudFactory crudUserProfile;
+        private Hasher encriptado;
 
         public UsuariosManagement()
         {
             crudUsuarios = new UsuariosCrudFactory();
             crudContrasennas = new ContrasennaCrudFactory();
             crudRoles = new UsuariosRolCrudFactory();
+            crudUserProfile = new UserProfileCrudFactory();
+            encriptado = new Hasher();
         }
 
         public void CreateUsuario(Usuarios usuario)
@@ -47,7 +51,7 @@ namespace CoreAPI
                 usuario.Rol = 4;
                 var contrasenna = new Contrasennas
                 {
-                    Contrasenna = usuario.ContrassenaActual,
+                    Contrasenna = encriptado.MD5(usuario.ContrassenaActual),
                     Correo = usuario.Correo,
                     Fecha = DateTime.Now
                 };
@@ -59,6 +63,12 @@ namespace CoreAPI
                     Estado = "Activo"
 
                 };
+                var userProfile = new UserProfile
+                {
+                    UserName = usuario.Correo,
+                    Password = encriptado.MD5(usuario.ContrassenaActual),
+                    FullName = usuario.Nombre + usuario.Apellidos
+                };
 
                 //Validacion del Rol y de los campos necesarios
 
@@ -66,6 +76,7 @@ namespace CoreAPI
                 crudUsuarios.Create(usuario);
                 crudContrasennas.Create(contrasenna);
                 crudRoles.Create(rolUsuario);
+                crudUserProfile.Create(userProfile);
             }
             catch (Exception ex)
             {
@@ -91,7 +102,7 @@ namespace CoreAPI
 
                 var contrasenna = new Contrasennas
                 {
-                    Contrasenna = usuario.ContrassenaActual,
+                    Contrasenna = encriptado.MD5(usuario.ContrassenaActual),
                     Correo = usuario.Correo,
                     Fecha = DateTime.Now
                 };
@@ -102,10 +113,18 @@ namespace CoreAPI
                     Estado = "Activo"
 
                 };
+                var userProfile = new UserProfile
+                {
+                    UserName = usuario.Correo,
+                    Password = encriptado.MD5(usuario.ContrassenaActual),
+                    FullName = usuario.Nombre + usuario.Apellidos
+                };
 
                 crudUsuarios.Create(usuario);
                 crudContrasennas.Create(contrasenna);
                 crudRoles.Create(rolUsuario);
+                crudUserProfile.Create(userProfile);
+
             }
             catch (Exception ex)
             {

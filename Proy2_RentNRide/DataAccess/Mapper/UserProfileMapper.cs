@@ -42,7 +42,14 @@ namespace DataAccess.Mapper
 
         public SqlOperation GetCreateStatement(BaseEntity entity)
         {
-            throw new NotImplementedException();
+            var operation = new SqlOperation { ProcedureName = "CRE_USUARIO_PR" };
+
+            var u = (UserProfile)entity;
+            operation.AddVarcharParam(DB_COL_USER_NAME, u.UserName);
+            operation.AddVarcharParam(DB_COL_PASSWORD, u.Password);
+            operation.AddVarcharParam(DB_COL_FULL_NAME, u.FullName);
+
+            return operation;
         }
 
         public SqlOperation GetDeleteStatement(BaseEntity entity)

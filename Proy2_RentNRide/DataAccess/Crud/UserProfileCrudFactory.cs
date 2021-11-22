@@ -20,7 +20,9 @@ namespace DataAccess.Crud
 
         public override void Create(BaseEntity entity)
         {
-            throw new NotImplementedException();
+            var usuarios = (UserProfile)entity;
+            var sqlOperation = mapper.GetCreateStatement(usuarios);
+            dao.ExecuteProcedure(sqlOperation);
         }
 
         public override void Delete(BaseEntity entity)

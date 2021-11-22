@@ -61,8 +61,8 @@ namespace Exceptions
 
             var message = bex.ExceptionDetails + "\n" + bex.StackTrace + "\n";
 
-            //if (bex.InnerException!=null)
-            //    message += bex.InnerException.Message + "\n" + bex.InnerException.StackTrace;
+            if (bex.InnerException!=null)
+                message += bex.InnerException.Message + "\n" + bex.InnerException.StackTrace;
 
             using (StreamWriter w = File.AppendText(logName))
             {

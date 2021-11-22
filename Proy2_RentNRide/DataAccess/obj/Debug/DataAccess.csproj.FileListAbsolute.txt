@@ -30,4 +30,3 @@ C:\Users\jonah\Desktop\Master\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.cs
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.pdb
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
