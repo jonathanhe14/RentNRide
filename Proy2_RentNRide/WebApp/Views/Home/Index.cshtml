@@ -1,6 +1,7 @@
 ﻿@using WebApp.Models.Helpers;
 
 <link rel="stylesheet" href="../../Content/landing.css">
+<script src="https://kit.fontawesome.com/2ecc6225a1.js " crossorigin="anonymous "></script>
 
 @{
     ViewBag.Title = "Home Page";
@@ -20,8 +21,9 @@
     <div class="container">
         <!-- Example row of columns -->
         <div class="row">
-            <div class="col-md-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+            <div class="col-md-4 text-center">
+                <!--<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
+                <i class="fab fa-whmcs"></i>
                 <h2>¿Cómo funciona?</h2>
                 <p>
                     En esta plataforma puedes registrarte como usuario socio, donde puedes poner tus autos a disposición de otras personas
@@ -29,28 +31,30 @@
                     el que gusten.
                 </p>
             </div>
-            <div class="col-md-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+            <div class="col-md-4 text-center">
+                <!--<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
+                <i class="fas fa-question"></i>
                 <h2>¿Significa esto que debo registrarme 2 veces?</h2>
                 <p> ¡No! Con un mismo usuario puedes rentar otros vehículos así como poner tus vehículos a disposición de otras personas.
             </div>
-            <div class="col-md-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+            <div class="col-md-4 text-center">
+                <!--<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
+                <i class="fas fa-info-circle"></i>
                 <h2>Más información</h2>
                 <p>Navega más la página para conocer mayores detalles y empezar los procesos de registros.</p>
             </div>
-        </div>
+    </div>
 
-        <hr class="featurette-divider">
+    <hr class="featurette-divider">
 
-        <div class="row featurette">
-            <div class="col-md-7">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#eee" />
-                    <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-                    <!--<img alt="Bootstrap Image Preview" src="../../img/landing_opc1.jpg" height="500" width="500" />-->
-                </svg>
+    <div class="row featurette">
+        <div class="col-md-7">
+            <!--<svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#eee" />
+                <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
+            </svg>-->
+                <img alt="Bootstrap Image Preview" src="../../img/landing_opc1.jpg" height="500" width="500" />
             </div>
             <div class="col-md-5">
                 <h2 class="featurette-heading">Registro socios</h2>
@@ -99,8 +103,8 @@
                 @Html.ActionLink("Registrarse", "RegistroUsuariosFinales", "Home", new { @class = "btn btn-primary btn-lg" })
             </div>
             <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+                <!--<svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>-->
+                <img alt="Bootstrap Image Preview" src="../../img/espejo.jpg" height="500" width="500" />
             </div>
         </div>
 

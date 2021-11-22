@@ -240,4 +240,3 @@ C:\Users\jonah\Desktop\Master\Proy2_RentNRide\WebApp\obj\Debug\WebApp.csproj.Cor
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\WebApp\obj\Debug\WebApp.csproj.CopyComplete
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\WebApp\obj\Debug\WebApp.dll
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\WebApp\obj\Debug\WebApp.pdb
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\WebApp\obj\Debug\WebApp.csproj.CopyComplete

@@ -1,8 +1,23 @@
 ﻿body {
 }
 
+.fa-whmcs {
+    font-size: 75px;
+    color: #161E54;
+}
+
+.fa-question {
+    font-size: 75px;
+    color: #161E54;
+}
+
+.fa-info-circle {
+    font-size: 75px;
+    color: #161E54;
+}
+
 .jumbotron {
-    background-image: url("../img/landing_opc1.jpg");
+    background-image: url("../img/landing_opc2.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -10,7 +25,7 @@
 }
 
 .row .featurette .col-md-7 {
-    background-image: url("../img/landing_opc1.jpg");
+    background-image: url("../img/landing_opc2.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

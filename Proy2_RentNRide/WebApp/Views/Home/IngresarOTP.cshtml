@@ -26,10 +26,10 @@
                                     @ViewBag.Message
                                 </div>
                             }
-                            <p>Digitar el OTP enviado a:</p>
+                            <!--<p>Digitar el OTP enviado a:</p>-->
                             <div class="form-group">
-                                @Html.TextBox("correo", @TempData["correo"], new { @readonly = "readonly" })
-                                @Html.TextBox("telefono", @TempData["telefono"], new { @readonly = "readonly" })
+                                @Html.TextBox("correo", @TempData["correo"], new { @readonly = "readonly", @class = "invisible" })
+                                @Html.TextBox("telefono", @TempData["telefono"], new { @readonly = "readonly", @class = "invisible" })
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(a => a.OTP)
