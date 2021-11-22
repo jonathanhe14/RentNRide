@@ -4,11 +4,9 @@
 	this.service = 'vehiculo';
 	this.ctrlActions = new ControlActions();
 
-	var markers = [];
+	
 
-	var posiciones = [];
-
-	var map;
+	
 
 	this.Create = function () {
 		var customerData = {};
@@ -53,13 +51,43 @@
 
 }
 
-
+var marker
 
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 		center: { lat: 9.932781, lng: -84.031195 },
 		zoom: 18
 	});
+
+	
+
+	var posiciones = [];
+
+	
+
+	map.addListener("click", (event) => {
+	crearMarcador(event.latLng);
+	});
+
+
+  function crearMarcador(position) {
+	posiciones.push(posiciones);
+	  /*console.log(posiciones.length)*/
+	  if (marker != null) {
+		  marker.setMap(null);
+	  }
+
+	 marker = new google.maps.Marker({
+		position,
+		map,
+	});
+
+	//centrar el mapa a la posicion del parametro
+	map.setCenter(position);
+	  document.getElementById('selectPosit').innerHTML = position;
+  }
+
+
 }
 
 
@@ -70,57 +98,44 @@ $(document).ready(function () {
 
 });
 
-function crearMarcador(position) {
-			posiciones.push(posiciones);
-			console.log(posiciones.length)
+//function crearMarcador(position) {
+//			posiciones.push(posiciones);
+//			console.log(posiciones.length)
 
-			const marker = new google.maps.Marker({
-				position,
-				map,
-			});
+//			const marker = new google.maps.Marker({
+//				position,
+//				map,
+//			});
 
-			markers.push(marker);
+//			markers.push(marker);
 
-			//centrar el mapa a la posicion del parametro
-			map.setCenter(position);
+//			//centrar el mapa a la posicion del parametro
+//			map.setCenter(position);
 
-			console.log("Marcador creado");
-		}
+//			console.log("Marcador creado");
+//		}
 
-		function buscarUbicacion(lat, lon) {
-			latitud = parseFloat(lat);
-			longitud = parseFloat(lon);
+		
 
-			map.setCenter(new google.maps.LatLng(latitud, longitud));
-			markers = { lat: latitud, lng: longitud };
-			marker = new google.maps.Marker({
-				position: markers,
-				map: map,
-			});
-		}
 
-map.addListener("click", (event) => {
-	crearMarcador(event.latLng);
-});
 
-function crearMarcador(position) {
-	posiciones.push(posiciones);
-	/*console.log(posiciones.length)*/
 
-	const marker = new google.maps.Marker({
+function buscarUbicacion(lat, lon) {
+	latitud = parseFloat(lat);
+	longitud = parseFloat(lon);
+
+	map.setCenter(new google.maps.LatLng(latitud, longitud));
+
+	if (marker != null) {
+		marker.setMap(null);
+	}
+
+	marker = new google.maps.Marker({
 		position,
 		map,
 	});
-
-	markers.push(marker);
-
-	//centrar el mapa a la posicion del parametro
-	map.setCenter(position);
-	//document.getElementById('latitud').value = '';
-	//document.getElementById('longitud').value = '';
-
-	console.log("Marcador creado");
 }
+
 
 $('#drpMarca').on('change', function () {
 	var selected = $(this).val();

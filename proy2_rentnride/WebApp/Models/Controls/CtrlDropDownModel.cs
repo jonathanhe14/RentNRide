@@ -28,7 +28,7 @@ namespace WebApp.Models.Controls
                    var lst = GetOptionsFromAPIDepend();
                     foreach (var option in lst)
                     {
-                        htmlOptions += "<option value='" + option.id + "' id='"+ option.id_marca +"'>" + option.nombre + "</option>";
+                        htmlOptions += "<option value='" + option.id + "' id='"+ option.id_extra +"'>" + option.nombre + "</option>";
                     }
                     return htmlOptions;
                 }
