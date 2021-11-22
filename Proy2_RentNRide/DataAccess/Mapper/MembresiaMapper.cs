@@ -88,7 +88,7 @@ namespace DataAccess.Mapper {
             operation.AddDecimalParam(DB_COL_COMISION_TRANSACCION, c.ComisionTransaccion);
             operation.AddDateTimeParam(DB_COL_FECHA_CREACION, c.FechaCreacion);
             operation.AddIntParam(DB_COL_NUM_DIAS, c.NumDias);
-            operation.AddVarcharParam(DB_COL_ACTIVO, c.Activo);
+  
 
             return operation;
         }

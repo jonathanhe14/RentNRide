@@ -52,3 +52,30 @@ A:\ProyectoCenfo\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.pdb
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\CoreAPI\bin\Debug\Exceptions.dll
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\CoreAPI\bin\Debug\Exceptions.pdb
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.csproj.CopyComplete
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\CoreAPI.dll.config
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\CoreAPI.dll
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\CoreAPI.pdb
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\DataAccess.dll
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\Entities-POJO.dll
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\Exceptions.dll
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\Microsoft.IdentityModel.Logging.dll
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\Microsoft.IdentityModel.Tokens.dll
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\SendGrid.dll
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\StarkbankEcdsa.dll
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\Twilio.dll
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\DataAccess.pdb
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\Entities-POJO.pdb
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\Exceptions.pdb
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\Microsoft.IdentityModel.Tokens.xml
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\Newtonsoft.Json.xml
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\SendGrid.pdb
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\SendGrid.xml
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\bin\Debug\Twilio.xml
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.csproj.AssemblyReference.cache
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.csproj.CoreCompileInputs.cache
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.csproj.CopyComplete
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.dll
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\CoreAPI\obj\Debug\CoreAPI.pdb

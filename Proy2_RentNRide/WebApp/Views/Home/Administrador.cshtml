@@ -1,0 +1,89 @@
+﻿@using WebApp.Models.Helpers;
+<script src="~/Scripts/Views/Administrador.js"></script>
+@{
+    ViewBag.Title = "Administrador";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main role="main">
+    <h2>Administrador</h2>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="jumbotron">
+                            <h2>
+                                Usuarios
+                            </h2>
+                            <p>
+                                *Grafico*
+                            </p>
+                            <p>
+                                <a class="btn btn-primary btn-large" href="#">Ver reporte completo</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="jumbotron">
+                            <h2>
+                                Ganancias/Pérdidas
+                            </h2>
+                            <p>
+                                *Grafico*
+                            </p>
+                            <p>
+                                <a class="btn btn-primary btn-large" href="#">Ver reporte completo</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 card">
+                @Html.CtrlTable(viewName: "Administrador", id: "tblMembresias", title: "Membresias",
+         columnsTitle: "Id,Nombre,Monto Mensual,Comisión Transacción, Fecha Creación, Número de Días", ColumnsDataName: "Id,Nombre,MontoMensual,ComisionTransaccion,FechaCreacion,NumDias",
+         onSelectFunction: "BindFieldsMembresia", colorHeader: "red")
+                <div class="card border-secondary" style="margin-top: 50px;">
+                    <div class="card-header">
+                        <div class="row pull-right">
+                            <div class="col-md-8">Membresías</div>
+                            <div class="col-md-4">
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnCreMembresia", label: "Guardar Nuevo", onClickFunction: "CreMembresia", buttonType: "success")
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnUpdMembresia", label: "Actualizar", onClickFunction: "UpdMembresia", buttonType: "info")
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnDelMembresia", label: "Eliminar", onClickFunction: "DelMembresia", buttonType: "danger")
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="bs-component">
+                                    <form id="frmMembresia">
+                                        @Html.CtrlInput(id: "txtIdMembresia", type: "text", label: "Id", columnDataName: "Id", readOnly: "readonly")
+                                        @Html.CtrlInput(id: "txtFechaCreacionMembresia", type: "text", label: "Fecha Creación", columnDataName: "FechaCreacion", readOnly: "readonly")
+                                        @Html.CtrlInput(id: "txtNombreMembresia", type: "text", label: "Nombre", columnDataName: "Nombre")
+                                        @Html.CtrlInput(id: "txtMontoMensualMembresia", type: "text", label: "Monto Mensual", columnDataName: "MontoMensual")
+                                        @Html.CtrlInput(id: "txtComisionTransaccionMembresia", type: "text", label: "Comisión Transacción", columnDataName: "ComisionTransaccion")
+                                        @Html.CtrlInput(id: "txtNumDiasMembresia", type: "text", label: "Número de días", columnDataName: "NumDias")
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+    </div>
+</main>

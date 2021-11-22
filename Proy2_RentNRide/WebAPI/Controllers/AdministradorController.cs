@@ -51,6 +51,8 @@ namespace WebAPI.Controllers
         public IHttpActionResult PostMembresia(Membresias membresia) {
 
             try {
+                membresia.Activo = "ACTIVO";
+                membresia.FechaCreacion = DateTime.Now;
                 var mng = new AdministradorManager();
                 mng.CreateMembresia(membresia);
 

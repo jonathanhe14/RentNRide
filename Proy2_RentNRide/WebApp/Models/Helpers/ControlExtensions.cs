@@ -42,15 +42,15 @@ namespace WebApp.Models.Helpers
             return new HtmlString(ctrl.GetHtml());
         }
 
-        public static HtmlString CtrlInput(this HtmlHelper html, string id, string type, string label, string placeHolder = "", string columnDataName = "")
-        {
+        public static HtmlString CtrlInput(this HtmlHelper html, string id, string type, string label, string placeHolder = "", string columnDataName = "", string readOnly = "") {
             var ctrl = new CtrlInputModel
             {
                 Id = id,
                 Type = type,
                 Label = label,
                 PlaceHolder = placeHolder,
-                ColumnDataName = columnDataName
+                ColumnDataName = columnDataName,
+                ReadOnly = readOnly
             };
 
             return new HtmlString(ctrl.GetHtml());

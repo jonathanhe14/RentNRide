@@ -13,6 +13,8 @@ namespace WebApp.Models.Controls
         public string PlaceHolder { get; set; }
         public string ColumnDataName { get; set; }
 
+        public string  ReadOnly { get; set; }
+
         public CtrlInputModel()
         {
             ViewName = "";

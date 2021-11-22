@@ -4,13 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - RentNRide.com</title>
-    <script src="~/Scripts/Views/RegistroUsuariosFinales.js"></script>
-    <script src="~/Scripts/Views/ControlActions.js"></script>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Content/Chart.min.js"></script>
+
+    <script src="~/Scripts/Views/RegistroUsuariosFinales.js"></script>
+    <script src="~/Scripts/Views/ControlActions.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">

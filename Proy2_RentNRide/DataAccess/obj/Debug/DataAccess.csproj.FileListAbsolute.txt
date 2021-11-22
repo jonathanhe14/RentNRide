@@ -20,3 +20,14 @@ A:\ProyectoCenfo\Proy2_RentNRide\DataAccess\bin\Debug\System.Data.SqlClient.xml
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\System.Data.SqlClient.dll
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\System.Data.SqlClient.xml
 C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\DataAccess\bin\Debug\DataAccess.dll
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\DataAccess\bin\Debug\DataAccess.pdb
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\DataAccess\bin\Debug\Entities-POJO.dll
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\DataAccess\bin\Debug\System.Data.SqlClient.dll
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\DataAccess\bin\Debug\Entities-POJO.pdb
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\DataAccess\bin\Debug\System.Data.SqlClient.xml
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.AssemblyReference.cache
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.dll
+C:\Users\andres\MainPrograms\Programming\Proyecto2\ProyectoFinal-Master\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.pdb

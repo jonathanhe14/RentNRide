@@ -196,6 +196,10 @@ namespace WebApp.Controllers
             return View();
         }
 
+        public ActionResult Administrador() {
+            return View();
+        }
+
         public ActionResult About()
         {
             if (Session["UserID"] != null)
