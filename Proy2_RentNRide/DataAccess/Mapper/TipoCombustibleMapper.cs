@@ -53,7 +53,7 @@ namespace DataAccess.Mapper {
         }
 
         public SqlOperation GetRetriveAllStatement() {
-            var operation = new SqlOperation { ProcedureName = "RET_ALL_TIPO_COMBUSTIBLES_PR" };
+            var operation = new SqlOperation { ProcedureName = "RET_ALL_TIPO_COMBUSTIBLE_PR" };
             return operation;
         }
 
