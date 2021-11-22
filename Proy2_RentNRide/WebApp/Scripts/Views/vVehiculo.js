@@ -9,19 +9,28 @@
 	
 
 	this.Create = function () {
-		var customerData = {};
 		var idData = {};
+		var vehiculoData = {};
+		finalData = {};
 		var documentoData = {};
-		var UserOption = document.getElementById('drpTipoVehi').value;
-		idData = this.ctrlActions.GetDataForm('idEdition');
-		customerData = idData + UserOption + this.ctrlActions.GetDataForm('frmEdition');
-		documentoData = idData + this.ctrlActions.GetDataForm('docuEdition');
-		console.log(customerData);
-		console.log(documentoData);
+		var opcionesChoice = {
+			Tipo: document.getElementById("Tipo").value, Combustible: document.getElementById("Combustible").value,
+			Marca: document.getElementById("Marca").value, Modelo: document.getElementById("Modelo").value
+		};
+		var ranId = Math.floor((Math.random() * 100000) + 1);
+		idData = { Id: ranId };
+		vehiculoData = this.ctrlActions.GetDataForm('frmEdition');
+		Object.assign(finalData, idData, opcionesChoice, vehiculoData);
+		
+		//console.log(customerData);
+		//console.log(documentoData);
 		//Hace el post al create
-		this.ctrlActions.PostToAPI(this.service + "/Post", customerData);
+		this.ctrlActions.PostToAPI(this.service + "/Post", finalData);
 
+		documentoData = idData + this.ctrlActions.GetDataForm('docuEdition');
 	}
+
+
 
 	this.Update = function () {
 
@@ -43,12 +52,9 @@
 		this.ctrlActions.BindFields('frmEdition', data);
 	}
 
-	cloudinary.config({
-		cloud_name: "jherrerac@ucenfotec.ac.cr",
-		api_key: "YOUR_API_NAME",
-		api_secret: "YOUR_API_SECRET"
-	});
-
+	
+		//cloud_name: "jherrerac@ucenfotec.ac.cr",
+	
 }
 
 var marker
@@ -124,7 +130,7 @@ function buscarUbicacion(lat, lon) {
 	latitud = parseFloat(lat);
 	longitud = parseFloat(lon);
 
-	map.setCenter(new google.maps.LatLng(latitud, longitud));
+	map.setCenter(new google.maps.LatLng(txtLatitud, txtLongitud));
 
 	if (marker != null) {
 		marker.setMap(null);

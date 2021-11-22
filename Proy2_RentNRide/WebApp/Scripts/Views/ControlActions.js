@@ -30,6 +30,18 @@
 		return data;
 	}
 
+	//this.getChoiceFrom = function (formId) {
+	//	var data = {};
+
+	//	$('#' + formId + ' *').filter(':id').each(function (id) {
+	//		var columnDataName = $(this).attr("id");
+	//		data[columnDataName] = this.value;
+	//	});
+
+	//	console.log(data);
+	//	return data;
+	//}
+
 	this.ShowMessage = function (type, message) {
 		if (type == 'E') {
 			$("#alert_container").removeClass("alert alert-success alert-dismissable")

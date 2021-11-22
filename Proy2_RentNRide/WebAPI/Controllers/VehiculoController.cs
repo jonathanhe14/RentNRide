@@ -58,6 +58,9 @@ namespace WebAPI.Controllers
             try
             {
                 var mng = new VehiculoManager();
+
+
+
                 mng.Create(vehiculo);
 
                 apiResp = new ApiResponse();
