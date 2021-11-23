@@ -153,7 +153,7 @@ namespace CoreAPI
                     }
                     else
                     {
-                        return "El OTP no coincide con el OTP enviado";
+                        throw new BussinessException(4);
                     }
                 }
 
@@ -190,11 +190,11 @@ namespace CoreAPI
                     switch (fortalezaClave.GetPasswordStrength(clave.Contrasenna))
                     {
                         case FortalezaClave.PasswordStrength.Blanco:
-                            return "La contraseña está en blanco o no cumple los requerimientos de seguridad";
+                            throw new BussinessException(5);
                         case FortalezaClave.PasswordStrength.MuyDebil:
                         case FortalezaClave.PasswordStrength.Debil:
                         case FortalezaClave.PasswordStrength.Media:
-                            return "La contraseña no cumple los requerimientos de seguridad";
+                            throw new BussinessException(6);
                         case FortalezaClave.PasswordStrength.Fuerte:
                         case FortalezaClave.PasswordStrength.MuyFuerte:
                             Hasher encriptado = new Hasher();
