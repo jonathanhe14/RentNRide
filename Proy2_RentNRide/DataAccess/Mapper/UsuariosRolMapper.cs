@@ -6,72 +6,59 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Mapper
-{
-    public class UsuariosRolMapper : EntityMapper, ISqlStatements, IObjectMapper
-
-    {
+namespace DataAccess.Mapper {
+    public class UsuariosRolMapper : EntityMapper, ISqlStatements, IObjectMapper {
         private const string DB_COL_ID = "ID";
         private const string DB_COL_ID_ROL = "ID_ROL";
         private const string DB_COL_ID_USUARIO = "ID_USUARIO";
         private const string DB_COL_ACTIVO = "ACTIVO";
 
 
-        public SqlOperation GetCreateStatement(BaseEntity entity)
-        {
-            var operation = new SqlOperation { ProcedureName = "CRE_ROL_USUARIO_PR" };
+        public SqlOperation GetCreateStatement(BaseEntity entity) {
+            var operation = new SqlOperation { ProcedureName = "CRE_ROLES_USUARIO_PR" };
 
-            var ur = (UsuariosRol)entity;
+            var ur = (UsuariosRol) entity;
             operation.AddIntParam(DB_COL_ID_ROL, ur.IdRol);
-            operation.AddIntParam(DB_COL_ID_USUARIO, ur.IdUsuario);
+            operation.AddVarcharParam(DB_COL_ID_USUARIO, ur.IdUsuario);
             operation.AddVarcharParam(DB_COL_ACTIVO, ur.Estado);
 
 
             return operation;
         }
 
-        public SqlOperation GetDeleteStatement(BaseEntity entity)
-        {
+        public SqlOperation GetDeleteStatement(BaseEntity entity) {
             throw new NotImplementedException();
         }
 
-        public SqlOperation GetRetriveAllStatement()
-        {
+        public SqlOperation GetRetriveAllStatement() {
             var operation = new SqlOperation { ProcedureName = "RET_ALL_ROLES_USUARIO_PR" };
             return operation;
         }
 
-        public SqlOperation GetRetriveStatement(BaseEntity entity)
-        {
+        public SqlOperation GetRetriveStatement(BaseEntity entity) {
             var operation = new SqlOperation { ProcedureName = "RET_ROL_USUARIO_PR" };
 
-            var ur = (UsuariosRol)entity;
-            operation.AddIntParam(DB_COL_ID_USUARIO, ur.IdUsuario);
+            var ur = (UsuariosRol) entity;
+            operation.AddVarcharParam(DB_COL_ID_USUARIO, ur.IdUsuario);
 
             return operation;
         }
 
-        public SqlOperation GetUpdateStatement(BaseEntity entity)
-        {
+        public SqlOperation GetUpdateStatement(BaseEntity entity) {
             throw new NotImplementedException();
         }
-        public BaseEntity BuildObject(Dictionary<string, object> row)
-        {
-            try
-            {
-                var usuarioRol = new UsuariosRol
-                {
+        public BaseEntity BuildObject(Dictionary<string, object> row) {
+            try {
+                var usuarioRol = new UsuariosRol {
                     Id = GetIntValue(row, DB_COL_ID),
                     IdRol = GetIntValue(row, DB_COL_ID_ROL),
-                    IdUsuario = GetIntValue(row, DB_COL_ID_USUARIO),
+                    IdUsuario = GetStringValue(row, DB_COL_ID_USUARIO),
                     Estado = GetStringValue(row, DB_COL_ACTIVO),
 
 
                 };
                 return usuarioRol;
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 throw ex;
 
             }
@@ -81,12 +68,10 @@ namespace DataAccess.Mapper
 
 
 
-        public List<BaseEntity> BuildObjects(List<Dictionary<string, object>> lstRows)
-        {
+        public List<BaseEntity> BuildObjects(List<Dictionary<string, object>> lstRows) {
             var lstResults = new List<BaseEntity>();
 
-            foreach (var row in lstRows)
-            {
+            foreach(var row in lstRows) {
 
                 var usuarios = BuildObject(row);
                 lstResults.Add(usuarios);

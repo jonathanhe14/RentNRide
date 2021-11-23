@@ -26,6 +26,8 @@ namespace Entities_POJO
         public string Comprobacion { get; set; }
 
         public string ContrassenaActual { get; set; }
+
+        public int OTPSMS { get; set; }
         public Usuarios()
         {
 

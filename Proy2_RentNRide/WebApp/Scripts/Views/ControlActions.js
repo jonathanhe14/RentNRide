@@ -86,7 +86,7 @@
 		var jqxhr = $.post(this.GetUrlApiService(service), data, function (response) {
 			var ctrlActions = new ControlActions();
 			ctrlActions.ShowMessage('I', response.Message);
-
+		
 			if (callBackFunction) {
 				callbackFunction(response.Data);
 			}
@@ -135,10 +135,8 @@
 
 	this.GetToApi = function (service, callbackFunction) {
 		var jqxhr = $.get(this.GetUrlApiService(service), function (response) {
-			console.log("Response " + response);
-			if (callBackFunction) {
-				callbackFunction(response.Data);
-			}
+			console.log("Response " + response.Data);
+			callbackFunction(response.Data);
 
 		});
 	}

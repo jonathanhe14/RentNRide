@@ -1,8 +1,8 @@
 ﻿<!-- Background Image -->
-<script src="../../Scripts/Views/vIndex.js"></script>
 <div class="chart-container" style="position: relative; height:20vh; width:40vw">
     <canvas id="-#Id-"></canvas>
-    <script>function InitializeChart(vData) {
+    <script>
+        function InitializeBarChart(vData) {
             console.log(vData);
             var ctx = document.getElementById('-#Id-').getContext('2d');
 
@@ -36,6 +36,7 @@
             });
         }
 
+
         $(document).ready(function () {
 
             var view = new -#ViewName-();
@@ -43,8 +44,6 @@
                 view.-#OnLoadFunction-(InitializeChart);
             }
 
-            //var view = new vIndex();
-            //view.GetDataToChart(InitializeChart);
 
         });</script>
 </div>

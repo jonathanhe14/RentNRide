@@ -72,7 +72,7 @@ namespace DataAccess.Mapper {
             var c = (Marca) entity;
             operation.AddIntParam(DB_COL_ID, c.Id);
             operation.AddVarcharParam(DB_COL_NOMBRE, c.Nombre);
-            operation.AddVarcharParam(DB_COL_ESTADO, c.Estado);
+          
 
             return operation;
         }

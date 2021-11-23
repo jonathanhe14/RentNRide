@@ -200,6 +200,20 @@ namespace WebApp.Controllers
             return View();
         }
 
+        public ActionResult Usuarios() {
+            return View();
+        }
+
+        public ActionResult Finanzas() {
+            return View();
+        }
+
+        public ActionResult Solicitudes() {
+            return View();
+        }
+
+
+
         public ActionResult About()
         {
             if (Session["UserID"] != null)

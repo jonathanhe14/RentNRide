@@ -75,7 +75,7 @@ namespace DataAccess.Mapper {
             var c = (Modelo) entity;
             operation.AddIntParam(DB_COL_ID, c.Id);
             operation.AddVarcharParam(DB_COL_NOMBRE, c.Nombre);
-            operation.AddVarcharParam(DB_COL_ESTADO, c.Estado);
+          
             operation.AddIntParam(DB_COL_MARCA, c.Marca);
 
             return operation;

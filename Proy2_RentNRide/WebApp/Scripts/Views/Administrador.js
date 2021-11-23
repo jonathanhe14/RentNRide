@@ -5,35 +5,37 @@
 	this.tblModelosId = "tblModelos";
 	this.tblTiposVehiculoId = "tblTiposVehiculo";
 	this.tblTiposCombustibleId = "tblTiposCombustible";
-	this.service = 'administrador';
+	this.adminService = 'administrador';
+	this.usersService = 'usuarios';
 	this.ctrlActions = new ControlActions();
-	
+	this.usrChartId = 'usrChart';
+
 
 	this.RetrieveAll = function () {
-		this.ctrlActions.FillTable(this.service + "/GetMembresias", this.tblMembresiasId, false);
-		this.ctrlActions.FillTable(this.service + "/GetMarcas", this.tblMarcasId, false);
-		this.ctrlActions.FillTable(this.service + "/GetModelos", this.tblModelosId, false);
-		this.ctrlActions.FillTable(this.service + "/GetTipoCombustibles", this.tblTiposCombustibleId, false);
-		this.ctrlActions.FillTable(this.service + "/GetTipoVehiculos", this.tblTiposVehiculoId, false);
+		this.ctrlActions.FillTable(this.adminService + "/GetMembresias", this.tblMembresiasId, false);
+		this.ctrlActions.FillTable(this.adminService + "/GetMarcas", this.tblMarcasId, false);
+		this.ctrlActions.FillTable(this.adminService + "/GetModelos", this.tblModelosId, false);
+		this.ctrlActions.FillTable(this.adminService + "/GetTipoCombustibles", this.tblTiposCombustibleId, false);
+		this.ctrlActions.FillTable(this.adminService + "/GetTipoVehiculos", this.tblTiposVehiculoId, false);
 	}
 
 	this.ReloadTable = function () {
-		this.ctrlActions.FillTable(this.service + "/GetMembresias", this.tblMembresiasId, true);
-		this.ctrlActions.FillTable(this.service + "/GetMarcas", this.tblMarcasId, true);
-		this.ctrlActions.FillTable(this.service + "/GetModelos", this.tblModelosId, true);
-		this.ctrlActions.FillTable(this.service + "/GetTipoCombustibles", this.tblTiposCombustibleId, true);
-		this.ctrlActions.FillTable(this.service + "/GetTipoVehiculos", this.tblTiposVehiculoId, true);
+		this.ctrlActions.FillTable(this.adminService + "/GetMembresias", this.tblMembresiasId, true);
+		this.ctrlActions.FillTable(this.adminService + "/GetMarcas", this.tblMarcasId, true);
+		this.ctrlActions.FillTable(this.adminService + "/GetModelos", this.tblModelosId, true);
+		this.ctrlActions.FillTable(this.adminService + "/GetTipoCombustibles", this.tblTiposCombustibleId, true);
+		this.ctrlActions.FillTable(this.adminService + "/GetTipoVehiculos", this.tblTiposVehiculoId, true);
 	}
 
 	this.CreMembresia = function () {
 		var membresia = {};
 		membresia = this.ctrlActions.GetDataForm('frmMembresia');
 		//Hace el post al create
-		this.ctrlActions.PostToAPI(this.service+"/PostMembresia", membresia, function (data) {
+		this.ctrlActions.PostToAPI(this.adminService + "/PostMembresia", membresia, function (data) {
 			var administrador = new Administrador();
 			administrador.ReloadTable();
 		});
-		
+
 	}
 
 	this.UpdMembresia = function () {
@@ -41,7 +43,7 @@
 		var membresiaData = {};
 		membresiaData = this.ctrlActions.GetDataForm('frmMembresia');
 		//Hace el post al create
-		this.ctrlActions.PutToAPI(this.service + "/PutMembresia", membresiaData);
+		this.ctrlActions.PutToAPI(this.adminService + "/PutMembresia", membresiaData);
 		//Refresca la tabla
 		this.ReloadTable();
 
@@ -52,7 +54,7 @@
 		var membresia = {};
 		membresia = this.ctrlActions.GetDataForm('frmMembresia');
 		//Hace el post al create
-		this.ctrlActions.DeleteToAPI(this.service + "/DeleteMembresia/"+membresia.Id, membresia);
+		this.ctrlActions.DeleteToAPI(this.adminService + "/DeleteMembresia/" + membresia.Id, membresia);
 		//Refresca la tabla
 		this.ReloadTable();
 
@@ -68,7 +70,7 @@
 		var marca = {};
 		marca = this.ctrlActions.GetDataForm('frmMarca');
 		//Hace el post al create
-		this.ctrlActions.PostToAPI(this.service + "/PostMarca", marca, function (data) {
+		this.ctrlActions.PostToAPI(this.adminService + "/PostMarca", marca, function (data) {
 			var administrador = new Administrador();
 			administrador.ReloadTable();
 		});
@@ -80,7 +82,7 @@
 		var marcaData = {};
 		marcaData = this.ctrlActions.GetDataForm('frmMarca');
 		//Hace el post al create
-		this.ctrlActions.PutToAPI(this.service + "/PutMarca", marcaData);
+		this.ctrlActions.PutToAPI(this.adminService + "/PutMarca", marcaData);
 		//Refresca la tabla
 		this.ReloadTable();
 
@@ -91,7 +93,7 @@
 		var marca = {};
 		marca = this.ctrlActions.GetDataForm('frmMarca');
 		//Hace el post al create
-		this.ctrlActions.DeleteToAPI(this.service + "/DeleteMarca/" + marca.Id, marca);
+		this.ctrlActions.DeleteToAPI(this.adminService + "/DeleteMarca/" + marca.Id, marca);
 		//Refresca la tabla
 		this.ReloadTable();
 
@@ -106,7 +108,7 @@
 		var modelo = {};
 		modelo = this.ctrlActions.GetDataForm('frmModelo');
 		//Hace el post al create
-		this.ctrlActions.PostToAPI(this.service + "/PostModelo", modelo, function (data) {
+		this.ctrlActions.PostToAPI(this.adminService + "/PostModelo", modelo, function (data) {
 			var administrador = new Administrador();
 			administrador.ReloadTable();
 		});
@@ -118,7 +120,7 @@
 		var modeloData = {};
 		modeloData = this.ctrlActions.GetDataForm('frmModelo');
 		//Hace el post al create
-		this.ctrlActions.PutToAPI(this.service + "/PutModelo", modeloData);
+		this.ctrlActions.PutToAPI(this.adminService + "/PutModelo", modeloData);
 		//Refresca la tabla
 		this.ReloadTable();
 
@@ -129,7 +131,7 @@
 		var modelo = {};
 		modelo = this.ctrlActions.GetDataForm('frmModelo');
 		//Hace el post al create
-		this.ctrlActions.DeleteToAPI(this.service + "/DeleteModelo/" + modelo.Id, modelo);
+		this.ctrlActions.DeleteToAPI(this.adminService + "/DeleteModelo/" + modelo.Id, modelo);
 		//Refresca la tabla
 		this.ReloadTable();
 
@@ -145,7 +147,7 @@
 		var tipoVehiculo = {};
 		tipoVehiculo = this.ctrlActions.GetDataForm('frmTiposVehiculo');
 		//Hace el post al create
-		this.ctrlActions.PostToAPI(this.service + "/PostTipoVehiculo", tipoVehiculo, function (data) {
+		this.ctrlActions.PostToAPI(this.adminService + "/PostTipoVehiculo", tipoVehiculo, function (data) {
 			var administrador = new Administrador();
 			administrador.ReloadTable();
 		});
@@ -157,7 +159,7 @@
 		var tipoVehiculoData = {};
 		tipoVehiculoData = this.ctrlActions.GetDataForm('frmTiposVehiculo');
 		//Hace el post al create
-		this.ctrlActions.PutToAPI(this.service + "/PutTipoVehiculo", tipoVehiculoData);
+		this.ctrlActions.PutToAPI(this.adminService + "/PutTipoVehiculo", tipoVehiculoData);
 		//Refresca la tabla
 		this.ReloadTable();
 
@@ -168,7 +170,7 @@
 		var tipoVehiculo = {};
 		tipoVehiculo = this.ctrlActions.GetDataForm('frmTiposVehiculo');
 		//Hace el post al create
-		this.ctrlActions.DeleteToAPI(this.service + "/DeleteTipoVehiculo/" + tipoVehiculo.Id, tipoVehiculo);
+		this.ctrlActions.DeleteToAPI(this.adminService + "/DeleteTipoVehiculo/" + tipoVehiculo.Id, tipoVehiculo);
 		//Refresca la tabla
 		this.ReloadTable();
 
@@ -185,7 +187,7 @@
 		var tipoCombustible = {};
 		tipoCombustible = this.ctrlActions.GetDataForm('frmTiposCombustible');
 		//Hace el post al create
-		this.ctrlActions.PostToAPI(this.service + "/PostTipoVehiculo", tipoCombustible, function (data) {
+		this.ctrlActions.PostToAPI(this.adminService + "/PostTipoCombustible", tipoCombustible, function (data) {
 			var administrador = new Administrador();
 			administrador.ReloadTable();
 		});
@@ -197,7 +199,7 @@
 		var tipoCombustibleData = {};
 		tipoCombustibleData = this.ctrlActions.GetDataForm('frmTiposCombustible');
 		//Hace el post al create
-		this.ctrlActions.PutToAPI(this.service + "/PutTipoCombustible", tipoCombustibleData);
+		this.ctrlActions.PutToAPI(this.adminService + "/PutTipoCombustible", tipoCombustibleData);
 		//Refresca la tabla
 		this.ReloadTable();
 
@@ -208,7 +210,7 @@
 		var tipoCombustible = {};
 		tipoCombustible = this.ctrlActions.GetDataForm('frmTiposCombustible');
 		//Hace el post al create
-		this.ctrlActions.DeleteToAPI(this.service + "/DeleteTipoCombustible/" + tipoCombustible.Id, tipoCombustible);
+		this.ctrlActions.DeleteToAPI(this.adminService + "/DeleteTipoCombustible/" + tipoCombustible.Id, tipoCombustible);
 		//Refresca la tabla
 		this.ReloadTable();
 
@@ -217,6 +219,12 @@
 	this.BindFieldsTiposCombustibles = function (data) {
 		this.ctrlActions.BindFields('frmTiposCombustible', data);
 	}
+
+	// Usuarios
+	this.GetDataToChart = function (initializeChartFunction) {
+
+		this.ctrlActions.GetToApi(this.service + '/Get', initializeChartFunction);
+	};
 }
 
 //ON DOCUMENT READY

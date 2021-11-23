@@ -77,6 +77,15 @@ namespace CoreAPI
 
         }
 
+        public List<Usuarios> RetrieveAllSolicitudes() {
+            try {
+                return crudUsuarios.RetrieveAllSolicitudes<Usuarios>();
+            } catch(Exception ex) {
+                throw new BussinessException(0);
+            }
+
+        }
+
         public Usuarios RetrieveById(Usuarios usuarios)
         {
             try

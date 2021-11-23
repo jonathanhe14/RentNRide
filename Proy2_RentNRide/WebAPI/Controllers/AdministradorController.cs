@@ -134,6 +134,7 @@ namespace WebAPI.Controllers
 
             try {
                 var mng = new AdministradorManager();
+                marca.Estado = "ACTIVO";
                 mng.CreateMarca(marca);
 
                 apiResp = new ApiResponse();
@@ -214,6 +215,7 @@ namespace WebAPI.Controllers
 
             try {
                 var mng = new AdministradorManager();
+                modelo.Estado = "ACTIVO";
                 mng.CreateModelo(modelo);
 
                 apiResp = new ApiResponse();
@@ -294,6 +296,7 @@ namespace WebAPI.Controllers
 
             try {
                 var mng = new AdministradorManager();
+                tipoVehiculo.Estado = "ACTIVO";
                 mng.CreateTipoVehiculo(tipoVehiculo);
 
                 apiResp = new ApiResponse();
@@ -373,6 +376,7 @@ namespace WebAPI.Controllers
 
             try {
                 var mng = new AdministradorManager();
+                tipoCombustible.Estado = "ACTIVO";
                 mng.CreateTipoCombustible(tipoCombustible);
 
                 apiResp = new ApiResponse();

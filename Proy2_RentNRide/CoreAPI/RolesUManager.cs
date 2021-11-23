@@ -32,14 +32,10 @@ namespace CoreAPI
             }
         }
 
-        public List<Usuarios> RetrieveAll()
-        {
-            try
-            {
-                return crudRolesUsuarios.RetrieveAll<Usuarios>();
-            }
-            catch (Exception ex)
-            {
+        public List<UsuariosRol> RetrieveAll() {
+            try {
+                return crudRolesUsuarios.RetrieveAll<UsuariosRol>();
+            } catch(Exception ex) {
                 throw new BussinessException(0);
             }
 
