@@ -2,33 +2,78 @@
 
 	
 	this.service = 'vehiculo';
+	this.serviceTwo = 'documento';
+	this.serviceTree = 'horario';
 	this.ctrlActions = new ControlActions();
-
+	var vehiculoData = {};
+	var finalData = {};
+	var documentoData = {};
+	var finalDocumento = {};
+	var horarioOne = {};
+	var finalHorario = {};
 	
 
 	
 
 	this.Create = function () {
-		var idData = {};
-		var vehiculoData = {};
-		finalData = {};
-		var documentoData = {};
+		
+		
+        var ranId = Math.floor((Math.random() * 100000) + 1);
+		idData = { Id: ranId };
+		this.CreateTwo(idData);
+		/*
+		var datareci = this.CheckifTrue(idData);
+		setTimeout(() => {
+
+		if (datareci == true) {
+			 ranId = Math.floor((Math.random() * 100000) + 1);
+			 idData = { Id: ranId };
+				this.CheckifTrue(idData);
+			setTimeout(() => {
+				 this.CreateTwo(idData);
+			}, 5000);
+		} else {
+			this.CreateTwo(idData);
+        }
+
+		}, 5000);
+		*/
+		
+         
+	}
+
+	this.CheckifTrue = function (idData) {
+         this.ctrlActions.GetToApiId(this.service + "/GetCheck", idData, function (data) {
+			 datareci = data;
+			 return datareci;
+		 });
+    }
+
+	this.CreateTwo = function (idData) {
 		var opcionesChoice = {
 			Tipo: document.getElementById("Tipo").value, Combustible: document.getElementById("Combustible").value,
 			Marca: document.getElementById("Marca").value, Modelo: document.getElementById("Modelo").value
 		};
-		var ranId = Math.floor((Math.random() * 100000) + 1);
-		idData = { Id: ranId };
 		vehiculoData = this.ctrlActions.GetDataForm('frmEdition');
 		Object.assign(finalData, idData, opcionesChoice, vehiculoData);
-		
+
 		//console.log(customerData);
 		//console.log(documentoData);
 		//Hace el post al create
 		this.ctrlActions.PostToAPI(this.service + "/Post", finalData);
 
-		documentoData = idData + this.ctrlActions.GetDataForm('docuEdition');
-	}
+		documentoData = this.ctrlActions.GetDataForm('docuEdition');
+		var idDataTwo = { idVehi : idData};
+		Object.assign(finalDocumento, documentoData, idDataTwo);
+
+		this.ctrlActions.PostToAPI(this.serviceTwo + "/Post", finalDocumento);
+
+		horarioOne = this.ctrlActions.GetDataForm('horarioEdition');
+		var idDataTree = {Id : idData};
+		Object.assign(finalHorario, horarioOne, idDataTree);
+
+		this.ctrlActions.PostToAPI(this.serviceTree + "/Post", finalHorario);
+    }
 
 
 
@@ -42,8 +87,6 @@
 		this.ReloadTable();
 
 	}
-
-	
 
 		
 
@@ -65,11 +108,7 @@ function initMap() {
 		zoom: 18
 	});
 
-	
-
 	var posiciones = [];
-
-	
 
 	map.addListener("click", (event) => {
 	crearMarcador(event.latLng);

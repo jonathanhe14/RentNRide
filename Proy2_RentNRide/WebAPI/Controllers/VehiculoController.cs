@@ -50,6 +50,26 @@ namespace WebAPI.Controllers
             }
         }
 
+        public IHttpActionResult GetCheck(int id)
+        {
+            try
+            {
+                var mng = new VehiculoManager();
+                var customer = new Vehiculo
+                {
+                    Id = id
+                };
+
+                var doesItExi = mng.checkIfExists(customer);
+                apiResp = new ApiResponse();
+                apiResp.Data = doesItExi;
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Message));
+            }
+        }
         // POST 
         // CREATE
         public IHttpActionResult Post(Vehiculo vehiculo)

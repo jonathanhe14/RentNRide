@@ -32,29 +32,31 @@
                             @Html.CtrlDropDown(id: "Marca", label: "Tipo Marca", listId: "LST_tipoMarca")
                             @Html.CtrlDropDown(id: "Modelo", label: "Tipo Modelo", listId: "LST_tipoModelo")
                         </form>
-                            <form id="frmEdition">
-                                @Html.CtrlInput(id: "txtKilometraje", type: "number", label: "Kilometraje", columnDataName: "Kilometraje")
-                                @Html.CtrlInput(id: "txtcKmExcedido", type: "number", label: "Cargo Kilometro excedido", columnDataName: "cKmExcedido")
-                                @Html.CtrlInput(id: "txtcMalEstado", type: "number", label: "Cargo mal estado", columnDataName: "cMalEstado")
-                                @Html.CtrlInput(id: "txtcLugarDiferente", type: "number", label: "Cargo lugar diferente", columnDataName: "cLugarDiferente")
-                                @Html.CtrlInput(id: "txtTarifa", type: "number", label: "Tarifa", columnDataName: "Tarifa")
-                                @Html.CtrlInput(id: "txtAccptInmediata", type: "text", label: "Acceptacion Inmediata", columnDataName: "AccptInmediata")
-                                @Html.CtrlInput(id: "txtEstado", type: "text", label: "Estado", columnDataName: "Estado")
-                                @*@Html.CtrlDropDown(id: "drpGender", label: "Gender", listId: "LST_GENERO")
-            @Html.CtrlDropDown(id: "drpStatus", label: "Status", listId: "LST_EST_CIVIL")
-            @Html.CtrlDropDown(id: "Best Friend", label: "Friend", listId: "LST_CUSTOMER")*@
-                            </form>
+                        <form id="frmEdition">
+                            @Html.CtrlInput(id: "txtKilometraje", type: "number", label: "Kilometraje", columnDataName: "Kilometraje")
+                            @Html.CtrlInput(id: "txtcKmExcedido", type: "number", label: "Cargo Kilometro excedido", columnDataName: "cKmExcedido")
+                            @Html.CtrlInput(id: "txtcMalEstado", type: "number", label: "Cargo mal estado", columnDataName: "cMalEstado")
+                            @Html.CtrlInput(id: "txtcLugarDiferente", type: "number", label: "Cargo lugar diferente", columnDataName: "cLugarDiferente")
+                            @Html.CtrlInput(id: "txtTarifa", type: "number", label: "Tarifa", columnDataName: "Tarifa")
+                            @Html.CtrlInput(id: "txtAccptInmediata", type: "text", label: "Acceptacion Inmediata", columnDataName: "AccptInmediata")
+                            @Html.CtrlInput(id: "txtEstado", type: "text", label: "Estado", columnDataName: "Estado")
+                            @Html.CtrlInput(id: "txtImagen", type: "text", label: "Imagen", columnDataName: "Imagen")
+                            @Html.CtrlInput(id: "txtUsuarioid", type: "number", label: "idusuariotoremove", columnDataName: "idUsuario")
+                            @*@Html.CtrlDropDown(id: "drpGender", label: "Gender", listId: "LST_GENERO")
+        @Html.CtrlDropDown(id: "drpStatus", label: "Status", listId: "LST_EST_CIVIL")
+        @Html.CtrlDropDown(id: "Best Friend", label: "Friend", listId: "LST_CUSTOMER")*@
+                        </form>
 </div>
                 </div>
             </div>
             <div id="map"></div>
-            <div>Posicion seleccionada por click: <label id="selectPosit"></label></div>
+            <div>Su posicion seleccionada por click es de: <label id="selectPosit"></label></div>
             <form id="frmEdition">
                 @Html.CtrlInput(id: "txtLatitud", type: "text", label: "Latitud", columnDataName: "Latitud")
                 @Html.CtrlInput(id: "txtLongitud", type: "text", label: "Longitud", columnDataName: "Longitud")
             </form>
             <br /><br />
-            <button onclick="buscarUbicacion(document.getElementById('latitud').value, document.getElementById('longitud').value)">Verificar Ubicacion Ingresada</button>
+            <button onclick="buscarUbicacion(document.getElementById('txtLatitud').value, document.getElementById('txtLongitud').value)">Verificar Ubicacion Ingresada</button>
             <div></div>
             <div class="row">
                 <div class="col-lg-6">

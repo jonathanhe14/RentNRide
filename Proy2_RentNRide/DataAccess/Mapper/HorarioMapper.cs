@@ -12,10 +12,10 @@ namespace DataAccess.Mapper
     {
 
 
-        private const string DB_COL_ID = "id";
-        private const string DB_COL_DIA = "dia";
-        private const string DB_COL_HORA_INICIO = "inicio";
-        private const string DB_COL_HORA_FIN = "fin";
+        private const string DB_COL_ID = "Id_Vehiculo";
+        private const string DB_COL_DIA = "DIA";
+        private const string DB_COL_HORA_INICIO = "HORARIO_INICIO";
+        private const string DB_COL_HORA_FIN = "HORARIO_FIN";
         
 
         public SqlOperation GetCreateStatement(BaseEntity entity)

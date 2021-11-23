@@ -31,12 +31,8 @@ namespace CoreAPI
                     throw new BussinessException(45);
                 }
 
-                /*
-                if (vehiculo.Age >= 18)
-                    crudVehiculo.Create(vehiculo);
-                else
-                    throw new BussinessException(2);
-                */
+                    crudDocumento.Create(documento);
+               
             }
             catch (Exception ex)
             {

@@ -25,18 +25,15 @@ namespace CoreAPI
             {
                 var c = crudVehiculo.Retrieve<Vehiculo>(vehiculo);
 
-                if (c != null)
-                {
-                    //Customer already exist
-                    throw new BussinessException(45);
-                }
+                //if (c != null)
+                //{
+                //    //randomly generated id already exists, try again
+                //    // dont need throw new BussinessException(45);
+                //}
 
-                /*
-                if (vehiculo.Age >= 18)
+               
                     crudVehiculo.Create(vehiculo);
-                else
-                    throw new BussinessException(2);
-                */
+                
             }
             catch (Exception ex)
             {
@@ -66,6 +63,28 @@ namespace CoreAPI
             }
 
             return c;
+        }
+
+        public Boolean checkIfExists(Vehiculo vehiculo)
+        {
+            Vehiculo c = null;
+            try
+            {
+                c = crudVehiculo.Retrieve<Vehiculo>(vehiculo);
+                if (c == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.GetInstance().Process(ex);
+            }
+            return false;
         }
 
         public void Update(Vehiculo vehiculo)

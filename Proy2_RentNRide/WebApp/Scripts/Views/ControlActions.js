@@ -30,17 +30,7 @@
 		return data;
 	}
 
-	//this.getChoiceFrom = function (formId) {
-	//	var data = {};
-
-	//	$('#' + formId + ' *').filter(':id').each(function (id) {
-	//		var columnDataName = $(this).attr("id");
-	//		data[columnDataName] = this.value;
-	//	});
-
-	//	console.log(data);
-	//	return data;
-	//}
+	
 
 	this.ShowMessage = function (type, message) {
 		if (type == 'E') {
@@ -108,13 +98,26 @@
 
 	this.GetToApi = function (service, callbackFunction) {
 		var jqxhr = $.get(this.GetUrlApiService(service), function (response) {
+			console.log(jqxhr)
 			console.log("Response " + response);
-			if (callBackFunction) {
+			if (callbackFunction) {
 				callbackFunction(response.Data);
 			}
 
 		});
 	}
+
+	this.GetToApiId = function (service, data, callbackFunction) {
+		var jqxhr = $.get(this.GetUrlApiService(service), data, function (response) {
+			console.log(jqxhr)
+			console.log("Response " + response);
+			if (callbackFunction) {
+				callbackFunction(response.Data);
+			}
+
+		});
+	}
+	
 }
 
 //Custom jquery actions

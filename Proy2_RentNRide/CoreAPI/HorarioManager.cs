@@ -23,20 +23,11 @@ namespace CoreAPI
         {
             try
             {
-                var c = crudHorario.Retrieve<Horario>(horario);
+               
 
-                if (c != null)
-                {
-                    //Customer already exist
-                    throw new BussinessException(45);
-                }
-
-                /*
-                if (vehiculo.Age >= 18)
-                    crudVehiculo.Create(vehiculo);
-                else
-                    throw new BussinessException(2);
-                */
+                
+                    crudHorario.Create(horario);
+                
             }
             catch (Exception ex)
             {

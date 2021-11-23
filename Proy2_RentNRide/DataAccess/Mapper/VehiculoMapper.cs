@@ -11,20 +11,22 @@ namespace DataAccess.Mapper
     class VehiculoMapper : EntityMapper, ISqlStatements, IObjectMapper
     {
 
-        private const string DB_COL_ID = "id";
-        private const string DB_COL_TIPO = "tipo";
-        private const string DB_COL_TIPO_COMBUSTIBLE = "combustible";
+        private const string DB_COL_ID = "id_vehiculo";
+        private const string DB_COL_TIPO = "tipo_vehiculo";
+        private const string DB_COL_TIPO_COMBUSTIBLE = "tipo_combustible";
         private const string DB_COL_MODELO = "modelo";
         private const string DB_COL_MARCA = "marca";
         private const string DB_COL_KILOMETRAJE = "kilometraje";
-        private const string DB_COL_EXCEDIDO = "km_excedido";
-        private const string DB_COL_MAL_ESTADO = "mal_estado";
+        private const string DB_COL_EXCEDIDO = "cargo_km_exedido";
+        private const string DB_COL_MAL_ESTADO = "cargo_mal_estado";
         private const string DB_COL_LATITUD = "latitud";
         private const string DB_COL_LONGITUD = "longitud";
-        private const string DB_COL_LUGAR_DIFF = "lugar_diferente";
+        private const string DB_COL_LUGAR_DIFF = "cargo_lugar_diferente";
         private const string DB_COL_TARIFA = "tarifa";
-        private const string DB_COL_ACEPT_INMD = "acepta_inmediata";
+        private const string DB_COL_ACEPT_INMD = "aceptacion_inmediata";
         private const string DB_COL_ESTADO = "estado";
+        private const string DB_COL_IMAGEN = "imagen";
+        private const string DB_COL_USUARIO = "id_usuario";
 
         public SqlOperation GetCreateStatement(BaseEntity entity)
         {
@@ -45,6 +47,8 @@ namespace DataAccess.Mapper
             operation.AddDoubleParam(DB_COL_TARIFA, c.Tarifa);
             operation.AddVarcharParam(DB_COL_ACEPT_INMD, c.AccptInmediata);
             operation.AddVarcharParam(DB_COL_ESTADO, c.Estado);
+            operation.AddVarcharParam(DB_COL_IMAGEN, c.Imagen);
+            operation.AddIntParam(DB_COL_USUARIO, c.idUsuario);
 
             return operation;
         }
@@ -85,6 +89,8 @@ namespace DataAccess.Mapper
             operation.AddDoubleParam(DB_COL_TARIFA, c.Tarifa);
             operation.AddVarcharParam(DB_COL_ACEPT_INMD, c.AccptInmediata);
             operation.AddVarcharParam(DB_COL_ESTADO, c.Estado);
+            operation.AddVarcharParam(DB_COL_IMAGEN, c.Imagen);
+            operation.AddIntParam(DB_COL_USUARIO, c.idUsuario);
 
             return operation;
         }
@@ -129,6 +135,8 @@ namespace DataAccess.Mapper
                 Tarifa = GetDoubleValue(row, DB_COL_TARIFA),
                 AccptInmediata = GetStringValue(row, DB_COL_ACEPT_INMD),
                 Estado = GetStringValue(row, DB_COL_ESTADO),
+                Imagen = GetStringValue(row, DB_COL_IMAGEN),
+                idUsuario = GetIntValue(row, DB_COL_USUARIO),
             };
 
             return vehiculo;
