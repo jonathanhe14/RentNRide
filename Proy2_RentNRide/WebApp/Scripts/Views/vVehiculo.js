@@ -60,21 +60,36 @@
 		//console.log(customerData);
 		//console.log(documentoData);
 		//Hace el post al create
-		this.ctrlActions.PostToAPI(this.service + "/Post", finalData);
+		this.ctrlActions.PostToAPI(this.service + "/Post", finalData, function (data) {
+			var vcustomer = new vVehiculo();
+			vcustomer.CreateDocum(idData);
+		});
+
+
+		
+	}
+
+	this.CreateDocum = function (idData) {
 
 		documentoData = this.ctrlActions.GetDataForm('docuEdition');
-		var idDataTwo = { idVehi : idData};
+		var idDataTwo = { idVehi : idData.Id};
 		Object.assign(finalDocumento, documentoData, idDataTwo);
 
-		this.ctrlActions.PostToAPI(this.serviceTwo + "/Post", finalDocumento);
+		this.ctrlActions.PostToAPI(this.serviceTwo + "/Post", finalDocumento, function (data) {
+			var vcustomer = new vVehiculo();
+			vcustomer.CreateHora(idData);
+		});
+	}
 
-		horarioOne = this.ctrlActions.GetDataForm('horarioEdition');
-		var idDataTree = {Id : idData};
+
+	this.CreateHora = function () {
+        horarioOne = this.ctrlActions.GetDataForm('horarioEdition');
+		//var idDataTree = {Id : idData.Id};
+		var idDataTree = {Id : 1};
 		Object.assign(finalHorario, horarioOne, idDataTree);
 
 		this.ctrlActions.PostToAPI(this.serviceTree + "/Post", finalHorario);
-    }
-
+	}
 
 
 	this.Update = function () {

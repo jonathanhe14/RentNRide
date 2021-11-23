@@ -51,7 +51,7 @@
 			ctrlActions.ShowMessage('I', response.Message);
 
 			if (callBackFunction) {
-				callbackFunction(response.Data);
+				callBackFunction(response.Data);
 			}
 		})
 			.fail(function (response) {
@@ -67,7 +67,7 @@
 			var ctrlActions = new ControlActions();
 			ctrlActions.ShowMessage('I', response.Message);
 			if (callBackFunction) {
-				callbackFunction(response.Data);
+				callBackFunction(response.Data);
 			}
 
 		})
@@ -83,7 +83,7 @@
 		var jqxhr = $.delete(this.GetUrlApiService(service), data, function (response) {
 			var ctrlActions = new ControlActions();
 			ctrlActions.ShowMessage('I', response.Message);
-			if (callBackFunction) {
+			if (callbackFunction) {
 				callbackFunction(response.Data);
 			}
 		})
