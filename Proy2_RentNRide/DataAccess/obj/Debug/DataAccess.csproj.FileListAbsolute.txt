@@ -1,11 +1,3 @@
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.AssemblyReference.cache
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.CoreCompileInputs.cache
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\DataAccess.dll
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\DataAccess.pdb
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\Entities-POJO.dll
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\Entities-POJO.pdb
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.dll
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.pdb
 A:\ProyectoCenfo\Proy2_RentNRide\DataAccess\bin\Debug\DataAccess.dll
 A:\ProyectoCenfo\Proy2_RentNRide\DataAccess\bin\Debug\DataAccess.pdb
 A:\ProyectoCenfo\Proy2_RentNRide\DataAccess\bin\Debug\Entities-POJO.dll
@@ -17,8 +9,6 @@ A:\ProyectoCenfo\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.dll
 A:\ProyectoCenfo\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.pdb
 A:\ProyectoCenfo\Proy2_RentNRide\DataAccess\bin\Debug\System.Data.SqlClient.dll
 A:\ProyectoCenfo\Proy2_RentNRide\DataAccess\bin\Debug\System.Data.SqlClient.xml
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\System.Data.SqlClient.dll
-C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\System.Data.SqlClient.xml
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\DataAccess\bin\Debug\DataAccess.dll
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\DataAccess\bin\Debug\DataAccess.pdb
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\DataAccess\bin\Debug\Entities-POJO.dll
@@ -30,3 +20,14 @@ C:\Users\jonah\Desktop\Master\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.cs
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\jonah\Desktop\Master\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.pdb
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\DataAccess.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\DataAccess.pdb
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\Entities-POJO.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\System.Data.SqlClient.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\Entities-POJO.pdb
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\bin\Debug\System.Data.SqlClient.xml
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.AssemblyReference.cache
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.dll
+C:\Users\Hp\source\repos\Proyecto Final - Softlutions\Proy2_RentNRide\DataAccess\obj\Debug\DataAccess.pdb

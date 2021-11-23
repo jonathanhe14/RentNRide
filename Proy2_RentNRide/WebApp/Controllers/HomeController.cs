@@ -87,12 +87,12 @@ namespace WebApp.Controllers
                     else
                     {
                         ViewBag.Message = apiResponse.Message;
-                        return View();
+                        return View("EnvioOTP");
                     }                
                 }
                 else
                 {
-                    return View();
+                    return View("EnvioOTP");
                 }
             }
             return View("Index");
@@ -127,12 +127,12 @@ namespace WebApp.Controllers
                     else
                     {
                         ViewBag.Message = apiResponse.Message;
-                        return View();
+                        return View("EnvioOTP");
                     }
                 }
                 else
                 {
-                    return View();
+                    return View("EnvioOTP");
                 }
             }
             return View("Index");
