@@ -1,5 +1,6 @@
 ﻿@using WebApp.Models.Helpers;
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4aNZIQyvam7h8Zmdq8ldZ_7sdtVGcwtE"></script>
+<script src="https://upload-widget.cloudinary.com/global/all.js"></script>
 <script src="~/Scripts/Views/vVehiculo.js"></script>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -25,8 +26,8 @@
                 <div class="col-lg-6">
                     <div class="bs-component">
                         @*<form id="idEdition">
-                        @Html.CtrlInput(id: "txtId", type: "number", label: "Id", columnDataName: "Id")
-                    </form>*@
+            @Html.CtrlInput(id: "txtId", type: "number", label: "Id", columnDataName: "Id")
+        </form>*@
                         <form id="choiceEdition">
                             @Html.CtrlDropDown(id: "Tipo", label: "Tipo Vehiculo", listId: "LST_tipoVehi")
                             @Html.CtrlDropDown(id: "Combustible", label: "Tipo Combustible", listId: "LST_tipoCombu")
@@ -41,13 +42,14 @@
                             @Html.CtrlInput(id: "txtTarifa", type: "number", label: "Tarifa", columnDataName: "Tarifa")
                             @Html.CtrlInput(id: "txtAccptInmediata", type: "text", label: "Acceptacion Inmediata", columnDataName: "AccptInmediata")
                             @Html.CtrlInput(id: "txtEstado", type: "text", label: "Estado", columnDataName: "Estado")
-                            @Html.CtrlInput(id: "txtImagen", type: "text", label: "Imagen", columnDataName: "Imagen")
                             @Html.CtrlInput(id: "txtUsuarioid", type: "number", label: "idusuariotoremove", columnDataName: "idUsuario")
                             @*@Html.CtrlDropDown(id: "drpGender", label: "Gender", listId: "LST_GENERO")
-        @Html.CtrlDropDown(id: "drpStatus", label: "Status", listId: "LST_EST_CIVIL")
-        @Html.CtrlDropDown(id: "Best Friend", label: "Friend", listId: "LST_CUSTOMER")*@
+            @Html.CtrlDropDown(id: "drpStatus", label: "Status", listId: "LST_EST_CIVIL")
+            @Html.CtrlDropDown(id: "Best Friend", label: "Friend", listId: "LST_CUSTOMER")*@
                         </form>
-</div>
+                        <button id="txtImagen" class="cloudinary-button">Upload imagen del vehiculo</button>
+                        <img id="image" src="null" alt="carro">
+                    </div>
                 </div>
             </div>
             <div id="map"></div>
@@ -78,7 +80,7 @@
             </div>
         </div>
     </div>
-   
+
 
 </body>
 <style>

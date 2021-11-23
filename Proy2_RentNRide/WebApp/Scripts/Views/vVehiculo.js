@@ -150,10 +150,64 @@ function initMap() {
 }
 
 
+function buscarUbicacion(lat, lon) {
+	latitud = parseFloat(lat);
+	longitud = parseFloat(lon);
+
+	map.setCenter(new google.maps.LatLng(latitud, longitud));
+
+	if (marker != null) {
+		marker.setMap(null);
+	}
+	var uluru = { lat: lat, lng: lon};
+	marker = new google.maps.Marker({
+		uluru,
+		map,
+	});
+}
+
 //ON DOCUMENT READY
 $(document).ready(function () {
 	initMap();
 
+	document.getElementById("txtImagen").addEventListener("click", function () {
+		myWidget.open();
+	}, false);
+	/*
+	document.querySelector('Marca').addEventListener("change", function () {
+		var selected = document.getElementById("Marca").value;
+		for (var option of document.getElementById("Modelo")) {
+			var elementsOfIt = option.value;
+			if (elementsOfIt != selected) {
+				element.hide();
+			} else {
+				element.show();
+			}
+
+		}
+
+	});
+	*/
+	
+
+	
+	$('#Marca').on('change', function () {
+		var selected = $(this).val();
+		$("#Modelo option").each(function (item) {
+			console.log(selected);
+			var element = $(this);
+			console.log(element.data("tag"));
+			if (element.data("tag") != selected) {
+				element.hide();
+			} else {
+				element.show();
+			}
+		});
+
+		$("#Modelo").val($("#Modelo option:visible:first").val());
+	});
+	
+	
 
 });
 
@@ -179,36 +233,52 @@ $(document).ready(function () {
 
 
 
-function buscarUbicacion(lat, lon) {
-	latitud = parseFloat(lat);
-	longitud = parseFloat(lon);
 
-	map.setCenter(new google.maps.LatLng(txtLatitud, txtLongitud));
 
-	if (marker != null) {
-		marker.setMap(null);
+var urlImage;
+var urlDocumento;
+
+
+var imagenVehiculo = cloudinary.createUploadWidget({
+	cloudName: 'cenfotec2021',
+	uploadPreset: 'Cenfo_preset'
+}, (error, result) => {
+	if (!error && result && result.event === "success") {
+		urlImage = result.info.secure_url;
+		this.showImage(urlImage);
 	}
-
-	marker = new google.maps.Marker({
-		position,
-		map,
-	});
 }
+);
+
+function showImage(urlImage) {
+	document.getElementById("image").src = urlImage;
+}
+/*
+var DocumentosFiles = cloudinary.createUploadWidget({
+	cloudName: 'cenfotec2021',
+	uploadPreset: 'Cenfo_preset'
+}, (error, result) => {
+	if (!error && result && result.event === "success") {
+		urlDocumento = result.info.secure_url;
+		this.ctrlActions.SubirDocumento(urlDocumento);
+	}
+}
+);
 
 
-$('#drpMarca').on('change', function () {
-	var selected = $(this).val();
-	$("#drpModelo option").each(function (item) {
-		console.log(selected);
-		var element = $(this);
-		console.log(element.data("tag"));
-		if (element.data("id") != selected) {
-			element.hide();
-		} else {
-			element.show();
-		}
-	});
 
-	$("#drpModelo").val($("#expertCat option:visible:first").val());
 
-});
+
+var
+	file = (el[0].files ? el[0].files[0] : el[0].value || undefined),
+	supportedFormats = ['image/jpg', 'image/gif', 'image/png'];
+
+if (file && file.type) {
+	if (0 > supportedFormats.indexOf(file.type)) {
+		alert('unsupported format');
+	}
+	else {
+		upload();
+	}
+}
+*/
