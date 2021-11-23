@@ -84,8 +84,7 @@
 
 	this.CreateHora = function () {
         horarioOne = this.ctrlActions.GetDataForm('horarioEdition');
-		//var idDataTree = {Id : idData.Id};
-		var idDataTree = {Id : 1};
+		var idDataTree = {Id : idData.Id};
 		Object.assign(finalHorario, horarioOne, idDataTree);
 
 		this.ctrlActions.PostToAPI(this.serviceTree + "/Post", finalHorario);
