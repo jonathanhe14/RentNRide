@@ -17,6 +17,7 @@
 
 	this.Create = function () {
 		console.log(document.getElementById("txtKilometraje").value);
+		console.log(document.getElementById("image").src);
 		//revisa si algo esta empty
 		if (document.getElementById("Tipo").value == "null" || document.getElementById("Combustible").value == "null" ||
 			document.getElementById("Marca").value == "null" || document.getElementById("Modelo").value == "null") {
@@ -26,14 +27,14 @@
 			$("#alert_message").text("Alguna seleccion no ha sido seleccionada");
 			$('.alert').show();
 
-		} else if (document.getElementById("txtKilometraje").value == null ||
-			document.getElementById("txtcKmExcedido").value == null ||
-				document.getElementById("txtcMalEstado").value == null ||
-			document.getElementById("txtcLugarDiferente").value == null ||
-			document.getElementById("txtTarifa").value == null ||
-			document.getElementById("txtLatitud").value == null ||
-			document.getElementById("txtLongitud").value == null ||
-			document.getElementById("image").src == "null") {
+		} else if (document.getElementById("txtKilometraje").value == "" ||
+			document.getElementById("txtcKmExcedido").value == "" ||
+			document.getElementById("txtcMalEstado").value == "" ||
+			document.getElementById("txtcLugarDiferente").value == "" ||
+			document.getElementById("txtTarifa").value == "" ||
+			document.getElementById("txtLatitud").value == "" ||
+			document.getElementById("txtLongitud").value == "" ||
+			document.getElementById("image").src == "https://localhost:44383/Home/null") {
 
 
 			$("#alert_container").removeClass("alert alert-success alert-dismissable")
@@ -41,13 +42,14 @@
 			$("#alert_message").text("Falta informacion del vehiculo");
 			$('.alert').show();
 
-		} else if (document.getElementById("txtMarchamo").src == "null" || document.getElementById("txttituloPropiedad").src == "null" ||
-			document.getElementById("txtRiteve").src == "null" || document.getElementById("txtderechoCirculacion").src == "null") {
+		} else if (document.getElementById("txtMarchamo").src == "https://localhost:44383/Home/null" || document.getElementById("txttituloPropiedad").src == "https://localhost:44383/Home/null" ||
+			document.getElementById("txtRiteve").src == "https://localhost:44383/Home/null" || document.getElementById("txtderechoCirculacion").src == "https://localhost:44383/Home/null") {
 
 			$("#alert_container").removeClass("alert alert-success alert-dismissable")
 			$("#alert_container").addClass("alert alert-danger alert-dismissable");
 			$("#alert_message").text("Falta documentos del vehiculo");
 			$('.alert').show();
+			/*
 		} else if (document.forms["txtDia"].value == "" ||
 			!document.getElementById("txthoraInicio").innerHTML.replace(/\s/g, '').length ||
 			!document.getElementById("txthoraFinal").innerHTML.replace(/\s/g, '').length) {
@@ -56,6 +58,7 @@
 			$("#alert_container").addClass("alert alert-danger alert-dismissable");
 			$("#alert_message").text("Falta informacion de horario");
 			$('.alert').show();
+			*/
 		} else {
 			
             var ranId = Math.floor((Math.random() * 100000) + 1);
