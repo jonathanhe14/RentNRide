@@ -1,5 +1,8 @@
-﻿@using WebApp.Models.Helpers;
+﻿
+@using WebApp.Models.Helpers;
+
 <script src="~/Scripts/Views/Administrador.js"></script>
+
 @{
     ViewBag.Title = "Administrador";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -100,7 +103,7 @@
                                     <form id="frmModelo">
                                         @Html.CtrlInput(id: "txtIdModelo", type: "text", label: "Id", columnDataName: "Id", readOnly: "readonly")
                                         @Html.CtrlInput(id: "txtNombreModelo", type: "text", label: "Nombre", columnDataName: "Nombre")
-                                        @Html.CtrlDropDown(id: "Marca", label: "Tipo Marca", listId: "LST_tipoMarca")
+                                        <!--Html.CtrlDropDown(id: "Marca", label: "Tipo Marca", listId: "LST_tipoMarca")-->
                                         <!--Lista de marcas-->
                                     </form>
                                 </div>

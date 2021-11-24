@@ -11,7 +11,7 @@ namespace WebAPI.Filters
 {
     public class UserLogFilter : ActionFilterAttribute
     {
-        public string PATH = @"A:\Mensajes";
+        public string PATH = @"C:\";
 
         public UserLogFilter()
         {
