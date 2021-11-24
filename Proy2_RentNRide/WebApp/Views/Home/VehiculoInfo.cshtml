@@ -42,18 +42,8 @@
                             @Html.CtrlInput(id: "txtTarifa", type: "number", label: "Tarifa", columnDataName: "Tarifa")
                             @*Html.CtrlInput(id: "txtAccptInmediata", type: "text", label: "Acceptacion Inmediata", columnDataName: "AccptInmediata")
         Html.CtrlInput(id: "txtEstado", type: "text", label: "Estado", columnDataName: "Estado")*@
-                            <select id="txtAccptInmediata" label="¿Accepta inmediata al ser alquilado el vehiculo?">
-                                <option>Si</option>
-                                <option>No</option>
-                            </select>
-                            <select id="txtEstado" label="Estado actual">
-                                <option>Bueno</option>
-                                <option>Pocos daños</option>
-                                <option>Regular</option>
-                                <option>Medio mal</option>
-                                <option>Malo</option>
-                                <option>Terrible</option>
-                            </select>
+                            @Html.CtrlDropDown(id: "txtAccptInmediata", label: "¿Acepta inmediatamente al ser alquilado?", listId: "LST_aceptInmd")
+                            @Html.CtrlDropDown(id: "txtEstado", label: "Estado actual del vehiculo", listId: "LST_Estado")
                             @Html.CtrlInput(id: "txtUsuarioid", type: "number", label: "idusuariotoremove", columnDataName: "idUsuario")
                             @*@Html.CtrlDropDown(id: "drpGender", label: "Gender", listId: "LST_GENERO")
         @Html.CtrlDropDown(id: "drpStatus", label: "Status", listId: "LST_EST_CIVIL")

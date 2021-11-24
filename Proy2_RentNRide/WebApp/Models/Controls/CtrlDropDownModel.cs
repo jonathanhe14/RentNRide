@@ -32,6 +32,23 @@ namespace WebApp.Models.Controls
                     }
                     return htmlOptions;
                 }
+                else if(ListId == "LST_aceptInmd")
+                {
+                    
+                        htmlOptions += "<option value='Si'>Si</option>";
+                    htmlOptions += "<option value='no'>No</option>";
+
+                    return htmlOptions;
+                }
+                else if (ListId == "LST_Estado")
+                {
+                    htmlOptions += "<option value='Buen estado'>Buen estado</option>";
+                    htmlOptions += "<option value='Un poco dañado'>Un poco dañado</option>";
+                    htmlOptions += "<option value='Dañado'>Dañado</option>";
+                    htmlOptions += "<option value='Bastante dañado'>Bastante dañado</option>";
+                    htmlOptions += "<option value='Terrible'>Terrible</option>";
+                    return htmlOptions;
+                }
                 else
                 {
                    var lst = GetOptionsFromAPI();
