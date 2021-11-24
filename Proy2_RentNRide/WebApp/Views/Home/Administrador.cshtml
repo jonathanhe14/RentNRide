@@ -18,8 +18,20 @@
                                 Usuarios
                             </h2>
                             <p>
-                                @Html.CtrlChart("Administrador", "usrChart", "Millenials customers", "'Millenials','Other generations'", "bar", onLoadFunction: "GetDataToChart")
+                                Administradores: <label id="lblAdmin"></label>
                             </p>
+                            <p>
+                                Socios: <label id="lblSocios"></label>
+                            </p>
+                            <p>
+                                Empresas: <label id="lblEmpresas"></label>
+                            </p>
+                            <p>
+                                Usuarios finales: <label id="lblFinales"></label>
+                            </p>
+
+                           
+
                             <p>
                                 @Html.ActionLink("Ver reporte completo", "Usuarios", "Home", new { @class = "btn btn-primary btn-lg" })
                             </p>
@@ -82,6 +94,7 @@
                                     <form id="frmModelo">
                                         @Html.CtrlInput(id: "txtIdModelo", type: "text", label: "Id", columnDataName: "Id", readOnly: "readonly")
                                         @Html.CtrlInput(id: "txtNombreModelo", type: "text", label: "Nombre", columnDataName: "Nombre")
+                                        @Html.CtrlDropDown(id: "Marca", label: "Tipo Marca", listId: "LST_tipoMarca")
                                         <!--Lista de marcas-->
                                     </form>
                                 </div>

@@ -8,6 +8,14 @@
     margin: 10px;
 }
 
+.table-card-no-pad {
+    background-color: aliceblue;
+    padding: 0px 20px;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+
 .card-header{
     padding: 20px;
     font-size: 24px;
@@ -19,4 +27,7 @@
     font-size: 26px;
     font-weight: bold;
     text-align: center;
+}
+.frm{
+    padding: 10px 60px;
 }
