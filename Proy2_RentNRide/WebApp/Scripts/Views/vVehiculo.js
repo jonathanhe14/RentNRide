@@ -306,9 +306,9 @@ $(document).ready(function () {
 	$('#Marca').on('change', function () {
 		var selected = $(this).val();
 		$("#Modelo option").each(function (item) {
-			console.log(selected);
+			//console.log(selected);
 			var element = $(this);
-			console.log(element.data("tag"));
+			//console.log(element.data("tag"));
 			if (element.data("tag") != selected) {
 				element.hide();
 			} else {
