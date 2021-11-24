@@ -1,0 +1,54 @@
+﻿body {
+}
+
+.table-card{
+    background-color: aliceblue;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.table-card-no-pad {
+    background-color: aliceblue;
+    padding: 0px 20px;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+
+.card-header{
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+.title-page {
+    padding: 30px;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+}
+.frm{
+    padding: 10px 60px;
+}
+.alerta-d{
+    padding: 30px;
+    margin: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: rgba(255,0,0,0.3);
+    color: rgba(255,0,0,0.6);
+    border-radius: 20px;
+}
+.fin{
+    padding: 74px 0px;
+}
+
+.construccion{
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: rgb(241,224,110);
+    border-radius: 20px;
+    padding: 40px;
+}

@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - RentNRide.com</title>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/admin.css" rel="stylesheet" />
+    <script src="~/Content/Chart.min.js"></script>
+
+    <script src="~/Scripts/Views/RegistroUsuariosFinales.js"></script>
+    <script src="~/Scripts/Views/ControlActionsAdmin.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("RentNRide.com", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <!---<li>@Html.ActionLink("Home", "Index", "Home")</li>-->
+                    <li>@Html.ActionLink("Panel de control", "Administrador", "Home")</li>
+                    <li>@Html.ActionLink("Usuarios", "Usuarios", "Home")</li>
+                    <li>@Html.ActionLink("Finanzas", "Finanzas", "Home")</li>
+                    <li>@Html.ActionLink("Solicitudes", "Solicitudes", "Home")</li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <!--<footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application-hola</p>
+        </footer>-->
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="mb-2" src="../assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
+                    <small class="d-block mb-3 text-muted">&copy; 2017-2021</small>
+                </div>
+                <div class="col-md-4">
+                    <h5>Registros</h5>
+                    <ul class="list-unstyled text-small">
+                        <li>@Html.ActionLink("Socios", "RegistroSocios", "Home")</li>
+                        <li>@Html.ActionLink("Usuarios finales", "RegistroUsuariosFinales", "Home")</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Buscar vehículos</h5>
+                    <ul class="list-unstyled text-small">
+                        <li>@Html.ActionLink("Inicio sesión", "InicioSesion", "Home")</li>
+                    </ul>
+                </div>
+                <!--<div class="col-md-3">
+                    <h5>About</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Team</a></li>
+                        <li><a class="text-muted" href="#">Locations</a></li>
+                        <li><a class="text-muted" href="#">Privacy</a></li>
+                        <li><a class="text-muted" href="#">Terms</a></li>
+                    </ul>-->
+            </div>
+        </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+﻿@using WebApp.Models.Helpers;
+<script src="~/Scripts/Views/Usuarios.js"></script>
+@{ ViewBag.Title = "Administrador";
+                Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; }
+
+<main>
+    <h2 class="title-page">Usuarios</h2>
+
+    <div class="row">
+
+        <div class="col-md-12 table-card">
+
+            @Html.CtrlTable(viewName: "Usuarios", id: "tblUsuarios", title: "Usuarios",
+                                 columnsTitle: "Cédula,Nombre,Apellidos,Correo,Edad,Teléfono,Estado", ColumnsDataName: "Cedula,Nombre,Apellidos,Correo,Edad,Telefono,Estado",
+                                 onSelectFunction: "BindFieldsUsers", colorHeader: "red")
+            <div class="card border-secondary" style="margin-top: 50px;">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="bs-component">
+                            <form id="frmUsers">
+                                @Html.CtrlInput(id: "txtCedula", type: "text", label: "Cedula", columnDataName: "Cedula", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtNombre", type: "text", label: "Nombre", columnDataName: "Nombre", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtApellidos", type: "text", label: "Apellidos", columnDataName: "Apellidos", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtCorreo", type: "text", label: "Correo", columnDataName: "Correo", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtEdad", type: "text", label: "Edad", columnDataName: "Edad", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtTelefono", type: "text", label: "Telefono", columnDataName: "Telefono", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtEstado", type: "text", label: "Estado", columnDataName: "Estado", readOnly: "readonly")
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                        @Html.CtrlButton(viewName: "Usuarios", id: "btnDesactivar", label: "Desactivar", onClickFunction: "Desactivar", buttonType: "danger")
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12 table-card">
+
+            @Html.CtrlTable(viewName: "Usuarios", id: "tblVehiculos", title: "Vehiculos",
+                                 columnsTitle: "Id,Tipo Vehículo,Tipo Combustible,Modelo,Marca,Kilometraje,Estado,Dueño", ColumnsDataName: "Id,Tipo,Combustible,Modelo,Marca,Kilometraje,Estado,idUsuario",
+                                 onSelectFunction: "BindFieldsVehiculos", colorHeader: "red")
+            <div class="card border-secondary" style="margin-top: 50px;">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="bs-component">
+                            <form id="frmUsers">
+                                @Html.CtrlInput(id: "txtId", type: "text", label: "Id", columnDataName: "Id", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtTipo", type: "text", label: "Tipo Vehículo", columnDataName: "Tipo", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtCombustible", type: "text", label: "Tipo Combustible", columnDataName: "Combustible", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtModelo", type: "text", label: "Modelo", columnDataName: "Modelo", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtMarca", type: "text", label: "Marca", columnDataName: "Marca", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtKilometraje", type: "text", label: "Kilometraje", columnDataName: "Kilometraje", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtEstado", type: "text", label: "Estado", columnDataName: "Estado", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtDuenno", type: "text", label: "Dueño", columnDataName: "idUsuario", readOnly: "readonly")
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</main>
+

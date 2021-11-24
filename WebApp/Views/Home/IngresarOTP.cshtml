@@ -1,0 +1,48 @@
+﻿@model Entities_POJO.Usuarios
+
+@{
+    ViewBag.Title = "IngresarOTP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-md-23">
+        @using (Html.BeginForm("IngresarOTP", "Home", FormMethod.Post))
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                        <form class="form-signin">
+                            <h1 class="h3 mb-3 font-weight-normal">Ingrese el OTP enviado</h1>
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            @if (@ViewBag.Message != null)
+                            {
+                                <div style="border: 1px solid red">
+                                    @ViewBag.Message
+                                </div>
+                            }
+                            <!--<p>Digitar el OTP enviado a:</p>-->
+                            <div class="form-group">
+                                @Html.TextBox("correo", @TempData["correo"], new { @readonly = "readonly", @class = "invisible" })
+                                @Html.TextBox("telefono", @TempData["telefono"], new { @readonly = "readonly", @class = "invisible" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(a => a.OTP)
+                                @Html.TextBox("otp")
+                            </div>
+                            <button class="btn btn-lg btn-primary" type="submit">Enviar</button>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+            </div>}
+
+    </div>
+</div>
+
