@@ -9,10 +9,10 @@ using Entities_POJO;
 
 namespace DataAccess.Crud {
     public class MarcaCrudFactory : CrudFactory {
-        MarcaVehiMapper mapper;
+        MarcaMapper mapper;
 
         public MarcaCrudFactory() : base() {
-            mapper = new MarcaVehiMapper();
+            mapper = new MarcaMapper();
             dao = SqlDao.GetInstance();
         }
 

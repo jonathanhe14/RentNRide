@@ -207,6 +207,17 @@ namespace WebAPI.Controllers
 
             return Ok(apiResp);
         }
+        public IHttpActionResult GetSolicitudes() {
+            try {
+                apiResp = new ApiResponse();
+                var mng = new UsuariosManagement();
+                apiResp.Data = mng.RetrieveAllSolicitudes();
 
+                return Ok(apiResp);
+            } catch(BussinessException bex) {
+                return InternalServerError(new Exception(bex.ExceptionId + "-"
+                    + bex.AppMessage.Mensaje));
+            }
+        }
     }
 }

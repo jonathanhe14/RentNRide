@@ -9,10 +9,10 @@ using Entities_POJO;
 
 namespace DataAccess.Crud {
     public class ModeloCrudFactory : CrudFactory {
-        ModeloVehiMapper mapper;
+        ModeloMapper mapper;
 
         public ModeloCrudFactory() : base() {
-            mapper = new ModeloVehiMapper();
+            mapper = new ModeloMapper();
             dao = SqlDao.GetInstance();
         }
 

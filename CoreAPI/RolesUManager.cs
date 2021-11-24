@@ -32,11 +32,11 @@ namespace CoreAPI
             }
         }
 
-        public List<Usuarios> RetrieveAll()
+        public List<UsuariosRol> RetrieveAll()
         {
             try
             {
-                return crudRolesUsuarios.RetrieveAll<Usuarios>();
+                return crudRolesUsuarios.RetrieveAll<UsuariosRol>();
             }
             catch (Exception ex)
             {
@@ -45,11 +45,11 @@ namespace CoreAPI
 
         }
 
-        public Usuarios RetrieveById(Usuarios usuarios)
+        public UsuariosRol RetrieveById(Usuarios usuarios)
         {
             try
             {
-                return crudRolesUsuarios.Retrieve<Usuarios>(usuarios);
+                return crudRolesUsuarios.Retrieve<UsuariosRol>(usuarios);
             }
             catch (Exception ex)
             {

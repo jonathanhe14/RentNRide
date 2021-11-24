@@ -88,7 +88,10 @@ namespace DataAccess.Mapper
 
             return operation;
         }
-
+        public SqlOperation GetRetriveAllSolicitudesStatement() {
+            var operation = new SqlOperation { ProcedureName = "RET_ALL_USUARIOS_SOLICITUDES_PR" };
+            return operation;
+        }
         public SqlOperation GetUpdateStatement(BaseEntity entity)
         {
             var operation = new SqlOperation { ProcedureName = "UPD_USUARIO_PR" };
