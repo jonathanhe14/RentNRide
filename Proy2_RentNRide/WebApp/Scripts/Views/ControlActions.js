@@ -125,8 +125,20 @@ function ControlActions() {
 
 	this.GetToApi = function (service, callbackFunction) {
 		var jqxhr = $.get(this.GetUrlApiService(service), function (response) {
-			console.log("Response " + response);
-			if (callBackFunction) {
+			//console.log(jqxhr)
+			//console.log("Response " + response);
+			if (callbackFunction) {
+				callbackFunction(response.Data);
+			}
+
+		});
+	}
+
+	this.GetToApiId = function (service, data, callbackFunction) {
+		var jqxhr = $.get(this.GetUrlApiService(service), data, function (response) {
+			//console.log(jqxhr)
+			//console.log("Response " + response);
+			if (callbackFunction) {
 				callbackFunction(response.Data);
 			}
 

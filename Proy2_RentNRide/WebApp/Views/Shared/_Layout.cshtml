@@ -10,6 +10,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     @Styles.Render("~/Content/css")
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -39,6 +40,15 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application-hola</p>
         </footer>-->
     </div>
+    <div class="container body-content">
+        <div class="alert alert-success alert-dismissable" style="display: none" id="alert_container">
+            <button type="button" class="close" onclick="$('.alert').hide()">&times;</button>
+            <span id="alert_message"></span>
+        </div>
+        <hr />
+
+    </div>
+
     <footer>
         <div class="container">
             <div class="row">
@@ -67,7 +77,6 @@
                         <li><a class="text-muted" href="#">Privacy</a></li>
                         <li><a class="text-muted" href="#">Terms</a></li>
                     </ul>-->
-                </div>
             </div>
         </div>
     </footer>
@@ -75,3 +84,15 @@
 
 </body>
 </html>
+<style>
+    #alert_container {
+        position: fixed;
+        left: 40%;
+        top: 50%;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $('.alert').hide();
+    });
+</script>
