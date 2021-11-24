@@ -9,7 +9,7 @@ function Verificacion() {
 
     this.service = 'usuarios';
     this.ctrlActions = new ControlActions();
-    this.columns = "OTP,OTPSMS,Correo,Telefono";
+	this.columns = "OTP,OTPSMS,Correo,Telefono";
 
 
 
