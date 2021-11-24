@@ -1,0 +1,111 @@
+﻿@using WebApp.Models.Helpers;
+
+<link rel="stylesheet" href="../../Content/landing.css">
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<main role="main">
+
+    <div class="container-fluid jumbotron">
+        <div class="container">
+            <h1 class="display-3">¡Bienvenidos a RentNRide.com!</h1>
+            <p>Una plataforma innovadora para poner tus autos a la disposición de otras personas y ¡GANAR DINERO!</p>
+            <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p> -->
+        </div>
+    </div>
+
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+                <h2>¿Cómo funciona?</h2>
+                <p>
+                    En esta plataforma puedes registrarte como usuario socio, donde puedes poner tus autos a disposición de otras personas
+                    a cambio de una tarifa. Las personas que se registran van a encontrar vehículos cerca de su ubicación y pueden escoger
+                    el que gusten.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+                <h2>¿Significa esto que debo registrarme 2 veces?</h2>
+                <p> ¡No! Con un mismo usuario puedes rentar otros vehículos así como poner tus vehículos a disposición de otras personas.
+            </div>
+            <div class="col-md-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+                <h2>Más información</h2>
+                <p>Navega más la página para conocer mayores detalles y empezar los procesos de registros.</p>
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#eee" />
+                    <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
+                    <!--<img alt="Bootstrap Image Preview" src="../../img/landing_opc1.jpg" height="500" width="500" />-->
+                </svg>
+            </div>
+            <div class="col-md-5">
+                <h2 class="featurette-heading">Registro socios</h2>
+                <p class="lead">Es importante destacar los siguientes aspectos: </p>
+                <ul>
+                    <li>Tienes que registrarte en el enlace que aparece al final de esta sección.</li>
+                    <li>Una vez completado el proceso de registro, analizaremos tu solicitud y te enviaremos un correo con el resultado.</li>
+                    <li>De ser aceptada, te pediremos que realices el pago de la membresía para empezar a utilizar la plataforma.</li>
+                    <li>Por cada solicitud éxitosa de alquiler, cobraremos una comisión.</li>
+                    <li>
+                        Puedes realizar cargos adicionales por: entregar en una dirección diferente, kilometraje excesivo y/o
+                        vehículo en mal estado (sucio, golpeado, etc.)
+                    </li>
+                    <li>Por cada solicitud éxitosa de alquiler, cobraremos una comisión.</li>
+                    <li>Los rent a car pueden utilizar la plataforma.</li>
+                    <li>
+                        Si eres una persona física puedes registrar hasta 3 vehículos. Para registrar más vehículos es necesario que
+                        te registres como empresa.
+                    </li>
+                </ul>
+                @Html.ActionLink("Registrarse", "RegistroSocios", "Home", new { @class = "btn btn-primary btn-lg" })
+              
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Registro usuarios finales</h2>
+                <p class="lead">Algunas consideraciones básicas: </p>
+                <ul>
+                    <li>
+                        En tu solicitud de reserva puedes tener cargos adicionales por: entregar en una dirección diferente,
+                        kilometraje excesivo y/o
+                        vehículo en mal estado (sucio, golpeado, etc.)
+                    </li>
+                    <li>Para realizar una reserva debes recargar el monedero.</li>
+                    <li>Actualmente solo aceptamos PayPal y Sinpe Móvil para realizar la recarga.</li>
+                </ul>
+                <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+                @Html.ActionLink("Registrarse", "RegistroUsuariosFinales", "Home", new { @class = "btn btn-primary btn-lg" })
+            </div>
+            <div class="col-md-5">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+
+            </div>
+        </div>
+
+    </div> <!-- /container -->
+
+
+</main>

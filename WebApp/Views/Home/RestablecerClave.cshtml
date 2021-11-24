@@ -1,0 +1,58 @@
+﻿@model Entities_POJO.Usuarios
+
+@{
+    ViewBag.Title = "RestablecerClave";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>src ="~/Scripts/Views/ReestablecerClave.js </script>
+
+@using (Html.BeginForm("RestablecerClave", "Home", FormMethod.Post))
+{
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <form class="form-signin">
+                    <h1 class="h3 mb-3 font-weight-normal">Cambiar contraseña</h1>
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    @if (@ViewBag.Message != null)
+                    {
+                        <div style="border: 1px solid red" class="alert-danger">
+                            @ViewBag.Message
+                        </div>
+                      }
+                    <p>La contraseña debe tener: </p>
+                    <ul>
+                        <li>Mínimo 8 carácteres</li>
+                        <li>Mezclar mayúsculas y mínusculas</li>
+                        <li>Tener al menos un dígito</li>
+                        <li>Se recomienda incluir carácteres especiales</li> 
+                        <li>Solo serán aceptadas contraseñas clasificadas como: fuerte o muy fuerte</li>
+                    </ul>
+                    <div class="form-group">
+                        @Html.Label("Correo")
+                        @Html.TextBox("correo", @TempData["correo"], new { @readonly = "readonly" })
+                        @Html.Label("Telefono")
+                        @Html.TextBox("telefono", @TempData["telefono"], new { @readonly = "readonly" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Nueva contraseña")
+                        @Html.Password("nuevaClave")
+                            <label class="contrasenna"></label>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Confirmar contraseña")
+                        @Html.Password("confirmarClave")
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Cambiar</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+}
+

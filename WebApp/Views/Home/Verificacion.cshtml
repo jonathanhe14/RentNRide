@@ -1,0 +1,42 @@
+﻿@using WebApp.Models.Helpers;
+<script src="~/Scripts/Views/Verificacion.js"></script>
+@{ ViewBag.Title = "Verificacion"; Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<h1 style="text-align:center">Verificar Cuenta</h1>
+
+<div class="col-xs-4">
+
+</div>
+<div class="col-xs-4">
+    <form id="formEnvio">
+
+
+        <div class=" row">
+            <div class="alert-info">
+                Ingrese los codigos enviados
+            </div>
+            @Html.CtrlInput(id: "txtOTP", type: "text", label: "Codigo Correo", columnDataName: "OTP")
+            @Html.CtrlInput(id: "txtOTPSMS", type: "text", label: "Codigo SMS", columnDataName: "OTPSMS")
+        </div>
+        <a id="ReenviarA">Reenviar Codigos</a>
+            <div class="alert-danger" id="alert" style="display:none">
+                !!Codigos Incorrectos
+            </div>
+            <div class="alert-success" id="alertReenviar" style="display:none;">
+                Se Renviaron los caodigos
+            </div>
+        <div class="alert-danger" id="alertReenviarFallo" style="display:none;">
+            No se pueden reenviar los codigos
+        </div>
+            <div class=" row">
+                @Html.CtrlButton(viewName: "Verificacion", id: "btnCreate", label: "Enviar", onClickFunction: "Enviar", buttonType: "success")
+            </div>
+    </form>
+</div>
+<div class="col-xs-4">
+
+</div>
+
+
+

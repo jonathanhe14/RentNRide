@@ -1,0 +1,17 @@
+﻿body {
+}
+
+.jumbotron {
+    background-image: url("../img/landing_opc1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+.row .featurette .col-md-7 {
+    background-image: url("../img/landing_opc1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
