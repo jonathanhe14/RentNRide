@@ -2,7 +2,7 @@
 
 	this.tblUsuariosId = 'tblUsuarios';
 	this.usersService = 'usuarios';
-	this.ctrlActions = new ControlActions();
+	this.ctrlActions = new ControlActionsAdmin();
 
 
 	this.RetrieveAll = function () {

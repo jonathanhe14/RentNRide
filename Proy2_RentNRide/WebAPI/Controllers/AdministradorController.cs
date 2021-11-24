@@ -422,6 +422,27 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpPost]
+        public IHttpActionResult Rechazar(Usuarios usuario) {
+            apiResp = new ApiResponse();
+            var mng = new AdministradorManager();
+            mng.RechazarSocio(usuario);
+            apiResp.Message = "Socio rechazado";
+
+            return Ok(apiResp);
+        }
+
+
+        [HttpPost]
+        public IHttpActionResult Aceptar(int id, Usuarios usuario) {
+            apiResp = new ApiResponse();
+            var mng = new AdministradorManager();
+            mng.AceptarSocio(id, usuario);
+            apiResp.Message = "Membresia enviada";
+
+            return Ok(apiResp);
+        }
+
 
 
 

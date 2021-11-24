@@ -120,5 +120,7 @@ namespace CoreAPI
             return crudContrasennas.RetrieveTodo<Contrasennas>(clave);
         }
 
+
+
     }
 }

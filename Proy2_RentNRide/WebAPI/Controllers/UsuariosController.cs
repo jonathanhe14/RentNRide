@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 using WebAPI.Models;
 using CoreAPI;
 using Entities_POJO;
@@ -114,7 +113,7 @@ namespace WebAPI.Controllers
                 return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Message));
             }
         }
-  
+        [HttpGet]
         public IHttpActionResult GetRoles() {
             apiResp = new ApiResponse();
             var mng = new RolesUManager();
@@ -123,6 +122,8 @@ namespace WebAPI.Controllers
 
             return Ok(apiResp);
         }
+
+
 
 
     }

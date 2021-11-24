@@ -4,7 +4,7 @@
 	this.usersService = 'usuarios';
 	this.adminService = 'administrador';
 	this.tblMembresiasId = 'tblMembresias'
-	this.ctrlActions = new ControlActions();
+	this.ctrlActions = new ControlActionsAdmin();
 
 
 	this.RetrieveAll = function () {
@@ -43,14 +43,16 @@
 		});
 
 		if (usrVacio || membVacio) {
-
+			//"<div class='alert alert-warning alert-dismissible fade show'>< button type = 'button' class= 'btn-close' data-bs-dismiss='alert' ></button ><strong>Los campos no pueden estar vacíos</strong></div >"
+			$('#alerta').append("<div class='alerta-d'> Los campos no pueden estar vacíos </div>")
 		} else {
+			$('#alerta').empty();
 			var usuario = {};
 			usuario = this.ctrlActions.GetDataForm('frmUsers');
 			var membresia = {};
 			membresia = this.ctrlActions.GetDataForm('frmMembresia');
 			//Hace el post al create
-			this.ctrlActions.PostToAPI(this.usersService + "/Aceptar/"+membresia.Id, usuario, function (data) {
+			this.ctrlActions.PostToAPI(this.adminService+ "/Aceptar/"+membresia.Id, usuario, function (data) {
 				var solicitudes = new Solicitudes();
 				solicitudes.ReloadTable();
 			});

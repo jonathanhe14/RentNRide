@@ -1,4 +1,4 @@
-﻿function ControlActions() {
+﻿function ControlActionsAdmin() {
 
 	this.URL_API = "http://localhost:52125/api/";
 
@@ -84,7 +84,7 @@
 
 	this.PostToAPI = function (service, data, callBackFunction) {
 		var jqxhr = $.post(this.GetUrlApiService(service), data, function (response) {
-			var ctrlActions = new ControlActions();
+			var ctrlActions = new ControlActionsAdmin();
 			ctrlActions.ShowMessage('I', response.Message);
 		
 			if (callBackFunction) {
@@ -93,7 +93,7 @@
 		})
 			.fail(function (response) {
 				var data = response.responseJSON;
-				var ctrlActions = new ControlActions();
+				var ctrlActions = new ControlActionsAdmin();
 				ctrlActions.ShowMessage('E', data.ExceptionMessage);
 				console.log(data);
 			})
@@ -101,7 +101,7 @@
 
 	this.PutToAPI = function (service, data, callBackFunction) {
 		var jqxhr = $.put(this.GetUrlApiService(service), data, function (response) {
-			var ctrlActions = new ControlActions();
+			var ctrlActions = new ControlActionsAdmin();
 			ctrlActions.ShowMessage('I', response.Message);
 			if (callBackFunction) {
 				callbackFunction(response.Data);
@@ -110,7 +110,7 @@
 		})
 			.fail(function (response) {
 				var data = response.responseJSON;
-				var ctrlActions = new ControlActions();
+				var ctrlActions = new ControlActionsAdmin();
 				ctrlActions.ShowMessage('E', data.ExceptionMessage);
 				console.log(data);
 			})
@@ -118,7 +118,7 @@
 
 	this.DeleteToAPI = function (service, data, callbackFunction) {
 		var jqxhr = $.delete(this.GetUrlApiService(service), data, function (response) {
-			var ctrlActions = new ControlActions();
+			var ctrlActions = new ControlActionsAdmin();
 			ctrlActions.ShowMessage('I', response.Message);
 			if (callBackFunction) {
 				callbackFunction(response.Data);
@@ -126,7 +126,7 @@
 		})
 			.fail(function (response) {
 				var data = response.responseJSON;
-				var ctrlActions = new ControlActions();
+				var ctrlActions = new ControlActionsAdmin();
 				ctrlActions.ShowMessage('E', data.ExceptionMessage);
 				console.log(data);
 			})

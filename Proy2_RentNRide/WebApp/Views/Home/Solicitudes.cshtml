@@ -11,22 +11,22 @@
         <div class="col-md-12 table-card">
 
             @Html.CtrlTable(viewName: "Solicitudes", id: "tblUsuarios", title: "Solicitudes Pendientes",
-                                                columnsTitle: "Cédula,Nombre,Apellidos,Correo,Edad,Teléfono,Estado", ColumnsDataName: "Cedula,Nombre,Apellidos,Correo,Edad,Telefono,Estado",
-                                                onSelectFunction: "BindFieldsUsers", colorHeader: "red")
+                                                     columnsTitle: "Cédula,Nombre,Apellidos,Correo,Edad,Teléfono,Estado", ColumnsDataName: "Cedula,Nombre,Apellidos,Correo,Edad,Telefono,Estado",
+                                                     onSelectFunction: "BindFieldsUsers", colorHeader: "red")
 
         </div>
         <div class="col-md-12 table-card">
-            
-                @Html.CtrlTable(viewName: "Solicitudes", id: "tblMembresias", title: "Elegir Membresia",
-                                       columnsTitle: "Id,Nombre,Monto Mensual,Comisión Transacción, Fecha Creación, Número de Días", ColumnsDataName: "Id,Nombre,MontoMensual,ComisionTransaccion,FechaCreacion,NumDias",
-                                       onSelectFunction: "BindFieldsMembresia", colorHeader: "red")
+
+            @Html.CtrlTable(viewName: "Solicitudes", id: "tblMembresias", title: "Elegir Membresia",
+                                        columnsTitle: "Id,Nombre,Monto Mensual,Comisión Transacción, Fecha Creación, Número de Días", ColumnsDataName: "Id,Nombre,MontoMensual,ComisionTransaccion,FechaCreacion,NumDias",
+                                        onSelectFunction: "BindFieldsMembresia", colorHeader: "red")
         </div>
     </div>
     <div class="row table-card">
         <div class="card border-secondary" style="margin-top: 50px;">
 
 
-            <div class="col-md-6" >
+            <div class="col-md-6">
                 <div class="bs-component frm">
                     <form id="frmUsers">
                         @Html.CtrlInput(id: "txtCedula", type: "text", label: "Cedula", columnDataName: "Cedula", readOnly: "readonly")
@@ -67,6 +67,9 @@
             @Html.CtrlButton(viewName: "Solicitudes", id: "btnAceptar", label: "Aceptar", onClickFunction: "Aceptar", buttonType: "success")
             @Html.CtrlButton(viewName: "Solicitudes", id: "btnRechazar", label: "Rechazar", onClickFunction: "Rechazar", buttonType: "danger")
             @Html.CtrlButton(viewName: "Solicitudes", id: "btnLimpiar", label: "Limpiar", onClickFunction: "Limpiar", buttonType: "info")
+        </div>
+        <div id="alerta" class="col-md-12 text-center">
+
         </div>
     </div>
 

@@ -2,7 +2,7 @@
 
 
 	this.service = 'usuarios';
-	this.ctrlActions = new ControlActions();
+	this.ctrlActions = new ControlActionsAdmin();
 	this.columns = "Nombre,Apellidos,Cedula,Correo,FechaNacimiento,Telefono,ContrassenaActual";
 
 

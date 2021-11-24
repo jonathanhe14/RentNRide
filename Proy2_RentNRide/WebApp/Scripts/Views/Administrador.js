@@ -7,7 +7,7 @@
 	this.tblTiposCombustibleId = "tblTiposCombustible";
 	this.adminService = 'administrador';
 	this.usersService = 'usuarios';
-	this.ctrlActions = new ControlActions();
+	this.ctrlActions = new ControlActionsAdmin();
 	this.usrChartId = 'usrChart';
 	this.usrAdmin = 'lblAdmin';
 	this.usrFinales = 'lblFinales';

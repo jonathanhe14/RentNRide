@@ -17,6 +17,7 @@ namespace CoreAPI {
         private MarcaCrudFactory crudMarca;
         private TipoCombustibleCrudFactory crudTipoCombustible;
         private TipoVehiculoCrudFactory crudTipoVehiculo;
+        private UsuariosCrudFactory crudUsuarios;
 
         public AdministradorManager() {
             crudMembresia = new MembresiaCrudFactory();
@@ -24,6 +25,7 @@ namespace CoreAPI {
             crudMarca = new MarcaCrudFactory();
             crudTipoCombustible = new TipoCombustibleCrudFactory();
             crudTipoVehiculo = new TipoVehiculoCrudFactory();
+            crudUsuarios = new UsuariosCrudFactory();
         }
 
         public void CreateMembresia(Membresias membresia) {
@@ -240,6 +242,22 @@ namespace CoreAPI {
             crudTipoCombustible.Delete(tipoCombustible);
         }
 
+
+        public async void AceptarSocio(int id, Usuarios usr) {
+            usr = crudUsuarios.Retrieve<Usuarios>(usr);
+            var mem = crudMembresia.Retrieve<Membresias>(new Membresias { Id = id });
+
+            await NotificacionesManager.EnviarCorreoMembresia(usr, mem, "ACEPTADO");
+
+
+
+        }
+
+        public async void RechazarSocio(Usuarios usr) {
+            usr = crudUsuarios.Retrieve<Usuarios>(usr);
+
+            await NotificacionesManager.EnviarCorreoMembresia(usr, null, "RECHAZADO");
+        }
 
 
 
