@@ -8,7 +8,7 @@
 	}
 	
 	this.service = 'usuarios';
-	this.ctrlActions = new ControlActions();
+	this.ctrlActions = new ControlActionsRegistro();
 	this.columns = "Nombre,Apellidos,Cedula,Correo,FechaNacimiento,Telefono,ContrassenaActual,Latitud,Longitud,OTP,OTPSMS";
 
 

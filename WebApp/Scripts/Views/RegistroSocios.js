@@ -10,7 +10,7 @@ function RegistroSocios() {
 	}
 
 	this.service = 'usuarios';
-	this.ctrlActions = new ControlActions();
+	this.ctrlActions = new ControlActionsRegistro();
 	this.columns = "Nombre,Cedula,Correo,Telefono,ContrassenaActual,Latitud,Longitud,PersoneriaJuridica,PermisoOperaciones";
 
 

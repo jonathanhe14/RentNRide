@@ -37,7 +37,7 @@ function cargarUbicacionActual() {
 }
 
 function crearMarcador(position) {
-    this.ctrActions = new ControlActions();
+    this.ctrActions = new ControlActionsRegistro();
     posiciones.push(posiciones);
 
     eliminarMarcadores();

@@ -1,7 +1,7 @@
 ﻿var ubi = [];
 var PersoneriaJuridica = "NULL";
 var PermisoOperaciones = "NULL";
-function ControlActions() {
+function ControlActionsRegistro() {
 
 	//this.ctrVerificacion = new Verificacion();
 	this.URL_API = "http://localhost:52125/api/";
@@ -9,10 +9,6 @@ function ControlActions() {
 	this.GetUrlApiService = function (service) {
 		return this.URL_API + service;
 	}
-
-
-
-
 
 	this.BindFields = function (formId, data) {
 		console.log(data);
@@ -84,17 +80,13 @@ function ControlActions() {
 		} else if (type == 'I') {
 			console.log("Todo bien");
 			$('#modalSuccess').modal('show');
-		
-			//$("#alert_container").removeClass("alert alert-danger alert-dismissable")
-			//$("#alert_container").addClass("alert alert-success alert-dismissable");
-			//$("#alert_message").text(message);
 		}
 		
 	};
 
 	this.PostToAPI = function (service, data, callBackFunction) {
 		var jqxhr = $.post(this.GetUrlApiService(service), data, function (response) {
-			var ctrlActions = new ControlActions();
+			var ctrlActions = new ControlActionsRegistro();
 			ctrlActions.ShowMessage('I', response.Message);
 
 			if (callBackFunction) {
@@ -103,7 +95,7 @@ function ControlActions() {
 		})
 			.fail(function (response) {
 				var data = response.responseJSON;
-				var ctrlActions = new ControlActions();
+				var ctrlActions = new ControlActionsRegistro();
 				ctrlActions.ShowMessage('E', data.ExceptionMessage);
 				console.log(data);
 			})
@@ -111,7 +103,7 @@ function ControlActions() {
 
 	this.PutToAPI = function (service, data, callBackFunction) {
 		var jqxhr = $.put(this.GetUrlApiService(service), data, function (response) {
-			var ctrlActions = new ControlActions();
+			var ctrlActions = new ControlActionsRegistro();
 			ctrlActions.ShowMessage('I', response.Message);
 			if (callBackFunction) {
 				callbackFunction(response.Data);
@@ -120,7 +112,7 @@ function ControlActions() {
 		})
 			.fail(function (response) {
 				var data = response.responseJSON;
-				var ctrlActions = new ControlActions();
+				var ctrlActions = new ControlActionsRegistro();
 				ctrlActions.ShowMessage('E', data.ExceptionMessage);
 				console.log(data);
 			})
@@ -128,7 +120,7 @@ function ControlActions() {
 
 	this.DeleteToAPI = function (service, data, callbackFunction) {
 		var jqxhr = $.delete(this.GetUrlApiService(service), data, function (response) {
-			var ctrlActions = new ControlActions();
+			var ctrlActions = new ControlActionsRegistro();
 			ctrlActions.ShowMessage('I', response.Message);
 			if (callBackFunction) {
 				callbackFunction(response.Data);
@@ -136,7 +128,7 @@ function ControlActions() {
 		})
 			.fail(function (response) {
 				var data = response.responseJSON;
-				var ctrlActions = new ControlActions();
+				var ctrlActions = new ControlActionsRegistro();
 				ctrlActions.ShowMessage('E', data.ExceptionMessage);
 				console.log(data);
 			})

@@ -8,7 +8,7 @@ function Verificacion() {
 	}
 
     this.service = 'usuarios';
-    this.ctrlActions = new ControlActions();
+	this.ctrlActions = new ControlActionsRegistro();
 	this.columns = "OTP,OTPSMS,Correo,Telefono";
 
 
