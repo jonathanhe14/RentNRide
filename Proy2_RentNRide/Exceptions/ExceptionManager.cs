@@ -56,12 +56,15 @@ namespace Exceptions
         {
             //2021022009            
             var today = DateTime.Now.ToString("yyyyMMdd_HH");
-            var logName = PATH + today + "_" + "log.txt";
+            var logName = "C:/games/" + today + "_" + "log.txt";
 
             var message = bex.ExceptionDetails + "\n" + bex.StackTrace + "\n";
 
-            //if (bex.InnerException!=null)
-            //    message += bex.InnerException.Message + "\n" + bex.InnerException.StackTrace;
+            if (bex.InnerException!=null)
+            {
+               message += bex.InnerException.Message + "\n" + bex.InnerException.StackTrace;
+            }
+                
 
             using (StreamWriter w = File.AppendText(logName))
             {
@@ -91,7 +94,7 @@ namespace Exceptions
 
         private void LoadMessages()
         {
-            messages.Add(0, new ApplicationMessage { Id = 0, Message = "Houston we have a problem!" });
+            messages.Add(0, new ApplicationMessage { Id = 0, Message = "Hubo un error. ¡asegurese de que no tenga espacios en blanco!" });
             messages.Add(3, new ApplicationMessage { Id = 3, Message = "Customer already exists in the database" });
             messages.Add(2, new ApplicationMessage { Id = 2, Message = "Customer should be major than 18." });
 

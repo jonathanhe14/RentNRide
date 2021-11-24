@@ -16,11 +16,52 @@
 	
 
 	this.Create = function () {
-		
-		
-        var ranId = Math.floor((Math.random() * 100000) + 1);
-		idData = { Id: ranId };
-		this.CreateTwo(idData);
+		console.log(document.getElementById("txtKilometraje").value);
+		//revisa si algo esta empty
+		if (document.getElementById("Tipo").value == "null" || document.getElementById("Combustible").value == "null" ||
+			document.getElementById("Marca").value == "null" || document.getElementById("Modelo").value == "null") {
+
+			$("#alert_container").removeClass("alert alert-success alert-dismissable")
+			$("#alert_container").addClass("alert alert-danger alert-dismissable");
+			$("#alert_message").text("Alguna seleccion no ha sido seleccionada");
+			$('.alert').show();
+
+		} else if (document.getElementById("txtKilometraje").value == null ||
+			document.getElementById("txtcKmExcedido").value == null ||
+				document.getElementById("txtcMalEstado").value == null ||
+			document.getElementById("txtcLugarDiferente").value == null ||
+			document.getElementById("txtTarifa").value == null ||
+			document.getElementById("txtLatitud").value == null ||
+			document.getElementById("txtLongitud").value == null ||
+			document.getElementById("image").src == "null") {
+
+
+			$("#alert_container").removeClass("alert alert-success alert-dismissable")
+			$("#alert_container").addClass("alert alert-danger alert-dismissable");
+			$("#alert_message").text("Falta informacion del vehiculo");
+			$('.alert').show();
+
+		} else if (document.getElementById("txtMarchamo").src == "null" || document.getElementById("txttituloPropiedad").src == "null" ||
+			document.getElementById("txtRiteve").src == "null" || document.getElementById("txtderechoCirculacion").src == "null") {
+
+			$("#alert_container").removeClass("alert alert-success alert-dismissable")
+			$("#alert_container").addClass("alert alert-danger alert-dismissable");
+			$("#alert_message").text("Falta documentos del vehiculo");
+			$('.alert').show();
+		} else if (document.forms["txtDia"].value == "" ||
+			!document.getElementById("txthoraInicio").innerHTML.replace(/\s/g, '').length ||
+			!document.getElementById("txthoraFinal").innerHTML.replace(/\s/g, '').length) {
+
+			$("#alert_container").removeClass("alert alert-success alert-dismissable")
+			$("#alert_container").addClass("alert alert-danger alert-dismissable");
+			$("#alert_message").text("Falta informacion de horario");
+			$('.alert').show();
+		} else {
+			
+            var ranId = Math.floor((Math.random() * 100000) + 1);
+			idData = { Id: ranId };
+			this.CreateTwo(idData);
+        }
 		/*
 		var datareci = this.CheckifTrue(idData);
 		setTimeout(() => {
@@ -38,9 +79,9 @@
 
 		}, 5000);
 		*/
-		
-         
 	}
+
+	
 
 	this.CheckifTrue = function (idData) {
          this.ctrlActions.GetToApiId(this.service + "/GetCheck", idData, function (data) {
@@ -323,7 +364,21 @@ $(document).ready(function () {
 	
 	fillEmptySelect();
 
+	$(function () {
+		var dtToday = new Date();
 
+		var month = dtToday.getMonth() + 1;
+		var day = dtToday.getDate();
+		var year = dtToday.getFullYear();
+
+		if (month < 10)
+			month = '0' + month.toString();
+		if (day < 10)
+			day = '0' + day.toString();
+
+		var maxDate = year + '-' + month + '-' + day;
+		$('#txtDia').attr('min', maxDate);
+	});
 });
 
 
