@@ -43,7 +43,7 @@ namespace WebApp.Controllers
 
                     Session["UserID"] = user;
                     Session["FullName"] = user.FullName;
-                    return View("About");
+                    return View("VehiculoInfo");
                 }
                 else
                 {
@@ -303,7 +303,9 @@ namespace WebApp.Controllers
         }
 
 
-
+        public ActionResult VehiculoInfo() {
+            return View();
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
