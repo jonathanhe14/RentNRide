@@ -52,7 +52,9 @@
 	this.CreateTwo = function (idData) {
 		var opcionesChoice = {
 			Tipo: document.getElementById("Tipo").value, Combustible: document.getElementById("Combustible").value,
-			Marca: document.getElementById("Marca").value, Modelo: document.getElementById("Modelo").value
+			Marca: document.getElementById("Marca").value, Modelo: document.getElementById("Modelo").value,
+			AccptInmediata: document.getElementById("txtAccptInmediata").value, Estado: document.getElementById("txtEstado").value,
+			Imagen: document.getElementById("image").src
 		};
 		vehiculoData = this.ctrlActions.GetDataForm('frmEdition');
 		Object.assign(finalData, idData, opcionesChoice, vehiculoData);
@@ -71,7 +73,10 @@
 
 	this.CreateDocum = function (idData) {
 
-		documentoData = this.ctrlActions.GetDataForm('docuEdition');
+		documentoData = {
+			Marchamo: document.getElementById("txtMarchamo").src, tituloPropiedad: document.getElementById("txttituloPropiedad").src,
+			Riteve: document.getElementById("txtRiteve").src, derechoCirculacion: document.getElementById("txtderechoCirculacion").src
+        }
 		var idDataTwo = { idVehi : idData.Id};
 		Object.assign(finalDocumento, documentoData, idDataTwo);
 
@@ -166,12 +171,119 @@ function buscarUbicacion(lat, lon) {
 	});
 }
 
+var urlImage;
+var urlDocumento;
+
+
+function checkUploadResult (resultEvent) {
+	if (resultEvent && resultEvent.event === "success") {
+		urlImage = resultEvent.info.secure_url;
+		this.showImage(urlImage);
+	}
+};
+
+function checkUploadResult1(resultEvent) {
+	if (resultEvent && resultEvent.event === "success") {
+		urlImage = resultEvent.info.secure_url;
+		this.showImage1(urlImage);
+	}
+};
+
+function checkUploadResult2(resultEvent) {
+	if (resultEvent && resultEvent.event === "success") {
+		urlImage = resultEvent.info.secure_url;
+		this.showImage2(urlImage);
+	}
+};
+
+function checkUploadResult3(resultEvent) {
+	if (resultEvent && resultEvent.event === "success") {
+		urlImage = resultEvent.info.secure_url;
+		this.showImage3(urlImage);
+	}
+};
+
+function checkUploadResult4(resultEvent) {
+	if (resultEvent && resultEvent.event === "success") {
+		urlImage = resultEvent.info.secure_url;
+		this.showImage4(urlImage);
+	}
+};
+
+//image
+function showImage(urlImage) {
+	document.getElementById("image").src = urlImage;
+}
+
+//the four documents for the vehiculo
+function showImage1(urlImage) {
+	document.getElementById("txtMarchamo").src = urlImage;
+}
+
+function showImage2(urlImage) {
+	document.getElementById("txttituloPropiedad").src = urlImage;
+}
+
+function showImage3(urlImage) {
+	document.getElementById("txtRiteve").src = urlImage;
+}
+
+function showImage4(urlImage) {
+	document.getElementById("txtderechoCirculacion").src = urlImage;
+}
+
+let myWidget = window.cloudinary.createUploadWidget({
+		cloudName: 'ucenfotecp2last21',
+		uploadPreset: 'ImageOnlyVehiculo'
+}, (error, result) => { this.checkUploadResult(result) })
+
+let myWidget1 = window.cloudinary.createUploadWidget({
+	cloudName: 'ucenfotecp2last21',
+	uploadPreset: 'DocumentOnlyVehi'
+}, (error, result) => { this.checkUploadResult1(result) })
+
+let myWidget2 = window.cloudinary.createUploadWidget({
+	cloudName: 'ucenfotecp2last21',
+	uploadPreset: 'DocumentOnlyVehi'
+}, (error, result) => { this.checkUploadResult2(result) })
+
+let myWidget3 = window.cloudinary.createUploadWidget({
+	cloudName: 'ucenfotecp2last21',
+	uploadPreset: 'DocumentOnlyVehi'
+}, (error, result) => { this.checkUploadResult3(result) })
+
+let myWidget4 = window.cloudinary.createUploadWidget({
+	cloudName: 'ucenfotecp2last21',
+	uploadPreset: 'DocumentOnlyVehi'
+}, (error, result) => { this.checkUploadResult4(result) })
+
+
+
+
 //ON DOCUMENT READY
 $(document).ready(function () {
 	initMap();
 
+	//4 documents de vehiculo tambien
+
 	document.getElementById("txtImagen").addEventListener("click", function () {
 		myWidget.open();
+	}, false);
+
+	document.getElementById("doc1").addEventListener("click", function () {
+		myWidget1.open();
+	}, false);
+
+	document.getElementById("doc2").addEventListener("click", function () {
+		myWidget2.open();
+	}, false);
+
+	document.getElementById("doc3").addEventListener("click", function () {
+		myWidget3.open();
+	}, false);
+
+	document.getElementById("doc4").addEventListener("click", function () {
+		myWidget4.open();
 	}, false);
 	/*
 	document.querySelector('Marca').addEventListener("change", function () {
@@ -190,7 +302,7 @@ $(document).ready(function () {
 	*/
 	
 
-	
+	//set it so it orders things of marca con modelo
 	$('#Marca').on('change', function () {
 		var selected = $(this).val();
 		$("#Modelo option").each(function (item) {
@@ -206,10 +318,26 @@ $(document).ready(function () {
 
 		$("#Modelo").val($("#Modelo option:visible:first").val());
 	});
+
+	//llena los eelects con una opcion nula para empezar el codigo de arriba propiamente
 	
-	
+	fillEmptySelect();
+
 
 });
+
+
+function fillEmptySelect() {
+	var selectsToEmptyFill = [Tipo, Combustible, Marca, Modelo];
+	for (var i = 0; i < selectsToEmptyFill.length; i++) {
+		var select = selectsToEmptyFill[i];
+		var opt = document.createElement('option');
+		opt.value = null;
+		opt.defaultSelected = true;
+		opt.innerHTML = "-- seleccione una opcion --";
+		select.appendChild(opt);
+	}
+}
 
 //function crearMarcador(position) {
 //			posiciones.push(posiciones);
@@ -235,24 +363,7 @@ $(document).ready(function () {
 
 
 
-var urlImage;
-var urlDocumento;
 
-
-var imagenVehiculo = cloudinary.createUploadWidget({
-	cloudName: 'cenfotec2021',
-	uploadPreset: 'Cenfo_preset'
-}, (error, result) => {
-	if (!error && result && result.event === "success") {
-		urlImage = result.info.secure_url;
-		this.showImage(urlImage);
-	}
-}
-);
-
-function showImage(urlImage) {
-	document.getElementById("image").src = urlImage;
-}
 /*
 var DocumentosFiles = cloudinary.createUploadWidget({
 	cloudName: 'cenfotec2021',

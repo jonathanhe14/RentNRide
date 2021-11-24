@@ -274,16 +274,16 @@ namespace WebApp.Controllers
         public ActionResult VehiculoInfo()
         {
             
-            if (Session["UserID"] != null)
-            {
+            //if (Session["UserID"] != null)
+            //{
                 ViewBag.Message = "Vehiculo ingreso!";
 
                 return View();
-            }
-            else
-            {
-                return RedirectToAction("InicioSesion");
-            }
+            //}
+            //else
+            //{
+            //    return RedirectToAction("InicioSesion");
+            //}
         }
     }
 }
