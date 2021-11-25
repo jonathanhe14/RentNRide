@@ -1,0 +1,92 @@
+﻿@using WebApp.Models.Helpers;
+<script src="~/Scripts/Views/RegistroUsuariosFinales.js"></script>
+<script src="~/Scripts/Views/ControlActionsRegistro.js"></script>
+<script src="~/Scripts/Views/Map.js"></script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4aNZIQyvam7h8Zmdq8ldZ_7sdtVGcwtE&callback=initMap" defer></script>
+
+@{ ViewBag.Title = "RegistroUsuariosFinales"; Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<h1 style="text-align:center;margin-bottom:50px;">Registro Usuarios</h1>
+
+<div class="registroUsuario">
+    <form id="frmRegistro">
+        <div class="row">
+            <div class="col-xs-6">
+
+                @Html.CtrlInput(id: "txtNombre", type: "text", label: "Nombre", columnDataName: "Nombre")
+                @Html.CtrlInput(id: "txtApellido", type: "text", label: "Apellido", columnDataName: "Apellidos")
+                @Html.CtrlInput(id: "txtCorreo", type: "text", label: "Correo", columnDataName: "Correo")
+                @Html.CtrlInput(id: "txtCedula", type: "text", label: "Cedula", columnDataName: "Cedula")
+                @Html.CtrlInput(id: "txtFechaNacimiento", type: "date", label: "Fecha de Nacimiento", columnDataName: "FechaNacimiento")
+                @Html.CtrlInput(id: "txtTelefono", type: "text", label: "Telefono", columnDataName: "Telefono")
+                @Html.CtrlInput(id: "txtContrasenna", type: "password", label: "Contraseña", columnDataName: "ContrassenaActual")
+                <div class="alert-info" id="ContrasennaSegura" style="width: 350px; height: auto; display: none;">
+                    La Contraseña debe tener minimo 8 caracteres:
+                    <br />
+                    .Mayusculas y Minusculas
+                    <br />
+                    .Almenos un caracter especial
+                    <br />
+                    .Almenos un numero
+                </div>
+                @Html.CtrlInput(id: "txtContrasenna2", type: "password", label: "Repetir Contraseña", columnDataName: "")
+            </div>
+            <div class="col-xs-6">
+                <div id="map" style="height:500px; width:auto;border: 1px solid black;margin-top:30px"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="alert-danger" id="alert" style="display:none; margin:10px;height:30px;padding:5px;font-weight:bold">
+                !! Verifique que los campos esten llenos y con un formato correcto
+            </div>
+        </div>
+
+
+
+    </form>
+</div>
+
+<div style="height:50px">
+
+</div>
+<div class="registroUsuario">
+    @Html.CtrlButton(viewName: "RegistroUsuariosFinales", id: "btnCreate", label: "Registrar", onClickFunction: "Create", buttonType: "success")
+    @Html.CtrlButton(viewName: "RegistroUsuariosFinales", id: "btnLimpiar", label: "Limpiar", onClickFunction: "Limpiar", buttonType: "reset")
+</div>
+
+
+<div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle" style="font-size:25px">Felicidades</h5>
+            </div>
+            <div class="modal-body">
+                Su Registro fue Exitoso.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cambioPagina">Verificar Cuenta</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalErr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle" style="font-size:25px">Lo Sentimos</h5>
+            </div>
+            <div class="modal-body">
+                Lo sentimos el usuario ya se encuentra registrado
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cambioPagina">Salir</button>
+
+            </div>
+        </div>
+    </div>
+</div>

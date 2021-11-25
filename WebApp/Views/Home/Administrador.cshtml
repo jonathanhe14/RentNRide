@@ -1,0 +1,206 @@
+﻿
+@using WebApp.Models.Helpers;
+
+<script src="~/Scripts/Views/Administrador.js"></script>
+
+@{
+    ViewBag.Title = "Administrador";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main role="main">
+    <h2 class="title-page">Panel de Control</h2>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="jumbotron">
+                            <h2>
+                                Usuarios
+                            </h2>
+                            <p>
+                                Administradores: <label id="lblAdmin"></label>
+                            </p>
+                            <p>
+                                Socios: <label id="lblSocios"></label>
+                            </p>
+                            <p>
+                                Empresas: <label id="lblEmpresas"></label>
+                            </p>
+                            <p>
+                                Usuarios finales: <label id="lblFinales"></label>
+                            </p>
+
+                           
+
+                            <p>
+                                @Html.ActionLink("Ver reporte completo", "Usuarios", "Home", new { @class = "btn btn-primary btn-lg" })
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="jumbotron fin">
+                            <h2>
+                                Ganancias/Pérdidas
+                            </h2>
+                            <p>
+                                Ingresos: $<label id="lblIngresos"></label>
+                            </p>
+                            <p>
+                                Egresos: $<label id="lblEgresos"></label>
+                            </p>
+                            <p>
+                                <label id="lblGanancias"></label>: $<label id="lblGananciasMonto"></label>
+                            </p>
+                            <p>
+                                @Html.ActionLink("Ver reporte completo", "Finanzas", "Home", new { @class = "btn btn-primary btn-lg" })
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12 table-card">
+
+                @Html.CtrlTable(viewName: "Administrador", id: "tblMarcas", title: "Marcas",
+                           columnsTitle: "Id,Nombre", ColumnsDataName: "Id,Nombre",
+                           onSelectFunction: "BindFieldsMarcas", colorHeader: "red")
+                <div class="card border-secondary" style="margin-top: 50px;">
+                    
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="bs-component">
+                                    <form id="frmMarca">
+                                        @Html.CtrlInput(id: "txtIdMarca", type: "text", label: "Id", columnDataName: "Id", readOnly: "readonly")
+                                        @Html.CtrlInput(id: "txtNombreMarca", type: "text", label: "Nombre", columnDataName: "Nombre")
+
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnCreMarca", label: "Guardar Nuevo", onClickFunction: "CreMarca", buttonType: "success")
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnUpdMarca", label: "Actualizar", onClickFunction: "UpdMarca", buttonType: "info")
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnDelMarca", label: "Eliminar", onClickFunction: "DelMarca", buttonType: "danger")
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="col-md-12 table-card">
+
+                @Html.CtrlTable(viewName: "Administrador", id: "tblModelos", title: "Modelos",
+                                columnsTitle: "Id,Nombre,Marca", ColumnsDataName: "Id,Nombre,Marca",
+                                onSelectFunction: "BindFieldsModelos", colorHeader: "red")
+                <div class="card border-secondary" style="margin-top: 50px;">
+                    
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="bs-component">
+                                    <form id="frmModelo">
+                                        @Html.CtrlInput(id: "txtIdModelo", type: "text", label: "Id", columnDataName: "Id", readOnly: "readonly")
+                                        @Html.CtrlInput(id: "txtNombreModelo", type: "text", label: "Nombre", columnDataName: "Nombre")
+                                        <!--Html.CtrlDropDown(id: "Marca", label: "Tipo Marca", listId: "LST_tipoMarca")-->
+                                        <!--Lista de marcas-->
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnCreModelo", label: "Guardar Nuevo", onClickFunction: "CreModelo", buttonType: "success")
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnUpdModelo", label: "Actualizar", onClickFunction: "UpdModelo", buttonType: "info")
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnDelModelo", label: "Eliminar", onClickFunction: "DelModelo", buttonType: "danger")
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 table-card">
+                @Html.CtrlTable(viewName: "Administrador", id: "tblTiposVehiculo", title: "Tipos de vehículo",
+                                   columnsTitle: "Id,Nombre", ColumnsDataName: "Id,Nombre",
+                                   onSelectFunction: "BindFieldsTiposVehiculos", colorHeader: "red")
+                <div class="card border-secondary" style="margin-top: 50px;">
+                    
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="bs-component">
+                                    <form id="frmTiposVehiculo">
+                                        @Html.CtrlInput(id: "txtIdTiposVehiculo", type: "text", label: "Id", columnDataName: "Id", readOnly: "readonly")
+                                        @Html.CtrlInput(id: "txtNombreTiposVehiculo", type: "text", label: "Nombre", columnDataName: "Nombre")
+
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnCreTiposVehiculo", label: "Guardar Nuevo", onClickFunction: "CreTipoVehiculo", buttonType: "success")
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnUpdTiposVehiculo", label: "Actualizar", onClickFunction: "UpdTipoVehiculo", buttonType: "info")
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnDelTiposVehiculo", label: "Eliminar", onClickFunction: "DelTipoVehiculo", buttonType: "danger")
+                            </div>
+                        </div>
+                                 
+                </div>
+            </div>
+            <div class="col-md-12 table-card">
+                @Html.CtrlTable(viewName: "Administrador", id: "tblTiposCombustible", title: "Tipos de combustible",
+                                      columnsTitle: "Id,Nombre", ColumnsDataName: "Id,Nombre",
+                                      onSelectFunction: "BindFieldsTiposCombustibles", colorHeader: "red")
+                <div class="card border-secondary" style="margin-top: 50px;">
+                    
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="bs-component">
+                                    <form id="frmTiposCombustible">
+                                        @Html.CtrlInput(id: "txtIdTiposCombustible", type: "text", label: "Id", columnDataName: "Id", readOnly: "readonly")
+                                        @Html.CtrlInput(id: "txtNombreTiposCombustible", type: "text", label: "Nombre", columnDataName: "Nombre")
+
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnCreTiposCombustible", label: "Guardar Nuevo", onClickFunction: "CreTipoCombustible", buttonType: "success")
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnUpdTiposCombustible", label: "Actualizar", onClickFunction: "UpdTipoCombustible", buttonType: "info")
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnDelTiposCombustible", label: "Eliminar", onClickFunction: "DelTipoCombustible", buttonType: "danger")
+                            </div>
+                        </div>
+                    
+                   
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 table-card">
+                @Html.CtrlTable(viewName: "Administrador", id: "tblMembresias", title: "Membresias",
+                   columnsTitle: "Id,Nombre,Monto Mensual,Comisión Transacción, Fecha Creación, Número de Días", ColumnsDataName: "Id,Nombre,MontoMensual,ComisionTransaccion,FechaCreacion,NumDias",
+                   onSelectFunction: "BindFieldsMembresia", colorHeader: "red")
+                <div class="card border-secondary" style="margin-top: 50px;">
+                    
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <div class="bs-component">
+                                    <form id="frmMembresia">
+                                        @Html.CtrlInput(id: "txtIdMembresia", type: "text", label: "Id", columnDataName: "Id", readOnly: "readonly")
+                                        @Html.CtrlInput(id: "txtFechaCreacionMembresia", type: "text", label: "Fecha Creación", columnDataName: "FechaCreacion", readOnly: "readonly")
+                                        @Html.CtrlInput(id: "txtNombreMembresia", type: "text", label: "Nombre", columnDataName: "Nombre")
+                                        @Html.CtrlInput(id: "txtMontoMensualMembresia", type: "text", label: "Monto Mensual", columnDataName: "MontoMensual")
+                                        @Html.CtrlInput(id: "txtComisionTransaccionMembresia", type: "text", label: "Comisión Transacción", columnDataName: "ComisionTransaccion")
+                                        @Html.CtrlInput(id: "txtNumDiasMembresia", type: "text", label: "Número de días", columnDataName: "NumDias")
+
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnCreMembresia", label: "Guardar Nuevo", onClickFunction: "CreMembresia", buttonType: "success")
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnUpdMembresia", label: "Actualizar", onClickFunction: "UpdMembresia", buttonType: "info")
+                                @Html.CtrlButton(viewName: "Administrador", id: "btnDelMembresia", label: "Eliminar", onClickFunction: "DelMembresia", buttonType: "danger")
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

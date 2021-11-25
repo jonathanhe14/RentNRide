@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{140A1F80-117D-4455-B7D1-53A6746FD2C6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccess</RootNamespace>
+    <AssemblyName>DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.8.3\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Crud\ContrasennaCrudFactory.cs" />
+    <Compile Include="Crud\CrudFactory.cs" />
+    <Compile Include="Crud\DocumentoCrudFactory.cs" />
+    <Compile Include="Crud\ExceptionsCrudFactory.cs" />
+    <Compile Include="Crud\HorarioCrudFactory.cs" />
+    <Compile Include="Crud\MarcaCrudFactory.cs" />
+    <Compile Include="Crud\MarcaVehiCrudFactory.cs" />
+    <Compile Include="Crud\MembresiaCrudFactory.cs" />
+    <Compile Include="Crud\ModeloCrudFactory.cs" />
+    <Compile Include="Crud\ModeloVehiCrudFactory.cs" />
+    <Compile Include="Crud\TipoCombuCrudFactory.cs" />
+    <Compile Include="Crud\TipoCombustibleCrudFactory.cs" />
+    <Compile Include="Crud\TipoVehiCrudFactory.cs" />
+    <Compile Include="Crud\TipoVehiculoCrudFactory.cs" />
+    <Compile Include="Crud\UserProfileCrudFactory.cs" />
+    <Compile Include="Crud\UsuariosCrudFactory.cs" />
+    <Compile Include="Crud\UsuariosRolCrudFactory.cs" />
+    <Compile Include="Crud\VehiculoCrudFactory.cs" />
+    <Compile Include="Dao\SqlDao.cs" />
+    <Compile Include="Dao\SqlOperation.cs" />
+    <Compile Include="Mapper\ContrasennaMapper.cs" />
+    <Compile Include="Mapper\DocumentoMapper.cs" />
+    <Compile Include="Mapper\EntityMapper.cs" />
+    <Compile Include="Mapper\ExceptionMapper.cs" />
+    <Compile Include="Mapper\HorarioMapper.cs" />
+    <Compile Include="Mapper\IObjectMapper.cs" />
+    <Compile Include="Mapper\ISqlStatements.cs" />
+    <Compile Include="Mapper\MarcaMapper.cs" />
+    <Compile Include="Mapper\MarcaVehiMapper.cs" />
+    <Compile Include="Mapper\MembresiaMapper.cs" />
+    <Compile Include="Mapper\ModeloMapper.cs" />
+    <Compile Include="Mapper\ModeloVehiMapper.cs" />
+    <Compile Include="Mapper\TipoCombuMapper.cs" />
+    <Compile Include="Mapper\TipoCombustibleMapper.cs" />
+    <Compile Include="Mapper\TipoVehiculoMapper.cs" />
+    <Compile Include="Mapper\TipoVehiMapper.cs" />
+    <Compile Include="Mapper\UserProfileMapper.cs" />
+    <Compile Include="Mapper\UsuariosMapper.cs" />
+    <Compile Include="Mapper\UsuariosRolMapper.cs" />
+    <Compile Include="Mapper\VehiculoMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities-POJO\Entities-POJO.csproj">
+      <Project>{D8993DE9-2376-473F-917A-AFDEE2F9A9C7}</Project>
+      <Name>Entities-POJO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

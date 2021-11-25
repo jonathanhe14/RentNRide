@@ -1,0 +1,105 @@
+﻿using DataAccess.Dao;
+using Entities_POJO;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DataAccess.Mapper
+{
+    class DocumentoMapper : EntityMapper, ISqlStatements, IObjectMapper
+    {
+
+        private const string DB_COL_ID = "Id_Vehiculo";
+        private const string DB_COL_MARCHAMO = "MARCHAMO";
+        private const string DB_COL_TITULO_PROPIEDAD= "TITULO_PROPIEDAD";
+        private const string DB_COL_RITEVE = "RITEVE";
+        private const string DB_COL_DERECHO_CIRCULACION = "DERECHO_CIRCULACION";
+        
+
+        public SqlOperation GetCreateStatement(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "CRE_DOCUMENTO_PR" };
+
+            var c = (Documento)entity;
+            operation.AddIntParam(DB_COL_ID, c.idVehi);
+            operation.AddVarcharParam(DB_COL_MARCHAMO, c.Marchamo);
+            operation.AddVarcharParam(DB_COL_TITULO_PROPIEDAD, c.tituloPropiedad);
+            operation.AddVarcharParam(DB_COL_RITEVE, c.Riteve);
+            operation.AddVarcharParam(DB_COL_DERECHO_CIRCULACION, c.derechoCirculacion);
+            
+
+            return operation;
+        }
+
+
+        public SqlOperation GetRetriveStatement(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_DOCUMENTO_PR" };
+
+            var c = (Documento)entity;
+            operation.AddIntParam(DB_COL_ID, c.idVehi);
+
+            return operation;
+        }
+
+        public SqlOperation GetRetriveAllStatement()
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_ALL_DOCUMENTO_PR" };
+            return operation;
+        }
+
+        public SqlOperation GetUpdateStatement(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "UPD_DOCUMENTO_PR" };
+
+            var c = (Documento)entity;
+            operation.AddIntParam(DB_COL_ID, c.idVehi);
+            operation.AddVarcharParam(DB_COL_MARCHAMO, c.Marchamo);
+            operation.AddVarcharParam(DB_COL_TITULO_PROPIEDAD, c.tituloPropiedad);
+            operation.AddVarcharParam(DB_COL_RITEVE, c.Riteve);
+            operation.AddVarcharParam(DB_COL_DERECHO_CIRCULACION, c.derechoCirculacion);
+
+            return operation;
+        }
+
+        public SqlOperation GetDeleteStatement(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "DEL_DOCUMENTO_PR" };
+
+            var c = (Documento)entity;
+            operation.AddIntParam(DB_COL_ID, c.idVehi);
+            return operation;
+        }
+
+        public List<BaseEntity> BuildObjects(List<Dictionary<string, object>> lstRows)
+        {
+            var lstResults = new List<BaseEntity>();
+
+            foreach (var row in lstRows)
+            {
+                var documento = BuildObject(row);
+                lstResults.Add(documento);
+            }
+
+            return lstResults;
+        }
+
+        public BaseEntity BuildObject(Dictionary<string, object> row)
+        {
+            var documento = new Documento
+            {
+                idVehi = GetIntValue(row, DB_COL_ID),
+                Marchamo = GetStringValue(row, DB_COL_MARCHAMO),
+                tituloPropiedad = GetStringValue(row, DB_COL_TITULO_PROPIEDAD),
+                Riteve = GetStringValue(row, DB_COL_RITEVE),
+                derechoCirculacion = GetStringValue(row, DB_COL_DERECHO_CIRCULACION),
+                
+            };
+
+            return documento;
+        }
+
+    }
+}

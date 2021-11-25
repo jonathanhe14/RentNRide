@@ -1,0 +1,22 @@
+﻿@using WebApp.Models.Helpers;
+<script src="~/Scripts/Views/PerfilSocio.js"></script>
+@{ ViewBag.Title = "Administrador";
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml"; }
+
+<main>
+    <h2 class="title-page">Perfil Usuario</h2>
+
+    <div class="row">
+
+        <div class="col-md-12 table-card">
+
+            @Html.CtrlTable(viewName: "", id: "tblUsuarios", title: "Usuarios",
+                                      columnsTitle: "Cédula,Nombre,Apellidos,Correo,Edad,Teléfono,Estado", ColumnsDataName: "Cedula,Nombre,Apellidos,Correo,Edad,Telefono,Estado",
+                                      onSelectFunction: "BindFieldsUsers", colorHeader: "red")
+
+        </div>
+
+
+
+    </div>
+</main>
