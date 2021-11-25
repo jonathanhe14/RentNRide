@@ -48,7 +48,7 @@ namespace DataAccess.Mapper
             operation.AddVarcharParam(DB_COL_ACEPT_INMD, c.AccptInmediata);
             operation.AddVarcharParam(DB_COL_ESTADO, c.Estado);
             operation.AddVarcharParam(DB_COL_IMAGEN, c.Imagen);
-            operation.AddIntParam(DB_COL_USUARIO, c.idUsuario);
+            operation.AddVarcharParam(DB_COL_USUARIO, c.idUsuario);
 
             return operation;
         }
@@ -90,7 +90,7 @@ namespace DataAccess.Mapper
             operation.AddVarcharParam(DB_COL_ACEPT_INMD, c.AccptInmediata);
             operation.AddVarcharParam(DB_COL_ESTADO, c.Estado);
             operation.AddVarcharParam(DB_COL_IMAGEN, c.Imagen);
-            operation.AddIntParam(DB_COL_USUARIO, c.idUsuario);
+            operation.AddVarcharParam(DB_COL_USUARIO, c.idUsuario);
 
             return operation;
         }
@@ -136,7 +136,7 @@ namespace DataAccess.Mapper
                 AccptInmediata = GetStringValue(row, DB_COL_ACEPT_INMD),
                 Estado = GetStringValue(row, DB_COL_ESTADO),
                 Imagen = GetStringValue(row, DB_COL_IMAGEN),
-                idUsuario = GetIntValue(row, DB_COL_USUARIO),
+                idUsuario = GetStringValue(row, DB_COL_USUARIO),
             };
 
             return vehiculo;

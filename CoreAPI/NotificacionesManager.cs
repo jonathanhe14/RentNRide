@@ -83,6 +83,11 @@ namespace CoreAPI
             EnviarSMSContrasenna(user);
             return "éxito";
         }
+        public string recuperarClaveSMS2(Usuarios user)
+        {
+            EnviarSMSContrasenna2(user);
+            return "éxito";
+        }
 
         public static void EnviarSMSContrasenna(Usuarios user)
         {
@@ -94,6 +99,23 @@ namespace CoreAPI
 
             var message = MessageResource.Create(
                 body: "El código OTP es el siguiente: " + user.OTP,
+                from: new Twilio.Types.PhoneNumber("+12059531826"),
+                to: new Twilio.Types.PhoneNumber("+506" + user.Telefono)
+            );
+
+            Console.WriteLine(message.Sid);
+        }
+
+        public static void EnviarSMSContrasenna2(Usuarios user)
+        {
+
+            string accountSid = "AC8cb56422437c955f6487c195eecccaa6";
+            string authToken = "b402568cb8a6047c8725bb097c792f22";
+
+            TwilioClient.Init(accountSid, authToken);
+
+            var message = MessageResource.Create(
+                body: "El código OTP es el siguiente: " + user.OTPSMS,
                 from: new Twilio.Types.PhoneNumber("+12059531826"),
                 to: new Twilio.Types.PhoneNumber("+506" + user.Telefono)
             );

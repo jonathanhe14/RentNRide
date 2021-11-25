@@ -24,7 +24,7 @@ namespace Entities_POJO
         public string AccptInmediata { get; set; }
         public string Estado { get; set; }
         public string Imagen { get; set; }
-        public int idUsuario { get; set; }
+        public string idUsuario { get; set; }
 
 
     }

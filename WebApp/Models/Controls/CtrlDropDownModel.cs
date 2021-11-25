@@ -70,7 +70,7 @@ namespace WebApp.Models.Controls
         private List<VehiOpcion> GetOptionsFromAPI()
         {
             var client = new WebClient();
-            var response = client.DownloadString(URL_API_LISTs + ListId);
+            var response = client.DownloadString("http://localhost:52125/api/List/Get/" + ListId);
             var options = JsonConvert.DeserializeObject<List<VehiOpcion>>(response);
             return options;
         }
@@ -78,7 +78,7 @@ namespace WebApp.Models.Controls
         private List<VehiOpcion> GetOptionsFromAPIDepend()
         {
             var client = new WebClient();
-            var response = client.DownloadString(URL_API_LISTs + ListId);
+            var response = client.DownloadString("http://localhost:52125/api/List/Get/" + ListId);
             var options = JsonConvert.DeserializeObject<List<VehiOpcion>>(response);
             return options;
         }

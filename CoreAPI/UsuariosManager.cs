@@ -187,6 +187,7 @@ namespace CoreAPI
         }
 
 
+
         public void Update(Usuarios usuarios)
         {
             try
@@ -235,8 +236,8 @@ namespace CoreAPI
             {
                 u = AsignarOTP(u);
                 mngUsuarios.Update(u);
-                //var mngNotificaciones = new NotificacionesManager();
-                //mngNotificaciones.recuperarClaveCorreo(u);
+                var mngNotificaciones = new NotificacionesManager();
+                mngNotificaciones.recuperarClaveCorreo(u);
                 Usuarios usuario = new Usuarios
                 {
                     Correo = u.Correo,
@@ -276,8 +277,8 @@ namespace CoreAPI
             {
                 u = AsignarOTPSMS(u);
                 mngUsuarios.Update(u);
-                //var mngNotificaciones = new NotificacionesManager();
-                //mngNotificaciones.recuperarClaveSMS(u);
+                var mngNotificaciones = new NotificacionesManager();
+                mngNotificaciones.recuperarClaveSMS2(u);
                 Usuarios usuario = new Usuarios
                 {
                     Correo = u.Correo,

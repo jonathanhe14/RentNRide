@@ -1,6 +1,7 @@
 ﻿@using WebApp.Models.Helpers;
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4aNZIQyvam7h8Zmdq8ldZ_7sdtVGcwtE"></script>
 <script src="https://upload-widget.cloudinary.com/global/all.js"></script>
+<script src="~/Scripts/Views/ControlActions.js"></script>
 <script src="~/Scripts/Views/vVehiculo.js"></script>
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -35,7 +36,7 @@
                                 Html.CtrlInput(id: "txtEstado", type: "text", label: "Estado", columnDataName: "Estado")*@
                             @Html.CtrlDropDown(id: "txtAccptInmediata", label: "¿Acepta inmediatamente al ser alquilado?", listId: "LST_aceptInmd")
                             @Html.CtrlDropDown(id: "txtEstado", label: "Estado actual del vehiculo", listId: "LST_Estado")
-                            @Html.CtrlInput(id: "txtUsuarioid", type: "number", label: "idusuariotoremove", columnDataName: "idUsuario")
+                            @Html.CtrlInput(id: "txtUsuarioid", type: "text", label: "Correo", columnDataName: "idUsuario")
                             @*@Html.CtrlDropDown(id: "drpGender", label: "Gender", listId: "LST_GENERO")
                                 @Html.CtrlDropDown(id: "drpStatus", label: "Status", listId: "LST_EST_CIVIL")
                                 @Html.CtrlDropDown(id: "Best Friend", label: "Friend", listId: "LST_CUSTOMER")*@
