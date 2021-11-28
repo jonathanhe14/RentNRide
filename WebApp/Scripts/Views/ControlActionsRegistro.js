@@ -53,7 +53,6 @@ function ControlActionsRegistro() {
 		data["PersoneriaJuridica"] = PersoneriaJuridica;
 		data["PermisoOperaciones"] = PermisoOperaciones;
 		localStorage.setItem("Correo", data["Correo"]);
-		localStorage.setItem("Telefono", data["Telefono"]);
 		//console.log(data);
 
 		return data;
@@ -66,7 +65,6 @@ function ControlActionsRegistro() {
 			data[columnDataName] = this.value;
 
 		});
-		data["Telefono"] = localStorage.getItem("Telefono");
 		data["Correo"] = localStorage.getItem("Correo");
 		return data;
 	}

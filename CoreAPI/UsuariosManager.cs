@@ -50,6 +50,7 @@ namespace CoreAPI
                 usuario.PermisoOperaciones = "NULL";
                 usuario.Rol = 4;
                 usuario.OTPSMS = 0;
+                usuario.OTPVencimiento = DateTime.Now;
                 var contrasenna = new Contrasennas
                 {
                     Contrasenna = encriptado.MD5(usuario.ContrassenaActual),
@@ -114,7 +115,8 @@ namespace CoreAPI
                 usuario.OTP = 0;
                 usuario.FechaNacimiento = DateTime.Now;
                 usuario.Rol = 2;
-                usuario.OTPSMS = 0; 
+                usuario.OTPSMS = 0;
+                usuario.OTPVencimiento = DateTime.Now;
                 var contrasenna = new Contrasennas
                 {
                     Contrasenna = encriptado.MD5(usuario.ContrassenaActual),
@@ -208,7 +210,7 @@ namespace CoreAPI
         {
             return crudContrasennas.RetrieveTodo<Contrasennas>(clave);
         }
-
+         
 
         public Usuarios AsignarOTP(Usuarios user)
         {
@@ -231,17 +233,19 @@ namespace CoreAPI
         {
             Usuarios u = null;
             var mngUsuarios = new UsuariosManagement();
+            user.Telefono = "0";
             u = mngUsuarios.RetrieveById(user);
             if (u != null)
             {
                 u = AsignarOTP(u);
+                u.OTPVencimiento = DateTime.Now;
                 mngUsuarios.Update(u);
                 var mngNotificaciones = new NotificacionesManager();
-                mngNotificaciones.recuperarClaveCorreo(u);
+                //mngNotificaciones.recuperarClaveCorreo(u);
                 Usuarios usuario = new Usuarios
                 {
                     Correo = u.Correo,
-                    Telefono = u.Telefono
+                    Telefono = "0"
                 };
                 return usuario;
             }
@@ -272,17 +276,19 @@ namespace CoreAPI
         {
             Usuarios u = null;
             var mngUsuarios = new UsuariosManagement();
+            user.Telefono = "0";
             u = mngUsuarios.RetrieveById(user);
             if (u != null)
             {
                 u = AsignarOTPSMS(u);
                 mngUsuarios.Update(u);
+                u.OTPVencimiento = DateTime.Now;
                 var mngNotificaciones = new NotificacionesManager();
-                mngNotificaciones.recuperarClaveSMS2(u);
+                //mngNotificaciones.recuperarClaveSMS2(u);
                 Usuarios usuario = new Usuarios
                 {
                     Correo = u.Correo,
-                    Telefono = u.Telefono
+                    Telefono = "0"
                 };
                 return usuario;
             }
@@ -298,13 +304,22 @@ namespace CoreAPI
             {
                 Usuarios u = null;
                 var mngUsuarios = new UsuariosManagement();
+                user.Telefono = "0";
                 u = mngUsuarios.RetrieveById(user);
 
                 if (u.OTP == user.OTP && u.OTPSMS == user.OTPSMS)
                 {
-                    u.Estado = "VERIFICADO";
-                    mngUsuarios.Update(u);
-                    return "success";
+                    if (u.OTPVencimiento.Year == DateTime.Now.Year && u.OTPVencimiento.Month== DateTime.Now.Month && 
+                        u.OTPVencimiento.Day == DateTime.Now.Day)
+                    {
+                        if ((DateTime.Now.Minute-u.OTPVencimiento.Minute)<=15)
+                        {
+                            u.Estado = "VERIFICADO";
+                            mngUsuarios.Update(u);
+                            return "success";
+                        }
+                    }
+                    throw new BussinessException(0);
                 }
                 else
                 {

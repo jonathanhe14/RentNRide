@@ -123,23 +123,6 @@ namespace WebAPI.Controllers
         }
 
        
-        public IHttpActionResult EnvioOTP(Usuarios user)
-        {
-            var mng = new UsuariosManagement();
-            Usuarios respuesta = mng.EvioOTPCorreo(user);
-            apiResp = new ApiResponse();
-            apiResp.Data = respuesta;
-            if (respuesta != null)
-            {
-                apiResp.Message = "success";
-            }
-            else
-            {
-                apiResp.Message = "El usuario no fue encontrado";
-            }
-            return Ok(apiResp);
-        }
- 
         public IHttpActionResult GetU(string correo)
         {
             try { 
@@ -161,25 +144,6 @@ namespace WebAPI.Controllers
             }
         }
 
-        public IHttpActionResult EnvioOTPSMS(Usuarios user)
-        {
-            var mng = new UsuariosManagement();
-            Usuarios respuesta = mng.EnvioOTPSMS(user);
-            apiResp = new ApiResponse();
-            apiResp.Data = respuesta;
-            if (respuesta != null)
-            {
-                apiResp.Message = "success";
-            }
-            else
-            {
-                apiResp.Message = "El usuario no fue encontrado";
-            }
-            return Ok(apiResp);
-        }
-
-
-        
         public IHttpActionResult ComprobarOTP(Usuarios user)
         {
             try
@@ -215,6 +179,23 @@ namespace WebAPI.Controllers
 
                 return Ok(apiResp);
             } catch(BussinessException bex) {
+                return InternalServerError(new Exception(bex.ExceptionId + "-"
+                    + bex.AppMessage.Mensaje));
+            }
+        }
+
+        public IHttpActionResult EnvioCodigos(Usuarios user)
+        {
+            try{
+                var mng = new UsuariosManagement();
+                mng.EvioOTPCorreo(user);
+                mng.EnvioOTPSMS(user);
+                apiResp = new ApiResponse();
+                return Ok(apiResp);
+
+            }
+            catch (BussinessException bex)
+            {
                 return InternalServerError(new Exception(bex.ExceptionId + "-"
                     + bex.AppMessage.Mensaje));
             }

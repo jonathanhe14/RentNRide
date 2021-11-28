@@ -1,5 +1,6 @@
 ﻿var data = {};
 function Verificacion() {
+	let tiempo = 5;
 
 	this.URL_API = "http://localhost:52125/api/";
 
@@ -9,32 +10,57 @@ function Verificacion() {
 
 	this.service = 'usuarios';
 	this.ctrlActions = new ControlActionsRegistro();
-	this.columns = "OTP,OTPSMS,Correo,Telefono";
+	this.columns = "OTP,OTPSMS,Correo";
 
 
 
 
 	this.Enviar = function () {
 		var codigos = {};
+		$('#alert').fadeOut();
 		codigos = this.ctrlActions.getDataFormVerificacion('formEnvio');
-
-		this.PostToAPI(this.service + "/ComprobarOTP", codigos);
+		if (this.Validar()) {
+			this.PostToAPI(this.service + "/ComprobarOTP", codigos,1);
+		} else {
+			$('#alertError').fadeIn();
+        }
+		
 
 
 	}
-
-
-	this.Reenviar = function () {
+	this.EnviarCodigos = function () {
 		var data = {}
-		data["Telefono"] = localStorage.getItem("Telefono");
 		data["Correo"] = localStorage.getItem("Correo");
-		this.PostToAPI2(this.service + "/ReenviarCodigos", data);
-	}
+		$('#alertaTiempo').fadeOut();
+		this.Limpiar();
+		this.Temporizador();
+		this.PostToAPI(this.service + "/EnvioCodigos", data,0);
+    }
+
+	this.Temporizador = function () {
+		let intervalo = setInterval(function () {
+			const temporizador = document.getElementById('temporizador');
+			const minutos = Math.floor(tiempo / 60);
+			let segundos = tiempo % 60;
+
+			segundos = segundos < 10 ? '0' + segundos : segundos;
+			temporizador.innerHTML = `${minutos}:${segundos}`;
+			tiempo--;
+			console.log(tiempo)
+			if (tiempo < 60) {
+				$('#temporizador').css("color", "red")
+			};
+			if (tiempo < 0) {
+				$('#alertaTiempo').fadeIn();
+				$('#temporizador').val("00:00");
+				clearInterval(intervalo);
+			};
+		}, 1000)
+    }
+
+
 	this.ShowMessage = function (type) {
 		if (type == 'E') {
-			console.log("fallo");
-			$('#txtOTP').css("border-color", "rgba(255, 0, 5, 0.7)");
-			$('#txtOTPSMS').css("border-color", "rgba(255, 0, 5, 0.7)");
 			$('#alert').fadeIn();
 		} else if (type == 'I') {
 
@@ -44,11 +70,12 @@ function Verificacion() {
 
 	};
 
-	this.PostToAPI = function (service, data, callBackFunction) {
+	this.PostToAPI = function (service, data, callBackFunction,type) {
 		var jqxhr = $.post(this.GetUrlApiService(service), data, function (response) {
-			var ctrVerificar = new Verificacion();
-			ctrVerificar.ShowMessage('I');
-
+			if (type == 1) {
+				var ctrVerificar = new Verificacion();
+				ctrVerificar.ShowMessage('I');
+			}
 			if (callBackFunction) {
 				callbackFunction(response.Data);
 			}
@@ -60,31 +87,30 @@ function Verificacion() {
 			})
 	};
 
-	this.ShowMessage2 = function (type) {
-		if (type == 'E') {
-
-			$('#alertReenviarFallo').fadeIn();
-		} else if (type == 'I') {
-			$('#alertReenviar').fadeIn();
+	this.Validar = function () {
+		var validar = true;
+		otp = $('#txtOTP').val();
+		otpsms = $('#txtOTPSMS').val()
+		let Numeros = /^\d+$/;
+		if (otp == "" || !Numeros.test(otp)) {
+			$('#txtOTP').css("border-color", "rgba(255, 0, 5, 0.7)")
+			validar = false;
 		}
+		if (otpsms == "" || !Numeros.test(otpsms)) {
+			$('#txtOTPSMS').css("border-color", "rgba(255, 0, 5, 0.7)")
+			validar = false;
+		}
+		return validar;
+	}
+	this.Limpiar = function(){
+		$("#txtOTP").val('');
+		$("#txtOTPSMS").val('');
+		$("#txtOTP").css("border", "1px solid #ccc");
+		$("#txtOTPSMS").css("border", "1px solid #ccc");
+		$('#alertError').fadeOut();
 
-	};
+    }
 
-	this.PostToAPI2 = function (service, data, callBackFunction) {
-		var jqxhr = $.post(this.GetUrlApiService(service), data, function (response) {
-			var ctrVerificar = new Verificacion();
-			ctrVerificar.ShowMessage2('I');
-
-			if (callBackFunction) {
-				callbackFunction(response.Data);
-			}
-		})
-			.fail(function (response) {
-				var ctrVerificar = new Verificacion();
-				ctrVerificar.ShowMessage2('E');
-
-			})
-	};
 }
 
 
@@ -92,9 +118,18 @@ function Verificacion() {
 
 
 $(document).ready(function () {
+	this.ctrVerificar = new Verificacion();
+	this.ctrVerificar.Temporizador();
+
+	$('#txtOTP').keyup(function () {
+		$("#txtOTP").css("border", "1px solid #ccc");
+		$("#txtOTPSMS").css("border", "1px solid #ccc");
+		$('#alertError').fadeOut();
+	});
+
 
 	$('#ReenviarA').click(function () {
 		this.ctrVerificar = new Verificacion();
-		this.ctrVerificar.Reenviar();
+		this.ctrVerificar.EnviarCodigos();
 	});
 });

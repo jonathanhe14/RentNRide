@@ -13,23 +13,23 @@
     <form id="frmRegistro">
         @Html.CtrlInput(id: "txtNombre", type: "text", label: "Nombre de la Empresa", columnDataName: "Nombre")
         @Html.CtrlInput(id: "txtCorreo", type: "text", label: "Correo", columnDataName: "Correo")
-        @Html.CtrlInput(id: "txtCedula", type: "text", label: "Cedula Juridica", columnDataName: "Cedula")
-        @Html.CtrlInput(id: "txtTelefono", type: "text", label: "Telefono", columnDataName: "Telefono")
-        <h4>Personeria Juridica</h4>
+        @Html.CtrlInput(id: "txtCedula", type: "text", label: "Cédula Juridica", columnDataName: "Cedula")
+        @Html.CtrlInput(id: "txtTelefono", type: "text", label: "Télefono", columnDataName: "Telefono")
+        <h4>Personería Jurídica</h4>
         @Html.CtrlButton(viewName: "RegistroSocios", id: "btnPersoneria", label: "Subir", onClickFunction: "SubirPersoneria", buttonType: "success")
         <div class="alert-danger" id="alertPersoneria" style="display: none; margin: 10px; height: 30px; padding: 5px; font-weight: bold; width: 300px ">
-            !! Tienes que subir el documento
+            Tienes que subir el documento
         </div>
         <div class="alert-success" id="alertVerificarPersoneria" style="display: none; margin: 10px; height: 30px; padding: 5px; font-weight: bold; width: 300px ">
-            !! Documento subido
+            Documento subido
         </div>
         <h4>Permiso de Operaciones</h4>
         @Html.CtrlButton(viewName: "RegistroSocios", id: "btnOperaciones", label: "Subir", onClickFunction: "SubirOperaciones", buttonType: "success")
         <div class="alert-danger" id="alertOperaciones" style="display: none; margin: 10px; height: 30px; padding: 5px; font-weight: bold; width: 300px ">
-            !! Tienes que subir el documento
+            Tiene que subir el documento
         </div>
         <div class="alert-success" id="alertVerificarOperaciones" style="display: none; margin: 10px; height: 30px; padding: 5px; font-weight: bold; width: 300px">
-            !! Documento subido
+            Documento subido
         </div>
         <div style="height:20px"></div>
         @Html.CtrlInput(id: "txtContrasenna", type: "password", label: "Contraseña", columnDataName: "ContrassenaActual")
@@ -47,7 +47,7 @@
     </form>
 </div>
 <div class="alert-danger" id="alert" style="display:none; margin:10px;height:30px;padding:5px;font-weight:bold">
-    !! Verifique que los campos esten llenos y con un formato correcto
+    Verifique que los campos estén llenos y con un formato correcto
 </div>
 <div id="map" style="height:300px">
 
@@ -85,7 +85,7 @@
                 <h5 class="modal-title" id="exampleModalLongTitle" style="font-size:25px">Lo Sentimos</h5>
             </div>
             <div class="modal-body">
-                Lo sentimos el usuario ya se encuentra registrado
+                Lo sentimos el usuario ya se encuentra registrado.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="cambioPagina">Salir</button>

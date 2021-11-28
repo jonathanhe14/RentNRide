@@ -14,24 +14,28 @@
 
 
         <div class=" row">
-            <div class="alert-info">
-                Ingrese los codigos enviados
+            <div >
+                <p style="margin: 10px 0px;"> Ingrese los códigos enviados</p>
             </div>
             @Html.CtrlInput(id: "txtOTP", type: "text", label: "Codigo Correo", columnDataName: "OTP")
             @Html.CtrlInput(id: "txtOTPSMS", type: "text", label: "Codigo SMS", columnDataName: "OTPSMS")
         </div>
-        <a id="ReenviarA">Reenviar Codigos</a>
+        <div class="alert-danger" id="alertError" style="display:none;">Los códigos no pueden estar vacíos o contener letras</div>
         <div class="alert-danger" id="alert" style="display:none">
-            !!Codigos Incorrectos
+            ¡Códigos Incorrectos!
         </div>
         <div class="alert-success" id="alertReenviar" style="display:none;">
-            Se Renviaron los caodigos
+            Se enviaron los Códigos
         </div>
-        <div class="alert-danger" id="alertReenviarFallo" style="display:none;">
-            No se pueden reenviar los codigos
+        <div class=" row" style="margin-bottom:10px;">
+            @Html.CtrlButton(viewName: "Verificacion", id: "btnCreate", label: "Reenviar Códigos", onClickFunction: "EnviarCodigos", buttonType: "success")
         </div>
-        <div class=" row">
-            @Html.CtrlButton(viewName: "Verificacion", id: "btnCreate", label: "Enviar", onClickFunction: "Enviar", buttonType: "success")
+        <div class=" row" style="margin-bottom:10px;">
+            @Html.CtrlButton(viewName: "Verificacion", id: "btnEnviar", label: "Verificar", onClickFunction: "Enviar", buttonType: "success")
+        </div>
+        <div>
+            <div class="alert-warning" id="alertaTiempo" style="display:none;">El tiempo expiró para poder verificar la cuenta de clic en el enlace <a id="ReenviarA" href="#" class="alert-link">Reenviar Códigos</a></div>
+            <p id="temporizador" style="font-size:100px"></p>
         </div>
     </form>
 </div>

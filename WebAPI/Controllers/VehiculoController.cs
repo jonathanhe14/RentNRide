@@ -78,8 +78,6 @@ namespace WebAPI.Controllers
             try
             {
                 var mng = new VehiculoManager();
-                vehiculo.Latitud = "0";
-                vehiculo.Longitud = "0";
 
 
                 mng.Create(vehiculo);

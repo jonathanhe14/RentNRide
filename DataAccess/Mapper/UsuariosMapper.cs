@@ -30,6 +30,7 @@ namespace DataAccess.Mapper
         private const string DB_COL_otp = "OTP";
         private const string DB_COL_comprobacion = "COMPROBACION";
         private const string DB_COL_OTPSMS = "OTPSMS";
+        private const string DB_COL_OTPFECHA = "OTPFECHA";
 
         public SqlOperation GetCreateStatement(BaseEntity entity)
         {
@@ -52,6 +53,7 @@ namespace DataAccess.Mapper
             operation.AddVarcharParam(DB_COL_activo, u.Estado);
             operation.AddVarcharParam(DB_COL_comprobacion, u.Comprobacion);
             operation.AddIntParam(DB_COL_OTPSMS, u.OTPSMS);
+            operation.AddDateTimeParam(DB_COL_OTPFECHA, u.OTPVencimiento);
 
 
             return operation;
@@ -124,7 +126,7 @@ namespace DataAccess.Mapper
             operation.AddVarcharParam(DB_COL_comprobacion, u.Comprobacion);
             operation.AddVarcharParam(DB_COL_activo, u.Estado);
             operation.AddIntParam(DB_COL_OTPSMS, u.OTPSMS);
-
+            operation.AddDateTimeParam(DB_COL_OTPFECHA, u.OTPVencimiento);
 
 
             return operation;
@@ -151,7 +153,8 @@ namespace DataAccess.Mapper
                     Estado = GetStringValue(row, DB_COL_activo),
                     OTP = GetIntValue(row, DB_COL_otp),
                     Comprobacion = GetStringValue(row, DB_COL_comprobacion),
-                    OTPSMS = GetIntValue(row, DB_COL_OTPSMS)
+                    OTPSMS = GetIntValue(row, DB_COL_OTPSMS),
+                    OTPVencimiento = GetDateValue(row,DB_COL_OTPFECHA)
                 };
                 return usuario;
             }

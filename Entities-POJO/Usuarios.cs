@@ -23,6 +23,7 @@ namespace Entities_POJO
         public string Estado { get; set; }
         public int OTP { get; set; }
         public int Rol { get; set; }
+        public DateTime OTPVencimiento { get; set; }
         
         public string Comprobacion { get; set; }
 
