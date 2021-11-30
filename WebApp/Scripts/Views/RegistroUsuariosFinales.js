@@ -9,7 +9,7 @@
 
 	this.service = 'usuarios';
 	this.ctrlActions = new ControlActionsRegistro();
-	this.columns = "Nombre,Apellidos,Cedula,Correo,FechaNacimiento,Telefono,ContrassenaActual,Latitud,Longitud,OTP,OTPSMS";
+	this.columns = "Nombre,Apellidos,Cedula,Correo,FechaNacimiento,Telefono,ContrassenaActual,Latitud,Longitud,OTP,OTPSMS,Rol";
 
 
 	this.Create = function () {
@@ -19,7 +19,7 @@
 			console.log("Se valido")
 
 			var usuariosData = {};
-			usuariosData = this.ctrlActions.GetDataFormUsuarios('frmRegistro');
+			usuariosData = this.ctrlActions.GetDataFormUsuarios('frmRegistro',4);
 
 			//Hace el post al create
 			this.PostToAPI(this.service + "/CrearUsuario", usuariosData);

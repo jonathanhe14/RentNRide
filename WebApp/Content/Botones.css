@@ -1,0 +1,14 @@
+﻿.botones{
+   width:35%;
+   height:35px;
+   background-color:transparent;
+   border: none;
+
+}
+.div{
+    margin: 20px 0px;
+    width:100%;
+}
+.form-group {
+    margin-top: -10px;
+}

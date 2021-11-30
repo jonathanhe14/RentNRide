@@ -36,7 +36,7 @@ function ControlActionsRegistro() {
 	this.SubirOperaciones = function (url) {
 		PermisoOperaciones = url;
 	}
-	this.GetDataFormUsuarios = function (formId) {
+	this.GetDataFormUsuarios = function (formId,tipoUsuario) {
 
 		var data = {};
 
@@ -52,6 +52,7 @@ function ControlActionsRegistro() {
 		data["Longitud"] = ubi[1];
 		data["PersoneriaJuridica"] = PersoneriaJuridica;
 		data["PermisoOperaciones"] = PermisoOperaciones;
+		data["Rol"] = tipoUsuario;
 		localStorage.setItem("Correo", data["Correo"]);
 		//console.log(data);
 

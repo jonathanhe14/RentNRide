@@ -48,7 +48,6 @@ namespace CoreAPI
                 usuario.OTP = 0;
                 usuario.PersoneriaJuridica = "NULL";
                 usuario.PermisoOperaciones = "NULL";
-                usuario.Rol = 4;
                 usuario.OTPSMS = 0;
                 usuario.OTPVencimiento = DateTime.Now;
                 var contrasenna = new Contrasennas
@@ -61,7 +60,7 @@ namespace CoreAPI
                 var rolUsuario = new UsuariosRol
                 {
                     IdUsuario = usuario.Correo,
-                    IdRol = 4,
+                    IdRol = usuario.Rol,
                     Estado = "Activo"
 
                 };
@@ -105,18 +104,54 @@ namespace CoreAPI
         {
             try
             {
-
-                //Valida si ya existe
                 var u = crudUsuarios.Retrieve<Usuarios>(usuario);
-                usuario.Apellidos = "NUll";
+                if (u != null)
+                {
+                    throw new BussinessException(1);
+                }
+
+
                 usuario.Comprobacion = "NULL";
-                usuario.Edad = 0;
                 usuario.Estado = "PENDIENTE";
                 usuario.OTP = 0;
-                usuario.FechaNacimiento = DateTime.Now;
-                usuario.Rol = 2;
                 usuario.OTPSMS = 0;
                 usuario.OTPVencimiento = DateTime.Now;
+                if (usuario.Rol == 2)
+                {
+                    int edad = 0;
+                    usuario.PermisoOperaciones = "NULL";
+                    usuario.PersoneriaJuridica = "NULL";
+                    if (usuario.FechaNacimiento.Year < DateTime.Now.Year)
+                    {
+                        edad = DateTime.Now.Year - usuario.FechaNacimiento.Year;
+                        if (usuario.FechaNacimiento.Month > DateTime.Now.Month)
+                        {
+                            edad--;
+
+                        }
+                        else if (usuario.FechaNacimiento.Month == DateTime.Now.Month)
+                        {
+                            if (usuario.FechaNacimiento.Day > DateTime.Now.Day)
+                            {
+                                edad--;
+                            }
+                        }
+                    }
+                    usuario.Edad = edad;
+                    if (usuario.Edad < 18)
+                    {
+                        throw new BussinessException(2);
+
+                    }
+                }
+                else
+                {
+
+                    usuario.Apellidos = "NUll";
+                    usuario.Edad = 0;
+                    usuario.FechaNacimiento = DateTime.Now;
+                }
+
                 var contrasenna = new Contrasennas
                 {
                     Contrasenna = encriptado.MD5(usuario.ContrassenaActual),
@@ -126,7 +161,7 @@ namespace CoreAPI
                 var rolUsuario = new UsuariosRol
                 {
                     IdUsuario = usuario.Correo,
-                    IdRol = 2,
+                    IdRol = usuario.Rol,
                     Estado = "Activo"
 
                 };
@@ -210,7 +245,7 @@ namespace CoreAPI
         {
             return crudContrasennas.RetrieveTodo<Contrasennas>(clave);
         }
-         
+
 
         public Usuarios AsignarOTP(Usuarios user)
         {
@@ -257,7 +292,7 @@ namespace CoreAPI
 
         public List<Usuarios> Perfil(Usuarios user)
         {
-            
+
             try
             {
 
@@ -309,10 +344,10 @@ namespace CoreAPI
 
                 if (u.OTP == user.OTP && u.OTPSMS == user.OTPSMS)
                 {
-                    if (u.OTPVencimiento.Year == DateTime.Now.Year && u.OTPVencimiento.Month== DateTime.Now.Month && 
+                    if (u.OTPVencimiento.Year == DateTime.Now.Year && u.OTPVencimiento.Month == DateTime.Now.Month &&
                         u.OTPVencimiento.Day == DateTime.Now.Day)
                     {
-                        if ((DateTime.Now.Minute-u.OTPVencimiento.Minute)<=15)
+                        if ((DateTime.Now.Minute - u.OTPVencimiento.Minute) <= 15)
                         {
                             u.Estado = "VERIFICADO";
                             mngUsuarios.Update(u);
@@ -331,10 +366,14 @@ namespace CoreAPI
                 throw new BussinessException(0);
             }
         }
-        public List<Usuarios> RetrieveAllSolicitudes() {
-            try {
+        public List<Usuarios> RetrieveAllSolicitudes()
+        {
+            try
+            {
                 return crudUsuarios.RetrieveAllSolicitudes<Usuarios>();
-            } catch(Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 throw new BussinessException(0);
             }
 

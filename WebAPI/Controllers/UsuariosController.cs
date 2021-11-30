@@ -86,6 +86,7 @@ namespace WebAPI.Controllers
             try
             {
 
+
                 var mng = new UsuariosManagement();
                 mng.CreateSocio(usuario);
                 mng.EvioOTPCorreo(usuario);

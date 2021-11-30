@@ -1,6 +1,7 @@
 ﻿var urlPersoneria;
 var urlPermisoOperaciones;
 var validarContrasenna = false;
+var tipoUsuario = 1;
 function RegistroSocios() {
 
 	this.URL_API = "http://localhost:52125/api/";
@@ -11,7 +12,7 @@ function RegistroSocios() {
 
 	this.service = 'usuarios';
 	this.ctrlActions = new ControlActionsRegistro();
-	this.columns = "Nombre,Cedula,Correo,Telefono,ContrassenaActual,Latitud,Longitud,PersoneriaJuridica,PermisoOperaciones";
+	this.columns = "Nombre,Cedula,Correo,Telefono,ContrassenaActual,Latitud,Longitud,PersoneriaJuridica,PermisoOperaciones,Apellidos,FechaNacimiento,Rol";
 
 
 
@@ -41,36 +42,60 @@ function RegistroSocios() {
 	);
 
 	this.Create = function () {
+		console.log(tipoUsuario);
 		var documentos = true;
 
-		if (urlPersoneria == undefined) {
-			$('#alertPersoneria').fadeIn();
-
-			documentos = false;
-		}
-
-		if (urlPermisoOperaciones == undefined) {
-			$('#alertOperaciones').fadeTo(4000, 500).slideUp(500, function () {
-				$('#alertOperaciones').slideUp(500);
-			});
-			docuementos = false
-		}
-		if (this.Validar() && documentos == true) {
 
 
-			console.log("se valido")
-			var usuariosData = {};
-			usuariosData = this.ctrlActions.GetDataFormUsuarios('frmRegistro');
+		if (tipoUsuario == 1) {
+			if (urlPersoneria == undefined) {
+				$('#alertPersoneria').fadeIn();
 
-			//Hace el post al create
-			this.PostToAPI(this.service + "/CrearSocio", usuariosData);
+				documentos = false;
+			}
+
+			if (urlPermisoOperaciones == undefined) {
+				$('#alertOperaciones').fadeIn();
+				documentos = false
+			}
+			if (this.Validar() && documentos) {
 
 
+				console.log("se valido")
+				var usuariosData = {};
+				usuariosData = this.ctrlActions.GetDataFormUsuarios('frmRegistro',3);
+				console.log(tipoUsuario);
+				console.log(usuariosData);
+				//Hace el post al create
+				this.PostToAPI(this.service + "/CrearSocio", usuariosData);
+
+
+			} else {
+				$('#alert').fadeTo(4000, 500).slideUp(500, function () {
+					$('#alert').slideUp(500);
+				});
+			}
 		} else {
-			$('#alert').fadeTo(4000, 500).slideUp(500, function () {
-				$('#alert').slideUp(500);
-			});
-		}
+
+
+			if (this.Validar()) {
+
+				console.log("se valido")
+				var usuariosData = {};
+				usuariosData = this.ctrlActions.GetDataFormUsuarios('frmRegistro',2);
+				console.log(tipoUsuario);
+				console.log(usuariosData);
+				//Hace el post al create
+				this.PostToAPI(this.service + "/CrearSocio", usuariosData);
+
+
+			} else {
+				$('#alert').fadeTo(4000, 500).slideUp(500, function () {
+					$('#alert').slideUp(500);
+				});
+			}
+        }
+
 	}
 
 
@@ -91,6 +116,8 @@ function RegistroSocios() {
 		$("#txtCorreo").val('');
 		$("#txtContrasenna").val('');
 		$("#txtContrasenna2").val('');
+		$("#txtFecha").val('');
+		$("#txtApellidos").val('');
 		$("#alert").fadeOut();
 		$("#alertPersoneria").fadeOut();
 		$("#alertOperaciones").fadeOut();
@@ -105,6 +132,8 @@ function RegistroSocios() {
 		$("#txtCorreo").css("border", "1px solid #ccc");
 		$("#txtContrasenna").css("border", "1px solid #ccc");
 		$("#txtContrasenna2").css("border", "1px solid #ccc");
+		$("#txtFecha").css("border", "1px solid #ccc");
+		$("#txtApellidos").css("border", "1px solid #ccc");
 	}
 
 	this.Validar = function () {
@@ -122,8 +151,12 @@ function RegistroSocios() {
 		var correo = $("#txtCorreo").val();
 		var contrasenna = $("#txtContrasenna").val();
 		var contrasenna2 = $("#txtContrasenna2").val();
-		if (nombre == "" || !Letras.test(nombre)) {
+		var Apellido = $('#txtApellidos').val();
+		var Fecha = $('#txtFecha').val();
 
+
+		if (nombre == "" || !Letras.test(nombre)) {
+			
 			$("#txtNombre").css("border-color", "rgba(255, 0, 5, 0.7)");
 			validar = false;
 		}
@@ -142,6 +175,17 @@ function RegistroSocios() {
 			$("#txtCorreo").css("border-color", "rgba(255, 0, 5, 0.7)");
 			validar = false;
 		}
+		if (tipoUsuario == 2) {
+			if (Apellido == "" || !Letras.test(Apellido)) {
+				$("#txtApellido").css("border-color", "rgba(255, 0, 5, 0.7)");
+				validar = false;
+			}
+			if (Fecha =="") {
+				$("#txtFecha").css("border-color", "rgba(255, 0, 5, 0.7)");
+				validar = false;
+            }
+        }
+
 		if (contrasenna == "") {
 
 			$("#txtContrasenna").css("border-color", "rgba(255, 0, 5, 0.7)");
@@ -196,6 +240,7 @@ function RegistroSocios() {
 
 
 $(document).ready(function () {
+
 	$('#cambioPagina').click(function () {
 		window.location.href = "https://localhost:44383/Home/Verificacion";
 	});
@@ -215,6 +260,32 @@ $(document).ready(function () {
 		}
 	});
 
+	$('#botonEmpresa').click(function () {
+		this.ctrRegistro = new RegistroSocios();
+		$('#botonEmpresa').css("border-bottom", "2px solid black")
+		$('#botonSocio').css("border-bottom", "none")
+		$('#divDocumentos').css("display", "block")
+		$('#lbNombre').html("Nombre de la Empresa")
+		$('#lbCedula').html("Cedula Jurídica")
+		$('#divApellido').css("display", "none")
+		$('#divFecha').css("display", "none")
+		this.ctrRegistro.Limpiar();
+		tipoUsuario = 1;
+		
+	});
+
+	$('#botonSocio').click(function () {
+		this.ctrRegistro = new RegistroSocios();
+		$('#botonSocio').css("border-bottom", "2px solid black");
+		$('#botonEmpresa').css("border-bottom", "none");
+		$('#divDocumentos').css("display", "none");
+		$('#lbNombre').html("Nombre");
+		$('#lbCedula').html("Cedula");
+		$('#divApellido').css("display", "block");
+		$('#divFecha').css("display", "block");
+		this.ctrRegistro.Limpiar();
+		tipoUsuario = 2;
+	});
 
 	$('#txtContrasenna2').keyup(function () {
 		var pass1 = $('#txtContrasenna').val();

@@ -4,35 +4,56 @@
 <script src="~/Scripts/Views/Map.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4aNZIQyvam7h8Zmdq8ldZ_7sdtVGcwtE&callback=initMap" defer></script>
 <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-
+<link rel="stylesheet" href="~/Content/Botones.css">
 @{ ViewBag.Title = "RegistroSocios"; Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 <h1>Registro Usuarios</h1>
 
 <div class="registroUsuario">
+    <div class="div">
+        <button class="botones" id="botonEmpresa" style="border-bottom: 2px solid black"> Registro Empresas</button>
+        <button class="botones" id="botonSocio"> Registro Usuarios Independientes</button>
+    </div>
     <form id="frmRegistro">
-        @Html.CtrlInput(id: "txtNombre", type: "text", label: "Nombre de la Empresa", columnDataName: "Nombre")
-        @Html.CtrlInput(id: "txtCorreo", type: "text", label: "Correo", columnDataName: "Correo")
-        @Html.CtrlInput(id: "txtCedula", type: "text", label: "Cédula Juridica", columnDataName: "Cedula")
-        @Html.CtrlInput(id: "txtTelefono", type: "text", label: "Télefono", columnDataName: "Telefono")
-        <h4>Personería Jurídica</h4>
-        @Html.CtrlButton(viewName: "RegistroSocios", id: "btnPersoneria", label: "Subir", onClickFunction: "SubirPersoneria", buttonType: "success")
-        <div class="alert-danger" id="alertPersoneria" style="display: none; margin: 10px; height: 30px; padding: 5px; font-weight: bold; width: 300px ">
-            Tienes que subir el documento
+        <label id="lbNombre">Nombre de la Empresa</label>
+        @Html.CtrlInput(id: "txtNombre", type: "text", label: "", columnDataName: "Nombre")
+        <div id="divApellido" style="display:none;">
+            <label>Primer Apellido</label>
+            @Html.CtrlInput(id: "txtApellidos", type: "text", label: "", columnDataName: "Apellidos")
         </div>
-        <div class="alert-success" id="alertVerificarPersoneria" style="display: none; margin: 10px; height: 30px; padding: 5px; font-weight: bold; width: 300px ">
-            Documento subido
-        </div>
-        <h4>Permiso de Operaciones</h4>
-        @Html.CtrlButton(viewName: "RegistroSocios", id: "btnOperaciones", label: "Subir", onClickFunction: "SubirOperaciones", buttonType: "success")
-        <div class="alert-danger" id="alertOperaciones" style="display: none; margin: 10px; height: 30px; padding: 5px; font-weight: bold; width: 300px ">
-            Tiene que subir el documento
-        </div>
-        <div class="alert-success" id="alertVerificarOperaciones" style="display: none; margin: 10px; height: 30px; padding: 5px; font-weight: bold; width: 300px">
-            Documento subido
+        <label id="lbCorreo">Correo</label>
+        @Html.CtrlInput(id: "txtCorreo", type: "text", label: "", columnDataName: "Correo")
+        <label id="lbCedula">Cedula Jurídica</label>
+        @Html.CtrlInput(id: "txtCedula", type: "text", label: "", columnDataName: "Cedula")
+        <label id="lbTelefono">Teléfono</label>
+        @Html.CtrlInput(id: "txtTelefono", type: "text", label: "", columnDataName: "Telefono")
+    <div id="divFecha" style="display:none;">
+        <label id="lbFecha">Fecha de Nacimiento</label>
+        @Html.CtrlInput(id: "txtFecha", type: "Date", label: "", columnDataName: "Fecha")
+    </div>
+
+
+        <div id="divDocumentos">
+            <h4>Personería Jurídica</h4>
+            @Html.CtrlButton(viewName: "RegistroSocios", id: "btnPersoneria", label: "Subir", onClickFunction: "SubirPersoneria", buttonType: "success")
+            <div class="alert-danger" id="alertPersoneria" style="display: none; margin: 10px; height: 30px; padding: 5px; font-weight: bold; width: 300px ">
+                Tienes que subir el documento
+            </div>
+            <div class="alert-success" id="alertVerificarPersoneria" style="display: none; margin: 10px; height: 30px; padding: 5px; font-weight: bold; width: 300px ">
+                Documento subido
+            </div>
+            <h4>Permiso de Operaciones</h4>
+            @Html.CtrlButton(viewName: "RegistroSocios", id: "btnOperaciones", label: "Subir", onClickFunction: "SubirOperaciones", buttonType: "success")
+            <div class="alert-danger" id="alertOperaciones" style="display: none; margin: 10px; height: 30px; padding: 5px; font-weight: bold; width: 300px ">
+                Tiene que subir el documento
+            </div>
+            <div class="alert-success" id="alertVerificarOperaciones" style="display: none; margin: 10px; height: 30px; padding: 5px; font-weight: bold; width: 300px">
+                Documento subido
+            </div>
         </div>
         <div style="height:20px"></div>
-        @Html.CtrlInput(id: "txtContrasenna", type: "password", label: "Contraseña", columnDataName: "ContrassenaActual")
+        <label>Contraseña</label>
+        @Html.CtrlInput(id: "txtContrasenna", type: "password", label: "", columnDataName: "ContrassenaActual")
         <div class="alert-info" id="ContrasennaSegura" style="width: 350px; height: auto; display: none;">
             La Contraseña debe tener minimo 8 caracteres:
             <br />
@@ -42,7 +63,8 @@
             <br />
             .Almenos un numero
         </div>
-        @Html.CtrlInput(id: "txtContrasenna2", type: "password", label: "Repetir Contraseña", columnDataName: "")
+        <label for="txtContrasenna2"> Repetir Contraseña </label>
+        @Html.CtrlInput(id: "txtContrasenna2", type: "password", label: "", columnDataName: "")
         <div style="height:20px"></div>
     </form>
 </div>
