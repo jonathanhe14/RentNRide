@@ -305,7 +305,16 @@ namespace WebApp.Controllers
 
 
         public ActionResult VehiculoInfo() {
-            return View();
+            if (Session["UserID"] != null)
+            {
+                ViewBag.Message = "Agregar vehiculo a rentar";
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("InicioSesion");
+            }
         }
         public ActionResult Contact()
         {

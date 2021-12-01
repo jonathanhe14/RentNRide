@@ -59,6 +59,25 @@ function ControlActions() {
 		return data;
 	}
 
+	this.GetDataFormVehi = function (formId) {
+
+		var data = {};
+
+		$('#' + formId + ' *').filter(':input').each(function (input) {
+			var columnDataName = $(this).attr("ColumnDataName");
+			data[columnDataName] = this.value;
+			//console.log(columnDataName, this.value);
+		});
+
+		return data;
+	}
+
+	this.GetCurrentEmail = function () {
+		var emailCurr = localStorage.getItem("Correo");
+		return emailCurr;
+	}
+
+
 	this.ShowMessage = function (type, message) {
 		if (type == 'E') {
 			$("#alert_container").removeClass("alert alert-success alert-dismissable")
@@ -78,7 +97,7 @@ function ControlActions() {
 			ctrlActions.ShowMessage('I', response.Message);
 
 			if (callBackFunction) {
-				callbackFunction(response.Data);
+				callBackFunction(response.Data);
 			}
 		})
 			.fail(function (response) {
@@ -94,7 +113,7 @@ function ControlActions() {
 			var ctrlActions = new ControlActions();
 			ctrlActions.ShowMessage('I', response.Message);
 			if (callBackFunction) {
-				callbackFunction(response.Data);
+				callBackFunction(response.Data);
 			}
 
 		})
@@ -106,12 +125,12 @@ function ControlActions() {
 			})
 	};
 
-	this.DeleteToAPI = function (service, data, callbackFunction) {
+	this.DeleteToAPI = function (service, data, callBackFunction) {
 		var jqxhr = $.delete(this.GetUrlApiService(service), data, function (response) {
 			var ctrlActions = new ControlActions();
 			ctrlActions.ShowMessage('I', response.Message);
 			if (callBackFunction) {
-				callbackFunction(response.Data);
+				callBackFunction(response.Data);
 			}
 		})
 			.fail(function (response) {

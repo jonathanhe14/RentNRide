@@ -16,9 +16,13 @@
 	
 
 	this.Create = function () {
-		console.log(document.getElementById("txtKilometraje").value);
-		console.log(document.getElementById("image").src);
 		//revisa si algo esta empty
+		//if (!document.getElementById("image")) {
+		//	console.log("pee");
+		//} else {
+		//	console.log("poo");
+  //      }
+
 		if (document.getElementById("Tipo").value == "null" || document.getElementById("Combustible").value == "null" ||
 			document.getElementById("Marca").value == "null" || document.getElementById("Modelo").value == "null") {
 
@@ -32,9 +36,9 @@
 			document.getElementById("txtcMalEstado").value == "" ||
 			document.getElementById("txtcLugarDiferente").value == "" ||
 			document.getElementById("txtTarifa").value == "" ||
-			document.getElementById("txtLatitud").value == "" ||
-			document.getElementById("txtLongitud").value == "" ||
-			document.getElementById("image").src == "https://localhost:44383/Home/null") {
+			document.getElementById("Latitud").value == "" ||
+			document.getElementById("Longitud").value == "" ||
+			!document.getElementById("image")) {
 
 
 			$("#alert_container").removeClass("alert alert-success alert-dismissable")
@@ -47,7 +51,7 @@
 
 			$("#alert_container").removeClass("alert alert-success alert-dismissable")
 			$("#alert_container").addClass("alert alert-danger alert-dismissable");
-			$("#alert_message").text("Falta documentos del vehiculo");
+			$("#alert_message").text("Falta subir documentos del vehiculo");
 			$('.alert').show();
 			/*
 		} else if (document.forms["txtDia"].value == "" ||
@@ -94,13 +98,41 @@
     }
 
 	this.CreateTwo = function (idData) {
+		var imges = "";
+		switch (imgNums) {
+			case 1:
+				imges = document.getElementById("image").src;
+				break;
+			case 2:
+				imges = document.getElementById("image").src + " , " + document.getElementById("image2").src;
+				break;
+			case 3:
+				imges = document.getElementById("image").src + " , " + document.getElementById("image2").src
+					+ " , " + document.getElementById("image3").src;
+				break;
+			case 4:
+				imges = document.getElementById("image").src + " , " + document.getElementById("image2").src
+					+ " , " + document.getElementById("image3").src + " , " + document.getElementById("image4").src;
+				break;
+			case 5:
+				imges = document.getElementById("image").src + " , " + document.getElementById("image2").src
+					+ " , " + document.getElementById("image3").src + " , " + document.getElementById("image4").src
+					+ " , " + document.getElementById("image5").src;
+				break;
+			default:
+			// code block
+		}
+
+		var loggedUser = this.ctrlActions.GetCurrentEmail();
+
 		var opcionesChoice = {
 			Tipo: document.getElementById("Tipo").value, Combustible: document.getElementById("Combustible").value,
 			Marca: document.getElementById("Marca").value, Modelo: document.getElementById("Modelo").value,
 			AccptInmediata: document.getElementById("txtAccptInmediata").value, Estado: document.getElementById("txtEstado").value,
-			Imagen: document.getElementById("image").src
+			Imagen: imges, Latitud: document.getElementById("Latitud").innerHTML,
+			Longitud: document.getElementById("Longitud").innerHTML, idUsuario: loggedUser
 		};
-		vehiculoData = this.ctrlActions.GetDataForm('frmEdition');
+		vehiculoData = this.ctrlActions.GetDataFormVehi('frmEdition');
 		Object.assign(finalData, idData, opcionesChoice, vehiculoData);
 
 		//console.log(customerData);
@@ -130,9 +162,10 @@
 		});
 	}
 
+	
 
-	this.CreateHora = function () {
-        horarioOne = this.ctrlActions.GetDataForm('horarioEdition');
+	this.CreateHora = function (idData) {
+		horarioOne = this.ctrlActions.GetDataFormVehi('horarioEdition');
 		var idDataTree = {Id : idData.Id};
 		Object.assign(finalHorario, horarioOne, idDataTree);
 
@@ -191,33 +224,25 @@ function initMap() {
 	});
 
 	//centrar el mapa a la posicion del parametro
-	map.setCenter(position);
+	  map.setCenter(position);
 	  document.getElementById('selectPosit').innerHTML = position;
+	  var str = document.getElementById('selectPosit').innerHTML;
+      var partsOfStr = str.replace(/[()]/g, '');
+	  var pieces = partsOfStr.split(',');
+	  console.log(pieces);
+	  document.getElementById('Latitud').innerHTML = pieces[0];
+	  document.getElementById('Longitud').innerHTML = pieces[1];
   }
 
 
 }
 
 
-function buscarUbicacion(lat, lon) {
-	latitud = parseFloat(lat);
-	longitud = parseFloat(lon);
 
-	map.setCenter(new google.maps.LatLng(latitud, longitud));
-
-	if (marker != null) {
-		marker.setMap(null);
-	}
-	var uluru = { lat: lat, lng: lon};
-	marker = new google.maps.Marker({
-		uluru,
-		map,
-	});
-}
 
 var urlImage;
 var urlDocumento;
-
+var imgNums = 0;
 
 function checkUploadResult (resultEvent) {
 	if (resultEvent && resultEvent.event === "success") {
@@ -256,7 +281,29 @@ function checkUploadResult4(resultEvent) {
 
 //image
 function showImage(urlImage) {
-	document.getElementById("image").src = urlImage;
+	
+	if (imgNums == 0) {
+		var img = document.createElement('img');
+		img.src = urlImage;
+		img.id = 'image';
+		document.getElementById('extraImages').appendChild(img);
+		imgNums++
+	} else if (imgNums < 4) {
+		//createimagethingindivide
+		imgNums++
+		var img = document.createElement('img');
+		img.src = urlImage;
+		img.id = 'image' + imgNums;
+		document.getElementById('extraImages').appendChild(img);
+	} else if (imgNums == 4) {
+		//remove button
+		imgNums++
+		var img = document.createElement('img');
+		img.src = urlImage;
+		img.id = 'image' + imgNums;
+		document.getElementById('extraImages').appendChild(img);
+		document.getElementById("txtImagen").remove();
+    }
 }
 
 //the four documents for the vehiculo
@@ -308,6 +355,8 @@ let myWidget4 = window.cloudinary.createUploadWidget({
 $(document).ready(function () {
 	initMap();
 
+
+	
 	//4 documents de vehiculo tambien
 
 	document.getElementById("txtImagen").addEventListener("click", function () {
@@ -329,21 +378,7 @@ $(document).ready(function () {
 	document.getElementById("doc4").addEventListener("click", function () {
 		myWidget4.open();
 	}, false);
-	/*
-	document.querySelector('Marca').addEventListener("change", function () {
-		var selected = document.getElementById("Marca").value;
-		for (var option of document.getElementById("Modelo")) {
-			var elementsOfIt = option.value;
-			if (elementsOfIt != selected) {
-				element.hide();
-			} else {
-				element.show();
-			}
 
-		}
-
-	});
-	*/
 	
 
 	//set it so it orders things of marca con modelo
@@ -413,41 +448,3 @@ function fillEmptySelect() {
 
 //			console.log("Marcador creado");
 //		}
-
-		
-
-
-
-
-
-
-
-/*
-var DocumentosFiles = cloudinary.createUploadWidget({
-	cloudName: 'cenfotec2021',
-	uploadPreset: 'Cenfo_preset'
-}, (error, result) => {
-	if (!error && result && result.event === "success") {
-		urlDocumento = result.info.secure_url;
-		this.ctrlActions.SubirDocumento(urlDocumento);
-	}
-}
-);
-
-
-
-
-
-var
-	file = (el[0].files ? el[0].files[0] : el[0].value || undefined),
-	supportedFormats = ['image/jpg', 'image/gif', 'image/png'];
-
-if (file && file.type) {
-	if (0 > supportedFormats.indexOf(file.type)) {
-		alert('unsupported format');
-	}
-	else {
-		upload();
-	}
-}
-*/

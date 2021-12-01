@@ -203,7 +203,6 @@
     <Content Include="Views\Home\EnvioOTP.cshtml" />
     <Content Include="Views\Home\IngresarOTP.cshtml" />
     <Content Include="Views\Home\RestablecerClave.cshtml" />
-    <Content Include="Views\Home\VehiculoInfo.cshtml" />
     <Content Include="Views\Home\Verificacion.cshtml" />
     <Content Include="Views\Home\Administrador.cshtml" />
     <Content Include="Views\Home\Finanzas.cshtml" />
@@ -212,6 +211,7 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Home\PerfilSocio.cshtml" />
     <Content Include="Views\Shared\_LayoutUsuario.cshtml" />
+    <Content Include="Views\Home\VehiculoInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
