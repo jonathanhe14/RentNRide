@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<main>
+    <div class="row">
+        <div class="col-md-12 table-card">
+            @Html.CtrlTable(viewName: "Administrador", id: "tblTiposCombustible", title: "Tipos de combustible",
+                                  columnsTitle: "Id,Nombre", ColumnsDataName: "Id,Nombre",
+                                  onSelectFunction: "BindFieldsTiposCombustibles", colorHeader: "red")
+            <div class="card border-secondary" style="margin-top: 50px;">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="bs-component">
+                            <form id="frmTiposCombustible">
+                                @Html.CtrlInput(id: "txtIdTiposCombustible", type: "text", label: "Id", columnDataName: "Id", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtNombreTiposCombustible", type: "text", label: "Nombre", columnDataName: "Nombre")
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.CtrlButton(viewName: "Administrador", id: "btnCreTiposCombustible", label: "Guardar Nuevo", onClickFunction: "CreTipoCombustible", buttonType: "success")
+                        @Html.CtrlButton(viewName: "Administrador", id: "btnUpdTiposCombustible", label: "Actualizar", onClickFunction: "UpdTipoCombustible", buttonType: "info")
+                        @Html.CtrlButton(viewName: "Administrador", id: "btnDelTiposCombustible", label: "Eliminar", onClickFunction: "DelTipoCombustible", buttonType: "danger")
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</main>

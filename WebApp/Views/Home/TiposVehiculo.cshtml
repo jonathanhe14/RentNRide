@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<main>
+
+    <div class="row">
+        <div class="col-md-12 table-card">
+            @Html.CtrlTable(viewName: "Administrador", id: "tblTiposVehiculo", title: "Tipos de vehículo",
+                               columnsTitle: "Id,Nombre", ColumnsDataName: "Id,Nombre",
+                               onSelectFunction: "BindFieldsTiposVehiculos", colorHeader: "red")
+            <div class="card border-secondary" style="margin-top: 50px;">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="bs-component">
+                            <form id="frmTiposVehiculo">
+                                @Html.CtrlInput(id: "txtIdTiposVehiculo", type: "text", label: "Id", columnDataName: "Id", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtNombreTiposVehiculo", type: "text", label: "Nombre", columnDataName: "Nombre")
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.CtrlButton(viewName: "Administrador", id: "btnCreTiposVehiculo", label: "Guardar Nuevo", onClickFunction: "CreTipoVehiculo", buttonType: "success")
+                        @Html.CtrlButton(viewName: "Administrador", id: "btnUpdTiposVehiculo", label: "Actualizar", onClickFunction: "UpdTipoVehiculo", buttonType: "info")
+                        @Html.CtrlButton(viewName: "Administrador", id: "btnDelTiposVehiculo", label: "Eliminar", onClickFunction: "DelTipoVehiculo", buttonType: "danger")
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+
+</main>

@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<main>
+    <div class="row">
+        <div class="col-md-12 table-card">
+
+            @Html.CtrlTable(viewName: "Modelos", id: "tblModelos", title: "Modelos",
+                            columnsTitle: "Id,Nombre,Marca", ColumnsDataName: "Id,Nombre,Marca",
+                            onSelectFunction: "BindFieldsModelos", colorHeader: "red")
+            <div class="card border-secondary" style="margin-top: 50px;">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="bs-component">
+                            <form id="frmModelo">
+                                @Html.CtrlInput(id: "txtIdModelo", type: "text", label: "Id", columnDataName: "Id", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtNombreModelo", type: "text", label: "Nombre", columnDataName: "Nombre")
+                                <!--Html.CtrlDropDown(id: "Marca", label: "Tipo Marca", listId: "LST_tipoMarca")-->
+                                <!--Lista de marcas-->
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.CtrlButton(viewName: "Modelos", id: "btnCreModelo", label: "Guardar Nuevo", onClickFunction: "CreModelo", buttonType: "success")
+                        @Html.CtrlButton(viewName: "Modelos", id: "btnUpdModelo", label: "Actualizar", onClickFunction: "UpdModelo", buttonType: "info")
+                        @Html.CtrlButton(viewName: "Modelos", id: "btnDelModelo", label: "Eliminar", onClickFunction: "DelModelo", buttonType: "danger")
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>

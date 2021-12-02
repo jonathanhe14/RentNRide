@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<main>
+
+    <div class="row">
+
+        <div class="col-md-12 table-card">
+
+            @Html.CtrlTable(viewName: "Marcas", id: "tblMarcas", title: "Marcas",
+                       columnsTitle: "Id,Nombre", ColumnsDataName: "Id,Nombre",
+                       onSelectFunction: "BindFieldsMarcas", colorHeader: "red")
+            <div class="card border-secondary" style="margin-top: 50px;">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="bs-component">
+                            <form id="frmMarca">
+                                @Html.CtrlInput(id: "txtIdMarca", type: "text", label: "Id", columnDataName: "Id", readOnly: "readonly")
+                                @Html.CtrlInput(id: "txtNombreMarca", type: "text", label: "Nombre", columnDataName: "Nombre")
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.CtrlButton(viewName: "Marcas", id: "btnCreMarca", label: "Guardar Nuevo", onClickFunction: "CreMarca", buttonType: "success")
+                        @Html.CtrlButton(viewName: "Marcas", id: "btnUpdMarca", label: "Actualizar", onClickFunction: "UpdMarca", buttonType: "info")
+                        @Html.CtrlButton(viewName: "Marcas", id: "btnDelMarca", label: "Eliminar", onClickFunction: "DelMarca", buttonType: "danger")
+                    </div>
+                </div>
+
+            </div>
+        </div>
+       
+    </div>
+
+</main>

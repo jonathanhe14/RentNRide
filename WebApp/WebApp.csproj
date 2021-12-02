@@ -175,11 +175,15 @@
     <Content Include="Scripts\Views\ControlActionsRegistro.js" />
     <Content Include="Scripts\Views\IniciarSesion.js" />
     <Content Include="Scripts\Views\Map.js" />
+    <Content Include="Scripts\Views\Marcas.js" />
+    <Content Include="Scripts\Views\Modelos.js" />
     <Content Include="Scripts\Views\PerfilSocio.js" />
     <Content Include="Scripts\Views\ReestablecerClave.js" />
     <Content Include="Scripts\Views\RegistroSocios.js" />
     <Content Include="Scripts\Views\RegistroUsuariosFinales.js" />
     <Content Include="Scripts\Views\Solicitudes.js" />
+    <Content Include="Scripts\Views\TiposCombustible.js" />
+    <Content Include="Scripts\Views\TiposVehiculos.js" />
     <Content Include="Scripts\Views\Usuarios.js" />
     <Content Include="Scripts\Views\Verificacion.js" />
     <Content Include="Scripts\Views\vVehiculo.js" />
@@ -204,7 +208,6 @@
     <Content Include="Views\Home\IngresarOTP.cshtml" />
     <Content Include="Views\Home\RestablecerClave.cshtml" />
     <Content Include="Views\Home\Verificacion.cshtml" />
-    <Content Include="Views\Home\Administrador.cshtml" />
     <Content Include="Views\Home\Finanzas.cshtml" />
     <Content Include="Views\Home\Solicitudes.cshtml" />
     <Content Include="Views\Home\Usuarios.cshtml" />
@@ -212,6 +215,11 @@
     <Content Include="Views\Home\PerfilSocio.cshtml" />
     <Content Include="Views\Shared\_LayoutUsuario.cshtml" />
     <Content Include="Views\Home\VehiculoInfo.cshtml" />
+    <Content Include="Views\Home\Administrador.cshtml" />
+    <Content Include="Views\Home\Marcas.cshtml" />
+    <Content Include="Views\Home\Modelos.cshtml" />
+    <Content Include="Views\Home\TiposCombustible.cshtml" />
+    <Content Include="Views\Home\TiposVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
