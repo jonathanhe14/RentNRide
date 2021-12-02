@@ -133,6 +133,7 @@
     <Compile Include="Models\Controls\CtrlInputModelAdmin.cs" />
     <Compile Include="Models\Controls\CtrlTableModel.cs" />
     <Compile Include="Models\Helpers\ControlExtensions.cs" />
+    <Compile Include="Models\RespuestaFallida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

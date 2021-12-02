@@ -41,22 +41,71 @@ namespace WebApp.Controllers
                     var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
                     var user = JsonConvert.DeserializeObject<UserProfile>(apiResponse.Data.ToString());
 
-                    Session["UserID"] = user;
-                    Session["FullName"] = user.FullName;
-                    
-                    return View("PerfilSocio");
+                    HttpResponseMessage responseRol = client.GetAsync("http://localhost:52125/api/userprofile/RolesPorUsuario?correo=" + user.UserName).Result;
+
+                    if (responseRol.IsSuccessStatusCode)
+                    {
+                        var contentRol = responseRol.Content.ReadAsStringAsync().Result;
+                        var apiResponseRol = JsonConvert.DeserializeObject<ApiResponse>(contentRol);
+                        List<UsuariosRol> rol = JsonConvert.DeserializeObject<List<UsuariosRol>>(apiResponseRol.Data.ToString());
+
+                        Session["Admin"] = verificarRol(rol, 1);
+                        Session["Socio"] = verificarRol(rol, 2);
+                        Session["Empresa"] = verificarRol(rol, 3);
+                        Session["Usuario"] = verificarRol(rol, 4);
+                        Session["UserID"] = user.UserName;
+                        Session["FullName"] = user.FullName;
+
+                        return View("PerfilSocio");
+                    }
+                    else
+                    {
+                        var contentRol = responseRol.Content.ReadAsStringAsync().Result;
+                        var error = JsonConvert.DeserializeObject<RespuestaFallida>(contentRol);
+                        ViewBag.Message = error.ExceptionMessage;
+                        return View(objUser);
+                    }
+
                 }
                 else
                 {
+                    var content = response.Content.ReadAsStringAsync().Result;
+                    var error = JsonConvert.DeserializeObject<RespuestaFallida>(content);
+                    ViewBag.Message = error.ExceptionMessage;
                     return View(objUser);
                 }
             }
             return View(objUser);
         }
 
+        public string verificarRol(List<UsuariosRol> roles, int id_rol)
+        {
+            string resultado = "no";
+
+            foreach (var item in roles)
+            {
+                if (item.IdRol == id_rol)
+                {
+                    if (item.Estado.Equals("Activo"))
+                    {
+                        resultado = "yes";
+                        break;
+                    }
+                }
+            }
+
+            return resultado;
+        }
+
         public ActionResult InicioSesion()
         {
             return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return View("Index");
         }
 
         [HttpPost]
@@ -78,21 +127,16 @@ namespace WebApp.Controllers
                     var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
                     var user = JsonConvert.DeserializeObject<Usuarios>(apiResponse.Data.ToString());
 
-                    if (apiResponse.Message == "success")
-                    {
                         TempData["correo"] = user.Correo;
                         TempData["telefono"] = user.Telefono;
 
-                        return new RedirectResult("IngresarOTP");
-                    }
-                    else
-                    {
-                        ViewBag.Message = apiResponse.Message;
-                        return View("EnvioOTP");
-                    }                
+                        return new RedirectResult("IngresarOTP");              
                 }
                 else
                 {
+                    var content = response.Content.ReadAsStringAsync().Result;
+                    var error = JsonConvert.DeserializeObject<RespuestaFallida>(content);
+                    ViewBag.Message = error.ExceptionMessage;
                     return View("EnvioOTP");
                 }
             }
@@ -118,21 +162,16 @@ namespace WebApp.Controllers
                     var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
                     var user = JsonConvert.DeserializeObject<Usuarios>(apiResponse.Data.ToString());
 
-                    if (apiResponse.Message == "success")
-                    {
                         TempData["correo"] = user.Correo;
                         TempData["telefono"] = user.Telefono;
 
                         return new RedirectResult("IngresarOTP");
-                    }
-                    else
-                    {
-                        ViewBag.Message = apiResponse.Message;
-                        return View("EnvioOTP");
-                    }
                 }
                 else
                 {
+                    var content = response.Content.ReadAsStringAsync().Result;
+                    var error = JsonConvert.DeserializeObject<RespuestaFallida>(content);
+                    ViewBag.Message = error.ExceptionMessage;
                     return View("EnvioOTP");
                 }
             }
@@ -166,27 +205,20 @@ namespace WebApp.Controllers
                     var content = response.Content.ReadAsStringAsync().Result;
 
                     var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
-                    if (apiResponse.Message == "success")
-                    {
+
                         var user = JsonConvert.DeserializeObject<Usuarios>(apiResponse.Data.ToString());
                         TempData["correo"] = correo;
                         TempData["telefono"] = telefono;
                         return new RedirectResult("RestablecerClave");
-
-                        //return View("RestablecerClave"); 
-                    }
-                    else
-                    {
-                        TempData["correo"] = correo;
-                        TempData["telefono"] = telefono;
-                        ViewBag.Message = apiResponse.Message;
-                        return View();
-                    }                 
-
                 }
                 else
                 {
-                    return View(objUser);
+                    TempData["correo"] = correo;
+                    TempData["telefono"] = telefono;
+                    var content = response.Content.ReadAsStringAsync().Result;
+                    var error = JsonConvert.DeserializeObject<RespuestaFallida>(content);
+                    ViewBag.Message = error.ExceptionMessage;
+                    return View("IngresarOTP");
                 }
             }
             return View("Index");
@@ -216,26 +248,20 @@ namespace WebApp.Controllers
                         var content = response.Content.ReadAsStringAsync().Result;
 
                         var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
-                        if (apiResponse.Message == "Su contraseña ha sido cambiada éxitosamente")
-                        {
+
                             var user = JsonConvert.DeserializeObject<Usuarios>(apiResponse.Data.ToString());
                             return new RedirectResult("InicioSesion");
-
-                        }
-                        else
-                        {
-                            ViewBag.Message = apiResponse.Message;
-                            TempData["correo"] = correo;
-                            TempData["telefono"] = telefono;
-                            return View();
-                        }
 
                     }
                     else
                     {
+                        TempData["correo"] = correo;
+                        TempData["telefono"] = telefono;
+                        var content = response.Content.ReadAsStringAsync().Result;
+                        var error = JsonConvert.DeserializeObject<RespuestaFallida>(content);
+                        ViewBag.Message = error.ExceptionMessage;
                         return View(objUser);
                     }
-
                 }
                 else
                 {
@@ -243,9 +269,7 @@ namespace WebApp.Controllers
                     TempData["correo"] = correo;
                     TempData["telefono"] = telefono;
                     return View();
-                }
-
-                
+                }              
 
 
             }

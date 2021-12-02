@@ -35,10 +35,26 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <!---<li>@Html.ActionLink("Home", "Index", "Home")</li>-->
-                    <li>@Html.ActionLink("Panel de control", "Administrador", "Home")</li>
-                    <li>@Html.ActionLink("Vehiculos", "VehiculoInfo", "Home")</li>
-                    <li>@Html.ActionLink("Cerrar Sesion", "InicioSesion", "Home")</li>
+                    @if (@Session["Admin"] == "yes")
+                    {
+                        <li>@Html.ActionLink("Panel de control", "Administrador", "Home")</li>
+}
 
+                    @if (@Session["Socio"] == "yes")
+                    {
+                        <li>@Html.ActionLink("Vehiculos", "VehiculoInfo", "Home")</li>
+}
+
+                    @if (@Session["Empresa"] == "yes")
+                    {
+                    }
+
+                    @if (@Session["Usuario"] == "yes")
+                    {
+                    }
+
+
+                    <li>@Html.ActionLink("Cerrar Sesion", "Logout", "Home", new { @class = "nav-link" })</li>
                 </ul>
             </div>
         </div>

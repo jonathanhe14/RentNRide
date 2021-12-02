@@ -57,6 +57,18 @@ namespace CoreAPI
             }
         }
 
+        public List<UsuariosRol> RetrieveAllById(Usuarios usuarios)
+        {
+            try
+            {
+                return crudRolesUsuarios.RetrieveAllByUser<UsuariosRol>(usuarios);
+            }
+            catch (Exception ex)
+            {
+                throw new BussinessException(0);
+            }
+        }
+
         public void Update(Usuarios usuarios)
         {
             try

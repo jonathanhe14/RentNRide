@@ -121,6 +121,28 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpGet]
+        public IHttpActionResult RolesPorUsuario(string correo)
+        {
+            try
+            {
+                var mng = new RolesUManager();
+                Usuarios user = new Usuarios
+                {
+                    Correo = correo
+                };
+                List<UsuariosRol> roles = mng.RetrieveAllById(user);
+                apiResp = new ApiResponse();
+                apiResp.Message = "success";
+                apiResp.Data = roles;
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }
+        }
+
 
     }
 }

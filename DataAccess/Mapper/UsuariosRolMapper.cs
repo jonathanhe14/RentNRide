@@ -45,8 +45,8 @@ namespace DataAccess.Mapper
         {
             var operation = new SqlOperation { ProcedureName = "RET_ROL_USUARIO_PR" };
 
-            var ur = (UsuariosRol)entity;
-            operation.AddVarcharParam(DB_COL_ID_USUARIO, ur.IdUsuario);
+            var ur = (Usuarios)entity;
+            operation.AddVarcharParam(DB_COL_ID_USUARIO, ur.Correo);
 
             return operation;
         }
