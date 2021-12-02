@@ -359,5 +359,11 @@ namespace WebApp.Controllers
 
             return View();
         }
+
+        public ActionResult Horario()
+        {
+            return View();
+        }
+
     }
 }

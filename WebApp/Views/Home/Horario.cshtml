@@ -1,0 +1,36 @@
+﻿@using WebApp.Models.Helpers;
+
+
+@{
+    ViewBag.Title = "Horario";
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
+}
+
+<h2>Horario</h2>
+
+<script src="~/Scripts/Views/ControlActions.js"></script>
+<script src="~/Scripts/Views/Horario.js"></script>
+
+<button id="btn-agregar-fila">Agregar un horario</button>
+
+<button id="btn-datos">Obtener datos</button>
+<button id="btn-imprimir">Ver datos</button>
+
+
+<table class="table table-hover table-striped" id="tbl-horarios">
+    <tr>
+        <th>Hora Inicio</th>
+        <th>Hora Final</th>
+        <th>Opción dias</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miércoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+        <th>Sábado</th>
+        <th>Domingo</th>
+        <th></th>
+    </tr>
+</table>
+
+@Html.CtrlButton(viewName: "Horario", id: "btnCreate", label: "Registrar", onClickFunction: "Create", buttonType: "success")

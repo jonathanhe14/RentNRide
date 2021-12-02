@@ -52,18 +52,18 @@ namespace WebAPI.Controllers
 
         // POST 
         // CREATE
-        public IHttpActionResult Post(Horario horario)
+        [HttpPost]
+        public IHttpActionResult CrearHorario(Horario horario)
         {
-
             try
             {
-                var mng = new HorarioManager();
-                mng.Create(horario);
+            var mng = new HorarioManager();
+            mng.Create(horario);
 
-                apiResp = new ApiResponse();
-                apiResp.Message = "Action was executed.";
+            apiResp = new ApiResponse();
+            apiResp.Message = "Action was executed.";
 
-                return Ok(apiResp);
+            return Ok(apiResp);
             }
             catch (BussinessException bex)
             {
