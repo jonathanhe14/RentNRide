@@ -86,7 +86,31 @@ namespace CoreAPI
             }
             return false;
         }
-
+        public List<Vehiculo> RetrieveByEmail(Vehiculo vehiculo)
+        {
+            try
+            {
+                return crudVehiculo.TraerVehiEmail<Vehiculo>(vehiculo);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.GetInstance().Process(ex);
+                throw new BussinessException(0);
+            }
+        }
+        public int GetAmount(Vehiculo vehiculo)
+        {
+            try
+            {
+                int beef = crudVehiculo.TraerVehiEmail<Vehiculo>(vehiculo).Count;
+                return beef;
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.GetInstance().Process(ex);
+                throw new BussinessException(0);
+            }
+        }
         public void Update(Vehiculo vehiculo)
         {
             crudVehiculo.Update(vehiculo);

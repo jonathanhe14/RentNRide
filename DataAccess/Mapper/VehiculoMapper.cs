@@ -70,6 +70,15 @@ namespace DataAccess.Mapper
             return operation;
         }
 
+
+        public SqlOperation VehiList(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_VEHICULO_USUARIO_PR" };
+            var c = (Vehiculo)entity;
+            operation.AddVarcharParam(DB_COL_USUARIO, c.idUsuario);
+            return operation;
+        }
+
         public SqlOperation GetUpdateStatement(BaseEntity entity)
         {
             var operation = new SqlOperation { ProcedureName = "UPD_VEHICULO_PR" };

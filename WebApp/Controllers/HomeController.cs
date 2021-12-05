@@ -365,5 +365,29 @@ namespace WebApp.Controllers
             return View();
         }
 
+        public ActionResult SocioDashboard()
+        {
+            if (Session["UserID"] != null)
+            {
+                ViewBag.Message = "vehiculos del Socio";
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("InicioSesion");
+            }
+        }
+        public ActionResult SocioVehiculos()
+        {
+            if (Session["UserID"] != null)
+            {
+                ViewBag.Message = "vehiculos del Socio";
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("InicioSesion");
+            }
+        }
     }
 }

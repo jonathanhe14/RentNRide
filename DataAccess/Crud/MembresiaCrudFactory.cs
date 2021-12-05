@@ -77,5 +77,20 @@ namespace DataAccess.Crud {
             var Membresia = (Membresias) entity;
             dao.ExecuteProcedure(mapper.GetUpdateStatement(Membresia));
         }
+
+        public T RetrieveByUser<T>(BaseEntity entity)
+        {
+            var sqlOperation = mapper.GetRetriveStatement(entity);
+            var lstResult = dao.ExecuteQueryProcedure(sqlOperation);
+            var dic = new Dictionary<string, object>();
+            if (lstResult.Count > 0)
+            {
+                dic = lstResult[0];
+                var objs = mapper.BuildObjectId(dic);
+                return (T)Convert.ChangeType(objs, typeof(T));
+            }
+            return default(T);
+        }
+
     }
 }

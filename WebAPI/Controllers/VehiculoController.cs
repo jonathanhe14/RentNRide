@@ -17,6 +17,7 @@ namespace WebAPI.Controllers
 
         // GET api/vehiculo
         // Retrieve
+        ListController listi = new ListController();
         public IHttpActionResult Get()
         {
 
@@ -124,6 +125,64 @@ namespace WebAPI.Controllers
 
                 apiResp = new ApiResponse();
                 apiResp.Message = "Action was executed.";
+
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }
+        }
+
+        public IHttpActionResult GetV(string correo)
+        {
+            try
+            {
+                var mng = new VehiculoManager();
+                var customer = new Vehiculo
+                {
+                    idUsuario = correo
+                };
+                apiResp = new ApiResponse();
+                List<Object> trueVehi = new List<Object>();
+                var vvehiculo = mng.RetrieveByEmail(customer);
+                /*
+                var tipo = listi.GetTableSpace("LST_tipoVehi");
+                var combust = listi.GetTableSpace("LST_tipoCombu");
+                var marca = listi.GetTableSpace("LST_tipoMarca");
+                var modelo = listi.GetTableSpace("LST_tipoModelo");
+                trueVehi = (T)Convert.ChangeType(vvehiculo, typeof(T));
+                foreach (var vehicul in vvehiculo)
+                {
+                    var currTyp = vehicul.Tipo;
+                    foreach (var typ in tipo)
+                    {
+                        if (currTyp == typ.id)
+                        {
+                            vehicul.Tipo = typ.nombre;
+                        }
+                    }
+                }
+                */
+                apiResp.Data = vvehiculo;
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }
+        }
+        public IHttpActionResult GetData(string correo)
+        {
+            try
+            {
+                var mng = new VehiculoManager();
+                var customer = new Vehiculo
+                {
+                    idUsuario = correo
+                };
+                apiResp = new ApiResponse();
+                apiResp.Data = mng.GetAmount(customer);
 
                 return Ok(apiResp);
             }

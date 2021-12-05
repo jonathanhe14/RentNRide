@@ -43,6 +43,21 @@ namespace DataAccess.Crud
             return default(T);
         }
 
+        public List<T> TraerVehiEmail<T>(BaseEntity entity)
+        {
+            var lstUsuarios = new List<T>();
+            var lstResult = dao.ExecuteQueryProcedure(mapper.VehiList(entity));
+            var dic = new Dictionary<string, object>();
+            if (lstResult.Count > 0)
+            {
+                var objs = mapper.BuildObjects(lstResult);
+                foreach (var c in objs)
+                {
+                    lstUsuarios.Add((T)Convert.ChangeType(c, typeof(T)));
+                }
+            }
+            return lstUsuarios;
+        }
         public override List<T> RetrieveAll<T>()
         {
             var lstCustomers = new List<T>();

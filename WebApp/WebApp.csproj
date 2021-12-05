@@ -183,6 +183,8 @@
     <Content Include="Scripts\Views\ReestablecerClave.js" />
     <Content Include="Scripts\Views\RegistroSocios.js" />
     <Content Include="Scripts\Views\RegistroUsuariosFinales.js" />
+    <Content Include="Scripts\Views\SocioDashboard.js" />
+    <Content Include="Scripts\Views\SocioVehiculos.js" />
     <Content Include="Scripts\Views\Solicitudes.js" />
     <Content Include="Scripts\Views\TiposCombustible.js" />
     <Content Include="Scripts\Views\TiposVehiculos.js" />
@@ -223,6 +225,8 @@
     <Content Include="Views\Home\TiposCombustible.cshtml" />
     <Content Include="Views\Home\TiposVehiculo.cshtml" />
     <Content Include="Views\Home\Horario.cshtml" />
+    <Content Include="Views\Home\SocioDashboard.cshtml" />
+    <Content Include="Views\Home\SocioVehiculos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
