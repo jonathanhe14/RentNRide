@@ -40,12 +40,12 @@ namespace CoreAPI
             return crudHorario.RetrieveAll<Horario>();
         }
 
-        public Horario RetrieveById(Horario horario)
+        public List<Horario> RetrieveById(Horario horario)
         {
-            Horario c = null;
+            List<Horario> c = null;
             try
             {
-                c = crudHorario.Retrieve<Horario>(horario);
+                c = crudHorario.RetrieveByCar<Horario>(horario);
                 if (c == null)
                 {
                     throw new BussinessException(4);

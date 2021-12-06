@@ -50,6 +50,7 @@
     <Compile Include="Crud\DocumentoCrudFactory.cs" />
     <Compile Include="Crud\ExceptionsCrudFactory.cs" />
     <Compile Include="Crud\HorarioCrudFactory.cs" />
+    <Compile Include="Crud\ListOptionCrudFactory.cs" />
     <Compile Include="Crud\MarcaCrudFactory.cs" />
     <Compile Include="Crud\MarcaVehiCrudFactory.cs" />
     <Compile Include="Crud\MembresiaCrudFactory.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Mapper\HorarioMapper.cs" />
     <Compile Include="Mapper\IObjectMapper.cs" />
     <Compile Include="Mapper\ISqlStatements.cs" />
+    <Compile Include="Mapper\ListOptionMapper.cs" />
     <Compile Include="Mapper\MarcaMapper.cs" />
     <Compile Include="Mapper\MarcaVehiMapper.cs" />
     <Compile Include="Mapper\MembresiaMapper.cs" />

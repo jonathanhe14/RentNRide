@@ -32,6 +32,25 @@ namespace WebAPI.Controllers
             }
         }
 
+
+        [HttpGet]
+        public IHttpActionResult GetOptions(string id)
+        {
+            try
+            {
+                var mng = ListManager.GetInstance();
+                var option = new OptionList();
+                option.ListId = id;
+
+                var lstOptions = mng.RetrieveById1(option);
+                return Ok(lstOptions);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }
+        }
+
         /*
         public IHttpActionResult Get()
         {

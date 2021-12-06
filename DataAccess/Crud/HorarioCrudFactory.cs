@@ -43,6 +43,24 @@ namespace DataAccess.Crud
             return default(T);
         }
 
+        public List<T> RetrieveByCar<T>(BaseEntity entity)
+        {
+            var lstHorarios = new List<T>();
+
+            var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveAllStatement());
+            var dic = new Dictionary<string, object>();
+            if (lstResult.Count > 0)
+            {
+                var objs = mapper.BuildObjects(lstResult);
+                foreach (var c in objs)
+                {
+                    lstHorarios.Add((T)Convert.ChangeType(c, typeof(T)));
+                }
+            }
+
+            return lstHorarios;
+        }
+
         public override List<T> RetrieveAll<T>()
         {
             var lstHorarios = new List<T>();

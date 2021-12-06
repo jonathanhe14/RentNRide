@@ -12,22 +12,27 @@ namespace DataAccess.Mapper
     {
 
 
-        private const string DB_COL_ID = "Id_Vehiculo";
-        private const string DB_COL_DIA = "DIA";
-        private const string DB_COL_HORA_INICIO = "HORARIO_INICIO";
-        private const string DB_COL_HORA_FIN = "HORARIO_FIN";
-        
+        private const string DB_COL_Id_Vehiculo = "Id_Vehiculo";
+        private const string DB_COL_HORA_INICIO = "HORA_INICIO";
+        private const string DB_COL_HORA_FIN = "HORA_FIN";
+        private const string DB_COL_ID = "id";
+        private const string DB_COL_DISPONIBILIDAD = "DISPONIBILIDAD";
+        private const string DB_COL_DIA_INICIAL = "DIA_INICIAL";
+        private const string DB_COL_DIA_FINAL = "DIA_FINAL";
+
 
         public SqlOperation GetCreateStatement(BaseEntity entity)
         {
             var operation = new SqlOperation { ProcedureName = "CRE_HORARIO_PR" };
 
             var c = (Horario)entity;
-            operation.AddIntParam(DB_COL_ID, c.Id);
-            operation.AddDateTimeParam(DB_COL_DIA, c.Dia);
+            operation.AddIntParam(DB_COL_Id_Vehiculo, c.Id_Vehiculo);
             operation.AddVarcharParam(DB_COL_HORA_INICIO, c.horaInicio);
             operation.AddVarcharParam(DB_COL_HORA_FIN, c.horaFinal);
-            
+            operation.AddVarcharParam(DB_COL_DISPONIBILIDAD, c.Disponibilidad);
+            operation.AddIntParam(DB_COL_DIA_INICIAL, c.DiaInicial);
+            operation.AddIntParam(DB_COL_DIA_FINAL, c.DiaFinal);
+
 
             return operation;
         }
@@ -38,7 +43,7 @@ namespace DataAccess.Mapper
             var operation = new SqlOperation { ProcedureName = "RET_HORARIO_PR" };
 
             var c = (Horario)entity;
-            operation.AddIntParam(DB_COL_ID, c.Id);
+            operation.AddIntParam(DB_COL_Id_Vehiculo, c.Id_Vehiculo);
 
             return operation;
         }
@@ -54,10 +59,13 @@ namespace DataAccess.Mapper
             var operation = new SqlOperation { ProcedureName = "UPD_HORARIO_PR" };
 
             var c = (Horario)entity;
-            operation.AddIntParam(DB_COL_ID, c.Id);
-            operation.AddDateTimeParam(DB_COL_DIA, c.Dia);
+            operation.AddIntParam(DB_COL_Id_Vehiculo, c.Id_Vehiculo);
+            operation.AddIntParam(DB_COL_DIA_INICIAL, c.DiaInicial);
+            operation.AddIntParam(DB_COL_DIA_FINAL, c.DiaFinal);
             operation.AddVarcharParam(DB_COL_HORA_INICIO, c.horaInicio);
             operation.AddVarcharParam(DB_COL_HORA_FIN, c.horaFinal);
+            operation.AddVarcharParam(DB_COL_DISPONIBILIDAD, c.Disponibilidad);
+            operation.AddIntParam(DB_COL_ID, c.Id);
 
 
             return operation;
@@ -89,10 +97,13 @@ namespace DataAccess.Mapper
         {
             var horario = new Horario
             {
-                Id = GetIntValue(row, DB_COL_ID),
-                Dia = GetDateValue(row, DB_COL_DIA),
+                Id_Vehiculo = GetIntValue(row, DB_COL_Id_Vehiculo),
                 horaInicio = GetStringValue(row, DB_COL_HORA_INICIO),
                 horaFinal = GetStringValue(row, DB_COL_HORA_FIN),
+                Id = GetIntValue(row, DB_COL_ID),
+                Disponibilidad = GetStringValue(row, DB_COL_DISPONIBILIDAD),
+                DiaInicial = GetIntValue(row, DB_COL_DIA_INICIAL),
+                DiaFinal = GetIntValue(row, DB_COL_DIA_FINAL)
             };
 
             return horario;

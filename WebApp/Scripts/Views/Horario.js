@@ -1,4 +1,8 @@
-﻿function Horario() {
+﻿var data = [];
+var resultado = false;
+var lista = [];
+
+function Horario() {
 
 	this.URL_API = "http://localhost:52125/api/";
 
@@ -9,16 +13,37 @@
 	this.service = 'horario';
 
 	this.Create = function () {
-		var data = {};
+		$('#tbl-horarios > tbody > tr').each(function () {
 
-		/*data["Id"] = 30041;
-		data["Dia"] = "12/31/2001";
-		data["horaInicio"] = "05:00";
-		data["horaFinal"] = "06:00";*/
+			var hora_Inicio = $(this).find('.txtHoraInicio').val();
+			var hora_Final = $(this).find('.txtHoraFinal').val();
+			var dia_Inicial = $(this).find('.diaInicial').find(":selected").val();
+			var dia_Final = $(this).find('.diaFinal').find(":selected").val();
 
+			if (hora_Inicio && hora_Final && dia_Inicial && dia_Final) {
+				data.push({
+					Id_Vehiculo: 30041,
+					horaInicio: hora_Inicio,
+					horaFinal: hora_Final,
+					Disponibilidad: "Libre",
+					DiaInicial: Number(dia_Inicial),
+					DiaFinal: Number(dia_Final)
+				});
+			}
+		});
 
-		//Hace el post al create
-		this.PostToAPI(this.service + "/CrearHorario", data);
+		//var prueba = this.buscarDuplicados(data);
+
+		//if (!prueba) {
+		datos = JSON.stringify(data);
+
+		this.PostToAPI_Json(this.service + "/CrearHorario", datos);
+		/*} else {
+			alert("¡Cuidado! Existe un traslape de horarios.");
+			while (data.length) {
+				data.pop();
+			}
+		};*/
 	}
 
 	this.ShowMessage = function (type) {
@@ -34,39 +59,85 @@
 
 	};
 
+	this.buscarDuplicados = function () {
+		var i = 0;
+		while (data.length != 0) {
+			for (var k = 1; k < data.length; k++) {
+				if (this.between(data[k].DiaInicial, data[i].DiaInicial, data[i].DiaFinal) &&
+					this.between(data[k].DiaFinal, data[i].DiaInicial, data[i].DiaFinal) &&
+					this.between(Number(data[k].horaInicio.match(/^[0-9]+/)[0]), Number(data[i].horaInicio.match(/^[0-9]+/)[0]), Number(data[i].horaFinal.match(/^[0-9]+/)[0])) &&
+					this.between(Number(data[k].horaFinal.match(/^[0-9]+/)[0]), Number(data[i].horaInicio.match(/^[0-9]+/)[0]), Number(data[i].horaFinal.match(/^[0-9]+/)[0]))) {
+					resultado = true;
+					break;
+				}
+			}
+			data.shift();
+			i++;
+		}
+		return resultado;
+	};
 
-	this.PostToAPI = function (service, data, callBackFunction) {
-		var jqxhr = $.post(this.GetUrlApiService(service), data, function (response) {
-			var horario = new Horario();
-			horario.ShowMessage('I');
+	this.between = function (x, min, max) {
+		return x >= min && x <= max;
+	};
 
-			if (callBackFunction) {
-				callbackFunction(response.Data);
+
+	this.PostToAPI_Json = function (service, data, callBackFunction) {
+		$.ajax({
+			url: this.GetUrlApiService(service),
+			type: "POST",
+			data: data,
+			contentType: "application/json; charset=utf-8",
+			dataType: "json",
+			success: function (response) {
+				var ctrlActions = new ControlActions();
+				ctrlActions.ShowMessage('I', response.Message);
+				if (callBackFunction) {
+					callBackFunction(response.Data);
+				}
+			},
+			fail: function (response) {
+				var data = response.responseJSON;
+				var ctrlActions = new ControlActions();
+				ctrlActions.ShowMessage('E', data.ExceptionMessage);
+				console.log(data);
 			}
 		})
-			.fail(function (response) {
-				var horario = new Horario();
-				horario.ShowMessage('E');
-			})
 	};
+		
 
 }
 
 
 $(document).ready(function () {
+
+	//Meter aquí un menú de opciones.
 	$("#btn-agregar-fila").click(function () {
-		var txtHoraInicio = "<input type='time' class='txtHoraInicio form-control'>";
-		var txtHoraFinal = "<input type='time' class='txtHoraFinal form-control' disabled>";
 		var opciones = "<button>nada</button>";
-		var lunes = "<input type = 'checkbox' class='lunes form-control' value='1'";
-		var martes = "<input type = 'checkbox' class='martes form-control' value='2'";
-		var miercoles = "<input type = 'checkbox' class='miercoles form-control' value='3'";
-		var jueves = "<input type = 'checkbox' class='jueves form-control' value='4'";
-		var viernes = "<input type = 'checkbox' class='viernes form-control' value='5'";
-		var sabado = "<input type = 'checkbox' class='sabado form-control' value='6'";
-		var domingo = "<input type = 'checkbox' class='domingo form-control' value='7'";
+		var diaInicial = "<select name='diaInicial' class='diaInicial form-control'>" +
+			"<option value=1>Lunes</option>" +
+			"<option value=2>Martes</option>" +
+			"<option value=3>Miércoles</option>" +
+			"<option value=4>Jueves</option>" +
+			"<option value=5>Viernes</option>" +
+			"<option value=6>Sábado</option>" +
+			"<option value=7>Domingo</option>" +
+			"</select > ";
+		var txtHoraInicio = "<input type='time' class='txtHoraInicio form-control'>";
+		var diaFinal = "<select name='diaFinal' class='diaFinal form-control'>" +
+			"<option value=1>Lunes</option>" +
+			"<option value=2>Martes</option>" +
+			"<option value=3>Miércoles</option>" +
+			"<option value=4>Jueves</option>" +
+			"<option value=5>Viernes</option>" +
+			"<option value=6>Sábado</option>" +
+			"<option value=7>Domingo</option>" +
+			"</select > ";
+		var txtHoraFinal = "<input type='time' class='txtHoraFinal form-control' disabled>";
 		var eliminar = "<button class='btnDelete'>Eliminar</button>";
-		var markup = "<tr><td> " + txtHoraInicio + "</td><td>" + txtHoraFinal + "</td><td>" + opciones + "</td><td>" + lunes + "</td><td>" + martes + "</td><td>" + miercoles + "</td><td>" + jueves + "</td><td>" + viernes + "</td><td>" + sabado + "</td><td>" + domingo + "</td><td>" + eliminar + "</td></tr>";
+		var alerta = "<div class='mensaje alert-danger'></div>"
+		var markup = "<tr><td> " + opciones + "</td><td>" + diaInicial + "</td><td>" + txtHoraInicio +
+			"</td><td>" + diaFinal + "</td><td>" + txtHoraFinal + "</td><td>" + eliminar + "</td><td>" + alerta + "</td></tr>";
 		$("#tbl-horarios").append(markup);
 	});
 
@@ -75,39 +146,124 @@ $(document).ready(function () {
 	});
 
 	$("#tbl-horarios").on('change', '.txtHoraInicio', function () {
-		$(this).closest('tr').find('.txtHoraFinal').prop('disabled', false);
-		var fecha = new Date(this.valueAsDate);
-		var h = fecha.getHours() + 6;
-		var m = fecha.getMinutes();
-		if (h < 10) h = '0' + h;
-		if (m < 10) m = '0' + m;
-		$(this).closest('tr').find('.txtHoraFinal').attr({ 'value': h + ':' + m }, { 'min': h + ':' + m });
+		if ($(this).closest('tr').find('.txtHoraFinal').is(':disabled')) {
+			$(this).closest('tr').find('.txtHoraFinal').prop('disabled', false);
+			var fecha = new Date(this.valueAsDate);
+			var h = fecha.getHours() + 6;
+			var m = fecha.getMinutes();
+			if (h < 10) h = '0' + h;
+			if (m < 10) m = '0' + m;
+			$(this).closest('tr').find('.txtHoraFinal').attr({ 'value': h + ':' + m }, { 'min': h + ':' + m });
+		} else {
+			var hora_final = Number($(this).closest('tr').find('.txtHoraFinal').val().match(/^[0-9]+/)[0]);
+			var hora_inicial = Number($(this).closest('tr').find('.txtHoraInicio').val().match(/^[0-9]+/)[0]);
+			var dia_inicial = Number($(this).closest('tr').find('.diaInicial').val());
+			var dia_final = Number($(this).closest('tr').find('.diaFinal').val());
+			var mensaje = $(this).closest('tr').find('.mensaje');
+
+			if (dia_inicial == dia_final && hora_final <= hora_inicial) {
+				mensaje.text("La hora final no puede ser anterior a la hora inicial en un mismo día");
+			} else {
+				mensaje.text("");
+			}
+		}
+
 	});
 
-	var data = [];
+	//Validar en la hora final
+	$("#tbl-horarios").on('change', '.txtHoraFinal', function () {
+
+		var hora_final = Number($(this).val().match(/^[0-9]+/)[0]);
+		var hora_inicial = Number($(this).closest('tr').find('.txtHoraInicio').val().match(/^[0-9]+/)[0]);
+		var dia_inicial = Number($(this).closest('tr').find('.diaInicial').val());
+		var dia_final = Number($(this).closest('tr').find('.diaFinal').val());
+		var mensaje = $(this).closest('tr').find('.mensaje');
+
+		if (dia_inicial == dia_final && hora_final <= hora_inicial) {
+			mensaje.text("La hora final no puede ser anterior a la hora inicial en un mismo día");
+		} else {
+			mensaje.text("");
+		}
+	});
+
+	//Validar cambios en el día inicial
+	$("#tbl-horarios").on('change', '.diaInicial', function () {
+		var hora_final = Number($(this).closest('tr').find('.txtHoraFinal').val().match(/^[0-9]+/)[0]);
+		var hora_inicial = Number($(this).closest('tr').find('.txtHoraInicio').val().match(/^[0-9]+/)[0]);
+		var dia_inicial = Number($(this).closest('tr').find('.diaInicial').val());
+		var dia_final = Number($(this).closest('tr').find('.diaFinal').val());
+		var mensaje = $(this).closest('tr').find('.mensaje');
+
+		if (dia_inicial == dia_final && hora_final <= hora_inicial) {
+			mensaje.text("La hora final no puede ser anterior a la hora inicial en un mismo día");
+		} else {
+			mensaje.text("");
+		}
+	});
+
+	//Validar cambios en el día final
+	$("#tbl-horarios").on('change', '.diaFinal', function () {
+		var hora_final = Number($(this).closest('tr').find('.txtHoraFinal').val().match(/^[0-9]+/)[0]);
+		var hora_inicial = Number($(this).closest('tr').find('.txtHoraInicio').val().match(/^[0-9]+/)[0]);
+		var dia_inicial = Number($(this).closest('tr').find('.diaInicial').val());
+		var dia_final = Number($(this).closest('tr').find('.diaFinal').val());
+		var mensaje = $(this).closest('tr').find('.mensaje');
+
+		if (dia_inicial == dia_final && hora_final <= hora_inicial) {
+			mensaje.text("La hora final no puede ser anterior a la hora inicial en un mismo día");
+		} else {
+			mensaje.text("");
+		}
+	});
+
+
+
 
 	$("#btn-datos").click(function () {
 		$('#tbl-horarios > tbody > tr').each(function () {
 
 			var hora_Inicio = $(this).find('.txtHoraInicio').val();
 			var hora_Final = $(this).find('.txtHoraFinal').val();
+			var dia_Inicial = $(this).find('.diaInicial').find(":selected").val();
+			var dia_Final = $(this).find('.diaFinal').find(":selected").val();
 
-			$(this).find('input[type="checkbox"]').each(function () {
-				if ($(this).prop("checked") && hora_Inicio && hora_Final) {
-					data.push({
-						Dia: $(this).val(),
-						horaInicio: hora_Inicio,
-						horaFinal: hora_Final
-					});
-				}
-			});
-
+			if (hora_Inicio && hora_Final && dia_Inicial && dia_Final) {
+				data.push({
+					Id_Vehiculo: 30041,
+					horaInicio: hora_Inicio,
+					horaFinal: hora_Final,
+					Disponibilidad: "Libre",
+					DiaInicial: Number(dia_Inicial),
+					DiaFinal: Number(dia_Final)
+				});
+			}
 		});
 
 	});
 
 	$("#btn-imprimir").click(function () {
-		console.log(data);
+		var i = 0;
+		var resultado = false;
+		while (data.length != 0) {
+			for (var k = 1; k < data.length; k++) {
+				if (between(data[k].DiaInicial, data[i].DiaInicial, data[i].DiaFinal) &&
+					between(data[k].DiaFinal, data[i].DiaInicial, data[i].DiaFinal) &&
+					between(Number(data[k].horaInicio.match(/^[0-9]+/)[0]), Number(data[i].horaInicio.match(/^[0-9]+/)[0]), Number(data[i].horaFinal.match(/^[0-9]+/)[0])) &&
+					between(Number(data[k].horaFinal.match(/^[0-9]+/)[0]), Number(data[i].horaInicio.match(/^[0-9]+/)[0]), Number(data[i].horaFinal.match(/^[0-9]+/)[0]))) {
+					console.log("¡Cuidado! Existe un traslape de horarios. Caso 1");
+					resultado = true;
+					break;
+				}
+			}
+			data.shift();
+			i++;
+		}
+
 	});
+
+
+	function between(x, min, max) {
+		return x >= min && x <= max;
+	}
 
 });

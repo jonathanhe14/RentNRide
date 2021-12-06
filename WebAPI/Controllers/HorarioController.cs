@@ -15,50 +15,16 @@ namespace WebAPI.Controllers
 
         ApiResponse apiResp = new ApiResponse();
 
-        // GET api/vehiculo
-        // Retrieve
-        public IHttpActionResult Get()
-        {
-
-            apiResp = new ApiResponse();
-            var mng = new HorarioManager();
-            apiResp.Data = mng.RetrieveAll();
-
-            return Ok(apiResp);
-        }
-
-        // GET api/
-        // Retrieve by id
-        public IHttpActionResult Get(int id)
-        {
-            try
-            {
-                var mng = new HorarioManager();
-                var customer = new Horario
-                {
-                    Id = id
-                };
-
-                customer = mng.RetrieveById(customer);
-                apiResp = new ApiResponse();
-                apiResp.Data = customer;
-                return Ok(apiResp);
-            }
-            catch (BussinessException bex)
-            {
-                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
-            }
-        }
-
-        // POST 
-        // CREATE
         [HttpPost]
-        public IHttpActionResult CrearHorario(Horario horario)
+        public IHttpActionResult CrearHorario(List<Horario> lstHorarios)
         {
             try
             {
             var mng = new HorarioManager();
-            mng.Create(horario);
+            foreach (var horario in lstHorarios)
+            {
+                mng.Create(horario);
+            }
 
             apiResp = new ApiResponse();
             apiResp.Message = "Action was executed.";
@@ -72,9 +38,58 @@ namespace WebAPI.Controllers
             }
         }
 
+        // GET api/vehiculo
+        // Retrieve
+        [HttpGet]
+        public IHttpActionResult RecuperarTodo()
+        {
+
+            try
+            {
+                apiResp = new ApiResponse();
+                var mng = new HorarioManager();
+                apiResp.Data = mng.RetrieveAll();
+
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-"
+                    + bex.AppMessage.Mensaje));
+            }
+
+        }
+
+        // GET api/
+        // Retrieve by id
+        [HttpGet]
+        public IHttpActionResult RecuperarUnHorario(int id)
+        {
+            try
+            {
+                var mng = new HorarioManager();
+                var schedule = new Horario
+                {
+                    Id_Vehiculo = id
+                };
+
+                List<Horario> horarios = mng.RetrieveById(schedule);
+                apiResp = new ApiResponse();
+                apiResp.Data = horarios;
+                apiResp.Message = "success";
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }
+        }
+
+
         // PUT
         // UPDATE
-        public IHttpActionResult Put(Horario horario)
+        [HttpPut]
+        public IHttpActionResult ActualizarHorario(Horario horario)
         {
             try
             {
@@ -93,7 +108,8 @@ namespace WebAPI.Controllers
         }
 
         // DELETE ==
-        public IHttpActionResult Delete(Horario horario)
+        [HttpDelete]
+        public IHttpActionResult BorrarHorario(Horario horario)
         {
             try
             {
@@ -110,6 +126,7 @@ namespace WebAPI.Controllers
                 return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
             }
         }
+
 
     }
 }

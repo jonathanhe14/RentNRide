@@ -78,6 +78,7 @@ namespace DataAccess.Crud {
             dao.ExecuteProcedure(mapper.GetUpdateStatement(Membresia));
         }
 
+        //Ahías: Aquí me daba un error entonces tuve que cambiarlo.
         public T RetrieveByUser<T>(BaseEntity entity)
         {
             var sqlOperation = mapper.GetRetriveStatement(entity);
@@ -86,7 +87,7 @@ namespace DataAccess.Crud {
             if (lstResult.Count > 0)
             {
                 dic = lstResult[0];
-                var objs = mapper.BuildObjectId(dic);
+                var objs = mapper.BuildObject(dic);
                 return (T)Convert.ChangeType(objs, typeof(T));
             }
             return default(T);
