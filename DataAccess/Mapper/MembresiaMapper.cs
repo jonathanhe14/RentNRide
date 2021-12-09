@@ -92,5 +92,16 @@ namespace DataAccess.Mapper {
 
             return operation;
         }
+
+        public BaseEntity BuildObjectId(Dictionary<string, object> row)
+        {
+            var membresia = new Membresias
+            {
+                Id = GetIntValue(row, DB_COL_ID)
+            };
+
+            return membresia;
+        }
+
     }
 }

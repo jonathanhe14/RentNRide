@@ -1,5 +1,6 @@
 ﻿@using WebApp.Models.Helpers;
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4aNZIQyvam7h8Zmdq8ldZ_7sdtVGcwtE"></script>
+<script src="https://upload-widget.cloudinary.com/global/all.js"></script>
 <script src="~/Scripts/Views/SocioVehiculos.js"></script>
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -16,25 +17,120 @@
 
         <div class="col-md-12 table-card">
 
-            @Html.CtrlTable(viewName: "", id: "tblVehiculos", title: "Vehiculos",
-                                      columnsTitle: "Tipo,Combustible,Modelo,Marca,Kilometraje,Estado,Imagen", ColumnsDataName: "Tipo,Combustible,Modelo,Marca,Kilometraje,Estado,Imagen",
-                                       onSelectFunction: "", colorHeader: "red")
+            @Html.CtrlTable(viewName: "SocioVehiculos", id: "tblVehiculos", title: "Vehiculos",
+                                      columnsTitle: "Tipo,Combustible,Modelo,Marca,Kilometraje,Cargo kilometraje excedido,Cargo por mal estado,Latitud,Longitud,Cargo por ubicacion diferente,Tarifa,Si acepta inmediata,Estado,Imagen",
+                                      ColumnsDataName: "Tipo,Combustible,Modelo,Marca,Kilometraje,cKmExcedido,cMalEstado,Latitud,Longitud,cLugarDiferente,Tarifa,AccptInmediata,Estado,Imagen",
+                                       onSelectFunction: "BindFields", colorHeader: "red")
 
         </div>
 
 
 
     </div>
+
+    <div class="card border-secondary" style="margin-top: 50px;">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="bs-component">
+                        @*<form id="idEdition">
+                                @Html.CtrlInput(id: "txtId", type: "number", label: "Id", columnDataName: "Id")
+                            </form>*@
+                        <form id="choiceEdition">
+                            @Html.CtrlDropDown(id: "Tipo", label: "Tipo Vehiculo", listId: "LST_tipoVehi")
+                            @Html.CtrlDropDown(id: "Combustible", label: "Tipo Combustible", listId: "LST_tipoCombu")
+                            @Html.CtrlDropDown(id: "Marca", label: "Tipo Marca", listId: "LST_tipoMarca")
+                            @Html.CtrlDropDown(id: "Modelo", label: "Tipo Modelo", listId: "LST_tipoModelo")
+                        </form>
+                        <form id="frmEdition">
+                            @Html.CtrlInput(id: "txtKilometraje", type: "number", label: "Kilometraje actual", columnDataName: "Kilometraje")
+                            @Html.CtrlInput(id: "txtcKmExcedido", type: "number", label: "Cargo por kilometro excedido en colones", columnDataName: "cKmExcedido")
+                            @Html.CtrlInput(id: "txtcMalEstado", type: "number", label: "Cargo por mal estado en colones", columnDataName: "cMalEstado")
+                            @Html.CtrlInput(id: "txtcLugarDiferente", type: "number", label: "Cargo por ubicacion diferente en colones", columnDataName: "cLugarDiferente")
+                            @Html.CtrlInput(id: "txtTarifa", type: "number", label: "Tarifa en colones", columnDataName: "Tarifa")
+                            @*Html.CtrlInput(id: "txtAccptInmediata", type: "text", label: "Acceptacion Inmediata", columnDataName: "AccptInmediata")
+                                Html.CtrlInput(id: "txtEstado", type: "text", label: "Estado", columnDataName: "Estado")*@
+                            @Html.CtrlDropDown(id: "txtAccptInmediata", label: "¿Acepta inmediatamente al ser alquilado?", listId: "LST_aceptInmd")
+                            @Html.CtrlDropDown(id: "txtEstado", label: "Estado actual del vehiculo", listId: "LST_Estado")
+                            @*Html.CtrlInput(id: "txtUsuarioid", type: "text", label: "Correo", columnDataName: "idUsuario")*@
+                            @*@Html.CtrlDropDown(id: "drpGender", label: "Gender", listId: "LST_GENERO")
+                                @Html.CtrlDropDown(id: "drpStatus", label: "Status", listId: "LST_EST_CIVIL")
+                                @Html.CtrlDropDown(id: "Best Friend", label: "Friend", listId: "LST_CUSTOMER")*@
+                        </form>
+                        <button id="txtImagen" class="cloudinary-button">Subir nueva imagen del vehiculo</button>
+                        <div id="extraImages"></div>
+                        <button id="updImagen" class="cloudinary-button" onclick="removeImage">Cambiar imagen del vehiculo</button>
+                        <button id="remImagen" class="cloudinary-button">Quitar imagen del vehiculo</button>
+                    </div>
+                </div>
+            </div>
+            <div id="map"></div>
+            <div>Su posicion seleccionada es de: <label id="selectPosit"></label></div>
+            <div>Latitud : <label id="Latitud"></label></div>
+            <div>Longitud :<label id="Longitud"></label></div>
+
+            @*Html.CtrlInput(id: "txtLatitud", type: "text", label: "Latitud", columnDataName: "Latitud")
+                Html.CtrlInput(id: "txtLongitud", type: "text", label: "Longitud", columnDataName: "Longitud")*@
+
+            <br /><br />
+
+            <div></div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="bs-component">
+                        <form id="docuEdition">
+                            @*Html.CtrlInput(id: "txtMarchamo", type: "text", label: "Marchamo", columnDataName: "Marchamo")
+                                Html.CtrlInput(id: "txttituloPropiedad", type: "text", label: "Titulo Propiedad", columnDataName: "tituloPropiedad")
+                                Html.CtrlInput(id: "txtRiteve", type: "text", label: "Riteve", columnDataName: "Riteve")
+                                Html.CtrlInput(id: "txtderechoCirculacion", type: "text", label: "Derecho circulacion", columnDataName: "derechoCirculacion")*@
+                            <button id="doc1" class="cloudinary-button" type="button">Subir o actualizar documento de marchamo</button>
+                            <img id="txtMarchamo" class="imageRestr" src="null">
+                            <button id="doc2" class="cloudinary-button" type="button">Subir o actualizar documento de titulo de propiedad</button>
+                            <img id="txttituloPropiedad" class="imageRestr" src="null">
+                            <button id="doc3" class="cloudinary-button" type="button">Subir o actualizar documento de Riteve</button>
+                            <img id="txtRiteve" class="imageRestr" src="null">
+                            <button id="doc4" class="cloudinary-button" type="button">Subir o actualizar documento de derecho de circulacion</button>
+                            <img id="txtderechoCirculacion" class="imageRestr" src="null">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-header">
+        <div class="row pull-right">
+            <div class="col-md-8">Guardar</div>
+            <div class="col-md-4">
+                @Html.CtrlButton(viewName: "SocioVehiculos", id: "btnCreate", label: "Crear vehiculo", onClickFunction: "Create", buttonType: "success")
+                @Html.CtrlButton(viewName: "SocioVehiculos", id: "btnCreate2", label: "Actualizar vehiculo", onClickFunction: "SendUpdateVehi", buttonType: "success")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="alert alert-success alert-dismissable" style="display: none" id="alert_container">
+            <button type="button" class="close" onclick="$('.alert').hide()">&times;</button>
+            <span id="alert_message"></span>
+        </div>
+        <hr />
+
+    </div>
+
+
 </body>
 <style>
     #map {
         height: 400px;
         width: 800px;
     }
+
+    img.imageRestr {
+        max-width: 150px;
+        max-height: 150px;
+    }
+
     #alert_container {
         position: fixed;
         left: 40%;
         top: 50%;
     }
 </style>
-
