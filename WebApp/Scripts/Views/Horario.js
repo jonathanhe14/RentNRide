@@ -22,10 +22,12 @@ function Horario() {
 
 			if (hora_Inicio && hora_Final && dia_Inicial && dia_Final) {
 				data.push({
-					Id_Vehiculo: 30041,
+					//Id_Vehiculo: 30041,
+					Id_Vehiculo: 64167,
 					horaInicio: hora_Inicio,
 					horaFinal: hora_Final,
-					Disponibilidad: "Libre",
+					//Disponibilidad: "CONTINUO",
+					Disponibilidad: "REPETIR",
 					DiaInicial: Number(dia_Inicial),
 					DiaFinal: Number(dia_Final)
 				});

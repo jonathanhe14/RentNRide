@@ -56,7 +56,20 @@ namespace WebApp.Controllers
                         Session["UserID"] = user.UserName;
                         Session["FullName"] = user.FullName;
 
-                        return View("PerfilSocio");
+                        if (verificarRol(rol, 1) == "yes")
+                        {
+                            return View("Administrador");
+                        }
+
+                        if (verificarRol(rol, 2) == "yes" || verificarRol(rol, 3) == "yes")
+                        {
+                            return View("PerfilSocio");
+                        }
+
+                        if (verificarRol(rol, 4) == "yes")
+                        {
+                            return View("BusquedaVehiculos");
+                        }
                     }
                     else
                     {
@@ -388,6 +401,74 @@ namespace WebApp.Controllers
             {
                 return RedirectToAction("InicioSesion");
             }
+        }
+
+        public ActionResult BusquedaVehiculos()
+        {
+            //if (Session["UserID"] != null)
+            //{
+            //ViewBag.Message = "Búsqueda de vehículos";
+            if (ModelState.IsValid)
+            {
+                HttpResponseMessage responseAutos = client.GetAsync("http://localhost:52125/api/vehiculo/GetAllVehicles").Result;
+                var contentAutos = responseAutos.Content.ReadAsStringAsync().Result;
+                var apiResponseAutos = JsonConvert.DeserializeObject<ApiResponse>(contentAutos);
+                List<Vehiculo> listaVehiculos = JsonConvert.DeserializeObject<List<Vehiculo>>(apiResponseAutos.Data.ToString());
+                string[] imagenes = new string[listaVehiculos.Count];
+                int i = 0;
+                foreach (var item in listaVehiculos)
+                {
+                    imagenes[i] = item.Imagen.Split(',')[0];
+                    i++;
+                }
+
+                ViewData["imagenes"] = imagenes;
+                return View(listaVehiculos);
+
+            }
+            return View();
+
+
+            /*}
+            else
+            {
+                return RedirectToAction("InicioSesion");
+            }*/
+        }
+
+        public ActionResult PaginaVehiculo(int id_vehiculo)
+        {
+            //if (Session["UserID"] != null)
+            //{
+            if (ModelState.IsValid)
+            {
+                //////Información del vehículo                
+                HttpResponseMessage responseAutos = client.GetAsync("http://localhost:52125/api/vehiculo/GetOneVehicle?id=" + id_vehiculo).Result;
+                var contentVehiculo = responseAutos.Content.ReadAsStringAsync().Result;
+                var apiResponseVehiculo = JsonConvert.DeserializeObject<ApiResponse>(contentVehiculo);
+                Vehiculo vehiculo = JsonConvert.DeserializeObject<Vehiculo>(apiResponseVehiculo.Data.ToString());
+
+                string[] listaImagenes = vehiculo.Imagen.Split(',');
+
+                ViewData["listaImagenes"] = listaImagenes;
+                ViewBag.vehiculo = id_vehiculo;
+
+                //////TIPO VEHÍCULO 
+                /*HttpResponseMessage responseTipoAutos = client.GetAsync("http://localhost:52125/api/list/Get?id=LST_tipoVehi").Result;
+                var contentTipoAutos = responseTipoAutos.Content.ReadAsStringAsync().Result;
+                var apiResponseTipoAutos = JsonConvert.DeserializeObject<ApiResponse>(contentTipoAutos);
+                List<VehiOpcion> tipoAutos = JsonConvert.DeserializeObject<List<VehiOpcion>>(apiResponseTipoAutos.Data.ToString());
+                ViewData["listaTipoAutos"] = tipoAutos;*/   
+
+
+                return View(vehiculo);
+            }
+            return View();
+            //}
+            /*else
+            {
+                return RedirectToAction("InicioSesion");
+           }*/
         }
     }
 }

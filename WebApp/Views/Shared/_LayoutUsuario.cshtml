@@ -38,19 +38,22 @@
                     @if (@Session["Admin"] == "yes")
                     {
                         <li>@Html.ActionLink("Panel de control", "Administrador", "Home")</li>
-}
+                    }
 
                     @if (@Session["Socio"] == "yes")
                     {
                         <li>@Html.ActionLink("Vehiculos", "VehiculoInfo", "Home")</li>
-}
+                    }
 
                     @if (@Session["Empresa"] == "yes")
                     {
+                        <li>@Html.ActionLink("Vehiculos", "VehiculoInfo", "Home")</li>
                     }
 
                     @if (@Session["Usuario"] == "yes")
                     {
+                        <li>@Html.ActionLink("Ver vehiculos", "BusquedaVehiculos", "Home")</li>
+
                     }
 
 

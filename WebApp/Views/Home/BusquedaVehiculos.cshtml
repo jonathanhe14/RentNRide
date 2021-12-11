@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Entities_POJO.Vehiculo>
+
+@{
+    ViewBag.Title = "BusquedaVehiculos";
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
+}
+
+<h2>BusquedaVehiculos</h2>
+
+@{
+    int i = 0;
+}
+
+@foreach (var item in Model)
+{
+
+    <div class="table-card" style="display: inline-block">
+        <div class="" style="max-width: 20rem">
+            <div class="card-header">Vehículo: @item.Id</div>
+            <img class="img-thumbnail" src="@(((string[])ViewData["imagenes"])[i])" />
+            <div class="card-body">
+                <p class="card-text">Kilometraje: @item.Kilometraje</p>
+                <p class="card-text">Marca: @item.Marca</p>
+                <p class="card-text">Tarifa: @item.Tarifa</p>
+                <p class="card-text">Estado: @item.Estado</p>
+            </div>
+            <div class="card-footer">
+                <p class="card-text">@Html.ActionLink("Ver vehículo", "PaginaVehiculo", new { id_vehiculo = item.Id })</p>
+            </div>
+        </div>
+    </div>
+
+    if (item.Id != 0)
+    {
+        i++;
+    }
+
+
+}

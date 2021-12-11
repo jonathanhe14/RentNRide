@@ -179,6 +179,7 @@
     <Content Include="Scripts\Views\Map.js" />
     <Content Include="Scripts\Views\Marcas.js" />
     <Content Include="Scripts\Views\Modelos.js" />
+    <Content Include="Scripts\Views\MostrarPuntoMapaVehiculos.js" />
     <Content Include="Scripts\Views\PerfilSocio.js" />
     <Content Include="Scripts\Views\ReestablecerClave.js" />
     <Content Include="Scripts\Views\RegistroSocios.js" />
@@ -227,6 +228,8 @@
     <Content Include="Views\Home\Horario.cshtml" />
     <Content Include="Views\Home\SocioDashboard.cshtml" />
     <Content Include="Views\Home\SocioVehiculos.cshtml" />
+    <Content Include="Views\Home\BusquedaVehiculos.cshtml" />
+    <Content Include="Views\Home\PaginaVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

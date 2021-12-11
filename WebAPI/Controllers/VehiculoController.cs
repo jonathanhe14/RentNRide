@@ -51,6 +51,28 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpGet]
+        public IHttpActionResult GetOneVehicle(int id)
+        {
+            try
+            {
+                var mng = new VehiculoManager();
+                var customer = new Vehiculo
+                {
+                    Id = id
+                };
+
+                customer = mng.RetrieveById(customer);
+                apiResp = new ApiResponse();
+                apiResp.Data = customer;
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }
+        }
+
         public IHttpActionResult GetCheck(int id)
         {
             try
@@ -184,6 +206,24 @@ namespace WebAPI.Controllers
                 apiResp = new ApiResponse();
                 apiResp.Data = mng.GetAmount(customer);
 
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetAllVehicles()
+        {
+            try
+            {
+                var mng = new VehiculoManager();
+                apiResp = new ApiResponse();
+
+                apiResp.Data = mng.RetrieveAll();
+                apiResp.Message = "success";
                 return Ok(apiResp);
             }
             catch (BussinessException bex)

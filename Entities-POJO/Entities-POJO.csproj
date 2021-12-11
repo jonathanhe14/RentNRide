@@ -48,6 +48,7 @@
     <Compile Include="FortalezaClave.cs" />
     <Compile Include="Hasher.cs" />
     <Compile Include="Horario.cs" />
+    <Compile Include="Horas.cs" />
     <Compile Include="Marca.cs" />
     <Compile Include="Membresias.cs" />
     <Compile Include="Modelo.cs" />
