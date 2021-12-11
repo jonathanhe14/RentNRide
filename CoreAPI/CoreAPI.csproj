@@ -71,6 +71,7 @@
     <Compile Include="ListManager.cs" />
     <Compile Include="NotificacionesManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReservaManager.cs" />
     <Compile Include="RolesUManager.cs" />
     <Compile Include="SocioManager.cs" />
     <Compile Include="UserProfileManager.cs" />
