@@ -57,6 +57,7 @@
     <Compile Include="Crud\MembresiaCrudFactory.cs" />
     <Compile Include="Crud\ModeloCrudFactory.cs" />
     <Compile Include="Crud\ModeloVehiCrudFactory.cs" />
+    <Compile Include="Crud\MonederoCrudFactory.cs" />
     <Compile Include="Crud\ReservaCrudFactory.cs" />
     <Compile Include="Crud\TipoCombuCrudFactory.cs" />
     <Compile Include="Crud\TipoCombustibleCrudFactory.cs" />
@@ -80,8 +81,10 @@
     <Compile Include="Mapper\MarcaMapper.cs" />
     <Compile Include="Mapper\MarcaVehiMapper.cs" />
     <Compile Include="Mapper\MembresiaMapper.cs" />
+    <Compile Include="Mapper\MembresiaUsuarioMapper.cs" />
     <Compile Include="Mapper\ModeloMapper.cs" />
     <Compile Include="Mapper\ModeloVehiMapper.cs" />
+    <Compile Include="Mapper\MonederoMapper.cs" />
     <Compile Include="Mapper\ReservaMapper.cs" />
     <Compile Include="Mapper\TipoCombuMapper.cs" />
     <Compile Include="Mapper\TipoCombustibleMapper.cs" />

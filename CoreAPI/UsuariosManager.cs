@@ -15,6 +15,8 @@ namespace CoreAPI
         private ContrasennaCrudFactory crudContrasennas;
         private UsuariosRolCrudFactory crudRoles;
         private UserProfileCrudFactory crudUserProfile;
+        private MembresiaCrudFactory crudMembresiaUsuario;
+        private MonederoCrudFactory crudMonedero;
         private Hasher encriptado;
 
         public UsuariosManagement()
@@ -23,6 +25,8 @@ namespace CoreAPI
             crudContrasennas = new ContrasennaCrudFactory();
             crudRoles = new UsuariosRolCrudFactory();
             crudUserProfile = new UserProfileCrudFactory();
+            crudMembresiaUsuario = new MembresiaCrudFactory();
+            crudMonedero = new MonederoCrudFactory();
             encriptado = new Hasher();
         }
 
@@ -43,8 +47,8 @@ namespace CoreAPI
                     throw new BussinessException(2);
 
                 }
-                usuario.Comprobacion = "NULL";
-                usuario.Estado = "PENDIENTE";
+                usuario.Comprobacion = "FALSE";
+                usuario.Estado = "NULL";
                 usuario.OTP = 0;
                 usuario.PersoneriaJuridica = "NULL";
                 usuario.PermisoOperaciones = "NULL";
@@ -70,6 +74,7 @@ namespace CoreAPI
                     Password = encriptado.MD5(usuario.ContrassenaActual),
                     FullName = usuario.Nombre + usuario.Apellidos
                 };
+
 
                 //Validacion del Rol y de los campos necesarios
 
@@ -111,8 +116,8 @@ namespace CoreAPI
                 }
 
 
-                usuario.Comprobacion = "NULL";
-                usuario.Estado = "PENDIENTE";
+                usuario.Comprobacion = "FALSE";
+                usuario.Estado = "NULL";
                 usuario.OTP = 0;
                 usuario.OTPSMS = 0;
                 usuario.OTPVencimiento = DateTime.Now;
@@ -211,6 +216,17 @@ namespace CoreAPI
         }
 
 
+        public Membresias TraerMembresiaUsuario(Membresias membresia)
+        {
+            try
+            {
+                return crudMembresiaUsuario.RetrieveMembresiaUsuario<Membresias>(membresia);
+            }
+            catch (Exception ex)
+            {
+                throw new BussinessException(0);
+            }
+        }
         public Usuarios RetrieveById(Usuarios usuarios)
         {
             try
@@ -236,6 +252,58 @@ namespace CoreAPI
                 throw new BussinessException(0);
             }
         }
+
+        public void CreateMonedero(Monedero monedero)
+        {
+            try
+            {
+                crudMonedero.Create(monedero);
+            }
+            catch (Exception ex)
+            {
+                throw new BussinessException(0);
+            }
+        }
+        public Monedero RetrieveMonedero(string correo)
+        {
+            try
+            {
+                var monedero = new Monedero
+                {
+                    IdUsuario = correo
+                };
+                return crudMonedero.Retrieve<Monedero>(monedero);
+            }
+            catch (Exception ex)
+            {
+                throw new BussinessException(0);
+            }
+        }
+
+        public void PutMonedero(Monedero monedero)
+        {
+            try
+            {
+
+                crudMonedero.Update(monedero);
+            }
+            catch (Exception ex)
+            {
+                throw new BussinessException(0);
+            }
+        }
+        public void UpdateComprobanteMembresia(MembresiasUsuario MembresiaUsuario)
+        {
+            try
+            {
+                crudMembresiaUsuario.UpdateMembresiaUsuario(MembresiaUsuario);
+            }
+            catch (Exception ex)
+            {
+                throw new BussinessException(0);
+            }
+        }
+
         public void CreateClave(Contrasennas clave)
         {
             crudContrasennas.Create(clave);
@@ -349,7 +417,8 @@ namespace CoreAPI
                     {
                         if ((DateTime.Now.Minute - u.OTPVencimiento.Minute) <= 15)
                         {
-                            u.Estado = "VERIFICADO";
+                            u.Comprobacion = "TRUE";
+                            u.Estado = "PENDIENTE";
                             mngUsuarios.Update(u);
                             return "success";
                         }

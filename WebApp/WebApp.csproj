@@ -146,6 +146,7 @@
     <Content Include="Content\Chart.min.js" />
     <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="Content\landing.css" />
+    <Content Include="Content\pagoMembresia.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -179,7 +180,9 @@
     <Content Include="Scripts\Views\Map.js" />
     <Content Include="Scripts\Views\Marcas.js" />
     <Content Include="Scripts\Views\Modelos.js" />
+    <Content Include="Scripts\Views\Monedero.js" />
     <Content Include="Scripts\Views\MostrarPuntoMapaVehiculos.js" />
+    <Content Include="Scripts\Views\PagoMembresia.js" />
     <Content Include="Scripts\Views\PerfilSocio.js" />
     <Content Include="Scripts\Views\ReestablecerClave.js" />
     <Content Include="Scripts\Views\RegistroSocios.js" />
@@ -230,6 +233,8 @@
     <Content Include="Views\Home\SocioVehiculos.cshtml" />
     <Content Include="Views\Home\BusquedaVehiculos.cshtml" />
     <Content Include="Views\Home\PaginaVehiculo.cshtml" />
+    <Content Include="Views\Home\Monedero.cshtml" />
+    <Content Include="Views\Home\PagoMembresia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

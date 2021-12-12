@@ -1,0 +1,18 @@
+﻿#boton-sinpe {
+    height: 35px;
+    border-radius: 15px;
+    border: none;
+    background-color: rgb(210, 210, 210);
+    color: black;
+    width: 200px;
+    margin-top: 20px;
+}
+    #boton-sinpe:hover {
+        height: 35px;
+        border-radius: 15px;
+        border: none;
+        background-color: rgb(180, 180, 180);
+        color: black;
+        width: 200px;
+        margin-top: 20px;
+    }

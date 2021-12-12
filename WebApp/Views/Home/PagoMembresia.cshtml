@@ -1,0 +1,84 @@
+﻿@using WebApp.Models.Helpers;
+@{
+    ViewBag.Title = "PagoMembresia";
+}
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<h2 style="text-align:center; margin-bottom:40px">Pagar Membresia</h2>
+<link rel="stylesheet" href="~/Content/pagoMembresia.css" />
+<body>
+    <div class="row">
+
+        <div class="col-xs-6">
+
+            <h4 style=" margin-bottom:30px;">Tu Informacion</h4>
+            <p id="NombreU"></p>
+            <p id="Cedula"></p>
+            <p id="Correo"></p>
+            <p id="Telefono"></p>
+        </div>
+        <div class="col-xs-6">
+
+            <h4 style=" margin-bottom:30px;">Detalles de la membresia</h4>
+            <p id="Nombre"></p>
+            <p id="Precio"></p>
+            <p>IVA: 13%</p>
+            <p id="Total"></p>
+            <div id="paypal-payment-button" style="width:100px;height:30px"></div>
+            <div id="botonSimpe">
+                <button id="boton-sinpe"><strong style="font-size:17px">sinpe</strong><span style="font-size:20px">móvil</span></button>
+            </div>
+            <script src="https://www.paypal.com/sdk/js?client-id=ARAozPjCrY-1Kx2wj5mQDrZq7sw7N2uef8uGQ2WC86N7i1Cpc__-jZIdtxQrdEeUjZhWNQv58EFLD3FC&disable-funding=credit,card"></script>
+            <script src="~/Scripts/Views/PagoMembresia.js"></script>
+        </div>
+
+    </div>
+    <div id="div-sinpe" style="display:none;border-top:1px solid black; margin-top:30px;">
+        <h5 style="font-size:25px">Pago por sinpeMovil</h5>
+        <p style="margin-bottom: -10px; font-size: 15px ">
+            1: Haga un sinpe movil al numero: 63189972 con el monto especificado
+        </p>
+            <br />
+            <p style="margin-bottom: -10px; font-size: 15px">
+                2: Verifique que el nombre asociado al numero sea RentNRide
+            </p>
+            <br />
+            <p style="font-size:15px">
+                3: Adjunte un comprobante del pago
+            </p>
+            <div id="div-boton" style="margin-bottom:10px">
+                <button id="Comprobante" style="width: 200px; border-radius: 10px; height: 30px; ">Subir Comprobante</button>
+            </div>
+            <div class="alert-success" id="alert" style="display: none; height: 20px; font-weight: bold">
+                Documento Subido
+            </div>
+        <div class="alert-danger" id="alertError" style="display:none; height:20px; font-weight:bold">
+            No se ingresó ningun documento
+        </div>
+
+            <div>
+                <button id="enviar" style="width:200px; height:30px; border-radius:10px">Enviar</button>
+
+            </div>
+    </div>
+</body>
+    <div class="modal fade" id="modal-paypal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle" style="font-size:25px">Felicidades</h5>
+                </div>
+                <div class="modal-body">
+                    El pago fue en exito
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cambioPagina">Verificar Cuenta</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+

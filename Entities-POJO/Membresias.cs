@@ -20,6 +20,7 @@ namespace Entities_POJO {
         public int NumDias { get; set; }
 
         public string Activo { get; set; }
+        public string Correo { get; set; }
 
         public Membresias() {
 

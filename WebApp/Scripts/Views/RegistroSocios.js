@@ -63,7 +63,7 @@ function RegistroSocios() {
 
 				console.log("se valido")
 				var usuariosData = {};
-				usuariosData = this.ctrlActions.GetDataFormUsuarios('frmRegistro',3);
+				usuariosData = this.ctrlActions.GetDataFormUsuarios('frmRegistro', 3);
 				console.log(tipoUsuario);
 				console.log(usuariosData);
 				//Hace el post al create
@@ -82,7 +82,7 @@ function RegistroSocios() {
 
 				console.log("se valido")
 				var usuariosData = {};
-				usuariosData = this.ctrlActions.GetDataFormUsuarios('frmRegistro',2);
+				usuariosData = this.ctrlActions.GetDataFormUsuarios('frmRegistro', 2);
 				console.log(tipoUsuario);
 				console.log(usuariosData);
 				//Hace el post al create
@@ -94,7 +94,7 @@ function RegistroSocios() {
 					$('#alert').slideUp(500);
 				});
 			}
-        }
+		}
 
 	}
 
@@ -123,7 +123,7 @@ function RegistroSocios() {
 		$("#alertOperaciones").fadeOut();
 		urlPersoneria = undefined;
 		urlPermisoOperaciones = undefined;
-		TodoValido();
+		this.TodoValido();
 	}
 	this.TodoValido = function () {
 		$("#txtNombre").css("border", "1px solid #ccc");
@@ -156,43 +156,45 @@ function RegistroSocios() {
 
 
 		if (nombre == "" || !Letras.test(nombre)) {
-			
+			console.log("1")
 			$("#txtNombre").css("border-color", "rgba(255, 0, 5, 0.7)");
 			validar = false;
 		}
 		if (cedula == "" || !Numeros.test(cedula)) {
-
+			console.log("2")
 			$("#txtCedula").css("border-color", "rgba(255, 0, 5, 0.7)");
 			validar = false;
 		}
 		if (telefono == "" || !Numeros.test(telefono)) {
-
+			console.log("3")
 			$("#txtTelefono").css("border-color", "rgba(255, 0, 5, 0.7)");
 			validar = false;
 		}
 		if (correo == "" || !Correos.test(correo)) {
-
+			console.log("4")
 			$("#txtCorreo").css("border-color", "rgba(255, 0, 5, 0.7)");
 			validar = false;
 		}
 		if (tipoUsuario == 2) {
 			if (Apellido == "" || !Letras.test(Apellido)) {
+				console.log("5")
 				$("#txtApellido").css("border-color", "rgba(255, 0, 5, 0.7)");
 				validar = false;
 			}
-			if (Fecha =="") {
+			if (Fecha == "") {
+				console.log("6")
 				$("#txtFecha").css("border-color", "rgba(255, 0, 5, 0.7)");
 				validar = false;
-            }
-        }
+			}
+		}
 
 		if (contrasenna == "") {
-
+			console.log("7")
 			$("#txtContrasenna").css("border-color", "rgba(255, 0, 5, 0.7)");
 			validar = false;
 		}
 		if (contrasenna2 == "") {
-
+			console.log("8")
 			$("#txtContrasenna").css("border-color", "rgba(255, 0, 5, 0.7)");
 			validar = false;
 		}
@@ -271,7 +273,7 @@ $(document).ready(function () {
 		$('#divFecha').css("display", "none")
 		this.ctrRegistro.Limpiar();
 		tipoUsuario = 1;
-		
+
 	});
 
 	$('#botonSocio').click(function () {

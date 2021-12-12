@@ -123,18 +123,19 @@ namespace WebAPI.Controllers
             }
         }
 
-       
+
         public IHttpActionResult GetU(string correo)
         {
-            try { 
-            var mng = new UsuariosManagement();
-            var usuario = new Usuarios
+            try
             {
-                Correo = correo
-            };
-             
-            apiResp = new ApiResponse();
-            apiResp.Data = mng.Perfil(usuario);
+                var mng = new UsuariosManagement();
+                var usuario = new Usuarios
+                {
+                    Correo = correo
+                };
+
+                apiResp = new ApiResponse();
+                apiResp.Data = mng.Perfil(usuario);
 
                 return Ok(apiResp);
             }
@@ -162,7 +163,7 @@ namespace WebAPI.Controllers
             }
         }
 
-        
+
         public IHttpActionResult GetRoles()
         {
             apiResp = new ApiResponse();
@@ -172,22 +173,48 @@ namespace WebAPI.Controllers
 
             return Ok(apiResp);
         }
-        public IHttpActionResult GetSolicitudes() {
-            try {
+        public IHttpActionResult GetSolicitudes()
+        {
+            try
+            {
                 apiResp = new ApiResponse();
                 var mng = new UsuariosManagement();
                 apiResp.Data = mng.RetrieveAllSolicitudes();
 
                 return Ok(apiResp);
-            } catch(BussinessException bex) {
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-"
+                    + bex.AppMessage.Mensaje));
+            }
+        }
+        public IHttpActionResult GetMembresiaUsuario(string correo)
+        {
+            try
+            {
+                var membresia = new Membresias
+                {
+                    Correo = correo
+                };
+                apiResp = new ApiResponse();
+                var mng = new UsuariosManagement();
+                apiResp.Data = mng.TraerMembresiaUsuario(membresia);
+
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
                 return InternalServerError(new Exception(bex.ExceptionId + "-"
                     + bex.AppMessage.Mensaje));
             }
         }
 
+
         public IHttpActionResult EnvioCodigos(Usuarios user)
         {
-            try{
+            try
+            {
                 var mng = new UsuariosManagement();
                 mng.EvioOTPCorreo(user);
                 mng.EnvioOTPSMS(user);
@@ -200,6 +227,71 @@ namespace WebAPI.Controllers
                 return InternalServerError(new Exception(bex.ExceptionId + "-"
                     + bex.AppMessage.Mensaje));
             }
+        }
+
+        public IHttpActionResult ComprobanteMembresia(MembresiasUsuario membresia)
+
+
+        {
+            try
+            {
+                var mng = new UsuariosManagement();
+                mng.UpdateComprobanteMembresia(membresia);
+                apiResp = new ApiResponse();
+                apiResp.Message = "Action was executed.";
+
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }
+
+        }
+
+        public IHttpActionResult ActualizarMonedero(Monedero monedero)
+        {
+            try
+            {
+                var mng = new UsuariosManagement();
+                mng.PutMonedero(monedero);
+
+                apiResp = new ApiResponse();
+                apiResp.Message = "Action was executed.";
+
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }
+        }
+        public IHttpActionResult CrearMonedero(Monedero monedero)
+        {
+
+            try
+            {
+                var mng = new UsuariosManagement();
+                mng.CreateMonedero(monedero);
+                apiResp = new ApiResponse();
+                apiResp.Message = "Action was executed.";
+
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-"
+                    + bex.AppMessage.Mensaje));
+            }
+        }
+        public IHttpActionResult GetMonedero(string correo)
+        {
+            apiResp = new ApiResponse();
+            var mng = new UsuariosManagement();
+            apiResp.Data = mng.RetrieveMonedero(correo);
+            apiResp.Message = "Roles obtenidos";
+
+            return Ok(apiResp);
         }
     }
 }

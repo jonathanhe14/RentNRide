@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Monedero";
+}
+
+<h2>Monedero</h2>
+<div>
+    <p>Saldo: </p>
+    <p id="saldo"></p>
+    <h3>Recargar Monedero</h3>
+    <label>Monto</label>
+    <input type="number" id="montoRecarga"/>
+    <div id="paypal-payment-button" style="width:100px;height:30px"></div>
+    <script src="https://www.paypal.com/sdk/js?client-id=ARAozPjCrY-1Kx2wj5mQDrZq7sw7N2uef8uGQ2WC86N7i1Cpc__-jZIdtxQrdEeUjZhWNQv58EFLD3FC&disable-funding=credit,card"></script>
+    <script src="~/Scripts/Views/Monedero.js"></script>
+</div>
+
+

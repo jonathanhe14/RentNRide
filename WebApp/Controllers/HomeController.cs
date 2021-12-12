@@ -470,5 +470,14 @@ namespace WebApp.Controllers
                 return RedirectToAction("InicioSesion");
            }*/
         }
+        public ActionResult PagoMembresia()
+        {
+            
+            return View();
+        }
+        public ActionResult Monedero()
+        {
+            return View();
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace DataAccess.Mapper {
         private const string DB_COL_FECHA_CREACION = "FECHA_CREACION";
         private const string DB_COL_NUM_DIAS = "NUM_DIAS";
         private const string DB_COL_ACTIVO = "ACTIVO";
+        private const string DB_COL_CORREO = "CORREO";
 
         public BaseEntity BuildObject(Dictionary<string, object> row) {
             var membresia = new Membresias {
@@ -101,6 +102,15 @@ namespace DataAccess.Mapper {
             };
 
             return membresia;
+        }
+        public SqlOperation GetRetriveStatementMembresiUsuario(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_MEMBRESIA_USUARIO_CORREO_PR" };
+
+            var c = (Membresias)entity;
+            operation.AddVarcharParam(DB_COL_CORREO, c.Correo);
+
+            return operation;
         }
 
     }
