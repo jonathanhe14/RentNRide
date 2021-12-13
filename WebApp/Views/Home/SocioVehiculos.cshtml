@@ -59,7 +59,7 @@
                         </form>
                         <button id="txtImagen" class="cloudinary-button">Subir nueva imagen del vehiculo</button>
                         <div id="extraImages"></div>
-                        <button id="updImagen" class="cloudinary-button" onclick="removeImage">Cambiar imagen del vehiculo</button>
+                        <button id="updImagen" class="cloudinary-button">Cambiar imagen del vehiculo</button>
                         <button id="remImagen" class="cloudinary-button">Quitar imagen del vehiculo</button>
                     </div>
                 </div>
@@ -126,8 +126,15 @@
     img.imageRestr {
         max-width: 150px;
         max-height: 150px;
+        padding: 5px;
+        border: none;
     }
-
+    #tblVehiculos, table.tblVehiculos {
+        width = 90%;
+        height = 70%;
+        overflow-y: scroll;
+        overflow-x: scroll;
+    }
     #alert_container {
         position: fixed;
         left: 40%;

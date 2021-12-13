@@ -14,13 +14,13 @@ namespace Entities_POJO
         public int Combustible { get; set; }
         public int Modelo { get; set; }
         public int Marca { get; set; }
-        public double Kilometraje { get; set; }
-        public double cKmExcedido { get; set; }
-        public double cMalEstado { get; set; }
+        public decimal Kilometraje { get; set; }
+        public decimal cKmExcedido { get; set; }
+        public decimal cMalEstado { get; set; }
         public string Latitud { get; set; }
         public string Longitud { get; set; }
-        public double cLugarDiferente { get; set; }
-        public double Tarifa { get; set; }
+        public decimal cLugarDiferente { get; set; }
+        public decimal Tarifa { get; set; }
         public string AccptInmediata { get; set; }
         public string Estado { get; set; }
         public string Imagen { get; set; }

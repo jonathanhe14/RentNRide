@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
         //Membresias
         // Retrieve
         [HttpGet]
-        public IHttpActionResult GetMembresiaSocio(string id) {
+        public IHttpActionResult GetMembresiaSocio(string correo) {
 
             try {
                 var mng = new SocioManager();

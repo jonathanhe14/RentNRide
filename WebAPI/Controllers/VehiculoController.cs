@@ -106,7 +106,7 @@ namespace WebAPI.Controllers
                 mng.Create(vehiculo);
 
                 apiResp = new ApiResponse();
-                apiResp.Message = "Action was executed.";
+                apiResp.Message = "El vehiculo se agrego.";
 
                 return Ok(apiResp);
             }
@@ -127,7 +127,7 @@ namespace WebAPI.Controllers
                 mng.Update(vehiculo);
 
                 apiResp = new ApiResponse();
-                apiResp.Message = "Action was executed.";
+                apiResp.Message = "La informacion del vehiculo se modifico excitosamente.";
 
                 return Ok(apiResp);
             }

@@ -8,13 +8,11 @@
 	this.listService = 'List';
 	this.service = 'vehiculo';
 	this.serviceTwo = 'documento';
-	//this.ctrlActions = new ControlActions();
 	var vehiculoData = {};
 	var finalData = {};
 	var documentoData = {};
 	var finalDocumento = {};
 	this.ctrlActions = new ControlActionsAdmin();
-	var currIdData = 0;
 	//e
 
 
@@ -115,28 +113,14 @@
 
 	this.CreateTwo = function (idData) {
 		var imges = "";
-		switch (imgNums) {
-			case 1:
-				imges = document.getElementById("image").src;
-				break;
-			case 2:
-				imges = document.getElementById("image").src + " , " + document.getElementById("image2").src;
-				break;
-			case 3:
-				imges = document.getElementById("image").src + " , " + document.getElementById("image2").src
-					+ " , " + document.getElementById("image3").src;
-				break;
-			case 4:
-				imges = document.getElementById("image").src + " , " + document.getElementById("image2").src
-					+ " , " + document.getElementById("image3").src + " , " + document.getElementById("image4").src;
-				break;
-			case 5:
-				imges = document.getElementById("image").src + " , " + document.getElementById("image2").src
-					+ " , " + document.getElementById("image3").src + " , " + document.getElementById("image4").src
-					+ " , " + document.getElementById("image5").src;
-				break;
-			default:
-			// code block
+
+		var days = document.getElementById('extraImages').children;
+		for (var u = 0; u < days.length; u++) {
+			if (u == 0) {
+			imges = days[u].src;
+			} else {
+			imges = imges +" , "+ days[u].src;
+            }
 		}
 
 		var loggedUser = localStorage.getItem("Correo");
@@ -148,7 +132,7 @@
 			Imagen: imges, Latitud: document.getElementById("Latitud").innerHTML,
 			Longitud: document.getElementById("Longitud").innerHTML, idUsuario: loggedUser
 		};
-		vehiculoData = this.ctrlActions.GetDataFormVehi('frmEdition');
+		vehiculoData = this.ctrlActions.GetDataForm('frmEdition');
 		Object.assign(finalData, idData, opcionesChoice, vehiculoData);
 
 		//console.log(customerData);
@@ -167,6 +151,23 @@
 
 	}
 
+	this.RemoveVehiculo = function () {
+		if (currIdData == 0) {
+			$("#alert_container").removeClass("alert alert-success alert-dismissable")
+			$("#alert_container").addClass("alert alert-danger alert-dismissable");
+			$("#alert_message").text("Para eliminar un vehiculo, por favor seleccione el vehiculo de la tabla que quiere eliminar");
+			$('.alert').show();
+		} else {
+			idData = { Id: currIdData };
+			//Hace el post al create
+			this.ctrlActions.PutToAPI(this.service + "/Delete", idData, function (data) {
+				var vcustomer = new SocioVehiculos();
+				vcustomer.ReloadTable();
+			});
+		}
+    }
+
+	//table stuuuuffffffffff
 	this.RetrieveAll = function () {
 		//U?correo=" + localStorage.getItem("Correo")
 		this.ctrlActions.FillTable(this.usersService + "/GetV?correo=" + localStorage.getItem("Correo"), this.tblUsuariosId, false);
@@ -260,15 +261,18 @@
 					default:
 						break;
 				}
+				data1 = dataTipo;
+				data2 = dataCombus;
+				data3 = dataMarca;
+				data4 = dataModel;
 			}
 		}
 
 	}
 
 	this.ReloadTable = function () {
-		this.ctrlActions.FillTable(this.usersService + "/GetV?correo=" + localStorage.getItem("Correo"), this.tblUsuariosId, true, function (data) {
-			this.replaceEach();
-		});
+		this.ctrlActions.FillTable(this.usersService + "/GetV?correo=" + localStorage.getItem("Correo"), this.tblUsuariosId, true);
+		this.replaceEach(data1, data2, data3, data4);
 	}
 
 
@@ -276,7 +280,25 @@
 
 
 	this.BindFields = function (data) {
+		//llena campos
 		currIdData = data.Id;
+		document.getElementById("Tipo").value = data.Tipo;
+		document.getElementById("Combustible").value = data.Combustible;
+		document.getElementById("Marca").value = data.Marca;
+		document.getElementById("Modelo").value = data.Modelo;
+		document.getElementById("txtKilometraje").value = data.Kilometraje;
+		document.getElementById("txtcKmExcedido").value = data.cKmExcedido;
+		document.getElementById("txtcMalEstado").value = data.cMalEstado;
+
+		//console.log(pieces);
+		document.getElementById('Latitud').innerHTML = data.Latitud;
+		document.getElementById('Longitud').innerHTML = data.Longitud;
+
+		document.getElementById("txtcLugarDiferente").value = data.cLugarDiferente;
+		document.getElementById("txtTarifa").value = data.Tarifa;
+		document.getElementById("txtAccptInmediata").value = data.AccptInmediata;
+		document.getElementById("txtEstado").value = data.Estado;
+
 		document.getElementById("extraImages").innerHTML = "";
 		var imgs = data.Imagen;
 		var cutted = imgs.split(" , ");
@@ -286,10 +308,17 @@
 			var img = document.createElement('img');
 			img.src = cutted[i];
 			img.id = 'image' + imgNums;
-			img.onclick = 'selectImage(this)';
+			img.onclick = function() { selectImage(this); };
 			img.className = 'imageRestr';
 			document.getElementById('extraImages').appendChild(img);
 		}
+
+		this.ctrlActions.GetToApi(this.serviceTwo + "/Get?id=" + currIdData, function (data) {
+			document.getElementById("txtMarchamo").src = data.Marchamo;
+			document.getElementById("txttituloPropiedad").src = data.tituloPropiedad;
+			document.getElementById("txtRiteve").src = data.Riteve;
+			document.getElementById("txtderechoCirculacion").src = data.derechoCirculacion;
+		});
 	}
 
 
@@ -297,7 +326,11 @@
 
 }
 
-
+var currIdData = 0;
+var data1 = "";
+var data2 = "";
+var data3 = "";
+var data4 = "";
 
 
 //----------------------------------------------------- ON DOCUMENT READY -----------------------------------------------------------
@@ -308,12 +341,24 @@ $(document).ready(function () {
 
 	initMap();
 
-
+	document.getElementById("remImagen").addEventListener("click", removeImage);
 
 	//4 documents de vehiculo tambien
 
 	document.getElementById("txtImagen").addEventListener("click", function () {
 		myWidget.open();
+	}, false);
+
+	document.getElementById("updImagen").addEventListener("click", function () {
+		if (selectedImageId != "") {
+            myWidgetUpd.open();
+		} else {
+			$("#alert_container").removeClass("alert alert-success alert-dismissable")
+			$("#alert_container").addClass("alert alert-danger alert-dismissable");
+			$("#alert_message").text("Escoga una imagen para actualizar");
+			$('.alert').show();
+		}
+		
 	}, false);
 
 	document.getElementById("doc1").addEventListener("click", function () {
@@ -378,6 +423,11 @@ let myWidget = window.cloudinary.createUploadWidget({
 	uploadPreset: 'ImageOnlyVehiculo'
 }, (error, result) => { this.checkUploadResult(result) })
 
+let myWidgetUpd = window.cloudinary.createUploadWidget({
+	cloudName: 'ucenfotecp2last21',
+	uploadPreset: 'ImageOnlyVehiculo'
+}, (error, result) => { this.checkUploadResultUpd(result) })
+
 let myWidget1 = window.cloudinary.createUploadWidget({
 	cloudName: 'ucenfotecp2last21',
 	uploadPreset: 'DocumentOnlyVehi'
@@ -406,6 +456,13 @@ function checkUploadResult(resultEvent) {
 	if (resultEvent && resultEvent.event === "success") {
 		urlImage = resultEvent.info.secure_url;
 		this.showImage(urlImage);
+	}
+};
+
+function checkUploadResultUpd(resultEvent) {
+	if (resultEvent && resultEvent.event === "success") {
+		urlImage = resultEvent.info.secure_url;
+		this.showImageUpd(urlImage);
 	}
 };
 
@@ -442,18 +499,17 @@ function checkUploadResult4(resultEvent) {
 var imgProp = {
 
 	'borderStyle': 'solid',
-	'borderColor': '#0001fe'
+	'borderColor': '#2dff87'
 };
 
 var selectedImageId = "";
 
 function selectImage(img) {
-	var days = document.getElementById('days').children;
+	var days = document.getElementById('extraImages').children;
 	selectedImageId = img.id;
-	var u = 0;
-	while (days.length) {
-		days[u].style.border = 'none';
-		u++;
+	for (var u = 0; u < days.length; u++) {
+		var tempId = days[u].id;
+		document.getElementById(tempId).style.border = 'none';
 	}
 	document.getElementById(selectedImageId).style.borderStyle = imgProp.borderStyle;
 	document.getElementById(selectedImageId).style.borderColor = imgProp.borderColor;
@@ -466,7 +522,7 @@ function selectImage(img) {
 
 function removeImage() {
 	if (selectedImageId != "") {
-		document.getElementById(selectedImageId).remove;
+		document.getElementById(selectedImageId).remove();
 		selectedImageId = "";
 		document.getElementById("txtImagen").style.display = "block";
 	} else {
@@ -504,6 +560,10 @@ function showImage(urlImage) {
 		document.getElementById('extraImages').appendChild(img);
 		document.getElementById("txtImagen").style.display = "none";
 	}
+}
+
+function showImageUpd(urlImage) {
+	document.getElementById(selectedImageId).src = urlImage;
 }
 
 //the four documents for the vehiculo
@@ -556,7 +616,7 @@ function initMap() {
 		var str = document.getElementById('selectPosit').innerHTML;
 		var partsOfStr = str.replace(/[()]/g, '');
 		var pieces = partsOfStr.split(',');
-		console.log(pieces);
+		//console.log(pieces);
 		document.getElementById('Latitud').innerHTML = pieces[0];
 		document.getElementById('Longitud').innerHTML = pieces[1];
 	}

@@ -38,13 +38,13 @@ namespace DataAccess.Mapper
             operation.AddIntParam(DB_COL_TIPO_COMBUSTIBLE, c.Combustible);
             operation.AddIntParam(DB_COL_MODELO, c.Modelo);
             operation.AddIntParam(DB_COL_MARCA, c.Marca);
-            operation.AddDoubleParam(DB_COL_KILOMETRAJE, c.Kilometraje);
-            operation.AddDoubleParam(DB_COL_EXCEDIDO, c.cKmExcedido);
-            operation.AddDoubleParam(DB_COL_MAL_ESTADO, c.cMalEstado);
+            operation.AddDecimalParam(DB_COL_KILOMETRAJE, c.Kilometraje);
+            operation.AddDecimalParam(DB_COL_EXCEDIDO, c.cKmExcedido);
+            operation.AddDecimalParam(DB_COL_MAL_ESTADO, c.cMalEstado);
             operation.AddVarcharParam(DB_COL_LATITUD, c.Latitud);
             operation.AddVarcharParam(DB_COL_LONGITUD, c.Longitud);
-            operation.AddDoubleParam(DB_COL_LUGAR_DIFF, c.cLugarDiferente);
-            operation.AddDoubleParam(DB_COL_TARIFA, c.Tarifa);
+            operation.AddDecimalParam(DB_COL_LUGAR_DIFF, c.cLugarDiferente);
+            operation.AddDecimalParam(DB_COL_TARIFA, c.Tarifa);
             operation.AddVarcharParam(DB_COL_ACEPT_INMD, c.AccptInmediata);
             operation.AddVarcharParam(DB_COL_ESTADO, c.Estado);
             operation.AddVarcharParam(DB_COL_IMAGEN, c.Imagen);
@@ -89,13 +89,13 @@ namespace DataAccess.Mapper
             operation.AddIntParam(DB_COL_TIPO_COMBUSTIBLE, c.Combustible);
             operation.AddIntParam(DB_COL_MODELO, c.Modelo);
             operation.AddIntParam(DB_COL_MARCA, c.Marca);
-            operation.AddDoubleParam(DB_COL_KILOMETRAJE, c.Kilometraje);
-            operation.AddDoubleParam(DB_COL_EXCEDIDO, c.cKmExcedido);
-            operation.AddDoubleParam(DB_COL_MAL_ESTADO, c.cMalEstado);
+            operation.AddDecimalParam(DB_COL_KILOMETRAJE, c.Kilometraje);
+            operation.AddDecimalParam(DB_COL_EXCEDIDO, c.cKmExcedido);
+            operation.AddDecimalParam(DB_COL_MAL_ESTADO, c.cMalEstado);
             operation.AddVarcharParam(DB_COL_LATITUD, c.Latitud);
             operation.AddVarcharParam(DB_COL_LONGITUD, c.Longitud);
-            operation.AddDoubleParam(DB_COL_LUGAR_DIFF, c.cLugarDiferente);
-            operation.AddDoubleParam(DB_COL_TARIFA, c.Tarifa);
+            operation.AddDecimalParam(DB_COL_LUGAR_DIFF, c.cLugarDiferente);
+            operation.AddDecimalParam(DB_COL_TARIFA, c.Tarifa);
             operation.AddVarcharParam(DB_COL_ACEPT_INMD, c.AccptInmediata);
             operation.AddVarcharParam(DB_COL_ESTADO, c.Estado);
             operation.AddVarcharParam(DB_COL_IMAGEN, c.Imagen);
@@ -135,13 +135,13 @@ namespace DataAccess.Mapper
                 Combustible = GetIntValue(row, DB_COL_TIPO_COMBUSTIBLE),
                 Modelo = GetIntValue(row, DB_COL_MODELO),
                 Marca = GetIntValue(row, DB_COL_MARCA),
-                Kilometraje = GetDoubleValue(row, DB_COL_KILOMETRAJE),
-                cKmExcedido = GetDoubleValue(row, DB_COL_EXCEDIDO),
-                cMalEstado = GetDoubleValue(row, DB_COL_MAL_ESTADO),
+                Kilometraje = GetDecimalValue(row, DB_COL_KILOMETRAJE),
+                cKmExcedido = GetDecimalValue(row, DB_COL_EXCEDIDO),
+                cMalEstado = GetDecimalValue(row, DB_COL_MAL_ESTADO),
                 Latitud = GetStringValue(row, DB_COL_LATITUD),
                 Longitud = GetStringValue(row, DB_COL_LONGITUD),
-                cLugarDiferente = GetDoubleValue(row, DB_COL_LUGAR_DIFF),
-                Tarifa = GetDoubleValue(row, DB_COL_TARIFA),
+                cLugarDiferente = GetDecimalValue(row, DB_COL_LUGAR_DIFF),
+                Tarifa = GetDecimalValue(row, DB_COL_TARIFA),
                 AccptInmediata = GetStringValue(row, DB_COL_ACEPT_INMD),
                 Estado = GetStringValue(row, DB_COL_ESTADO),
                 Imagen = GetStringValue(row, DB_COL_IMAGEN),
