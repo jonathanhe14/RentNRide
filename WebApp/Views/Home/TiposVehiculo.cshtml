@@ -1,4 +1,8 @@
-﻿@{
+﻿
+@using WebApp.Models.Helpers;
+
+<script src="~/Scripts/Views/TiposVehiculo.js"></script>
+@{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -7,9 +11,9 @@
 
     <div class="row">
         <div class="col-md-12 table-card">
-            @Html.CtrlTable(viewName: "Administrador", id: "tblTiposVehiculo", title: "Tipos de vehículo",
-                               columnsTitle: "Id,Nombre", ColumnsDataName: "Id,Nombre",
-                               onSelectFunction: "BindFieldsTiposVehiculos", colorHeader: "red")
+            @Html.CtrlTable(viewName: "TiposVehiculo", id: "tblTiposVehiculo", title: "Tipos de vehículo",
+                                    columnsTitle: "Id,Nombre", ColumnsDataName: "Id,Nombre",
+                                    onSelectFunction: "BindFieldsTiposVehiculos", colorHeader: "red")
             <div class="card border-secondary" style="margin-top: 50px;">
 
                 <div class="row">
@@ -23,15 +27,20 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        @Html.CtrlButton(viewName: "Administrador", id: "btnCreTiposVehiculo", label: "Guardar Nuevo", onClickFunction: "CreTipoVehiculo", buttonType: "success")
-                        @Html.CtrlButton(viewName: "Administrador", id: "btnUpdTiposVehiculo", label: "Actualizar", onClickFunction: "UpdTipoVehiculo", buttonType: "info")
-                        @Html.CtrlButton(viewName: "Administrador", id: "btnDelTiposVehiculo", label: "Eliminar", onClickFunction: "DelTipoVehiculo", buttonType: "danger")
+                        @Html.CtrlButton(viewName: "TiposVehiculo", id: "btnCreTiposVehiculo", label: "Guardar Nuevo", onClickFunction: "CreTipoVehiculo", buttonType: "success")
+                        @Html.CtrlButton(viewName: "TiposVehiculo", id: "btnUpdTiposVehiculo", label: "Actualizar", onClickFunction: "UpdTipoVehiculo", buttonType: "info")
+                        @Html.CtrlButton(viewName: "TiposVehiculo", id: "btnDelTiposVehiculo", label: "Eliminar", onClickFunction: "DelTipoVehiculo", buttonType: "danger")
+                        @Html.CtrlButton(viewName: "TiposVehiculo", id: "btnLimpiar", label: "Limpiar", onClickFunction: "Limpiar", buttonType: "primary")
                     </div>
                 </div>
+                <div class="alert-danger" id="alert" style="display:none; margin:10px;height:30px;padding:5px;font-weight:bold">
+                    Verifique que los campos estén llenos y con un formato correcto
+                </div>
+
 
             </div>
         </div>
-        
+
     </div>
 
 </main>

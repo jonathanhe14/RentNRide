@@ -244,11 +244,11 @@ namespace CoreAPI {
 
 
         public async void AceptarSocio(int id, Usuarios usr) {
-            usr = crudUsuarios.Retrieve<Usuarios>(usr);
+            usr = crudUsuarios.VerificarUsuario<Usuarios>(usr);
             var mem = crudMembresia.Retrieve<Membresias>(new Membresias { Id = id });
 
             usr.Estado = "MEMBRESIA_ENVIADA";
-            crudUsuarios.Update(usr);
+            crudUsuarios.UpdateState(usr);
             await NotificacionesManager.EnviarCorreoMembresia(usr, mem, "ACEPTADO");
 
 
@@ -257,13 +257,14 @@ namespace CoreAPI {
         }
 
         public async void RechazarSocio(Usuarios usr) {
-            usr = crudUsuarios.Retrieve<Usuarios>(usr);
+            usr = crudUsuarios.VerificarUsuario<Usuarios>(usr);
             usr.Estado = "RECHAZADO";
 
-            crudUsuarios.Update(usr);
+            crudUsuarios.UpdateState(usr);
 
             await NotificacionesManager.EnviarCorreoMembresia(usr, null, "RECHAZADO");
         }
+
 
 
 

@@ -68,28 +68,33 @@
                    columnsTitle: "Id,Nombre,Monto Mensual,Comisión Transacción, Fecha Creación, Número de Días", ColumnsDataName: "Id,Nombre,MontoMensual,ComisionTransaccion,FechaCreacion,NumDias",
                    onSelectFunction: "BindFieldsMembresia", colorHeader: "red")
                 <div class="card border-secondary" style="margin-top: 50px;">
-                    
-                        <div class="row ">
-                            <div class="col-md-6">
-                                <div class="bs-component">
-                                    <form id="frmMembresia">
-                                        @Html.CtrlInput(id: "txtIdMembresia", type: "text", label: "Id", columnDataName: "Id", readOnly: "readonly")
-                                        @Html.CtrlInput(id: "txtFechaCreacionMembresia", type: "text", label: "Fecha Creación", columnDataName: "FechaCreacion", readOnly: "readonly")
-                                        @Html.CtrlInput(id: "txtNombreMembresia", type: "text", label: "Nombre", columnDataName: "Nombre")
-                                        @Html.CtrlInput(id: "txtMontoMensualMembresia", type: "text", label: "Monto Mensual", columnDataName: "MontoMensual")
-                                        @Html.CtrlInput(id: "txtComisionTransaccionMembresia", type: "text", label: "Comisión Transacción", columnDataName: "ComisionTransaccion")
-                                        @Html.CtrlInput(id: "txtNumDiasMembresia", type: "text", label: "Número de días", columnDataName: "NumDias")
 
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                @Html.CtrlButton(viewName: "Administrador", id: "btnCreMembresia", label: "Guardar Nuevo", onClickFunction: "CreMembresia", buttonType: "success")
-                                @Html.CtrlButton(viewName: "Administrador", id: "btnUpdMembresia", label: "Actualizar", onClickFunction: "UpdMembresia", buttonType: "info")
-                                @Html.CtrlButton(viewName: "Administrador", id: "btnDelMembresia", label: "Eliminar", onClickFunction: "DelMembresia", buttonType: "danger")
+                    <div class="row ">
+                        <div class="col-md-6">
+                            <div class="bs-component">
+                                <form id="frmMembresia">
+                                    @Html.CtrlInput(id: "txtIdMembresia", type: "text", label: "Id", columnDataName: "Id", readOnly: "readonly")
+                                    @Html.CtrlInput(id: "txtFechaCreacionMembresia", type: "text", label: "Fecha Creación", columnDataName: "FechaCreacion", readOnly: "readonly")
+                                    @Html.CtrlInput(id: "txtNombreMembresia", type: "text", label: "Nombre", columnDataName: "Nombre")
+                                    @Html.CtrlInput(id: "txtMontoMensualMembresia", type: "text", label: "Monto Mensual (en colones)", columnDataName: "MontoMensual")
+                                    @Html.CtrlInput(id: "txtComisionTransaccionMembresia", type: "text", label: "Comisión Transacción (porcentaje)", columnDataName: "ComisionTransaccion")
+                                    @Html.CtrlInput(id: "txtNumDiasMembresia", type: "text", label: "Número de días", columnDataName: "NumDias")
+
+                                </form>
                             </div>
                         </div>
-                    
+
+                        <div class="col-md-6">
+                            @Html.CtrlButton(viewName: "Administrador", id: "btnCreMembresia", label: "Guardar Nuevo", onClickFunction: "CreMembresia", buttonType: "success")
+                            @Html.CtrlButton(viewName: "Administrador", id: "btnUpdMembresia", label: "Actualizar", onClickFunction: "UpdMembresia", buttonType: "info")
+                            @Html.CtrlButton(viewName: "Administrador", id: "btnDelMembresia", label: "Eliminar", onClickFunction: "DelMembresia", buttonType: "danger")
+                            @Html.CtrlButton(viewName: "Administrador", id: "btnLimpiar", label: "Limpiar", onClickFunction: "Limpiar", buttonType: "primary")
+                        </div>
+                    </div>
+                    <div class="alert-danger" id="alert" style="display:none; margin:10px;height:30px;padding:5px;font-weight:bold">
+                        Verifique que los campos estén llenos y con un formato correcto
+                    </div>
+
                 </div>
             </div>
         </div>

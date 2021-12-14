@@ -21,7 +21,22 @@
 		this.ctrlActions.BindFields('frmUsers', data);
 	}
 
-	
+	this.Limpiar = function () {
+		$("#txtCedula").val('');
+		$("#txtNombre").val('');
+		$("#txtApellidos").val('');
+		$("#txtCorreo").val('');
+		$("#txtEdad").val('');
+		$("#txtTelefono").val('');
+		$("#txtEstado").val('');
+		$("#alert").fadeOut();
+
+
+		$("#tblUsuarios > tbody > tr").each(function () {
+			$(this).removeClass("seleccionado");
+		})
+
+	}
 }
 
 //ON DOCUMENT READY

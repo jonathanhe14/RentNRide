@@ -421,7 +421,6 @@ namespace WebAPI.Controllers
                 return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
             }
         }
-
         [HttpPost]
         public IHttpActionResult Rechazar(Usuarios usuario) {
             apiResp = new ApiResponse();

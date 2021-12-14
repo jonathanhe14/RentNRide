@@ -62,6 +62,10 @@ namespace DataAccess.Crud
             return default(T);
         }
 
+        public void UpdateState(BaseEntity entity) {
+            var usuarios = (Usuarios) entity;
+            dao.ExecuteProcedure(mapper.GetUpdateStateStatement(usuarios));
+        }
         public T PerfilUsuario<T>(BaseEntity entity)
         {
             var sqlOperation = mapper.UsuarioPerfil(entity);

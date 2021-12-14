@@ -131,6 +131,16 @@ namespace DataAccess.Mapper
 
             return operation;
         }
+        public SqlOperation GetUpdateStateStatement(BaseEntity entity) {
+            var operation = new SqlOperation { ProcedureName = "UPD_ESTADO_USUARIO_PR" };
+
+            var u = (Usuarios) entity;
+            operation.AddIntParam(DB_COL_id_usuario, u.Id_usuario);
+            operation.AddVarcharParam(DB_COL_activo, u.Estado);
+
+
+            return operation;
+        }
         public BaseEntity BuildObject(Dictionary<string, object> row)
         {
             try

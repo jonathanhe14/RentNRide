@@ -38,6 +38,7 @@
 			
 		} else {
 			//RECARGA LA TABLA
+			console.log("me estoy metiendo")
 			$('#' + tableId).DataTable().ajax.reload();
 			
 		}
@@ -89,7 +90,7 @@
 	this.PostToAPI = function (service, data, callBackFunction) {
 		var jqxhr = $.post(this.GetUrlApiService(service), data, function (response) {
 			var ctrlActions = new ControlActionsAdmin();
-			ctrlActions.ShowMessage('I', response.Message);
+			//ctrlActions.ShowMessage('I', response.Message);
 		
 			if (callBackFunction) {
 				callbackFunction(response.Data);
@@ -98,7 +99,7 @@
 			.fail(function (response) {
 				var data = response.responseJSON;
 				var ctrlActions = new ControlActionsAdmin();
-				ctrlActions.ShowMessage('E', data.ExceptionMessage);
+				//ctrlActions.ShowMessage('E', data.ExceptionMessage);
 				console.log(data);
 			})
 	};
@@ -106,7 +107,7 @@
 	this.PutToAPI = function (service, data, callBackFunction) {
 		var jqxhr = $.put(this.GetUrlApiService(service), data, function (response) {
 			var ctrlActions = new ControlActionsAdmin();
-			ctrlActions.ShowMessage('I', response.Message);
+			//ctrlActions.ShowMessage('I', response.Message);
 			if (callBackFunction) {
 				callbackFunction(response.Data);
 			}
@@ -115,7 +116,7 @@
 			.fail(function (response) {
 				var data = response.responseJSON;
 				var ctrlActions = new ControlActionsAdmin();
-				ctrlActions.ShowMessage('E', data.ExceptionMessage);
+				//ctrlActions.ShowMessage('E', data.ExceptionMessage);
 				console.log(data);
 			})
 	};
@@ -123,7 +124,7 @@
 	this.DeleteToAPI = function (service, data, callbackFunction) {
 		var jqxhr = $.delete(this.GetUrlApiService(service), data, function (response) {
 			var ctrlActions = new ControlActionsAdmin();
-			ctrlActions.ShowMessage('I', response.Message);
+			//ctrlActions.ShowMessage('I', response.Message);
 			if (callBackFunction) {
 				callbackFunction(response.Data);
 			}
@@ -131,7 +132,7 @@
 			.fail(function (response) {
 				var data = response.responseJSON;
 				var ctrlActions = new ControlActionsAdmin();
-				ctrlActions.ShowMessage('E', data.ExceptionMessage);
+				//ctrlActions.ShowMessage('E', data.ExceptionMessage);
 				console.log(data);
 			})
 	};
@@ -142,12 +143,6 @@
 			console.log("Response " + response.Data);
 			callbackFunction(response.Data);
 
-		});
-	}
-	this.GetToApiFullData = function (service, callbackFunction) {
-		var jqxhr = $.get(this.GetUrlApiService(service), function (response) {
-			console.log("Response " + response.Data);
-			callbackFunction(response);
 		});
 	}
 }

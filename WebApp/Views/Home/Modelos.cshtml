@@ -1,4 +1,8 @@
-﻿@{
+﻿
+@using WebApp.Models.Helpers;
+
+<script src="~/Scripts/Views/Modelos.js"></script>
+@{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -8,8 +12,8 @@
         <div class="col-md-12 table-card">
 
             @Html.CtrlTable(viewName: "Modelos", id: "tblModelos", title: "Modelos",
-                            columnsTitle: "Id,Nombre,Marca", ColumnsDataName: "Id,Nombre,Marca",
-                            onSelectFunction: "BindFieldsModelos", colorHeader: "red")
+                                 columnsTitle: "Id,Nombre,Marca", ColumnsDataName: "Id,Nombre,Marca",
+                                 onSelectFunction: "BindFieldsModelos", colorHeader: "red")
             <div class="card border-secondary" style="margin-top: 50px;">
 
                 <div class="row">
@@ -27,8 +31,13 @@
                         @Html.CtrlButton(viewName: "Modelos", id: "btnCreModelo", label: "Guardar Nuevo", onClickFunction: "CreModelo", buttonType: "success")
                         @Html.CtrlButton(viewName: "Modelos", id: "btnUpdModelo", label: "Actualizar", onClickFunction: "UpdModelo", buttonType: "info")
                         @Html.CtrlButton(viewName: "Modelos", id: "btnDelModelo", label: "Eliminar", onClickFunction: "DelModelo", buttonType: "danger")
+                        @Html.CtrlButton(viewName: "Modelos", id: "btnLimpiar", label: "Limpiar", onClickFunction: "Limpiar", buttonType: "primary")
                     </div>
                 </div>
+                <div class="alert-danger" id="alert" style="display:none; margin:10px;height:30px;padding:5px;font-weight:bold">
+                    Verifique que los campos estén llenos y con un formato correcto
+                </div>
+
 
             </div>
         </div>

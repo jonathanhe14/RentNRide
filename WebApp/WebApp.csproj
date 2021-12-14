@@ -179,6 +179,7 @@
     <Content Include="Scripts\Views\IniciarSesion.js" />
     <Content Include="Scripts\Views\Map.js" />
     <Content Include="Scripts\Views\Marcas.js" />
+    <Content Include="Scripts\Views\Membresia.js" />
     <Content Include="Scripts\Views\Modelos.js" />
     <Content Include="Scripts\Views\Monedero.js" />
     <Content Include="Scripts\Views\MostrarPuntoMapaVehiculos.js" />
@@ -191,6 +192,7 @@
     <Content Include="Scripts\Views\SocioVehiculos.js" />
     <Content Include="Scripts\Views\Solicitudes.js" />
     <Content Include="Scripts\Views\TiposCombustible.js" />
+    <Content Include="Scripts\Views\TiposVehiculo.js" />
     <Content Include="Scripts\Views\TiposVehiculos.js" />
     <Content Include="Scripts\Views\Usuarios.js" />
     <Content Include="Scripts\Views\Verificacion.js" />
@@ -235,6 +237,7 @@
     <Content Include="Views\Home\PaginaVehiculo.cshtml" />
     <Content Include="Views\Home\Monedero.cshtml" />
     <Content Include="Views\Home\PagoMembresia.cshtml" />
+    <Content Include="Views\Home\Membresia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

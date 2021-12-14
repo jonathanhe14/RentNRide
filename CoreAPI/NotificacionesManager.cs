@@ -122,34 +122,41 @@ namespace CoreAPI
 
             Console.WriteLine(message.Sid);
         }
+        public static string encoding(string toEncode) {
+            byte[] bytes = Encoding.GetEncoding(28591).GetBytes(toEncode);
+            string toReturn = System.Convert.ToBase64String(bytes);
+            return toReturn;
+        }
+
         public static async Task EnviarCorreoMembresia(Usuarios user, Membresias membresia, string resultado) {
-            var apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
+            var apiKey = "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";
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("astellerm@ucenfotec.ac.cr", "RentNRide.com");
+            var from = new EmailAddress("rentnridecom@gmail.com", "RentNRide.com");
             var subject = "Estado Solicitud";
             var to = new EmailAddress(user.Correo, "Usuario");
             var plainTextContent = "El resultado de su solicitud es " + resultado;
             string contenido = "";
             if(resultado == "ACEPTADO") {
-
+                var correoEncr = encoding(user.Correo);
+                var membEncr = encoding(membresia.Id + "");
 
                 contenido = contenido + $@"<h2>Membresia Recibida</h2>
     <table>
-        < tr >
-            < th > Nombre </ th >
-            < th > Monto Mensual </ th >
-            < th > Comisión Transacción</ th >
-            < th > Número de Días</ th >
-        </ tr >
-        < tr >
-            < td > {membresia.Nombre} </ td >
-            < td >{membresia.MontoMensual}</ td >
-            < td >{membresia.ComisionTransaccion}</ td >
-            < td >{membresia.NumDias}</ td >
-        </ tr >
-    </ table > ";
+        <tr>
+            <th> Nombre </th>
+            <th> Monto Mensual </th>
+            <th> Comisión Transacción</th>
+            <th> Número de Días</th>
+        </tr>
+        <tr>
+            <td> {membresia.Nombre} </td>
+            <td>{membresia.MontoMensual}</td>
+            <td>{membresia.ComisionTransaccion}</td>
+            <td>{membresia.NumDias}</td>
+        </tr >
+    </table> ";
 
-                contenido += "<a href=\"\" > Dale click aquí para ver su membresía</a>";
+                contenido += $"<a href=\"https://localhost:44383/Home/Membresia/?correo={correoEncr}&membresia={membEncr}\" > Dale click aquí para ver su membresía</a>";
             } else {
                 contenido += "<p> Lo sentimos su solicitud no cumple con los requisitos establecidos  </p>";
             }
@@ -157,6 +164,5 @@ namespace CoreAPI
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
         }
-
     }
 }

@@ -52,3 +52,6 @@
     border-radius: 20px;
     padding: 40px;
 }
+.seleccionado {
+    background-color: rgba(178, 245, 194,.6) !important ;
+}

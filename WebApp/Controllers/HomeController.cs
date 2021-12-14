@@ -339,7 +339,9 @@ namespace WebApp.Controllers
         public ActionResult Solicitudes() {
             return View();
         }
-
+        public ActionResult Membresia() {
+            return View();
+        }
 
         public ActionResult VehiculoInfo() {
             if (Session["UserID"] != null)

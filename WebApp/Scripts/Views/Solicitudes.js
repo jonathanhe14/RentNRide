@@ -15,13 +15,14 @@
 	this.ReloadTable = function () {
 		this.ctrlActions.FillTable(this.usersService + "/GetSolicitudes", this.tblUsuariosId, true);
 		this.ctrlActions.FillTable(this.adminService + "/GetMembresias", this.tblMembresiasId, true);
+		location.reload();
 	}
 
 	this.Rechazar = function () {
 		var usuario = {};
 		usuario = this.ctrlActions.GetDataForm('frmUsers');
 		//Hace el post al create
-		this.ctrlActions.PostToAPI(this.usersService + "/Rechazar", usuario, function (data) {
+		this.ctrlActions.PostToAPI(this.adminService+ "/Rechazar", usuario, function (data) {
 			var solicitudes = new Solicitudes();
 			solicitudes.ReloadTable();
 		});
@@ -69,6 +70,14 @@
 		$('#frmMembresia input[type="text"]').each(function () {
 			$(this).val("");
 		});
+		$("#tblUsuarios > tbody > tr").each(function () {
+			$(this).removeClass("seleccionado");
+		})
+		$("#tblMembresias > tbody > tr").each(function () {
+			$(this).removeClass("seleccionado");
+		})
+
+
     }
 
 	this.BindFieldsUsers = function (data) {

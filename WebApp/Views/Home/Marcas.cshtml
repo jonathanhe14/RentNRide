@@ -1,4 +1,9 @@
-﻿@{
+﻿
+@using WebApp.Models.Helpers;
+
+<script src="~/Scripts/Views/Marcas.js"></script>
+
+@{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -10,8 +15,8 @@
         <div class="col-md-12 table-card">
 
             @Html.CtrlTable(viewName: "Marcas", id: "tblMarcas", title: "Marcas",
-                       columnsTitle: "Id,Nombre", ColumnsDataName: "Id,Nombre",
-                       onSelectFunction: "BindFieldsMarcas", colorHeader: "red")
+                            columnsTitle: "Id,Nombre", ColumnsDataName: "Id,Nombre",
+                            onSelectFunction: "BindFieldsMarcas", colorHeader: "red")
             <div class="card border-secondary" style="margin-top: 50px;">
 
                 <div class="row">
@@ -28,12 +33,16 @@
                         @Html.CtrlButton(viewName: "Marcas", id: "btnCreMarca", label: "Guardar Nuevo", onClickFunction: "CreMarca", buttonType: "success")
                         @Html.CtrlButton(viewName: "Marcas", id: "btnUpdMarca", label: "Actualizar", onClickFunction: "UpdMarca", buttonType: "info")
                         @Html.CtrlButton(viewName: "Marcas", id: "btnDelMarca", label: "Eliminar", onClickFunction: "DelMarca", buttonType: "danger")
+                        @Html.CtrlButton(viewName: "Marcas", id: "btnLimpiar", label: "Limpiar", onClickFunction: "Limpiar", buttonType: "primary")
                     </div>
+                </div>
+                <div class="alert-danger" id="alert" style="display:none; margin:10px;height:30px;padding:5px;font-weight:bold">
+                    Verifique que los campos estén llenos y con un formato correcto
                 </div>
 
             </div>
         </div>
-       
+
     </div>
 
 </main>

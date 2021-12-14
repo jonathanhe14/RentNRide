@@ -1,16 +1,23 @@
-﻿<script>$(document).ready(function () {
+﻿<script>
+    $(document).ready(function () {
         var table = $('#-#Id-').DataTable();
         $('#-#Id- tbody').on('click', 'tr', function () {
+
+            $('#-#Id-').each(function () {
+                $("tr").removeClass("seleccionado");
+            });
             var data = table.row(this).data();
-            sessionStorage.setItem('-#Id-_selected',data);
+            $(this).addClass("seleccionado");
+            sessionStorage.setItem('-#Id-_selected', data);
             console.log(data);
 
-            var view = new -#ViewName-();
+            var view = new -#ViewName - ();
             if (view != undefined) {
-                view.-#FunctionName-(data);
+                view.-#FunctionName - (data);
             }
         });
     });</script>
+
 
 <div class="card border-secondary mb-6">
     <div class="card-header">-#Title-</div>
