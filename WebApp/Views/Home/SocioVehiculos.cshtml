@@ -18,8 +18,8 @@
         <div class="col-md-12 table-card">
 
             @Html.CtrlTable(viewName: "SocioVehiculos", id: "tblVehiculos", title: "Vehiculos",
-                                      columnsTitle: "Tipo,Combustible,Modelo,Marca,Kilometraje,Cargo kilometraje excedido,Cargo por mal estado,Latitud,Longitud,Cargo por ubicacion diferente,Tarifa,Si acepta inmediata,Estado,Imagen",
-                                      ColumnsDataName: "Tipo,Combustible,Modelo,Marca,Kilometraje,cKmExcedido,cMalEstado,Latitud,Longitud,cLugarDiferente,Tarifa,AccptInmediata,Estado,Imagen",
+                                      columnsTitle: "Tipo,Combustible,Modelo,Marca,Kilometraje,Cargo kilometraje excedido,Cargo por mal estado,Cargo por ubicacion diferente,Tarifa,Si acepta inmediata,Estado,Imagen",
+                                      ColumnsDataName: "Tipo,Combustible,Modelo,Marca,Kilometraje,cKmExcedido,cMalEstado,cLugarDiferente,Tarifa,AccptInmediata,Estado,Imagen",
                                        onSelectFunction: "BindFields", colorHeader: "red")
 
         </div>
@@ -103,6 +103,7 @@
             <div class="col-md-4">
                 @Html.CtrlButton(viewName: "SocioVehiculos", id: "btnCreate", label: "Crear vehiculo", onClickFunction: "Create", buttonType: "success")
                 @Html.CtrlButton(viewName: "SocioVehiculos", id: "btnCreate2", label: "Actualizar vehiculo", onClickFunction: "SendUpdateVehi", buttonType: "success")
+                @Html.CtrlButton(viewName: "SocioVehiculos", id: "btnCreate3", label: "Actualizar tablaDELETETHIS", onClickFunction: "ReloadTable", buttonType: "success")
             </div>
         </div>
     </div>
@@ -114,7 +115,14 @@
         <hr />
 
     </div>
+    <div class="container body-content">
+        <div class="alert alert-success alert-dismissable" style="display: none" id="alert_container_2">
+            <button type="button" class="close" onclick="$('.alert').hide()">&times;</button>
+            <span id="alert_message_2"></span>
+        </div>
+        <hr />
 
+    </div>
 
 </body>
 <style>
@@ -129,13 +137,20 @@
         padding: 5px;
         border: none;
     }
+    #scrolls {
+        max-width: 150px;
+        max-height: 150px;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+    }
     #tblVehiculos, table.tblVehiculos {
         width = 90%;
         height = 70%;
         overflow-y: scroll;
         overflow-x: scroll;
     }
-    #alert_container {
+    #alert_container, #alert_container_2 {
         position: fixed;
         left: 40%;
         top: 50%;

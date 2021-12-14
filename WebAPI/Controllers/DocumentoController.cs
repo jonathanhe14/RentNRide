@@ -61,7 +61,7 @@ namespace WebAPI.Controllers
                 mng.Create(documento);
 
                 apiResp = new ApiResponse();
-                apiResp.Message = "Action was executed.";
+                apiResp.Message = "Se agregaron los documentos.";
 
                 return Ok(apiResp);
             }
@@ -76,20 +76,24 @@ namespace WebAPI.Controllers
         // UPDATE
         public IHttpActionResult Put(Documento documento)
         {
-            try
-            {
+
                 var mng = new DocumentoManager();
                 mng.Update(documento);
 
                 apiResp = new ApiResponse();
-                apiResp.Message = "Action was executed.";
+                apiResp.Message = "Se actualizaron los documentos.";
 
                 return Ok(apiResp);
+            /*
+            try
+            {
             }
+            
             catch (BussinessException bex)
             {
                 return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
             }
+            */
         }
 
         // DELETE ==

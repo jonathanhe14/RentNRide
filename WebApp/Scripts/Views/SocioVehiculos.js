@@ -242,11 +242,12 @@
 							}
 						}
 						break;
-					case 13:
+					case 11:
 						if (col.innerHTML != "Imagen") {
 							var imgs = col.innerHTML;
 							col.innerHTML = "";
 							var cutted = imgs.split(" , ");
+							col.id = "scrolls";
 							for (var i = 0; i < cutted.length; i++) {
 								var img = document.createElement('img');
 								img.src = cutted[i];
@@ -270,9 +271,20 @@
 
 	}
 
+	var imgProp2 = {
+
+		'overflow-x': 'scroll',
+		'overflow- y': 'hidden',
+		'white-space': 'nowrap'
+	};
+
 	this.ReloadTable = function () {
 		this.ctrlActions.FillTable(this.usersService + "/GetV?correo=" + localStorage.getItem("Correo"), this.tblUsuariosId, true);
-		this.replaceEach(data1, data2, data3, data4);
+		setTimeout(function () {
+			var thisOne = new SocioVehiculos
+			thisOne.replaceEach(data1, data2, data3, data4);
+		}, 2500);
+		
 	}
 
 

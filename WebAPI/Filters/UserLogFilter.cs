@@ -39,6 +39,7 @@ namespace WebAPI.Filters
 
             lock (lockObj)
             {
+                /*
                 using (StreamWriter w = File.AppendText(logName))
                 {
                     w.Write("\r\nLog Entry : ");
@@ -48,6 +49,7 @@ namespace WebAPI.Filters
                     w.WriteLine("  :{0}", message);
                     w.WriteLine("-------------------------------");
                 }
+                */
             }
 
 
