@@ -82,9 +82,9 @@ function PagarMembresia() {
             console.log(dataU);
 
             $('#NombreU').html("Nombre: " + dataU[0].Nombre)
-            $('#Cedula').html("Cedula: " + dataU[0].Cedula)
-            $('#Correo').html("Correo : " + dataU[0].Correo)
-            $('#Telefono').html("Telefono : " + dataU[0].Telefono)
+            $('#Cedula').html("Cédula: " + dataU[0].Cedula)
+            $('#Correo').html("Correo: " + dataU[0].Correo)
+            $('#Telefono').html("Teléfono: " + dataU[0].Telefono)
             
            
            

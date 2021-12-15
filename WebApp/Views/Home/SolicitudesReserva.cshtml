@@ -6,12 +6,12 @@
 
 <script src="~/Scripts/jquery.dataTables.min.js"></script>
 <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
-<h2>Reservas Aceptadas</h2>
+<h2>Reservas Aceptadas o Rechazadas</h2>
 
 
 <div class="col-md-12 table-card">
     @Html.CtrlTable(viewName: "SolicitudesReserva", id: "tblReservas", title: "",
-                columnsTitle: "Vehiculo,Reserva,Fecha,Hora de Inicio,Hora de Finalizacion,Usuario,Estado,Tarifa", ColumnsDataName: "Id_Vehiculo,Id_Reserva,FechaReserva,HoraInicio,HoraFin,Usuario,Solicitud,Tarifa",
+                columnsTitle: "Vehículo,Reserva,Fecha,Hora de Inicio,Hora de Finalización,Usuario,Estado,Tarifa", ColumnsDataName: "Id_Vehiculo,Id_Reserva,FechaReserva,HoraInicio,HoraFin,Usuario,Solicitud,Tarifa",
                 onSelectFunction: "", colorHeader: "red")
 </div>
 <div class="row">
@@ -21,7 +21,7 @@
 <h2>Reservas Pendientes</h2>
 <div class="col-md-12 table-card" style="margin-top:20px">
     @Html.CtrlTable(viewName: "SolicitudesReserva", id: "tblReservasPendientes", title: "",
-                    columnsTitle: "Vehiculo,Reserva,Fecha,Hora de Inicio,Hora de Finalizacion,Usuario,Estado,Tarifa", ColumnsDataName: "Id_Vehiculo,Id_Reserva,FechaReserva,HoraInicio,HoraFin,Usuario,Solicitud,Tarifa",
+                    columnsTitle: "Vehiculo,Reserva,Fecha,Hora de Inicio,Hora de Finalización,Usuario,Estado,Tarifa", ColumnsDataName: "Id_Vehiculo,Id_Reserva,FechaReserva,HoraInicio,HoraFin,Usuario,Solicitud,Tarifa",
                     onSelectFunction: "BindFieldsReservasPendientes", colorHeader: "red")
 </div>
 <div id="Modificar" style="display:none;">

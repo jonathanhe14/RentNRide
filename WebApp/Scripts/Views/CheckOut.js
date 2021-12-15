@@ -115,11 +115,15 @@ function checkOut() {
     }
     this.Validar = function () {
         this.MonederoSocio();
-        if (Total <= dataM["Saldo"]) {
-            $('#alertErr').fadeOut();
-            $('#modalCalificar').modal('show');
+        if ($("#txtKilometrosFinal").val() != "") {
+            if (Total <= dataM["Saldo"]) {
+                $('#alertErr').fadeOut();
+                $('#modalCalificar').modal('show');
+            } else {
+                $('#alertErr').fadeIn();
+            }
         } else {
-            $('#alertErr').fadeIn();
+            $('#alertErr2').fadeIn();
         }
        
     }
@@ -133,8 +137,6 @@ function checkOut() {
             dataReserva["Solicitud"] = "FINALIZADA"
             this.PutToAPIReserva(dataReserva);
             
-        } else {
-            $('#alertErr').fadeIn();
         }
     }
     this.ActualizarMonedero = function () {
