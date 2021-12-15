@@ -235,6 +235,7 @@
     <Content Include="Views\Home\PaginaVehiculo.cshtml" />
     <Content Include="Views\Home\Monedero.cshtml" />
     <Content Include="Views\Home\PagoMembresia.cshtml" />
+    <Content Include="Views\Home\EquipoPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
