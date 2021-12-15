@@ -18,16 +18,47 @@
 
 	this.Create = function () {
 		if (this.checkIfError) {
-			var ranId = Math.floor((Math.random() * 100000) + 1);
-			idData = { Id: ranId };
-			this.CreateTwo(idData);
+			
+				$("#alert_container").removeClass("alert alert-success alert-dismissable")
+				$("#alert_container").addClass("alert alert-danger alert-dismissable");
+				$("#alert_message").text("Solo usuarios de empresa pueden agregar mas de 3 vehiculos");
+				$('.alert').show();
+			
+             var ranId = Math.floor((Math.random() * 100000) + 1);
+			 idData = { Id: ranId };
+			 this.CreateTwo(idData);
 
-			//Hace el post al create
-			this.ctrlActions.PostToAPI(this.service + "/Post", finalData, function (data) {
-				var vcustomer = new SocioVehiculos();
-				vcustomer.CreateDocum(idData);
-				vcustomer.SendCreateDocu();
-			});
+			 //Hace el post al create
+			 this.ctrlActions.PostToAPI(this.service + "/Post", finalData, function (data) {
+			 	var vcustomer = new SocioVehiculos();
+			 	vcustomer.CreateDocum(idData);
+			 	vcustomer.SendCreateDocu();
+			 });
+            
+			
+		}
+	}
+
+	this.Create2 = function () {
+		if (this.checkIfError) {
+			if (document.getElementById("tblVehiculos").rows.length >= 4) {
+				$("#alert_container").removeClass("alert alert-success alert-dismissable")
+				$("#alert_container").addClass("alert alert-danger alert-dismissable");
+				$("#alert_message").text("Solo usuarios de empresa pueden agregar mas de 3 vehiculos");
+				$('.alert').show();
+			} else {
+				var ranId = Math.floor((Math.random() * 100000) + 1);
+				idData = { Id: ranId };
+				this.CreateTwo(idData);
+
+				//Hace el post al create
+				this.ctrlActions.PostToAPI(this.service + "/Post", finalData, function (data) {
+					var vcustomer = new SocioVehiculos();
+					vcustomer.CreateDocum(idData);
+					vcustomer.SendCreateDocu();
+				});
+			}
+
 		}
 	}
 

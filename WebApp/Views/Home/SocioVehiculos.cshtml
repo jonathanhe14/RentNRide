@@ -3,7 +3,7 @@
 <script src="https://upload-widget.cloudinary.com/global/all.js"></script>
 <script src="~/Scripts/Views/SocioVehiculos.js"></script>
 @{
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
@@ -101,8 +101,19 @@
         <div class="row pull-right">
             <div class="col-md-8">Guardar</div>
             <div class="col-md-4">
-                @Html.CtrlButton(viewName: "SocioVehiculos", id: "btnCreate", label: "Crear vehiculo", onClickFunction: "Create", buttonType: "success")
+                @if (@Session["Admin"] == "yes" || @Session["Empresa"] == "yes")
+                {
+                    @Html.CtrlButton(viewName: "SocioVehiculos", id: "btnCreate", label: "Crear vehiculo", onClickFunction: "Create", buttonType: "success")
+                }
+                @if (@Session["Socio"] == "yes")
+                {
+                    @Html.CtrlButton(viewName: "SocioVehiculos", id: "btnCreate4", label: "Crear vehiculo", onClickFunction: "Create2", buttonType: "success")
+                }
                 @Html.CtrlButton(viewName: "SocioVehiculos", id: "btnCreate2", label: "Actualizar vehiculo", onClickFunction: "SendUpdateVehi", buttonType: "success")
+                @Html.CtrlButton(viewName: "SocioVehiculos", id: "btnCreate3", label: "Borrar vehiculo", onClickFunction: "RemoveVehiculo", buttonType: "success")
+
+
+
             </div>
         </div>
     </div>
