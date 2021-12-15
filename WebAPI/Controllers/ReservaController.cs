@@ -42,6 +42,10 @@ namespace WebAPI.Controllers
 
                 return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
             }
+            catch (Exception ex)
+            {
+                return InternalServerError(new Exception("Debe seleccionar al menos un horario"));
+            }
         }
 
         [HttpGet]

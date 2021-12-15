@@ -185,9 +185,37 @@ namespace CoreAPI
                 {
                     DateTime fechaBase = new DateTime(2021, 8, 1);
                     DateTime fechaFinal = generarFechaFinal(fechaBase, horario.DiaFinal);
-                    DateTime nuevaFechaFinal = new DateTime(fechaFinal.Year, fechaFinal.Month, fechaFinal.Day, hoursFinal, minutesFinal, 0);
                     DateTime fechaInicial = generarFechaInicial(fechaBase, horario.DiaInicial);
-                    DateTime nuevaFechaInicial = new DateTime(fechaInicial.Year, fechaInicial.Month, fechaInicial.Day, hours, minutes, 0);
+                    List<DateTime> listaFechas = new List<DateTime>();
+
+                    while (fechaInicial <= fechaFinal)
+                    {
+                        listaFechas.Add(fechaInicial);
+                        fechaInicial = fechaInicial.AddDays(1);
+                    }
+
+                    foreach (var fecha in listaFechas)
+                    {
+                        DateTime fechaNuevaInicial = new DateTime(fecha.Year, fecha.Month, fecha.Day, hours, minutes, 0);
+                        DateTime fechaNuevaFinal = new DateTime(fecha.Year, fecha.Month, fecha.Day, hoursFinal, minutesFinal, 0);
+
+                        while (fechaNuevaInicial != fechaNuevaFinal)
+                        {
+                            Horas hora = new Horas
+                            {
+                                Id_Vehiculo = horario.Id_Vehiculo,
+                                Id_Horario = horario.Id,
+                                Dia = ((int)fechaNuevaInicial.DayOfWeek) + 1,
+                                Hora_Inicio = fechaNuevaInicial.ToString("HH:mm"),
+                                Hora_Final = fechaNuevaInicial.AddHours(1).ToString("HH:mm"),
+                                Disponibilidad = "LIBRE",
+                                Estado = "ACTIVO"
+                            };
+                            listaHoras.Add(hora);
+                            fechaNuevaInicial = fechaNuevaInicial.AddHours(1);
+                        }
+                    }
+                    return listaHoras;
                 }
 
             }

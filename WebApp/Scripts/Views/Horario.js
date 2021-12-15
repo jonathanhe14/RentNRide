@@ -1,6 +1,8 @@
 ﻿var data = [];
 var resultado = false;
 var lista = [];
+var i = 0;
+
 
 function Horario() {
 
@@ -19,7 +21,17 @@ function Horario() {
 			var hora_Final = $(this).find('.txtHoraFinal').val();
 			var dia_Inicial = $(this).find('.diaInicial').find(":selected").val();
 			var dia_Final = $(this).find('.diaFinal').find(":selected").val();
-			var disponibilidad = $(this).find('input[name="modalidad"]:checked').val();
+			var disponibilidad = "";
+
+			if ($(this).find('#repetir').is(':checked')) {
+				disponibilidad = $(this).find('#repetir').val();
+			}
+
+			if ($(this).find('#continuo').is(':checked')) {
+				disponibilidad = $(this).find('#continuo').val();
+			}
+
+
 
 			if (hora_Inicio && hora_Final && dia_Inicial && dia_Final) {
 				data.push({
@@ -51,7 +63,8 @@ function Horario() {
 	this.ShowMessage = function (type, mensaje) {
 		if (type == 'E') {
 			console.log("lanzar alerta error")
-
+			data = [];
+			i = 0;
 			$('#modalErr').modal('show');
 			$('#modalErr .modal-body').text(mensaje);
 			//this.Limpiar();
@@ -101,11 +114,13 @@ function Horario() {
 					callBackFunction(response.Data);
 				}
 			},
-			fail: function (response) {
+			error: function (response) {
 				var data = response.responseJSON;
 				var ctrlActions = new Horario();
-				ctrlActions.ShowMessage('E', data.ExceptionMessage);
+				console.log(data.ExceptionMessage);
+				console.log(response.Message);
 				console.log(data);
+				ctrlActions.ShowMessage('E', data.ExceptionMessage);
 			}
 		})
 	};
@@ -120,14 +135,15 @@ $(document).ready(function () {
 		window.location.href = "https://localhost:44383/Home/VehiculoInfo";
 	});
 
-	/*$('#horarioError').click(function () {
+	$('#horarioError').click(function () {
 		window.location.href = "https://localhost:44383/Home/Horario";
-	})*/
+	})
 
+	var counter = 0
 	//Meter aquí un menú de opciones.
 	$("#btn-agregar-fila").click(function () {
-		var opciones = "<div><input type='radio' id='repetir' value='REPETIR' name='modalidad'><label for='#repetir'>Repetir</label></div>" +
-			"<div><input type='radio' id='continuo' value='CONTINUO' name='modalidad'><label for='#continuo'>Continuo</label></div>";
+		var opciones = "<div><input type='radio' id='repetir' value='REPETIR' name='modalidad" + counter + "'>" + "<label for='#repetir'>Repetir</label></div>" +
+			"<div><input type='radio' id='continuo' value='CONTINUO' name='modalidad" + counter + "'>" + "<label for='#continuo'>Continuo</label></div>";
 		var diaInicial = "<select name='diaInicial' class='diaInicial form-control'>" +
 			"<option value=2>Lunes</option>" +
 			"<option value=3>Martes</option>" +
@@ -152,6 +168,7 @@ $(document).ready(function () {
 		var alerta = "<div class='mensaje alert-danger'></div>"
 		var markup = "<tr><td> " + opciones + "</td><td>" + diaInicial + "</td><td>" + txtHoraInicio +
 			"</td><td>" + diaFinal + "</td><td>" + txtHoraFinal + "</td><td>" + eliminar + "</td><td>" + alerta + "</td></tr>";
+		counter++;
 		$("#tbl-horarios").append(markup);
 	});
 

@@ -247,6 +247,7 @@
     <Content Include="Views\Home\SolicitudesReserva.cshtml" />
     <Content Include="Views\Home\EquipoPage.cshtml" />
     <Content Include="Views\Home\SocioVehiculos.cshtml" />
+    <Content Include="Views\Home\ListaReservas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

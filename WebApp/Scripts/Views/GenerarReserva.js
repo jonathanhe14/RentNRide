@@ -87,7 +87,7 @@ function ConsultarHorarios() {
 
 	this.ShowMessage = function (type, mensaje) {
 		if (type == 'E') {
-			//console.log("lanzar alerta error")
+			console.log("lanzar alerta error")
 
 			$('#modalErr').modal('show');
 			$('#modalErr .modal-body').text(mensaje);
@@ -114,11 +114,12 @@ function ConsultarHorarios() {
 					callBackFunction(response.Data);
 				}
 			},
-			fail: function (response) {
+			error: function (response) {
 				var data = response.responseJSON;
 				var ctrlActions = new ConsultarHorarios();
+				console.log(data.ExceptionMessage);
+				console.log(response.Message);
 				ctrlActions.ShowMessage('E', data.ExceptionMessage);
-				console.log(data);
 			}
 		})
 	};
@@ -126,14 +127,20 @@ function ConsultarHorarios() {
 
 $(document).ready(function () {
 
+	var rowCount = $('#tabla-consultas > tbody > tr').length;
+	if (rowCount < 1) {
+		$('#btnCreate').attr('disabled', 'disabled');
+	} else {
+		$('#btnCreate').removeAttr('disabled');
+	}
+
 	$('#ingresarParametros').click(function () {
 		window.location.href = "https://localhost:44383/Home/BusquedaVehiculos";
 	});
 
 	$('#irMonedero').click(function () {
-		window.location.href = "https://localhost:44383/Home/Monedero";
+		window.location.href = "https://localhost:44383/Home/BusquedaVehiculos";
 	});
-
 
 	$("input[type='checkbox']").change(function (e) {
 		if ($(this).is(":checked")) { //If the checkbox is checked

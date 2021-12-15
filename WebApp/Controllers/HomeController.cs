@@ -568,5 +568,19 @@ namespace WebApp.Controllers
         {
             return View();
         }
+
+        public ActionResult ListaReservas()
+        {
+            if (ModelState.IsValid)
+            {
+                HttpResponseMessage response = client.GetAsync("http://localhost:52125/api/reserva/ReservasPorUsuario?correo=" + Session["UserID"]).Result;
+                var content = response.Content.ReadAsStringAsync().Result;
+                var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
+                List<Reserva> listaReserva = JsonConvert.DeserializeObject<List<Reserva>>(apiResponse.Data.ToString());
+
+                return View(listaReserva);
+            }
+            return View();
+        }
     }
 }

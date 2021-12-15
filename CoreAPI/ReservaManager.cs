@@ -40,7 +40,7 @@ namespace CoreAPI
                     var mng = new UsuariosManagement();
                     Monedero monedero = new Monedero();
                     monedero = mng.RetrieveMonedero(usuario.Correo);
-                    if ((reserva.Tarifa * horas + reserva.Entrega) < monedero.Saldo)
+                    if ((reserva.Tarifa * horas + reserva.Entrega) > monedero.Saldo)
                     {
                         throw new BussinessException(7);
                     }
