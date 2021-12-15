@@ -145,6 +145,14 @@
 
 		});
 	}
+
+	this.GetToApiFullData = function (service, callbackFunction) {
+		var jqxhr = $.get(this.GetUrlApiService(service), function (response) {
+			console.log("Response " + response.Data);
+			callbackFunction(response);
+		});
+	}
+
 }
 
 //Custom jquery actions
