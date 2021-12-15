@@ -43,11 +43,13 @@
                     @if (@Session["Socio"] == "yes")
                     {
                         <li>@Html.ActionLink("Vehiculos", "SocioVehiculos", "Home")</li>
+                        <li>@Html.ActionLink("Reservas", "SolicitudesReserva", "Home")</li>
                     }
 
                     @if (@Session["Empresa"] == "yes")
                     {
                         <li>@Html.ActionLink("Vehiculos", "SocioVehiculos", "Home")</li>
+                        <li>@Html.ActionLink("Reservas", "SolicitudesReserva", "Home")</li>
                     }
 
                     @if (@Session["Usuario"] == "yes")

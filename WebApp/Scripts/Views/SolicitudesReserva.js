@@ -5,11 +5,11 @@
 	this.ctrlActions = new ControlActionsReservas();
 
 	this.RetrieveAll = function () {
-		this.ctrlActions.FillTable(this.reservaService + "/ReservasPorSocio?Correo=jonaherrera90@hotmail.com", this.tblReservasId, false);
+		this.ctrlActions.FillTable(this.reservaService + "/ReservasPorSocio?Correo="+localStorage.getItem('Correo'), this.tblReservasId, false);
 
 	}
 	this.RetrieveAllPendientes = function () {
-		this.ctrlActions.FillTable(this.reservaService + "/ReservasPorSocioPendientes?Correo=jonaherrera90@hotmail.com", this.tblReservasIdPEndientes, false);
+		this.ctrlActions.FillTable(this.reservaService + "/ReservasPorSocioPendientes?Correo="+localStorage.getItem('Correo'), this.tblReservasIdPEndientes, false);
 
 	}
 	this.BindFieldsReservasPendientes = function (data) {
