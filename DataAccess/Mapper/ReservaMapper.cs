@@ -31,6 +31,9 @@ namespace DataAccess.Mapper
         private const string DB_COL_CALIF_SOCIO = "CALIF_SOCIO";
         private const string DB_COL_CALIF_USUARIO = "CALIF_USUARIO";
         private const string DB_COL_CODIGO_QR = "CODIGO_QR";
+        ////////////////////////////////
+        private const string DB_COL_ESTADO = "ESTADO";
+        private const string DB_COL_HORA_FINAL = "HORA_FINAL";
 
         public SqlOperation GetCreateStatement(BaseEntity entity)
         {
@@ -152,6 +155,42 @@ namespace DataAccess.Mapper
             foreach (var row in lstRows)
             {
                 var reserva = BuildObject(row);
+                lstResults.Add(reserva);
+            }
+
+            return lstResults;
+        }
+
+        public SqlOperation GetDisponibilidad(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_DISPONIBILIDAD_PR" };
+            var c = (ConsultaReserva)entity;
+            operation.AddIntParam(DB_COL_ID_VEHICULO, c.Id_Vehiculo);
+            operation.AddDateTimeParam(DB_COL_FECHA_RESERVA, c.Fecha_Reserva);
+            return operation;
+        }
+
+        public BaseEntity BuildObjectConsulta(Dictionary<string, object> row)
+        {
+            var consulta = new ConsultaReserva
+            {
+                Id_Vehiculo = GetIntValue(row, DB_COL_ID_VEHICULO),
+                Fecha_Reserva = GetDateValue(row, DB_COL_FECHA_RESERVA),
+                Hora_Inicio = GetStringValue(row, DB_COL_HORA_INICIO),
+                Hora_Fin = GetStringValue(row, DB_COL_HORA_FINAL),
+                Estado = GetStringValue(row, DB_COL_ESTADO)
+            };
+
+            return consulta;
+        }
+
+        public List<BaseEntity> BuildObjectsConsulta(List<Dictionary<string, object>> lstRows)
+        {
+            var lstResults = new List<BaseEntity>();
+
+            foreach (var row in lstRows)
+            {
+                var reserva = BuildObjectConsulta(row);
                 lstResults.Add(reserva);
             }
 

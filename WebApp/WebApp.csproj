@@ -175,9 +175,11 @@
     <Content Include="Scripts\Views\ControlActions.js" />
     <Content Include="Scripts\Views\ControlActionsAdmin.js" />
     <Content Include="Scripts\Views\ControlActionsRegistro.js" />
+    <Content Include="Scripts\Views\GenerarReserva.js" />
     <Content Include="Scripts\Views\Horario.js" />
     <Content Include="Scripts\Views\IniciarSesion.js" />
     <Content Include="Scripts\Views\Map.js" />
+    <Content Include="Scripts\Views\MapaReserva.js" />
     <Content Include="Scripts\Views\Marcas.js" />
     <Content Include="Scripts\Views\Membresia.js" />
     <Content Include="Scripts\Views\Modelos.js" />
@@ -238,6 +240,7 @@
     <Content Include="Views\Home\Monedero.cshtml" />
     <Content Include="Views\Home\PagoMembresia.cshtml" />
     <Content Include="Views\Home\Membresia.cshtml" />
+    <Content Include="Views\Home\ConsultarHorarios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

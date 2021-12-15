@@ -19,6 +19,7 @@ function Horario() {
 			var hora_Final = $(this).find('.txtHoraFinal').val();
 			var dia_Inicial = $(this).find('.diaInicial').find(":selected").val();
 			var dia_Final = $(this).find('.diaFinal').find(":selected").val();
+			var disponibilidad = $(this).find('input[name="modalidad"]:checked').val();
 
 			if (hora_Inicio && hora_Final && dia_Inicial && dia_Final) {
 				data.push({
@@ -26,8 +27,7 @@ function Horario() {
 					Id_Vehiculo: 64167,
 					horaInicio: hora_Inicio,
 					horaFinal: hora_Final,
-					//Disponibilidad: "CONTINUO",
-					Disponibilidad: "REPETIR",
+					Disponibilidad: disponibilidad,
 					DiaInicial: Number(dia_Inicial),
 					DiaFinal: Number(dia_Final)
 				});
@@ -48,15 +48,18 @@ function Horario() {
 		};*/
 	}
 
-	this.ShowMessage = function (type) {
+	this.ShowMessage = function (type, mensaje) {
 		if (type == 'E') {
 			console.log("lanzar alerta error")
 
-			//$('#modalErr').modal('show');
+			$('#modalErr').modal('show');
+			$('#modalErr .modal-body').text(mensaje);
 			//this.Limpiar();
 		} else if (type == 'I') {
-			console.log("lanzar alerta")
-			//$('#modalSuccess').modal('show');
+			//console.log("lanzar alerta")
+			$('#modalSuccess').modal('show');
+			$('#modalSuccess .modal-body').text(mensaje);
+
 		}
 
 	};
@@ -92,7 +95,7 @@ function Horario() {
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			success: function (response) {
-				var ctrlActions = new ControlActions();
+				var ctrlActions = new Horario();
 				ctrlActions.ShowMessage('I', response.Message);
 				if (callBackFunction) {
 					callBackFunction(response.Data);
@@ -100,40 +103,49 @@ function Horario() {
 			},
 			fail: function (response) {
 				var data = response.responseJSON;
-				var ctrlActions = new ControlActions();
+				var ctrlActions = new Horario();
 				ctrlActions.ShowMessage('E', data.ExceptionMessage);
 				console.log(data);
 			}
 		})
 	};
-		
+
 
 }
 
 
 $(document).ready(function () {
 
+	$('#horarioExitoso').click(function () {
+		window.location.href = "https://localhost:44383/Home/VehiculoInfo";
+	});
+
+	/*$('#horarioError').click(function () {
+		window.location.href = "https://localhost:44383/Home/Horario";
+	})*/
+
 	//Meter aquí un menú de opciones.
 	$("#btn-agregar-fila").click(function () {
-		var opciones = "<button>nada</button>";
+		var opciones = "<div><input type='radio' id='repetir' value='REPETIR' name='modalidad'><label for='#repetir'>Repetir</label></div>" +
+			"<div><input type='radio' id='continuo' value='CONTINUO' name='modalidad'><label for='#continuo'>Continuo</label></div>";
 		var diaInicial = "<select name='diaInicial' class='diaInicial form-control'>" +
-			"<option value=1>Lunes</option>" +
-			"<option value=2>Martes</option>" +
-			"<option value=3>Miércoles</option>" +
-			"<option value=4>Jueves</option>" +
-			"<option value=5>Viernes</option>" +
-			"<option value=6>Sábado</option>" +
-			"<option value=7>Domingo</option>" +
+			"<option value=2>Lunes</option>" +
+			"<option value=3>Martes</option>" +
+			"<option value=4>Miércoles</option>" +
+			"<option value=5>Jueves</option>" +
+			"<option value=6>Viernes</option>" +
+			"<option value=7>Sábado</option>" +
+			"<option value=1>Domingo</option>" +
 			"</select > ";
 		var txtHoraInicio = "<input type='time' class='txtHoraInicio form-control'>";
 		var diaFinal = "<select name='diaFinal' class='diaFinal form-control'>" +
-			"<option value=1>Lunes</option>" +
-			"<option value=2>Martes</option>" +
-			"<option value=3>Miércoles</option>" +
-			"<option value=4>Jueves</option>" +
-			"<option value=5>Viernes</option>" +
-			"<option value=6>Sábado</option>" +
-			"<option value=7>Domingo</option>" +
+			"<option value=2>Lunes</option>" +
+			"<option value=3>Martes</option>" +
+			"<option value=4>Miércoles</option>" +
+			"<option value=5>Jueves</option>" +
+			"<option value=6>Viernes</option>" +
+			"<option value=7>Sábado</option>" +
+			"<option value=1>Domingo</option>" +
 			"</select > ";
 		var txtHoraFinal = "<input type='time' class='txtHoraFinal form-control' disabled>";
 		var eliminar = "<button class='btnDelete'>Eliminar</button>";
@@ -216,51 +228,6 @@ $(document).ready(function () {
 		} else {
 			mensaje.text("");
 		}
-	});
-
-
-
-
-	$("#btn-datos").click(function () {
-		$('#tbl-horarios > tbody > tr').each(function () {
-
-			var hora_Inicio = $(this).find('.txtHoraInicio').val();
-			var hora_Final = $(this).find('.txtHoraFinal').val();
-			var dia_Inicial = $(this).find('.diaInicial').find(":selected").val();
-			var dia_Final = $(this).find('.diaFinal').find(":selected").val();
-
-			if (hora_Inicio && hora_Final && dia_Inicial && dia_Final) {
-				data.push({
-					Id_Vehiculo: 30041,
-					horaInicio: hora_Inicio,
-					horaFinal: hora_Final,
-					Disponibilidad: "Libre",
-					DiaInicial: Number(dia_Inicial),
-					DiaFinal: Number(dia_Final)
-				});
-			}
-		});
-
-	});
-
-	$("#btn-imprimir").click(function () {
-		var i = 0;
-		var resultado = false;
-		while (data.length != 0) {
-			for (var k = 1; k < data.length; k++) {
-				if (between(data[k].DiaInicial, data[i].DiaInicial, data[i].DiaFinal) &&
-					between(data[k].DiaFinal, data[i].DiaInicial, data[i].DiaFinal) &&
-					between(Number(data[k].horaInicio.match(/^[0-9]+/)[0]), Number(data[i].horaInicio.match(/^[0-9]+/)[0]), Number(data[i].horaFinal.match(/^[0-9]+/)[0])) &&
-					between(Number(data[k].horaFinal.match(/^[0-9]+/)[0]), Number(data[i].horaInicio.match(/^[0-9]+/)[0]), Number(data[i].horaFinal.match(/^[0-9]+/)[0]))) {
-					console.log("¡Cuidado! Existe un traslape de horarios. Caso 1");
-					resultado = true;
-					break;
-				}
-			}
-			data.shift();
-			i++;
-		}
-
 	});
 
 

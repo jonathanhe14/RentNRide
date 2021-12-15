@@ -19,7 +19,7 @@ function Monedero() {
         });
     }
     this.Monedero = function () {
-        this.GetToApiMonedero(this.usersService + "/GetMonedero?correo=jonaherrera90@hotmail.com")
+        this.GetToApiMonedero(this.usersService + "/GetMonedero?correo=" + localStorage.getItem("Correo"))
         
     }
 

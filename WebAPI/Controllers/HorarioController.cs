@@ -20,16 +20,31 @@ namespace WebAPI.Controllers
         {
             try
             {
-            var mng = new HorarioManager();
-            foreach (var horario in lstHorarios)
-            {
-                mng.Create(horario);
-            }
+                var mng = new HorarioManager();
+                List<Horas> listaHoras = new List<Horas>();
+                foreach (var horario in lstHorarios)
+                {
+                    List<Horas> lista = mng.GenerarHoras(horario);
+                    foreach (var item in lista)
+                    {
+                        listaHoras.Add(item);
+                    }
+                }
 
-            apiResp = new ApiResponse();
-            apiResp.Message = "Action was executed.";
+                mng.CrearComprobacion(listaHoras);
 
-            return Ok(apiResp);
+                foreach (var horario in lstHorarios)
+                {
+                    mng.Create(horario);
+                }
+
+                apiResp = new ApiResponse();
+                apiResp.Message = "Horario registrado éxitosamente";
+
+                return Ok(apiResp);
+
+
+
             }
             catch (BussinessException bex)
             {

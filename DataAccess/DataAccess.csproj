@@ -49,6 +49,7 @@
     <Compile Include="Crud\CrudFactory.cs" />
     <Compile Include="Crud\DocumentoCrudFactory.cs" />
     <Compile Include="Crud\ExceptionsCrudFactory.cs" />
+    <Compile Include="Crud\FacturaCrudFactory.cs" />
     <Compile Include="Crud\HorarioCrudFactory.cs" />
     <Compile Include="Crud\HorasCrudFactory.cs" />
     <Compile Include="Crud\ListOptionCrudFactory.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Mapper\DocumentoMapper.cs" />
     <Compile Include="Mapper\EntityMapper.cs" />
     <Compile Include="Mapper\ExceptionMapper.cs" />
+    <Compile Include="Mapper\FacturaMapper.cs" />
     <Compile Include="Mapper\HorarioMapper.cs" />
     <Compile Include="Mapper\HorasMapper.cs" />
     <Compile Include="Mapper\IObjectMapper.cs" />

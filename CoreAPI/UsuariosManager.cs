@@ -74,6 +74,14 @@ namespace CoreAPI
                     Password = encriptado.MD5(usuario.ContrassenaActual),
                     FullName = usuario.Nombre + usuario.Apellidos
                 };
+                var monedero = new Monedero
+                {
+                    IdUsuario = usuario.Correo,
+                    Saldo = 0,
+                    InfoMonedero = "USUARIO",
+                    FechaCorte = DateTime.Now,
+                    FechaExpiracion = DateTime.Now
+                };
 
 
                 //Validacion del Rol y de los campos necesarios
@@ -83,6 +91,7 @@ namespace CoreAPI
                 crudContrasennas.Create(contrasenna);
                 crudRoles.Create(rolUsuario);
                 crudUserProfile.Create(userProfile);
+                CreateMonedero(monedero);
             }
             catch (Exception ex)
             {

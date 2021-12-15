@@ -22,36 +22,177 @@ namespace CoreAPI
             crudHoras = new HorasCrudFactory();
         }
 
+        public void CrearComprobacion(List<Horas> listaGeneralHoras)
+        {
+            try
+            {
+                if (ComprobarHorasActual(listaGeneralHoras))
+                {
+                    throw new BussinessException(8);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.GetInstance().Process(ex);
+            }
+        }
+
         public void Create(Horario horario)
         {
             try
             {
-                crudHorario.Create(horario);
+                //Loop para crear las horas
+                List<Horas> listaHoras = GenerarHoras(horario);
 
-                //Buscar el horario para obtener el Id del horario y ponérselo a las horas que se van a crear
-                List<Horario> horarios = RetrieveById(horario);
-
-                var buscarHorario = from h in horarios
-                                    where h.horaInicio == horario.horaInicio &
-                                           h.horaFinal == horario.horaFinal &
-                                           h.Disponibilidad == horario.Disponibilidad &
-                                           h.DiaInicial == horario.DiaInicial &
-                                           h.DiaFinal == horario.DiaFinal
-                                    select h;
-
-                int id_horario = 0;
-
-                foreach (var item in buscarHorario)
+                if (!ComprobarHorasActual(listaHoras))
                 {
-                    id_horario = item.Id;
+                    listaHoras = GenerarHoras(horario);
+                    if (!ComprobarHorasBase(listaHoras))
+                    {
+                        crudHorario.Create(horario);
+
+                        //Buscar el horario para obtener el Id del horario y ponérselo a las horas que se van a crear
+                        List<Horario> horarios = RetrieveById(horario);
+
+                        var buscarHorario = from h in horarios
+                                            where h.horaInicio == horario.horaInicio &
+                                                   h.horaFinal == horario.horaFinal &
+                                                   h.Disponibilidad == horario.Disponibilidad &
+                                                   h.DiaInicial == horario.DiaInicial &
+                                                   h.DiaFinal == horario.DiaFinal
+                                            select h;
+
+                        int id_horario = 0;
+
+                        foreach (var item in buscarHorario)
+                        {
+                            id_horario = item.Id;
+                        }
+
+                        foreach (var hora in listaHoras)
+                        {
+                            hora.Id_Horario = id_horario;
+                            crudHoras.Create(hora);
+                        }
+                    }
+                    else
+                    {
+                        throw new BussinessException(9);
+                    }
+
+                }
+                else
+                {
+                    throw new BussinessException(8);
                 }
 
-                //Loop para crear las horas
-                int hours = 0;
-                int minutes = 0;
-                int hoursFinal = 0;
-                int minutesFinal = 0;
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.GetInstance().Process(ex);
+            }
+        }
 
+        private Boolean ComprobarHorasBase(List<Horas> listaHoras)
+        {
+
+            List<Horas> lstHorasBase = crudHoras.RetrieveByCar<Horas>(listaHoras[0]);
+            foreach (var item in listaHoras)
+            {
+                foreach (var hora in lstHorasBase)
+                {
+                    if (item.Id_Vehiculo == hora.Id_Vehiculo &
+                        item.Dia == hora.Dia &
+                        item.Hora_Inicio.Equals(hora.Hora_Inicio) &
+                        item.Hora_Final.Equals(hora.Hora_Final))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private Boolean ComprobarHorasActual(List<Horas> listaHoras)
+        {
+            List<Horas> copiarListado = listaHoras;
+
+            int i = 0;
+
+            while (i < copiarListado.Count)
+            {
+                Horas horaBase = copiarListado[i];
+
+                for (int k = 1; k < copiarListado.Count; k++)
+                {
+                    if (horaBase.Id_Vehiculo == listaHoras[k].Id_Vehiculo &
+                    horaBase.Dia == listaHoras[k].Dia &
+                    horaBase.Hora_Inicio.Equals(listaHoras[k].Hora_Inicio) &
+                    horaBase.Hora_Final.Equals(listaHoras[k].Hora_Final))
+                    {
+                        return true;
+                    }
+                }
+                copiarListado.RemoveAt(i);
+            }
+            return false;
+        }
+
+        public List<Horas> GenerarHoras(Horario horario)
+        {
+
+            List<Horas> listaHoras = new List<Horas>();
+            int hours;
+            int minutes;
+            int hoursFinal;
+            int minutesFinal;
+
+            if (horario.DiaFinal < horario.DiaInicial)
+            {
+                hours = Convert.ToInt32(horario.horaInicio.Split(':')[0]);
+                minutes = Convert.ToInt32(horario.horaInicio.Split(':')[1]);
+                hoursFinal = Convert.ToInt32(horario.horaFinal.Split(':')[0]);
+                minutesFinal = Convert.ToInt32(horario.horaFinal.Split(':')[1]);
+
+                if (horario.Disponibilidad.Equals("CONTINUO"))
+                {
+
+                    DateTime fechaBase = new DateTime(2021, 8, 1);
+                    DateTime fechaFinal = generarFechaFinal(fechaBase, horario.DiaFinal);
+                    DateTime nuevaFechaFinal = new DateTime(fechaFinal.Year, fechaFinal.Month, fechaFinal.Day, hoursFinal, minutesFinal, 0);
+                    DateTime fechaInicial = generarFechaInicial(fechaBase, horario.DiaInicial);
+                    DateTime nuevaFechaInicial = new DateTime(fechaInicial.Year, fechaInicial.Month, fechaInicial.Day, hours, minutes, 0);
+
+                    while (nuevaFechaInicial != nuevaFechaFinal)
+                    {
+                        Horas hora = new Horas
+                        {
+                            Id_Vehiculo = horario.Id_Vehiculo,
+                            Id_Horario = horario.Id,
+                            Dia = ((int)nuevaFechaInicial.DayOfWeek) + 1,
+                            Hora_Inicio = nuevaFechaInicial.ToString("HH:mm"),
+                            Hora_Final = nuevaFechaInicial.AddHours(1).ToString("HH:mm"),
+                            Disponibilidad = "LIBRE",
+                            Estado = "ACTIVO"
+                        };
+                        listaHoras.Add(hora);
+                        nuevaFechaInicial = nuevaFechaInicial.AddHours(1);
+                    }
+
+                    return listaHoras;
+                }
+                else
+                {
+                    DateTime fechaBase = new DateTime(2021, 8, 1);
+                    DateTime fechaFinal = generarFechaFinal(fechaBase, horario.DiaFinal);
+                    DateTime nuevaFechaFinal = new DateTime(fechaFinal.Year, fechaFinal.Month, fechaFinal.Day, hoursFinal, minutesFinal, 0);
+                    DateTime fechaInicial = generarFechaInicial(fechaBase, horario.DiaInicial);
+                    DateTime nuevaFechaInicial = new DateTime(fechaInicial.Year, fechaInicial.Month, fechaInicial.Day, hours, minutes, 0);
+                }
+
+            }
+            else
+            {
                 for (int dia = horario.DiaInicial; dia <= horario.DiaFinal; dia++)
                 {
                     //Definir y convertir la hora inicial y la final
@@ -88,7 +229,7 @@ namespace CoreAPI
                         Horas hora = new Horas
                         {
                             Id_Vehiculo = horario.Id_Vehiculo,
-                            Id_Horario = id_horario,
+                            Id_Horario = horario.Id,
                             Dia = dia,
                             Disponibilidad = "LIBRE",
                             Estado = "ACTIVO"
@@ -121,21 +262,79 @@ namespace CoreAPI
                             }
                         }
 
-                        crudHoras.Create(hora);
+                        listaHoras.Add(hora);
                     }
 
-
                 }
-
-
-
-
             }
-            catch (Exception ex)
+
+
+
+            return listaHoras;
+        }
+
+        public DateTime generarFechaFinal(DateTime fechaBase, int dia)
+        {
+            switch (dia - 1)
             {
-                ExceptionManager.GetInstance().Process(ex);
+                case ((int)DayOfWeek.Sunday):
+                    return fechaBase;
+                    break;
+                case ((int)DayOfWeek.Monday):
+                    return fechaBase.AddDays(1);
+                    break;
+                case ((int)DayOfWeek.Tuesday):
+                    return fechaBase.AddDays(2);
+                    break;
+                case ((int)DayOfWeek.Wednesday):
+                    return fechaBase.AddDays(3);
+                    break;
+                case ((int)DayOfWeek.Thursday):
+                    return fechaBase.AddDays(4);
+                    break;
+                case ((int)DayOfWeek.Friday):
+                    return fechaBase.AddDays(5);
+                    break;
+                case ((int)DayOfWeek.Saturday):
+                    return fechaBase.AddDays(6);
+                    break;
+                default:
+                    return fechaBase;
+                    break;
             }
         }
+
+        public DateTime generarFechaInicial(DateTime fechaBase, int dia)
+        {
+            switch (dia - 1)
+            {
+                case ((int)DayOfWeek.Sunday):
+                    return fechaBase;
+                    break;
+                case ((int)DayOfWeek.Monday):
+                    return fechaBase.AddDays(-6);
+                    break;
+                case ((int)DayOfWeek.Tuesday):
+                    return fechaBase.AddDays(-5);
+                    break;
+                case ((int)DayOfWeek.Wednesday):
+                    return fechaBase.AddDays(-4);
+                    break;
+                case ((int)DayOfWeek.Thursday):
+                    return fechaBase.AddDays(-3);
+                    break;
+                case ((int)DayOfWeek.Friday):
+                    return fechaBase.AddDays(-2);
+                    break;
+                case ((int)DayOfWeek.Saturday):
+                    return fechaBase.AddDays(-1);
+                    break;
+                default:
+                    return fechaBase;
+                    break;
+            }
+        }
+
 
         public List<Horario> RetrieveAll()
         {

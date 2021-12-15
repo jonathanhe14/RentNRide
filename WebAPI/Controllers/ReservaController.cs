@@ -15,15 +15,25 @@ namespace WebAPI.Controllers
         ApiResponse apiResp = new ApiResponse();
 
         [HttpPost]
-        public IHttpActionResult CrearReserva(Reserva reserva)
+        public IHttpActionResult CrearReserva(List<Reserva> listaReservas)
         {
             try
             {
                 var mng = new ReservaManager();
-                mng.Create(reserva);
-
+                int horas = listaReservas.Count;
                 apiResp = new ApiResponse();
-                apiResp.Message = "Action was executed.";
+                foreach (var reserva in listaReservas)
+                {
+                    mng.Create(reserva, horas);
+                }
+                if (!listaReservas[0].Solicitud.Equals("PENDIENTE"))
+                {
+                    apiResp.Message = "Su reserva ha sido generada";
+                    mng.CrearFactura(listaReservas);
+                    return Ok(apiResp);
+                }
+                apiResp.Message = "Solicitud creada, por favor esperar confirmación. " +
+                    "Una vez que se haya aprobado la solicitud, se efectuará el cargo en su monedero";
 
                 return Ok(apiResp);
             }
@@ -112,6 +122,24 @@ namespace WebAPI.Controllers
             {
                 return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
             }
+        }
+
+        [HttpPost]
+        public IHttpActionResult ConsultasReserva(List<ConsultaReserva> listaConsultas)
+        {
+            //try
+            //{
+            var mng = new ReservaManager();
+            List<ConsultaReserva> consultas = mng.RetrieveDisponibility(listaConsultas);
+            apiResp = new ApiResponse();
+            apiResp.Data = consultas;
+            apiResp.Message = "Action was excecuted.";
+            return Ok(apiResp);
+            /*}
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }*/
         }
 
 

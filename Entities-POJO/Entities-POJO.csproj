@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="ApplicationMessage.cs" />
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="ConsultaReserva.cs" />
     <Compile Include="Contrasennas.cs" />
     <Compile Include="Documento.cs" />
+    <Compile Include="Factura.cs" />
     <Compile Include="FortalezaClave.cs" />
     <Compile Include="Hasher.cs" />
     <Compile Include="Horario.cs" />

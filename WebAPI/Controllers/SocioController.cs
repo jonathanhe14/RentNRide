@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
             try {
                 var mng = new SocioManager();
                 var usuario = new Usuarios {
-                    Correo = id
+                    Correo = correo
                 };
                 var membresia = new Membresias();
                 membresia = mng.RetrieveByIdMembresia(usuario);

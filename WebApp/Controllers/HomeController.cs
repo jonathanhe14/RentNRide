@@ -26,69 +26,80 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                Hasher encriptado = new Hasher();               
-                                
-                objUser.Password = encriptado.MD5(objUser.Password);
-                string jsonString = JsonConvert.SerializeObject(objUser);
-
-                HttpContent c = new StringContent(jsonString, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = client.PostAsync("http://localhost:52125/api/userprofile/InicioSesion", c).Result;
-
-                if (response.IsSuccessStatusCode)
+                if (objUser.Password != null & objUser.UserName != null)
                 {
-                    var content = response.Content.ReadAsStringAsync().Result;
+                    Hasher encriptado = new Hasher();
 
-                    var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
-                    var user = JsonConvert.DeserializeObject<UserProfile>(apiResponse.Data.ToString());
+                    objUser.Password = encriptado.MD5(objUser.Password);
+                    string jsonString = JsonConvert.SerializeObject(objUser);
 
-                    HttpResponseMessage responseRol = client.GetAsync("http://localhost:52125/api/userprofile/RolesPorUsuario?correo=" + user.UserName).Result;
+                    HttpContent c = new StringContent(jsonString, Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = client.PostAsync("http://localhost:52125/api/userprofile/InicioSesion", c).Result;
 
-                    if (responseRol.IsSuccessStatusCode)
+                    if (response.IsSuccessStatusCode)
                     {
-                        var contentRol = responseRol.Content.ReadAsStringAsync().Result;
-                        var apiResponseRol = JsonConvert.DeserializeObject<ApiResponse>(contentRol);
-                        List<UsuariosRol> rol = JsonConvert.DeserializeObject<List<UsuariosRol>>(apiResponseRol.Data.ToString());
+                        var content = response.Content.ReadAsStringAsync().Result;
 
-                        Session["Admin"] = verificarRol(rol, 1);
-                        Session["Socio"] = verificarRol(rol, 2);
-                        Session["Empresa"] = verificarRol(rol, 3);
-                        Session["Usuario"] = verificarRol(rol, 4);
-                        Session["UserID"] = user.UserName;
-                        Session["FullName"] = user.FullName;
+                        var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
+                        var user = JsonConvert.DeserializeObject<UserProfile>(apiResponse.Data.ToString());
 
-                        if (verificarRol(rol, 1) == "yes")
+                        HttpResponseMessage responseRol = client.GetAsync("http://localhost:52125/api/userprofile/RolesPorUsuario?correo=" + user.UserName).Result;
+
+                        if (responseRol.IsSuccessStatusCode)
                         {
-                            return View("Administrador");
+                            var contentRol = responseRol.Content.ReadAsStringAsync().Result;
+                            var apiResponseRol = JsonConvert.DeserializeObject<ApiResponse>(contentRol);
+                            List<UsuariosRol> rol = JsonConvert.DeserializeObject<List<UsuariosRol>>(apiResponseRol.Data.ToString());
+
+                            Session["Admin"] = verificarRol(rol, 1);
+                            Session["Socio"] = verificarRol(rol, 2);
+                            Session["Empresa"] = verificarRol(rol, 3);
+                            Session["Usuario"] = verificarRol(rol, 4);
+                            Session["UserID"] = user.UserName;
+                            Session["FullName"] = user.FullName;
+
+                            if (verificarRol(rol, 1) == "yes")
+                            {
+                                return View("Administrador");
+                            }
+
+                            if (verificarRol(rol, 2) == "yes" || verificarRol(rol, 3) == "yes")
+                            {
+                                return View("PerfilSocio");
+                            }
+
+                            if (verificarRol(rol, 4) == "yes")
+                            {
+                                return View("BusquedaVehiculos");
+                            }
+                        }
+                        else
+                        {
+                            var contentRol = responseRol.Content.ReadAsStringAsync().Result;
+                            var error = JsonConvert.DeserializeObject<RespuestaFallida>(contentRol);
+                            ViewBag.Message = error.ExceptionMessage;
+                            return View(objUser);
                         }
 
-                        if (verificarRol(rol, 2) == "yes" || verificarRol(rol, 3) == "yes")
-                        {
-                            return View("PerfilSocio");
-                        }
-
-                        if (verificarRol(rol, 4) == "yes")
-                        {
-                            return View("BusquedaVehiculos");
-                        }
                     }
                     else
                     {
-                        var contentRol = responseRol.Content.ReadAsStringAsync().Result;
-                        var error = JsonConvert.DeserializeObject<RespuestaFallida>(contentRol);
+                        var content = response.Content.ReadAsStringAsync().Result;
+                        var error = JsonConvert.DeserializeObject<RespuestaFallida>(content);
                         ViewBag.Message = error.ExceptionMessage;
                         return View(objUser);
                     }
-
                 }
                 else
                 {
-                    var content = response.Content.ReadAsStringAsync().Result;
-                    var error = JsonConvert.DeserializeObject<RespuestaFallida>(content);
-                    ViewBag.Message = error.ExceptionMessage;
+                    ViewBag.Message = "Por favor, completar todos los campos";
                     return View(objUser);
                 }
+
+
             }
             return View(objUser);
+
         }
 
         public string verificarRol(List<UsuariosRol> roles, int id_rol)
@@ -478,6 +489,53 @@ namespace WebApp.Controllers
             return View();
         }
         public ActionResult Monedero()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ConsultarHorarios(string fechaInicial, string fechaFinal, int idVehiculo)
+        {
+            if (ModelState.IsValid)
+            {
+                //CONSULTAR SI ALGÚN HORARIO ESTÁ OCUPADO O NO.
+
+                DateTime fechaPrimera = Convert.ToDateTime(fechaInicial);
+                DateTime fechaUltima = Convert.ToDateTime(fechaFinal);
+
+                List<ConsultaReserva> listaConsultas = new List<ConsultaReserva>();
+
+                for (DateTime fecha = fechaPrimera; fecha <= fechaUltima; fecha = fecha.AddDays(1))
+                {
+                    ConsultaReserva consulta = new ConsultaReserva();
+                    consulta.Id_Vehiculo = idVehiculo;
+                    consulta.Fecha_Reserva = fecha;
+                    listaConsultas.Add(consulta);
+                }
+                string jsonString = JsonConvert.SerializeObject(listaConsultas);
+                HttpContent c = new StringContent(jsonString, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage responseConsultas = client.PostAsync("http://localhost:52125/api/reserva/ConsultasReserva", c).Result;
+                var contentConsultas = responseConsultas.Content.ReadAsStringAsync().Result;
+                var apiResponseConsultas = JsonConvert.DeserializeObject<ApiResponse>(contentConsultas);
+                List<ConsultaReserva> consultas = JsonConvert.DeserializeObject<List<ConsultaReserva>>(apiResponseConsultas.Data.ToString());
+
+                ViewData["listaConsultas"] = consultas;
+
+                //INFORMACIÓN DEL VEHÍCULO
+
+                HttpResponseMessage responseAutos = client.GetAsync("http://localhost:52125/api/vehiculo/GetOneVehicle?id=" + idVehiculo).Result;
+                var contentVehiculo = responseAutos.Content.ReadAsStringAsync().Result;
+                var apiResponseVehiculo = JsonConvert.DeserializeObject<ApiResponse>(contentVehiculo);
+                Vehiculo vehiculo = JsonConvert.DeserializeObject<Vehiculo>(apiResponseVehiculo.Data.ToString());
+
+                return View(vehiculo);
+            }
+
+            return View();
+        }
+
+        public ActionResult ConsultarHorarios()
         {
             return View();
         }

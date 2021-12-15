@@ -86,5 +86,23 @@ namespace DataAccess.Crud
             var customer = (Reserva)entity;
             dao.ExecuteProcedure(mapper.GetUpdateStatement(customer));
         }
+
+        public List<T> RetrieveDisponibility<T>(BaseEntity entity)
+        {
+            var lstHorarios = new List<T>();
+
+            var lstResult = dao.ExecuteQueryProcedure(mapper.GetDisponibilidad(entity));
+            var dic = new Dictionary<string, object>();
+            if (lstResult.Count > 0)
+            {
+                var objs = mapper.BuildObjectsConsulta(lstResult);
+                foreach (var c in objs)
+                {
+                    lstHorarios.Add((T)Convert.ChangeType(c, typeof(T)));
+                }
+            }
+
+            return lstHorarios;
+        }
     }
 }

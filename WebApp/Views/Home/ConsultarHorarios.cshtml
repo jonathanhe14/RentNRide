@@ -1,0 +1,143 @@
+﻿@model Entities_POJO.Vehiculo
+@using WebApp.Models.Helpers;
+
+
+@{
+    ViewBag.Title = "ConsultarHorarios";
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
+}
+
+<script src="~/Scripts/Views/GenerarReserva.js"></script>
+<script src="~/Scripts/Views/MapaReserva.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4aNZIQyvam7h8Zmdq8ldZ_7sdtVGcwtE&callback=initMap" defer></script>
+
+<h2>ConsultarHorarios</h2>
+
+<p>Seleccionar los horarios para los que quiere utilizar el vehículo.</p>
+
+<table class="table table-hover table-striped" id="tabla-consultas">
+    <tr>
+        <th>ID_VEHÍCULO</th>
+        <th>FECHA RESERVA</th>
+        <th>DÍA</th>
+        <th>HORA INICIO</th>
+        <th>HORA FINAL</th>
+        <th>ESTADO</th>
+        <th>SELECCIÓN</th>
+    </tr>
+    @foreach (var item in ViewData["listaConsultas"] as IEnumerable<Entities_POJO.ConsultaReserva>)
+    {
+        <tr>
+            <td id="id-vehiculo">@item.Id_Vehiculo</td>
+            <td id="fecha-reserva">@{var fecha = item.Fecha_Reserva.Year.ToString() + '-' + item.Fecha_Reserva.Month.ToString() + '-' + item.Fecha_Reserva.Day.ToString();}@fecha</td>
+            <td>@item.Fecha_Reserva.DayOfWeek</td>
+            <td id="hora-inicio">@item.Hora_Inicio</td>
+            <td id="hora-fin">@item.Hora_Fin</td>
+            <td id="estado">@item.Estado</td>
+            <td>
+                @if (item.Estado == "LIBRE")
+                {
+                    <input type="checkbox" class="consulta form-control" />
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+<hr />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" id="">
+                @Html.Label("Correo dueño del vehículo")
+                @Html.TextBox("socio", Model.idUsuario, new { @readonly = "readonly" })
+            </div>
+            <div class="form-group" id="">
+                @Html.Label("Correo usuario")
+                @Html.TextBox("usuario", Session["UserID"], new { @readonly = "readonly" })
+            </div>
+            <div class="form-group" id="">
+                @Html.Label("Tarifa por hora")
+                @Html.TextBox("tarifa", Model.Tarifa, new { @readonly = "readonly" })
+            </div>
+            <div>
+                <p>¿Acepta este vehículo modalidad inmediata?</p>
+                <p id="modalidadAcept">@Model.AccptInmediata</p>
+            </div>
+            <h3>Punto de entrega</h3>
+            <p>Para escoger un punto de entrega distinto, mover la ubicación dónde la desea</p>
+            <p>Considerar que de cambiarse la ubicación original de este vehículo, existe un costo adicional de: @Html.TextBox("cEntregDifer", Model.cLugarDiferente, new { @readonly = "readonly", @class = "tarifa" })  </p>
+            <button id="btn-ubic-orig">Volver ubicación original</button>
+            <div id="map" style="height:500px; width:auto;border: 1px solid black;margin-top:30px"></div>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-hover table-striped">
+                <tr>
+                    <th>Detalle</th>
+                    <th>Cantidad</th>
+                    <th>Costo (colones)</th>
+                    <th>Total (colones)</th>
+                </tr>
+                <tr>
+                    <td>Tarifa por hora</td>
+                    <td id="q-horas">0</td>
+                    <td id="precio-tarifa">@Model.Tarifa</td>
+                    <td id="total-tarifa">0</td>
+                </tr>
+                <tr>
+                    <td>Entrega diferente</td>
+                    <td id="q-lugar-diferente">0</td>
+                    <td id="precio-difer">@Model.cLugarDiferente</td>
+                    <td id="total-difer">0</td>
+                </tr>
+                <tr class="row-border">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td id="total-general">0</td>
+                </tr>
+            </table>
+            @Html.CtrlButton(viewName: "ConsultarHorarios", id: "btnCreate", label: "Reservar", onClickFunction: "Create", buttonType: "success")
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.TextBox("latitud", Model.Latitud, new { @readonly = "readonly", @class = "latitud invisible" })
+    @Html.TextBox("longitud", Model.Longitud, new { @readonly = "readonly", @class = "longitud invisible" })
+</div>
+
+<div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle" style="font-size:25px">Felicidades</h5>
+            </div>
+            <div class="modal-body">
+                Su Registro fue Exitoso.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="ingresarParametros">Continuar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalErr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle" style="font-size:25px">Lo Sentimos</h5>
+            </div>
+            <div class="modal-body">
+                Debe recargar el monedero para completar la reserva
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="irMonedero">Recargar monedero</button>
+
+            </div>
+        </div>
+    </div>
+</div>

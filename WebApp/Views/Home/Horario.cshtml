@@ -1,21 +1,14 @@
 ﻿@using WebApp.Models.Helpers;
 
 
-@{
-    ViewBag.Title = "Horario";
-    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
-}
+@{ ViewBag.Title = "Horario";
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml"; }
 
 <h2>Horario</h2>
 
-<script src="~/Scripts/Views/ControlActions.js"></script>
 <script src="~/Scripts/Views/Horario.js"></script>
 
 <button id="btn-agregar-fila">Agregar un horario</button>
-
-<button id="btn-datos">Obtener datos</button>
-<button id="btn-imprimir">Ver datos</button>
-
 
 <table class="table table-hover table-striped" id="tbl-horarios">
     <tr>
@@ -30,3 +23,36 @@
 </table>
 
 @Html.CtrlButton(viewName: "Horario", id: "btnCreate", label: "Registrar", onClickFunction: "Create", buttonType: "success")
+
+<div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle" style="font-size:25px">Felicidades</h5>
+            </div>
+            <div class="modal-body">
+                Su Registro fue Exitoso.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="horarioExitoso">Continuar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalErr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle" style="font-size:25px">Lo Sentimos</h5>
+            </div>
+            <div class="modal-body">
+                Existe una duplicación de horarios
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="horarioError">Recargar monedero</button>
+            </div>
+        </div>
+    </div>
+</div>

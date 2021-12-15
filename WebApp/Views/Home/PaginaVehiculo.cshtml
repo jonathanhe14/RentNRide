@@ -29,6 +29,24 @@
                 <li><span>Combustible: </span> @Model.Combustible</li>
                 <li><span>Kilometraje: </span> @Model.Kilometraje</li>
             </ul>
+            <h3>Horarios</h3>
+            <div class="form-group">
+                @using (Html.BeginForm("ConsultarHorarios", "Home", FormMethod.Post))
+                {
+        <p>Por favor, escoger un rango de fechas en los que desea consultar el horario del vehículo.</p>
+                        <p>No seleccionar una fecha inicial o final anterior a la actual ni tampoco una fecha final anterior a la inicial.</p>
+                                        <div class="form-group">
+                                            @Html.Label("Fecha inicial")
+                                            @Html.TextBox("fechaInicial")
+                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.Label("Fecha final")
+                                                            @Html.TextBox("fechaFinal")
+                                                        </div>
+                                                                        <button class="btn btn-primary btn-block" type="submit" id="EnviarFechas">Enviar</button>
+                                                                                        @Html.TextBox("idVehiculo", Model.Id, new { @readonly = "readonly", @class = "invisible" })}
+
+            </div>
             <h3>Cargos</h3>
             <ul>
                 <li><span>¿Aceptación inmediata?: </span> @Model.AccptInmediata</li>
