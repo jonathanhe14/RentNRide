@@ -69,9 +69,12 @@
             @Html.CtrlButton(viewName: "Solicitudes", id: "btnRechazar", label: "Rechazar", onClickFunction: "Rechazar", buttonType: "danger")
             @Html.CtrlButton(viewName: "Solicitudes", id: "btnLimpiar", label: "Limpiar", onClickFunction: "Limpiar", buttonType: "info")
         </div>
-        <div id="alerta" class="col-md-12 text-center">
-
+        <div class="col-md-12">
+            <div class="alert-danger" id="alert" style="display:none; margin:10px;height:30px;padding:5px;font-weight:bold">
+                Verifique que los campos estén llenos
+            </div>
         </div>
+        
     </div>
 
 </main>

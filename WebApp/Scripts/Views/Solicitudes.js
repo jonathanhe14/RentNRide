@@ -45,9 +45,11 @@
 
 		if (usrVacio || membVacio) {
 			//"<div class='alert alert-warning alert-dismissible fade show'>< button type = 'button' class= 'btn-close' data-bs-dismiss='alert' ></button ><strong>Los campos no pueden estar vacíos</strong></div >"
-			$('#alerta').append("<div class='alerta-d'> Los campos no pueden estar vacíos </div>")
+			$('#alert').fadeTo(4000, 500).slideUp(500, function () {
+				$('#alert').slideUp(500);
+			});
 		} else {
-			$('#alerta').empty();
+			
 			var usuario = {};
 			usuario = this.ctrlActions.GetDataForm('frmUsers');
 			var membresia = {};

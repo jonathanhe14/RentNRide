@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-md-6">
 
-                        @Html.CtrlButton(viewName: "Usuarios", id: "btnDesactivar", label: "Desactivar", onClickFunction: "Desactivar", buttonType: "danger")
+                        <!--Html.CtrlButton(viewName: "Usuarios", id: "btnDesactivar", label: "Desactivar", onClickFunction: "Desactivar", buttonType: "danger")-->
                         @Html.CtrlButton(viewName: "Usuarios", id: "btnLimpiar", label: "Limpiar", onClickFunction: "Limpiar", buttonType: "primary")
 
                     </div>
@@ -40,33 +40,7 @@
 
             </div>
         </div>
-        <div class="col-md-12 table-card">
-
-            @Html.CtrlTable(viewName: "Usuarios", id: "tblVehiculos", title: "Vehiculos",
-                                 columnsTitle: "Id,Tipo Vehículo,Tipo Combustible,Modelo,Marca,Kilometraje,Estado,Dueño", ColumnsDataName: "Id,Tipo,Combustible,Modelo,Marca,Kilometraje,Estado,idUsuario",
-                                 onSelectFunction: "BindFieldsVehiculos", colorHeader: "red")
-            <div class="card border-secondary" style="margin-top: 50px;">
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="bs-component">
-                            <form id="frmUsers">
-                                @Html.CtrlInput(id: "txtId", type: "text", label: "Id", columnDataName: "Id", readOnly: "readonly")
-                                @Html.CtrlInput(id: "txtTipo", type: "text", label: "Tipo Vehículo", columnDataName: "Tipo", readOnly: "readonly")
-                                @Html.CtrlInput(id: "txtCombustible", type: "text", label: "Tipo Combustible", columnDataName: "Combustible", readOnly: "readonly")
-                                @Html.CtrlInput(id: "txtModelo", type: "text", label: "Modelo", columnDataName: "Modelo", readOnly: "readonly")
-                                @Html.CtrlInput(id: "txtMarca", type: "text", label: "Marca", columnDataName: "Marca", readOnly: "readonly")
-                                @Html.CtrlInput(id: "txtKilometraje", type: "text", label: "Kilometraje", columnDataName: "Kilometraje", readOnly: "readonly")
-                                @Html.CtrlInput(id: "txtEstado", type: "text", label: "Estado", columnDataName: "Estado", readOnly: "readonly")
-                                @Html.CtrlInput(id: "txtDuenno", type: "text", label: "Dueño", columnDataName: "idUsuario", readOnly: "readonly")
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+  
 
 
     </div>

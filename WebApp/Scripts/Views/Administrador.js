@@ -202,8 +202,8 @@
 	}
 
 	this.RetrieveFinanzas = function () {
-		var ingresos = 6000;
-		var egresos = 1750;
+		var ingresos = 400000;
+		var egresos = 150000;
 		var ganancias = ingresos - egresos;
 		if (ganancias >= 0) {
 			$("#lblGanancias").text("Ganancias");
