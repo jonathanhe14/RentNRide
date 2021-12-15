@@ -563,5 +563,10 @@ namespace WebApp.Controllers
         {
             return View();
         }
+
+        public ActionResult EquipoPage()
+        {
+            return View();
+        }
     }
 }

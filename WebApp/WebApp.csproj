@@ -237,7 +237,6 @@
     <Content Include="Views\Home\TiposVehiculo.cshtml" />
     <Content Include="Views\Home\Horario.cshtml" />
     <Content Include="Views\Home\SocioDashboard.cshtml" />
-    <Content Include="Views\Home\SocioVehiculos.cshtml" />
     <Content Include="Views\Home\BusquedaVehiculos.cshtml" />
     <Content Include="Views\Home\PaginaVehiculo.cshtml" />
     <Content Include="Views\Home\Monedero.cshtml" />
@@ -246,6 +245,8 @@
     <Content Include="Views\Home\ConsultarHorarios.cshtml" />
     <Content Include="Views\Home\CheckOut.cshtml" />
     <Content Include="Views\Home\SolicitudesReserva.cshtml" />
+    <Content Include="Views\Home\EquipoPage.cshtml" />
+    <Content Include="Views\Home\SocioVehiculos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

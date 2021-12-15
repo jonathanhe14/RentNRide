@@ -93,7 +93,7 @@
 			//ctrlActions.ShowMessage('I', response.Message);
 		
 			if (callBackFunction) {
-				callbackFunction(response.Data);
+				callBackFunction(response.Data);
 			}
 		})
 			.fail(function (response) {
@@ -109,7 +109,7 @@
 			var ctrlActions = new ControlActionsAdmin();
 			//ctrlActions.ShowMessage('I', response.Message);
 			if (callBackFunction) {
-				callbackFunction(response.Data);
+				callBackFunction(response.Data);
 			}
 
 		})

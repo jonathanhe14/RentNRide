@@ -18,16 +18,47 @@
 
 	this.Create = function () {
 		if (this.checkIfError) {
-			var ranId = Math.floor((Math.random() * 100000) + 1);
-			idData = { Id: ranId };
-			this.CreateTwo(idData);
+			
+				$("#alert_container").removeClass("alert alert-success alert-dismissable")
+				$("#alert_container").addClass("alert alert-danger alert-dismissable");
+				$("#alert_message").text("Solo usuarios de empresa pueden agregar mas de 3 vehiculos");
+				$('.alert').show();
+			
+             var ranId = Math.floor((Math.random() * 100000) + 1);
+			 idData = { Id: ranId };
+			 this.CreateTwo(idData);
 
-			//Hace el post al create
-			this.ctrlActions.PostToAPI(this.service + "/Post", finalData, function (data) {
-				var vcustomer = new SocioVehiculos();
-				vcustomer.CreateDocum(idData);
-				vcustomer.SendCreateDocu();
-			});
+			 //Hace el post al create
+			 this.ctrlActions.PostToAPI(this.service + "/Post", finalData, function (data) {
+			 	var vcustomer = new SocioVehiculos();
+			 	vcustomer.CreateDocum(idData);
+			 	vcustomer.SendCreateDocu();
+			 });
+            
+			
+		}
+	}
+
+	this.Create2 = function () {
+		if (this.checkIfError) {
+			if (document.getElementById("tblVehiculos").rows.length >= 4) {
+				$("#alert_container").removeClass("alert alert-success alert-dismissable")
+				$("#alert_container").addClass("alert alert-danger alert-dismissable");
+				$("#alert_message").text("Solo usuarios de empresa pueden agregar mas de 3 vehiculos");
+				$('.alert').show();
+			} else {
+				var ranId = Math.floor((Math.random() * 100000) + 1);
+				idData = { Id: ranId };
+				this.CreateTwo(idData);
+
+				//Hace el post al create
+				this.ctrlActions.PostToAPI(this.service + "/Post", finalData, function (data) {
+					var vcustomer = new SocioVehiculos();
+					vcustomer.CreateDocum(idData);
+					vcustomer.SendCreateDocu();
+				});
+			}
+
 		}
 	}
 
@@ -242,11 +273,12 @@
 							}
 						}
 						break;
-					case 13:
+					case 11:
 						if (col.innerHTML != "Imagen") {
 							var imgs = col.innerHTML;
 							col.innerHTML = "";
 							var cutted = imgs.split(" , ");
+							col.id = "scrolls";
 							for (var i = 0; i < cutted.length; i++) {
 								var img = document.createElement('img');
 								img.src = cutted[i];
@@ -270,9 +302,20 @@
 
 	}
 
+	var imgProp2 = {
+
+		'overflow-x': 'scroll',
+		'overflow- y': 'hidden',
+		'white-space': 'nowrap'
+	};
+
 	this.ReloadTable = function () {
 		this.ctrlActions.FillTable(this.usersService + "/GetV?correo=" + localStorage.getItem("Correo"), this.tblUsuariosId, true);
-		this.replaceEach(data1, data2, data3, data4);
+		setTimeout(function () {
+			var thisOne = new SocioVehiculos
+			thisOne.replaceEach(data1, data2, data3, data4);
+		}, 2500);
+		
 	}
 
 

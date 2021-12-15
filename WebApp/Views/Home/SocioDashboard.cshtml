@@ -2,7 +2,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4aNZIQyvam7h8Zmdq8ldZ_7sdtVGcwtE"></script>
 <script src="~/Scripts/Views/SocioDashboard.js"></script>
 @{
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
@@ -43,6 +43,7 @@
                         <p>
                             Numero de dias: <label id="daysLeft"></label>
                         </p>
+                        @Html.ActionLink("Ubicar vehiculos", "BusquedaVehiculos", "Home", new { @class = "btn btn-primary btn-lg" })
                     </div>
                 </div>
                 <div class="col-md-6">

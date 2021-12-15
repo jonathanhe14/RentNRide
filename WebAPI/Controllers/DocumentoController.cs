@@ -61,7 +61,7 @@ namespace WebAPI.Controllers
                 mng.Create(documento);
 
                 apiResp = new ApiResponse();
-                apiResp.Message = "Action was executed.";
+                apiResp.Message = "Se agregaron los documentos.";
 
                 return Ok(apiResp);
             }
@@ -82,7 +82,7 @@ namespace WebAPI.Controllers
                 mng.Update(documento);
 
                 apiResp = new ApiResponse();
-                apiResp.Message = "Action was executed.";
+                apiResp.Message = "Se actualizaron los documentos.";
 
                 return Ok(apiResp);
             }
