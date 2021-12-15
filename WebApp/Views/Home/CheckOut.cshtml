@@ -1,0 +1,74 @@
+﻿@using WebApp.Models.Helpers;
+@{
+    ViewBag.Title = "CheckOut";
+}
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<h2>CheckOut</h2>
+<div class="registroUsuario">
+    <form id="frmRegistro">
+        <div class="row">
+            <div class="col-xs-6">
+                <label style="display:block">Daños al Vehiculo</label>
+                <select name="cars" id="selectEstado" style="width:300px;height:30px;margin-bottom:15px">
+                    <option value="SinDannos">Sin daños</option>
+                    <option value="AlgunDanno">Algun Daño</option>
+                    <option value="MuchoDanno">Muchos Daños</option>
+                </select>
+                @Html.CtrlInput(id: "txtKilometrosFinal", type: "text", label: "Kilometrage Final", columnDataName: "KmFinal")
+
+            </div>
+        </div>
+        <div id="horario">
+            <label>Inicio de la Reserva</label>
+            <input type="datetime" id="horaInicio" disabled class="form-control" />
+            <label>Final de la Reserva</label>
+            <input type="datetime" id="horaFinal" class="form-control" disabled />
+        </div>
+        <div id="pago" style="margin-top:10px; border-top: 1px solid grey">
+            <div class="row" style="margin-top:10px; ">
+                <p style="font-size:30px; display:inline; margin-right:58%; margin-left:15px"> Saldo Monedero</p>
+                <p id="saldo" style="font-size:30px; display:inline">0.00<a>₡</a></p>
+            </div>
+            <div class="row" style="margin-top:10px; ">
+                <p style="font-size:30px; display:inline; margin-right:70%; margin-left:15px"> Monto</p>
+                <p id="Total" style="font-size:30px; display:inline">0.00<a>₡</a></p>
+            </div>
+            <div class="alert-danger" id="alertErr" style="display:none;">
+                No tiene el saldo suficiente para pagar la reserva. Para recargar el monedero de click <a id="cambiarPagina"><strong>aqui</strong> </a>
+            </div>
+            <div class="alert-danger" id="alertErr2" style="display:none;">
+                Verifique que todos los campos esten llenos y con un formato correcto
+            </div>
+            @Html.CtrlButton(viewName: "checkOut", id: "btnPagar", label: "Pagar", onClickFunction: "Validar", buttonType: "success")
+        </div>
+
+
+    </form>
+    <script src="~/Scripts/Views/CheckOut.js"></script>
+</div>
+
+<div class="modal fade" id="modalCalificar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: rgba(127, 240, 107,0.5)">
+                <h5 class="modal-title" id="exampleModalLongTitle" style="font-size:25px;">Pago realizado con exito</h5>
+            </div>
+            <div class="modal-body" style="text-align:center;margin:10px 0px ">
+                <span class="fa fa-star" style="cursor:pointer;font-size:25px;" onclick="Calificar(this) " id="1estrella"></span>
+                <span class="fa fa-star" style="cursor: pointer; font-size: 25px;" onclick="Calificar(this)" id="2estrella"></span>
+                <span class="fa fa-star" style="cursor: pointer; font-size: 25px;" onclick="Calificar(this)" id="3estrella"></span>
+                <span class="fa fa-star" style="cursor: pointer; font-size: 25px;" onclick="Calificar(this)" id="4estrella"></span>
+                <span class="fa fa-star" style="cursor: pointer; font-size: 25px;" onclick="Calificar(this)" id="5estrella"></span>
+                <div style="text-align:center;">
+                    <button class=" btn btn-primary" style="margin-top:20px" id="Enviar">Calificar</button>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

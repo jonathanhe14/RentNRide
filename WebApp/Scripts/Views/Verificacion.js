@@ -1,6 +1,6 @@
 ﻿var data = {};
 function Verificacion() {
-	let tiempo = 5;
+	let tiempo = 900;
 
 	this.URL_API = "http://localhost:52125/api/";
 
@@ -20,11 +20,11 @@ function Verificacion() {
 		$('#alert').fadeOut();
 		codigos = this.ctrlActions.getDataFormVerificacion('formEnvio');
 		if (this.Validar()) {
-			this.PostToAPI(this.service + "/ComprobarOTP", codigos,1);
+			this.PostToAPI(this.service + "/ComprobarOTP", codigos, 1);
 		} else {
 			$('#alertError').fadeIn();
-        }
-		
+		}
+
 
 
 	}
@@ -34,8 +34,8 @@ function Verificacion() {
 		$('#alertaTiempo').fadeOut();
 		this.Limpiar();
 		this.Temporizador();
-		this.PostToAPI(this.service + "/EnvioCodigos", data,0);
-    }
+		this.PostToAPI(this.service + "/EnvioCodigos", data, 0);
+	}
 
 	this.Temporizador = function () {
 		let intervalo = setInterval(function () {
@@ -56,7 +56,7 @@ function Verificacion() {
 				clearInterval(intervalo);
 			};
 		}, 1000)
-    }
+	}
 
 
 	this.ShowMessage = function (type) {
@@ -70,14 +70,11 @@ function Verificacion() {
 
 	};
 
-	this.PostToAPI = function (service, data, callBackFunction,type) {
+	this.PostToAPI = function (service, data, type) {
 		var jqxhr = $.post(this.GetUrlApiService(service), data, function (response) {
 			if (type == 1) {
 				var ctrVerificar = new Verificacion();
 				ctrVerificar.ShowMessage('I');
-			}
-			if (callBackFunction) {
-				callbackFunction(response.Data);
 			}
 		})
 			.fail(function (response) {
@@ -102,14 +99,14 @@ function Verificacion() {
 		}
 		return validar;
 	}
-	this.Limpiar = function(){
+	this.Limpiar = function () {
 		$("#txtOTP").val('');
 		$("#txtOTPSMS").val('');
 		$("#txtOTP").css("border", "1px solid #ccc");
 		$("#txtOTPSMS").css("border", "1px solid #ccc");
 		$('#alertError').fadeOut();
 
-    }
+	}
 
 }
 

@@ -172,9 +172,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Views\Administrador.js" />
+    <Content Include="Scripts\Views\CheckOut.js" />
     <Content Include="Scripts\Views\ControlActions.js" />
     <Content Include="Scripts\Views\ControlActionsAdmin.js" />
     <Content Include="Scripts\Views\ControlActionsRegistro.js" />
+    <Content Include="Scripts\Views\ControlActionsReservas.js" />
     <Content Include="Scripts\Views\GenerarReserva.js" />
     <Content Include="Scripts\Views\Horario.js" />
     <Content Include="Scripts\Views\IniciarSesion.js" />
@@ -193,6 +195,7 @@
     <Content Include="Scripts\Views\SocioDashboard.js" />
     <Content Include="Scripts\Views\SocioVehiculos.js" />
     <Content Include="Scripts\Views\Solicitudes.js" />
+    <Content Include="Scripts\Views\SolicitudesReserva.js" />
     <Content Include="Scripts\Views\TiposCombustible.js" />
     <Content Include="Scripts\Views\TiposVehiculo.js" />
     <Content Include="Scripts\Views\TiposVehiculos.js" />
@@ -241,6 +244,8 @@
     <Content Include="Views\Home\PagoMembresia.cshtml" />
     <Content Include="Views\Home\Membresia.cshtml" />
     <Content Include="Views\Home\ConsultarHorarios.cshtml" />
+    <Content Include="Views\Home\CheckOut.cshtml" />
+    <Content Include="Views\Home\SolicitudesReserva.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

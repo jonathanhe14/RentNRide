@@ -289,7 +289,7 @@ namespace WebAPI.Controllers
             apiResp = new ApiResponse();
             var mng = new UsuariosManagement();
             apiResp.Data = mng.RetrieveMonedero(correo);
-            apiResp.Message = "Roles obtenidos";
+            apiResp.Message = "Monedero obtenido";
 
             return Ok(apiResp);
         }

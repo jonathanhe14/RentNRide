@@ -87,7 +87,29 @@ namespace DataAccess.Mapper
             operation.AddVarcharParam(DB_COL_USUARIO, c.Usuario);
             return operation;
         }
+        public SqlOperation GetRetriveStatementSocio(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_RESERVA_SOCIO_PR" };
 
+            var c = (Reserva)entity;
+            operation.AddVarcharParam(DB_COL_SOCIO, c.Socio);
+            return operation;
+        }
+        public SqlOperation GetRetriveStatementPendientes(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_RESERVA_SOCIO_PENDIENTES_PR" };
+
+            var c = (Reserva)entity;
+            operation.AddVarcharParam(DB_COL_SOCIO, c.Socio);
+            return operation;
+        }
+        public SqlOperation GetRetriveStatementById(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "RET_RESERVA_ID_PR" };
+            var c = (Reserva)entity;
+            operation.AddVarcharParam(DB_COL_USUARIO, c.Usuario);
+            return operation;
+        }
         public SqlOperation GetUpdateStatement(BaseEntity entity)
         {
             var operation = new SqlOperation { ProcedureName = "UPD_RESERVA_PR" };
@@ -117,7 +139,21 @@ namespace DataAccess.Mapper
 
             return operation;
         }
+        public SqlOperation GetUpdateStatementEstado(BaseEntity entity)
+        {
+            var operation = new SqlOperation { ProcedureName = "UPD_RESERVA_ESTADO_PR" };
 
+            var c = (Reserva)entity;
+            operation.AddIntParam(DB_COL_ID_RESERVA, c.Id_Reserva);
+            operation.AddDateTimeParam(DB_COL_FECHA_RESERVA, c.FechaReserva);
+            operation.AddVarcharParam(DB_COL_HORA_INICIO, c.HoraInicio);
+            operation.AddVarcharParam(DB_COL_HORA_FIN, c.HoraFin);
+            operation.AddVarcharParam(DB_COL_USUARIO, c.Usuario);
+            operation.AddDecimalParam(DB_COL_TARIFA, c.Tarifa);
+            operation.AddVarcharParam(DB_COL_SOLICITUD, c.Solicitud);
+
+            return operation;
+        }
         public BaseEntity BuildObject(Dictionary<string, object> row)
         {
             var reserva = new Reserva

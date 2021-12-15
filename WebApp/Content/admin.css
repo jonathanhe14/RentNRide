@@ -1,7 +1,7 @@
 ﻿body {
 }
 
-.table-card{
+.table-card {
     background-color: aliceblue;
     padding: 20px;
     border-radius: 20px;
@@ -16,22 +16,25 @@
 }
 
 
-.card-header{
+.card-header {
     padding: 20px;
     font-size: 24px;
     font-weight: bold;
     text-align: center;
 }
+
 .title-page {
     padding: 30px;
     font-size: 26px;
     font-weight: bold;
     text-align: center;
 }
-.frm{
+
+.frm {
     padding: 10px 60px;
 }
-.alerta-d{
+
+.alerta-d {
     padding: 30px;
     margin: 15px;
     font-size: 16px;
@@ -40,11 +43,12 @@
     color: rgba(255,0,0,0.6);
     border-radius: 20px;
 }
-.fin{
+
+.fin {
     padding: 74px 0px;
 }
 
-.construccion{
+.construccion {
     text-align: center;
     font-size: 22px;
     font-weight: bold;
@@ -52,6 +56,26 @@
     border-radius: 20px;
     padding: 40px;
 }
+
 .seleccionado {
-    background-color: rgba(178, 245, 194,.6) !important ;
+    background-color: rgba(178, 245, 194,.6) !important;
+}
+
+.tbl-container {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.tbl-memb td, th {
+    padding: 20px 20px 10px 20px;
+}
+
+    .tbl-memb td label {
+        font-weight: normal !important;
+    }
+
+.memb-title {
+    padding: 20px;
+    font-weight: bold;
 }

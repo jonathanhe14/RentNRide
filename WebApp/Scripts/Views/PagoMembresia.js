@@ -36,6 +36,9 @@ paypal.Buttons({
     onApprove: function (data, actions) {
         return actions.order.capture().then(function (details) {
             $('#modal-paypal').modal('show');
+            setTimeout(function () {
+                window.location.href = "https://localhost:44383/Home/BusquedaVehiculos";
+            }, 5000);
         })
     }
 
@@ -49,7 +52,7 @@ function PagarMembresia() {
         return this.URL_API + service;
     }
     this.Membresia = function () {
-        this.GetToApiMembresia(this.usersService + "/GetMembresiaUsuario?correo=jonaherrera90@hotmail.com")
+        this.GetToApiMembresia("administrador/GetMembresia/" + "/GetMembresia?id=" + localStorage.getItem("IdMembresia"))
     }
 
     this.Usuario = function () {
@@ -136,6 +139,10 @@ $(document).ready(function () {
         if (documentoSubido) {
             this.ctrPagarMembresias = new PagarMembresia();
             this.ctrPagarMembresias.Enviar();
+            setTimeout(function () {
+                window.location.href = "https://localhost:44383/Home/BusquedaVehiculos";
+            }, 5000);
+            
         } else {
             $("#alertError").fadeIn();
         }

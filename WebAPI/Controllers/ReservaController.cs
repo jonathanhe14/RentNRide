@@ -82,6 +82,79 @@ namespace WebAPI.Controllers
                 return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
             }
         }
+        [HttpPut]
+        public IHttpActionResult ActualizarEstadoReserva(Reserva reserva)
+        {
+            try
+            {
+                var mng = new ReservaManager();
+                mng.UpdateEstado(reserva);
+
+                apiResp = new ApiResponse();
+                apiResp.Message = "Action was executed.";
+
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }
+        }
+        [HttpGet]
+        public IHttpActionResult ReservasPorSocio(string correo)
+        {
+            try
+            {
+                var mng = new ReservaManager();
+                Reserva reserva = new Reserva();
+                reserva.Socio = correo;
+                List<Reserva> reservas = mng.RetrieveAllByIdSocio(reserva);
+                apiResp = new ApiResponse();
+                apiResp.Data = reservas;
+                apiResp.Message = "Action was executed.";
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }
+        }
+        [HttpGet]
+        public IHttpActionResult ReservasPorSocioPendientes(string correo)
+        {
+            try
+            {
+                var mng = new ReservaManager();
+                Reserva reserva = new Reserva();
+                reserva.Socio = correo;
+                List<Reserva> reservas = mng.RetrieveAllByIdSocioPendientes(reserva);
+                apiResp = new ApiResponse();
+                apiResp.Data = reservas;
+                apiResp.Message = "Action was executed.";
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }
+        }
+        public IHttpActionResult GetReservasPorId(string correo)
+        {
+            try
+            {
+                var mng = new ReservaManager();
+                apiResp = new ApiResponse();
+                var reserva = new Reserva();
+                reserva.Usuario = correo;
+                apiResp.Data = mng.RetrieveReservaById(reserva); ;
+                apiResp.Message = "Action was executed.";
+                return Ok(apiResp);
+            }
+            catch (BussinessException bex)
+            {
+                return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
+            }
+        }
 
         [HttpGet]
         public IHttpActionResult ReservasPorUsuario(string correo)

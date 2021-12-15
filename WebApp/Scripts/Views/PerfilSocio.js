@@ -40,9 +40,9 @@ function PerfilSocio() {
 					window.location.href = "https://localhost:44383/Home/Verificacion";
 
 				}
-			} else {
 
 			}
+
 			//data = JSON.stringify(response.Data);
 
 		});

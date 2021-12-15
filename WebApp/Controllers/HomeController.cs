@@ -126,6 +126,14 @@ namespace WebApp.Controllers
             return View();
         }
 
+        public ActionResult SolicitudesReserva()
+        {
+            return View();
+        }
+        public ActionResult CheckOut()
+        {
+            return View();
+        }
         public ActionResult Logout()
         {
             Session.Clear();
@@ -204,6 +212,22 @@ namespace WebApp.Controllers
 
 
         public ActionResult EnvioOTP()
+        {
+            return View();
+        }
+        public ActionResult Marcas()
+        {
+            return View();
+        }
+        public ActionResult Modelos()
+        {
+            return View();
+        }
+        public ActionResult TiposCombustible()
+        {
+            return View();
+        }
+        public ActionResult TiposVehiculo()
         {
             return View();
         }

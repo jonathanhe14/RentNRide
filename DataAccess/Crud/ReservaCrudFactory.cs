@@ -45,11 +45,59 @@ namespace DataAccess.Crud
             return default(T);
         }
 
+        public T RetrieveReserva<T>(BaseEntity entity)
+        {
+            var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveStatementById(entity));
+            var dic = new Dictionary<string, object>();
+            if (lstResult.Count > 0)
+            {
+                dic = lstResult[0];
+                var objs = mapper.BuildObject(dic);
+                return (T)Convert.ChangeType(objs, typeof(T));
+            }
+
+            return default(T);
+        }
+
         public List<T> RetrieveByUser<T>(BaseEntity entity)
         {
             var lstHorarios = new List<T>();
 
             var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveStatement(entity));
+            var dic = new Dictionary<string, object>();
+            if (lstResult.Count > 0)
+            {
+                var objs = mapper.BuildObjects(lstResult);
+                foreach (var c in objs)
+                {
+                    lstHorarios.Add((T)Convert.ChangeType(c, typeof(T)));
+                }
+            }
+
+            return lstHorarios;
+        }
+        public List<T> RetrieveBySocio<T>(BaseEntity entity)
+        {
+            var lstHorarios = new List<T>();
+
+            var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveStatementSocio(entity));
+            var dic = new Dictionary<string, object>();
+            if (lstResult.Count > 0)
+            {
+                var objs = mapper.BuildObjects(lstResult);
+                foreach (var c in objs)
+                {
+                    lstHorarios.Add((T)Convert.ChangeType(c, typeof(T)));
+                }
+            }
+
+            return lstHorarios;
+        }
+        public List<T> RetrieveByPendientes<T>(BaseEntity entity)
+        {
+            var lstHorarios = new List<T>();
+
+            var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveStatementPendientes(entity));
             var dic = new Dictionary<string, object>();
             if (lstResult.Count > 0)
             {
@@ -103,6 +151,11 @@ namespace DataAccess.Crud
             }
 
             return lstHorarios;
+        }
+        public void UpdateEstado(BaseEntity entity)
+        {
+            var customer = (Reserva)entity;
+            dao.ExecuteProcedure(mapper.GetUpdateStatementEstado(customer));
         }
     }
 }

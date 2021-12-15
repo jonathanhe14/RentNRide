@@ -3,7 +3,7 @@
 	this.tblUsuariosId = 'tblUsuarios';
 	this.usersService = 'usuarios';
 	this.adminService = 'administrador';
-	this.tblMembresiasId = 'tblMembresias'
+	this.tblMembresiasId = 'tblMembresias';
 	this.ctrlActions = new ControlActionsAdmin();
 
 

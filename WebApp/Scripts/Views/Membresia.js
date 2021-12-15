@@ -24,8 +24,12 @@
         var correo = this.getURLParameter('correo');
         var membresia = this.getURLParameter('membresia');
 
+        
+
         this.correo = atob(correo);
         this.membresia = atob(membresia);
+        localStorage.setItem("Correo", atob(correo))
+        localStorage.setItem("IdMembresia", atob(membresia))
 
         this.ctrlActions.GetToApi("administrador/GetMembresia/" + this.membresia, function (resp) {
             $('#lblNombre').append(resp["Nombre"]);
@@ -38,12 +42,13 @@
     }
 
     this.Aceptar = function() {
-        console.log("aceptar");
+        window.location.href = "https://localhost:44383/Home/PagoMembresia";
 
     }
 
     this.Rechazar = function () {
-        console.log("rechazar");
+        window.location.href = "https://localhost:44383/Home/InicioSesion";
+        Storage.clear();
     }
 
 }

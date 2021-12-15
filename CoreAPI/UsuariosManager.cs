@@ -78,9 +78,10 @@ namespace CoreAPI
                 {
                     IdUsuario = usuario.Correo,
                     Saldo = 0,
-                    InfoMonedero = "USUARIO",
-                    FechaCorte = DateTime.Now,
-                    FechaExpiracion = DateTime.Now
+                    FechaCorte = DateTime.Now.AddMonths(1),
+                    FechaExpiracion = DateTime.Now.AddDays(15),
+                    InfoMonedero = "Usuario"
+
                 };
 
 
@@ -118,7 +119,7 @@ namespace CoreAPI
         {
             try
             {
-                var u = crudUsuarios.Retrieve<Usuarios>(usuario);
+                var u = crudUsuarios.VerificarUsuario<Usuarios>(usuario);
                 if (u != null)
                 {
                     throw new BussinessException(1);
@@ -185,12 +186,21 @@ namespace CoreAPI
                     Password = encriptado.MD5(usuario.ContrassenaActual),
                     FullName = usuario.Nombre + usuario.Apellidos
                 };
+                var monedero = new Monedero
+                {
+                    IdUsuario = usuario.Correo,
+                    Saldo = 0,
+                    FechaCorte = DateTime.Now.AddMonths(1),
+                    FechaExpiracion = DateTime.Now.AddDays(15),
+                    InfoMonedero = "Socio"
+
+                };
 
                 crudUsuarios.Create(usuario);
                 crudContrasennas.Create(contrasenna);
                 crudRoles.Create(rolUsuario);
                 crudUserProfile.Create(userProfile);
-
+                CreateMonedero(monedero);
             }
             catch (Exception ex)
             {
@@ -353,7 +363,7 @@ namespace CoreAPI
                 u.OTPVencimiento = DateTime.Now;
                 mngUsuarios.Update(u);
                 var mngNotificaciones = new NotificacionesManager();
-                //mngNotificaciones.recuperarClaveCorreo(u);
+                mngNotificaciones.recuperarClaveCorreo(u);
                 Usuarios usuario = new Usuarios
                 {
                     Correo = u.Correo,

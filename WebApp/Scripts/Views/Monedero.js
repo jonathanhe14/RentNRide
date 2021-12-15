@@ -15,17 +15,18 @@ function Monedero() {
             dataM = response.Data;
             //data = JSON.stringify(response.Data);
             console.log(dataM);
-            $("#saldo").html(dataM["Saldo"]);
+            $("#saldo").html(dataM["Saldo"] +"₡");
         });
     }
     this.Monedero = function () {
-        this.GetToApiMonedero(this.usersService + "/GetMonedero?correo=" + localStorage.getItem("Correo"))
-        
+        console.log(localStorage.getItem('Correo'))
+        this.GetToApiMonedero(this.usersService + "/GetMonedero?correo=" + localStorage.getItem('Correo'))
+
     }
 
     this.PutToAPI = function (data) {
         var jqxhr = $.post('http://localhost:52125/api/usuarios/ActualizarMonedero', data, function (response) {
-           
+
         })
             .fail(function (response) {
                 var data = response.responseJSON;
@@ -68,7 +69,7 @@ paypal.Buttons({
             this.crtMonedero.Actualizar();
         })
     }
-    
+
 
 }).render('#paypal-payment-button');
 

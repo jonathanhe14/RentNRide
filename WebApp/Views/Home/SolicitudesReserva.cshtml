@@ -1,0 +1,45 @@
+﻿
+@using WebApp.Models.Helpers;
+@{ ViewBag.Title = "SolicitudesReserva"; }
+<script src="~/Scripts/Views/ControlActionsReservas.js"></script>
+<script src="~/Scripts/Views/SolicitudesReserva.js"></script>
+
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+<h2>Reservas Aceptadas</h2>
+
+
+<div class="col-md-12 table-card">
+    @Html.CtrlTable(viewName: "SolicitudesReserva", id: "tblReservas", title: "",
+                columnsTitle: "Vehiculo,Reserva,Fecha,Hora de Inicio,Hora de Finalizacion,Usuario,Estado,Tarifa", ColumnsDataName: "Id_Vehiculo,Id_Reserva,FechaReserva,HoraInicio,HoraFin,Usuario,Solicitud,Tarifa",
+                onSelectFunction: "", colorHeader: "red")
+</div>
+<div class="row">
+
+</div>
+
+<h2>Reservas Pendientes</h2>
+<div class="col-md-12 table-card" style="margin-top:20px">
+    @Html.CtrlTable(viewName: "SolicitudesReserva", id: "tblReservasPendientes", title: "",
+                    columnsTitle: "Vehiculo,Reserva,Fecha,Hora de Inicio,Hora de Finalizacion,Usuario,Estado,Tarifa", ColumnsDataName: "Id_Vehiculo,Id_Reserva,FechaReserva,HoraInicio,HoraFin,Usuario,Solicitud,Tarifa",
+                    onSelectFunction: "BindFieldsReservasPendientes", colorHeader: "red")
+</div>
+<div id="Modificar" style="display:none;">
+
+
+    <form id="frmReservas">
+        @Html.CtrlInput(id: "txtIdReserva", type: "text", label: "Id", columnDataName: "Id_Reserva", readOnly: "readonly")
+        @Html.CtrlInput(id: "txtHoraInicio", type: "text", label: "Hora de Inicio", columnDataName: "HoraInicio", readOnly: "readonly")
+        @Html.CtrlInput(id: "txtHoraFinal", type: "text", label: "Hora Final", columnDataName: "HoraFin", readOnly: "readonly")
+        @Html.CtrlInput(id: "txtFecha", type: "text", label: "Fecha", columnDataName: "FechaReserva", readOnly: "readonly")
+        @Html.CtrlInput(id: "txtUsuario", type: "text", label: "Usuario", columnDataName: "Usuario", readOnly: "readonly")
+        @Html.CtrlInput(id: "txtTarifa", type: "text", label: "Tarifa", columnDataName: "Tarifa", readOnly: "readonly")
+
+    </form>
+
+    <div class="col-md-6">
+        @Html.CtrlButton(viewName: "ControlActionsReservas", id: "btnAceptar", label: "Aceptar", onClickFunction: "Aceptar", buttonType: "success")
+        @Html.CtrlButton(viewName: "ControlActionsReservas", id: "btnRechazar", label: "Rechazar", onClickFunction: "Rechazar", buttonType: "danger")
+
+    </div>
+</div>

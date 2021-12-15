@@ -1,35 +1,35 @@
 ﻿
-@using WebApp.Models.Helpers;
 
+@using WebApp.Models.Helpers;
+<link href="~/Content/admin.css" rel="stylesheet" />
 <script src="~/Scripts/Views/Membresia.js"></script>
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 <main>
 
     <div class="row">
-
+        <h2 class="memb-title">Solicitud de membresía</h2>
         <div class="col-md-12 table-card">
-              <table id="tblMembresia">
-                  <tr><th>Nombre</th><th>Monto Mensual</th><th>Comisión por Transacción</th><th>Número de Días</th></tr>
-                  <tr>
-                      <td><label id="lblNombre"></label></td>
-                      <td><label id="lblMonto"></label></td>
-                      <td><label  id="lblComision"></label></td>
-                      <td><lablel id="lblNum"></lablel></td>
-                  </tr>
+            <div class="tbl-container">
+                <table id="tblMembresia" class="tbl-memb">
+                    <tr><th>Nombre</th><th>Monto Mensual</th><th>Comisión por Transacción</th><th>Número de Días</th></tr>
+                    <tr>
+                        <td><label id="lblNombre"></label></td>
+                        <td><label id="lblMonto"></label></td>
+                        <td><label id="lblComision"></label></td>
+                        <td><lablel id="lblNum"></lablel></td>
+                    </tr>
 
-              </table>
- 
+                </table>
+            </div>
             <div class="card border-secondary" style="margin-top: 50px;">
 
-                <div class="row">
-              
+                <div class="row tbl-container">
+
                     <div class="col-md-12">
                         @Html.CtrlButton(viewName: "Membresia", id: "btnAceptar", label: "Aceptar", onClickFunction: "Aceptar", buttonType: "success")
                         @Html.CtrlButton(viewName: "Membresia", id: "btnRechazar", label: "Rechazar", onClickFunction: "Rechazar", buttonType: "danger")
-  
+
                     </div>
                 </div>
 
@@ -39,3 +39,4 @@
     </div>
 
 </main>
+

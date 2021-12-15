@@ -145,7 +145,17 @@ namespace CoreAPI
                 throw new BussinessException(0);
             }
         }
-
+        public Reserva RetrieveReservaById(Reserva reserva)
+        {
+            try
+            {
+                return crudReserva.RetrieveReserva<Reserva>(reserva);
+            }
+            catch (Exception ex)
+            {
+                throw new BussinessException(0);
+            }
+        }
         public List<Reserva> RetrieveAllById(Reserva reserva)
         {
             try
@@ -157,12 +167,44 @@ namespace CoreAPI
                 throw new BussinessException(0);
             }
         }
-
+        public List<Reserva> RetrieveAllByIdSocio(Reserva reserva)
+        {
+            try
+            {
+                return crudReserva.RetrieveBySocio<Reserva>(reserva);
+            }
+            catch (Exception ex)
+            {
+                throw new BussinessException(0);
+            }
+        }
+        public List<Reserva> RetrieveAllByIdSocioPendientes(Reserva reserva)
+        {
+            try
+            {
+                return crudReserva.RetrieveByPendientes<Reserva>(reserva);
+            }
+            catch (Exception ex)
+            {
+                throw new BussinessException(0);
+            }
+        }
         public void Update(Reserva reserva)
         {
             try
             {
                 crudReserva.Update(reserva);
+            }
+            catch (Exception ex)
+            {
+                throw new BussinessException(0);
+            }
+        }
+        public void UpdateEstado(Reserva reserva)
+        {
+            try
+            {
+                crudReserva.UpdateEstado(reserva);
             }
             catch (Exception ex)
             {
