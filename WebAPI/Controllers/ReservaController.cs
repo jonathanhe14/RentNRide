@@ -86,7 +86,7 @@ namespace WebAPI.Controllers
                 return InternalServerError(new Exception(bex.ExceptionId + "-" + bex.AppMessage.Mensaje));
             }
         }
-        [HttpPut]
+        [HttpPost]
         public IHttpActionResult ActualizarEstadoReserva(Reserva reserva)
         {
             try
