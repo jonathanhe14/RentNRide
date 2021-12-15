@@ -45,11 +45,13 @@
 
 		if (usrVacio || membVacio) {
 			//"<div class='alert alert-warning alert-dismissible fade show'>< button type = 'button' class= 'btn-close' data-bs-dismiss='alert' ></button ><strong>Los campos no pueden estar vacíos</strong></div >"
-			$('#alert').fadeTo(4000, 500).slideUp(500, function () {
-				$('#alert').slideUp(500);
+			$('#alert-d').fadeTo(4000, 500).slideUp(500, function () {
+				$('#alert-d').slideUp(500);
 			});
 		} else {
-			
+			$('#alert-s').fadeTo(4000, 500).slideUp(500, function () {
+				$('#alert-s').slideUp(500);
+			});
 			var usuario = {};
 			usuario = this.ctrlActions.GetDataForm('frmUsers');
 			var membresia = {};
