@@ -70,7 +70,9 @@ namespace WebApp.Controllers
 
                             if (verificarRol(rol, 4) == "yes")
                             {
-                                return View("BusquedaVehiculos");
+                                //return View("BusquedaVehiculos");
+                                return View("PerfilSocio");
+
                             }
                         }
                         else

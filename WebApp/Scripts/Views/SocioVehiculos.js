@@ -325,6 +325,7 @@
 	this.BindFields = function (data) {
 		//llena campos
 		currIdData = data.Id;
+		localStorage.setItem("idVehiculo", currIdData);
 		document.getElementById("Tipo").value = data.Tipo;
 		document.getElementById("Combustible").value = data.Combustible;
 		document.getElementById("Marca").value = data.Marca;

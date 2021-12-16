@@ -25,7 +25,7 @@ namespace CoreAPI
             crudVehiculos = new VehiculoCrudFactory();
         }
 
-        public void Create(Reserva reserva, int horas)
+        public void generarMovimientoMonedero(Reserva reserva, int horas)
         {
             try
             {
@@ -38,27 +38,71 @@ namespace CoreAPI
                     };
                     usuario = crudUsuarios.Retrieve<Usuarios>(usuario);
                     var mng = new UsuariosManagement();
+                    Vehiculo vehiculo = new Vehiculo();
+                    vehiculo.Id = reserva.Id_Vehiculo;
+                    vehiculo = crudVehiculos.Retrieve<Vehiculo>(vehiculo);
                     Monedero monedero = new Monedero();
                     monedero = mng.RetrieveMonedero(usuario.Correo);
-                    if ((reserva.Tarifa * horas + reserva.Entrega) > monedero.Saldo)
+                    if ((vehiculo.Tarifa * horas + reserva.Entrega) > monedero.Saldo)
                     {
                         throw new BussinessException(7);
                     }
-                    crudReserva.Create(reserva);
-                    monedero.Saldo = monedero.Saldo - (reserva.Tarifa * horas + reserva.Entrega);
-                    mng.PutMonedero(monedero);
+                    else
+                    {
+                        monedero.Saldo = monedero.Saldo - (vehiculo.Tarifa * horas + reserva.Entrega);
+                        mng.PutMonedero(monedero);
+                    }
                 }
                 else
                 {
-                    crudReserva.Create(reserva);
+                    Usuarios usuario = new Usuarios
+                    {
+                        Correo = reserva.Usuario,
+                        Telefono = ""
+                    };
+                    usuario = crudUsuarios.Retrieve<Usuarios>(usuario);
+                    var mng = new UsuariosManagement();
+                    Vehiculo vehiculo = new Vehiculo();
+                    vehiculo.Id = reserva.Id_Vehiculo;
+                    vehiculo = crudVehiculos.Retrieve<Vehiculo>(vehiculo);
+                    Monedero monedero = new Monedero();
+                    monedero = mng.RetrieveMonedero(usuario.Correo);
+                    if ((vehiculo.Tarifa * horas + reserva.Entrega) > monedero.Saldo)
+                    {
+                        throw new BussinessException(7);
+                    }
                 }
+
 
             }
             catch (Exception ex)
             {
                 ExceptionManager.GetInstance().Process(ex);
             }
+
         }
+
+        public void Create(Reserva reserva, int horas)
+        {
+            try
+            {
+                if (!reserva.Solicitud.Equals("PENDIENTE"))
+                {
+                    crudReserva.Create(reserva);
+                }
+                else
+                {
+                    crudReserva.Create(reserva);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.GetInstance().Process(ex);
+            }
+        }
+
+
+
 
         public void CrearFactura(List<Reserva> lstReservas)
         {

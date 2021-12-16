@@ -135,7 +135,7 @@ $(document).ready(function () {
 	}
 
 	$('#ingresarParametros').click(function () {
-		window.location.href = "https://localhost:44383/Home/BusquedaVehiculos";
+		window.location.href = "https://localhost:44383/Home/CheckOut";
 	});
 
 	$('#irMonedero').click(function () {

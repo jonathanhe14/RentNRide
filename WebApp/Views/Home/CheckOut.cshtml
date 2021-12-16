@@ -1,8 +1,7 @@
 ﻿@using WebApp.Models.Helpers;
 @{
     ViewBag.Title = "CheckOut";
-    Layout = "~/Views/Shared/_LayoutUsuario";
-
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
 }
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 <h2>CheckOut</h2>
@@ -16,7 +15,7 @@
                     <option value="AlgunDanno">Algun Daño</option>
                     <option value="MuchoDanno">Muchos Daños</option>
                 </select>
-                @Html.CtrlInput(id: "txtKilometrosFinal", type: "text", label: "Kilometrage Final", columnDataName: "KmFinal")
+                @Html.CtrlInput(id: "txtKilometrosFinal", type: "text", label: "Kilometraje Final", columnDataName: "KmFinal")
 
             </div>
         </div>

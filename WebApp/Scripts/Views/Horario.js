@@ -17,6 +17,7 @@ function Horario() {
 	this.Create = function () {
 		$('#tbl-horarios > tbody > tr').each(function () {
 
+			var idVehiculo = localStorage.getItem("idVehiculo");
 			var hora_Inicio = $(this).find('.txtHoraInicio').val();
 			var hora_Final = $(this).find('.txtHoraFinal').val();
 			var dia_Inicial = $(this).find('.diaInicial').find(":selected").val();
@@ -36,7 +37,7 @@ function Horario() {
 			if (hora_Inicio && hora_Final && dia_Inicial && dia_Final) {
 				data.push({
 					//Id_Vehiculo: 30041,
-					Id_Vehiculo: 64167,
+					Id_Vehiculo: idVehiculo,
 					horaInicio: hora_Inicio,
 					horaFinal: hora_Final,
 					Disponibilidad: disponibilidad,
@@ -72,7 +73,7 @@ function Horario() {
 			//console.log("lanzar alerta")
 			$('#modalSuccess').modal('show');
 			$('#modalSuccess .modal-body').text(mensaje);
-
+			localStorage.removeItem("idVehiculo");
 		}
 
 	};
@@ -132,11 +133,11 @@ function Horario() {
 $(document).ready(function () {
 
 	$('#horarioExitoso').click(function () {
-		window.location.href = "https://localhost:44383/Home/VehiculoInfo";
+		window.location.href = "https://localhost:44383/Home/SocioVehiculos";
 	});
 
 	$('#horarioError').click(function () {
-		window.location.href = "https://localhost:44383/Home/Horario";
+		window.location.href = "https://localhost:44383/Home/SocioVehiculos";
 	})
 
 	var counter = 0

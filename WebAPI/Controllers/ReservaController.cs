@@ -22,6 +22,7 @@ namespace WebAPI.Controllers
                 var mng = new ReservaManager();
                 int horas = listaReservas.Count;
                 apiResp = new ApiResponse();
+                mng.generarMovimientoMonedero(listaReservas[0], horas);
                 foreach (var reserva in listaReservas)
                 {
                     mng.Create(reserva, horas);
@@ -34,7 +35,6 @@ namespace WebAPI.Controllers
                 }
                 apiResp.Message = "Solicitud creada, por favor esperar confirmación. " +
                     "Una vez que se haya aprobado la solicitud, se efectuará el cargo en su monedero";
-
                 return Ok(apiResp);
             }
             catch (BussinessException bex)
